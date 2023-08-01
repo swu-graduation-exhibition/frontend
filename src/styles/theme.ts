@@ -1,0 +1,65 @@
+const colors = {
+  White: '#FFFFFF',
+  Black: '#000000',
+  Grayscales_50: '#FBFBFB',
+  Grayscales_100: '#F1F3F5',
+  Grayscales_200: '#E9ECEF',
+  Grayscales_300: '#DEE2E6',
+  Grayscales_400: '#CED4DA',
+  Grayscales_500: '#ADB5BD',
+  Grayscales_600: '#868E96',
+  Grayscales_700: '#495057',
+  Grayscales_800: '#343A40',
+  Grayscales_900: '#212529',
+  Yello_Main_100: '#FFFDEE',
+  Yello_Main_200: '#FFFBD7',
+  Yello_Main_300: '#FFF8B1',
+  Yello_Main_400: '#FFF270',
+  Yello_Main_500: '#FDEC4A',
+  Yello_Main_600: '#FFDE31',
+  Yello_Main_700: '#FDCB4A',
+  Yello_Main_800: '#FDB54A',
+  Sub_Pink: '#F5D4BF',
+  Sub_Blue: '#C3DCEC',
+} as const;
+
+interface Font {
+  weight: 300 | 400 | 500 | 700;
+  size: number;
+  lineHeight: number;
+}
+
+function FONT({ weight, size, lineHeight }: Font): string {
+  return `
+    font-family: 'Noto Sans' ;
+    font-weight: ${weight};
+    font-size: ${size}rem;
+    line-height: ${lineHeight}rem;
+  `;
+}
+
+const fonts = {
+  Headline_01: FONT({ weight: 700, size: 6.4, lineHeight: 9.267 }),
+  Headline_02: FONT({ weight: 700, size: 6, lineHeight: 6 }),
+  Headline_03: FONT({ weight: 700, size: 5.2, lineHeight: 7.53 }),
+  Subtitle_01: FONT({ weight: 700, size: 3.8, lineHeight: 4 }),
+  Subtitle_02: FONT({ weight: 700, size: 3.6, lineHeight: 5.213 }),
+  Subtitle_03: FONT({ weight: 700, size: 2.8, lineHeight: 3.2 }),
+  Subtitle_04: FONT({ weight: 700, size: 2.6, lineHeight: 3.2 }),
+  Subtitle_05: FONT({ weight: 700, size: 2.2, lineHeight: 3.2 }),
+  Body_01: FONT({ weight: 400, size: 4, lineHeight: 6 }),
+  Body_02: FONT({ weight: 300, size: 3.5, lineHeight: 5 }),
+  Body_03: FONT({ weight: 500, size: 3, lineHeight: 4 }),
+  Body_04: FONT({ weight: 300, size: 3, lineHeight: 4 }),
+  Caption_01: FONT({ weight: 300, size: 2.5, lineHeight: 4 }),
+  Caption_02: FONT({ weight: 400, size: 2.2, lineHeight: 3 }),
+  Caption_03: FONT({ weight: 400, size: 2, lineHeight: 3 }),
+  Caption_04: FONT({ weight: 400, size: 1.5, lineHeight: 2.4 }),
+} as const;
+
+const theme = {
+  colors,
+  fonts,
+};
+
+export default theme;
