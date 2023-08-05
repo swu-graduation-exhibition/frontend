@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ProjectCard from './ProjectCard';
-import projectData from './data/cardData';
+import ProjectCardContainer from './components/ProjectCardContainer';
+import ProjectCategory from './components/ProjectCategory';
 
 function Project() {
   return (
@@ -8,14 +8,8 @@ function Project() {
       <NavigationBar>
         <StAppWrapper>Project Page</StAppWrapper>
       </NavigationBar>
-      <ButtonSection />
-      <ProjectCardContainer>
-        <ProjectCardLayout>
-          {projectData.map((projectData, i) => (
-            <ProjectCard key={i} projectData={projectData} />
-          ))}
-        </ProjectCardLayout>
-      </ProjectCardContainer>
+      <ProjectCategory />
+      <ProjectCardContainer />
     </ProjectLayout>
   );
 }
@@ -23,40 +17,21 @@ function Project() {
 export default Project;
 
 const ProjectLayout = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 `;
 
 const NavigationBar = styled.nav`
   display: flex;
   width: 100%;
+  max-width: 165rem;
   height: 11rem;
   align-items: center;
   border-bottom: 1px solid black;
-`;
-
-const ButtonSection = styled.section`
-  display: flex;
-  width: 100%;
-  height: 31.5rem;
-  align-items: center;
-  border-bottom: 1px solid black;
-`;
-const ProjectCardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const ProjectCardLayout = styled.section`
-  display: grid;
-  max-width: 165rem;
-  grid-template-columns: repeat(3, minmax(27rem, 1fr));
-
-  @media screen and (max-width: 830px) {
-    grid-template-columns: repeat(2, minmax(27rem, 1fr));
-  }
-  @media screen and (max-width: 520px) {
-    grid-template-columns: repeat(1, minmax(27rem, 1fr));
-  }
+  background-color: blueviolet;
 `;
 
 const StAppWrapper = styled.div`
