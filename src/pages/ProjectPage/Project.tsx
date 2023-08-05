@@ -46,13 +46,18 @@ const ButtonSection = styled.section`
 const ProjectCardContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 13.6rem;
 `;
 const ProjectCardLayout = styled.section`
-  width: 100%;
-  max-width: 165rem;
   display: grid;
+  max-width: 165rem;
   grid-template-columns: repeat(3, minmax(27rem, 1fr));
+
+  @media screen and (max-width: 830px) {
+    grid-template-columns: repeat(2, minmax(27rem, 1fr));
+  }
+  @media screen and (max-width: 520px) {
+    grid-template-columns: repeat(1, minmax(27rem, 1fr));
+  }
 `;
 const CardContainer = styled.article``;
 const ProjectCard = styled.img`
