@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import ProjectCard from './ProjectCard';
+import projectData from './data/cardData';
 
 function Project() {
-  const CardData = Array.from({ length: 12 });
   return (
     <ProjectLayout>
       <NavigationBar>
@@ -11,8 +11,8 @@ function Project() {
       <ButtonSection />
       <ProjectCardContainer>
         <ProjectCardLayout>
-          {CardData.map(() => (
-            <ProjectCard />
+          {projectData.map((projectData, i) => (
+            <ProjectCard key={i} projectData={projectData} />
           ))}
         </ProjectCardLayout>
       </ProjectCardContainer>

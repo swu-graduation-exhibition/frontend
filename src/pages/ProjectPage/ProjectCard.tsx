@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import projectImage from '~/assets/images/projectCardImg.png';
-import { projectData } from './data/cardData';
-import theme from '~/styles/theme';
+import { IProjectData } from './data/cardData';
 
-function ProjectCard() {
+interface ProjectCardProps {
+  projectData: IProjectData;
+}
+
+function ProjectCard({ projectData }: ProjectCardProps) {
+  console.log(projectData);
+  const { category, title, participants, thumbnail }: IProjectData = projectData;
   const [isMouseOn, setIsMouseOn] = useState(false);
 
   const handleMouseOver = () => {
@@ -15,11 +19,9 @@ function ProjectCard() {
     setIsMouseOn(false);
   };
 
-  const { category, title, participants } = projectData;
-
   return (
     <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <CardSection src={projectImage} />
+      <CardSection src={thumbnail} />
       {isMouseOn && (
         <CardBackDrop>
           <CategoryText>{category}</CategoryText>
@@ -85,7 +87,11 @@ const ProjectInfoContainer = styled.section`
   bottom: 3.2rem;
   left: 3.2rem;
 `;
-const ParticipantsContainer = styled.div``;
+const ParticipantsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`;
 
 const MemberText = styled.span`
   color: white;
