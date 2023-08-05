@@ -1,6 +1,6 @@
 ---
-name: 이슈템플릿
-about: 새로운이슈를 적어주세요
+name: Issue_Template
+about: 기능개발 이슈생성
 title: SWU_Exhibition_Issues
 labels: ''
 assignees: ''
