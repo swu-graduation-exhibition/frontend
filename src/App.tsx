@@ -1,12 +1,7 @@
-import React from 'react';
-import { styled } from 'styled-components';
+import Router from './Router';
 
 const App = () => {
-  return <StAppWrapper>메인입니다</StAppWrapper>;
+  return <Router />;
 };
 
 export default App;
-
-const StAppWrapper = styled.div`
-  ${({ theme }) => theme.fonts.Headline_01};
-`;
