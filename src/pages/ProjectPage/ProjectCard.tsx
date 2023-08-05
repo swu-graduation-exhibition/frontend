@@ -7,7 +7,6 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ projectData }: ProjectCardProps) {
-  console.log(projectData);
   const { category, title, participants, thumbnail }: IProjectData = projectData;
   const [isMouseOn, setIsMouseOn] = useState(false);
 
