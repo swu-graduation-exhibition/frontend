@@ -31,7 +31,6 @@ const NavigationBar = styled.nav`
   height: 11rem;
   align-items: center;
   border-bottom: 1px solid black;
-  background-color: blueviolet;
 `;
 
 const StAppWrapper = styled.div`
