@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { ProjectCategories } from '../types/project';
+import { ProjectCategories, TProjectCategories } from '../types/project';
 import { useState } from 'react';
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
 
-  const handleCategory = (category: string) => {
+  const handleCategory = (category:TProjectCategories) => {
     setIsSelected(category);
   };
 
