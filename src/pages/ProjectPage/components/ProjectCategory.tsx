@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import { ProjectCategories } from '../types/project';
 
 function ProjectCategory() {
   return (
     <Container>
       <NavTitle>Project</NavTitle>
       <ButtonSection>
-        <CategoryButton>UX Design</CategoryButton>
-        <CategoryButton>Digital Fabrication</CategoryButton>
-        <CategoryButton>BX Design</CategoryButton>
+        {ProjectCategories.map((category, i) => {
+          return <CategoryButton key={i}>{category}</CategoryButton>;
+        })}
       </ButtonSection>
     </Container>
   );
