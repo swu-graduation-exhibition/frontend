@@ -50,18 +50,20 @@ const CardSection = styled.img`
   height: 100%;
 `;
 const CardBackDrop = styled.article`
-  width: 100%;
-  height: 100%;
-
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
-  animation: fadeInAnimation 0.5s ease-in-out forwards;
-  @keyframes fadeInAnimation {
+  width: 100%;
+  height: 100%;
+
+  animation: fadeinanimation 0.5s ease-in-out forwards;
+  background: rgb(0 0 0 / 40%);
+
+  @keyframes fadeinanimation {
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
@@ -69,12 +71,12 @@ const CardBackDrop = styled.article`
 `;
 
 const CategoryText = styled.span`
-  color: white;
-  ${({ theme }) => theme.fonts.Body_03}
-
   position: absolute;
   top: 3.2rem;
   right: 3.2rem;
+
+  color: white;
+  ${({ theme }) => theme.fonts.Body_03}
 `;
 const TitleText = styled.span`
   color: white;
@@ -87,9 +89,9 @@ const ProjectInfoContainer = styled.section`
   left: 3.2rem;
 `;
 const ParticipantsContainer = styled.div`
-  display: flex;
   flex-direction: row;
   gap: 1rem;
+  display: flex;
 `;
 
 const MemberText = styled.span`

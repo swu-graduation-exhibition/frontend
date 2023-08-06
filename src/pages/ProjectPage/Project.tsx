@@ -26,10 +26,10 @@ const ProjectLayout = styled.section`
 
 const NavigationBar = styled.nav`
   display: flex;
-  width: 100%;
-  max-width: 165rem;
-  height: 11rem;
   align-items: center;
+  width: 100%;
+  height: 11rem;
+  max-width: 165rem;
   border-bottom: 1px solid black;
 `;
 

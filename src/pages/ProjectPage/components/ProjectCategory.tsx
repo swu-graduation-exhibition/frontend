@@ -51,7 +51,7 @@ const Container = styled.section`
   height: 31.5rem;
   border-bottom: 1px solid black;
 
-  padding: 16rem 0 8rem 0;
+  padding: 16rem 0 8rem;
 `;
 
 const NavTitle = styled.header`
@@ -66,25 +66,27 @@ const ButtonSection = styled.div`
 `;
 
 const CategoryButton = styled.button<{ isChecked: boolean; isMouseOver: boolean }>`
-  font-family: 'Antic Didone', serif;
-  font-size: 3.2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px;
-  text-align: center;
   padding: 1.6rem 3.2rem;
-  border-radius: 0.4rem;
-  color: ${({ isMouseOver, isChecked, theme }) =>
-    isMouseOver
-      ? theme.colors.Grayscales_700
-      : isChecked
-      ? theme.colors.White
-      : theme.colors.Grayscales_700};
+  border: 1.5px solid var(--grayscales-800, #343a40);
+
   background-color: ${({ isMouseOver, isChecked, theme }) =>
     isMouseOver
       ? 'rgba(134, 142, 150, 0.10)'
       : isChecked
       ? theme.colors.Grayscales_900
       : theme.colors.White};
-  border: 1.5px solid var(--grayscales-800, #343a40);
+  color: ${({ isMouseOver, isChecked, theme }) =>
+    isMouseOver
+      ? theme.colors.Grayscales_700
+      : isChecked
+      ? theme.colors.White
+      : theme.colors.Grayscales_700};
+
+  text-align: center;
+  font-family: 'Antic Didone', serif;
+  font-size: 3.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  border-radius: 0.4rem;
 `;
