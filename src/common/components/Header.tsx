@@ -9,7 +9,9 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <IcHeaderLogo onClick={() => navigate('/')} />
+      <div>
+        <IcHeaderLogo onClick={() => navigate('/')} />
+      </div>
       <LinkWrapper>
         {PAGE_CATEGORIES.map((category, idx) => (
           <LiContent key={category}>
@@ -32,18 +34,37 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  max-width: 192rem;
   height: 11rem;
   border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Black};
-  padding: 0 13.6rem;
+  padding: 0 10%;
 
-  > svg {
+  div > svg {
     cursor: pointer;
+    @media screen and (width <= 1400px) {
+      /* height: 8rem; */
+    }
+    @media screen and (width <= 830px) {
+      height: 2.6rem;
+    }
+  }
+
+  @media screen and (width <= 1400px) {
+    height: 8rem;
+    padding: 0 8%;
+  }
+  @media screen and (width <= 830px) {
+    height: 5.5rem;
+    padding: 0 5%;
   }
 `;
 const LinkWrapper = styled.ul`
   display: flex;
   gap: 8.8rem;
+
+  @media screen and (width <= 830px) {
+    gap: 6.8rem;
+  }
 `;
 const LiContent = styled.li`
   a {
@@ -53,6 +74,10 @@ const LiContent = styled.li`
     line-height: 36px;
     letter-spacing: 0em;
     text-align: left;
+
+    @media screen and (width <= 830px) {
+      font-size: 1.6rem;
+    }
   }
   .incorrect {
     color: ${({ theme }) => theme.colors.Grayscales_500};
