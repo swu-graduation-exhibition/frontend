@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { PageLayout } from '~/common/components';
 
 function Landing() {
-  return <StAppWrapper>메인입니다</StAppWrapper>;
+  return (
+    <PageLayout>
+      <h1>메인입니다</h1>
+    </PageLayout>
+  );
 }
 
 export default Landing;
