@@ -5,7 +5,7 @@ import { useState } from 'react';
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
 
-  const handleCategory = (category:TProjectCategories) => {
+  const handleCategory = (category: TProjectCategories) => {
     setIsSelected(category);
   };
 
@@ -54,6 +54,10 @@ const NavTitle = styled.header`
   ${({ theme }) => theme.fonts.Headline_03}
   width: fit-content;
   height: fit-content;
+
+  @media screen and (width <= 1400px) {
+    ${({ theme }) => theme.fonts.Subtitle_02}
+  }
 `;
 
 const ButtonSection = styled.div`
@@ -68,9 +72,9 @@ const ButtonSection = styled.div`
 `;
 
 const CategoryButton = styled.button<{ isChecked: boolean }>`
+  width: fit-content;
   padding: 1.6rem 3.2rem;
   border: 0.15rem solid var(--grayscales-800, #343a40);
-  min-width: fit-content;
 
   background-color: ${({ isChecked, theme }) =>
     isChecked ? theme.colors.Grayscales_900 : theme.colors.White};
@@ -78,6 +82,7 @@ const CategoryButton = styled.button<{ isChecked: boolean }>`
     isChecked ? theme.colors.White : theme.colors.Grayscales_700};
 
   text-align: center;
+  min-width: fit-content;
   font-family: 'Antic Didone', serif;
   font-size: 3.2rem;
   font-weight: 500;
