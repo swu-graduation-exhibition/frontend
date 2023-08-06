@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import projectImage from '~/assets/images/projectCardImg.png';
+import ProjectCard from './ProjectCard';
+import projectData from './data/cardData';
 
 function Project() {
-  const CardData = Array.from({ length: 12 });
   return (
     <ProjectLayout>
       <NavigationBar>
@@ -11,10 +11,8 @@ function Project() {
       <ButtonSection />
       <ProjectCardContainer>
         <ProjectCardLayout>
-          {CardData.map(() => (
-            <CardContainer>
-              <ProjectCard src={projectImage} />
-            </CardContainer>
+          {projectData.map((projectData, i) => (
+            <ProjectCard key={i} projectData={projectData} />
           ))}
         </ProjectCardLayout>
       </ProjectCardContainer>
@@ -47,6 +45,7 @@ const ProjectCardContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 const ProjectCardLayout = styled.section`
   display: grid;
   max-width: 165rem;
@@ -59,11 +58,7 @@ const ProjectCardLayout = styled.section`
     grid-template-columns: repeat(1, minmax(27rem, 1fr));
   }
 `;
-const CardContainer = styled.article``;
-const ProjectCard = styled.img`
-  width: 100%;
-  height: 100%;
-`;
+
 const StAppWrapper = styled.div`
   ${({ theme }) => theme.fonts.Subtitle_02};
 `;
