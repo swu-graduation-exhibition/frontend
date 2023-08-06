@@ -1,13 +1,40 @@
 import styled from 'styled-components';
 import { ProjectCategories } from '../types/project';
+import { useState } from 'react';
 
 function ProjectCategory() {
+  const [isSelected, setIsSelected] = useState('UX Design');
+
+  const handleCategory = (category: string) => {
+    setIsSelected(category);
+  };
+  const [isMouseOver, setIsMouseOver] = useState('');
+
+  const handleMouseOver = (category: string) => {
+    setIsMouseOver(category);
+  };
+
+  const handleMouseOut = () => {
+    setIsMouseOver('');
+  };
+
   return (
     <Container>
       <NavTitle>Project</NavTitle>
       <ButtonSection>
         {ProjectCategories.map((category, i) => {
-          return <CategoryButton key={i}>{category}</CategoryButton>;
+          return (
+            <CategoryButton
+              key={i}
+              isChecked={isSelected === category}
+              onClick={() => handleCategory(category)}
+              onMouseOver={() => handleMouseOver(category)}
+              onMouseOut={handleMouseOut}
+              isMouseOver={isMouseOver === category}
+            >
+              {category}
+            </CategoryButton>
+          );
         })}
       </ButtonSection>
     </Container>
@@ -38,7 +65,7 @@ const ButtonSection = styled.div`
   gap: 1.6rem;
 `;
 
-const CategoryButton = styled.button`
+const CategoryButton = styled.button<{ isChecked: boolean; isMouseOver: boolean }>`
   font-family: 'Antic Didone', serif;
   font-size: 3.2rem;
   font-style: normal;
@@ -47,7 +74,17 @@ const CategoryButton = styled.button`
   text-align: center;
   padding: 1.6rem 3.2rem;
   border-radius: 0.4rem;
-  color: ${({ theme }) => theme.colors.Grayscales_700};
-  background-color: white;
+  color: ${({ isMouseOver, isChecked, theme }) =>
+    isMouseOver
+      ? theme.colors.Grayscales_700
+      : isChecked
+      ? theme.colors.White
+      : theme.colors.Grayscales_700};
+  background-color: ${({ isMouseOver, isChecked, theme }) =>
+    isMouseOver
+      ? 'rgba(134, 142, 150, 0.10)'
+      : isChecked
+      ? theme.colors.Grayscales_900
+      : theme.colors.White};
   border: 1.5px solid var(--grayscales-800, #343a40);
 `;
