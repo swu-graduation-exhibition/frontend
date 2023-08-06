@@ -4,7 +4,10 @@
   "customSyntax": "postcss-styled-syntax",
   "rules": {
     "order/order": ["custom-properties", "declarations"],
-
+    "declaration-empty-line-before": [
+      "always",
+      { "except": ["first-nested"], "ignore": ["after-declaration", "inside-single-line-block"] }
+    ],
     "order/properties-order": [
       {
         "groupName": "Layout",
@@ -15,6 +18,8 @@
           "overflow",
           "float",
           "clear",
+          "justify-content",
+          "align-items",
           "position",
           "top",
           "right",
