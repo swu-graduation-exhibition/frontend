@@ -22,7 +22,7 @@ function ProjectCard({ projectData }: ProjectCardProps) {
     <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <CardThumbnail src={thumbnail} />
       {isMouseOn && (
-        <CardBackDrop>
+        <CardBackDrop className="backdrop">
           <CategoryText>{category}</CategoryText>
           <ProjectInfoContainer>
             <TitleText>{title}</TitleText>
@@ -55,6 +55,10 @@ const Container = styled.article`
   @media screen and (width <= 520px) {
     .caption {
       display: flex;
+    }
+
+    .backdrop {
+      display: none;
     }
   }
 `;
