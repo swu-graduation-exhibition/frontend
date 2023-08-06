@@ -8,15 +8,6 @@ function ProjectCategory() {
   const handleCategory = (category: string) => {
     setIsSelected(category);
   };
-  const [isMouseOver, setIsMouseOver] = useState('');
-
-  const handleMouseOver = (category: string) => {
-    setIsMouseOver(category);
-  };
-
-  const handleMouseOut = () => {
-    setIsMouseOver('');
-  };
 
   return (
     <Container>
@@ -28,9 +19,6 @@ function ProjectCategory() {
               key={i}
               isChecked={isSelected === category}
               onClick={() => handleCategory(category)}
-              // onMouseOver={() => handleMouseOver(category)}
-              // onMouseOut={handleMouseOut}
-              // isMouseOver={isMouseOver === category}
             >
               {category}
             </CategoryButton>
@@ -79,7 +67,7 @@ const ButtonSection = styled.div`
   }
 `;
 
-const CategoryButton = styled.button<{ isChecked: boolean; isMouseOver: boolean }>`
+const CategoryButton = styled.button<{ isChecked: boolean }>`
   padding: 1.6rem 3.2rem;
   border: 0.15rem solid var(--grayscales-800, #343a40);
   min-width: fit-content;
