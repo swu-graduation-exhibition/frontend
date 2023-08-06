@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { IProjectData } from './data/cardData';
+import { IProjectData } from '../data/cardData';
 
 interface ProjectCardProps {
   projectData: IProjectData;
