@@ -1,29 +1,35 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { IcHeaderLogo } from '~/assets/icons';
+import { IcDefaultBar, IcHeaderLogo } from '~/assets/icons';
 import { PAGE_CATEGORIES, PAGE_PATHS } from '~/constants/common';
+import useWindowSize from '~/hooks/useWindowSize';
 
 const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { width } = useWindowSize();
 
   return (
     <HeaderWrapper>
       <div>
         <IcHeaderLogo onClick={() => navigate('/')} />
       </div>
-      <LinkWrapper>
-        {PAGE_CATEGORIES.map((category, idx) => (
-          <LiContent key={category}>
-            <Link
-              to={PAGE_PATHS[idx]}
-              className={pathname === PAGE_PATHS[idx] ? 'correct' : 'incorrect'}
-            >
-              {category}
-            </Link>
-          </LiContent>
-        ))}
-      </LinkWrapper>
+      {width <= 640 ? (
+        <IcDefaultBar />
+      ) : (
+        <LinkWrapper>
+          {PAGE_CATEGORIES.map((category, idx) => (
+            <LiContent key={category}>
+              <Link
+                to={PAGE_PATHS[idx]}
+                className={pathname === PAGE_PATHS[idx] ? 'correct' : 'incorrect'}
+              >
+                {category}
+              </Link>
+            </LiContent>
+          ))}
+        </LinkWrapper>
+      )}
     </HeaderWrapper>
   );
 };
