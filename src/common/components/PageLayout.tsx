@@ -21,6 +21,5 @@ export default PageLayout;
 const PageLayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: space-between;
 `;
