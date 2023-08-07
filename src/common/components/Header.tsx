@@ -143,7 +143,6 @@ const MobileLinkWrapper = styled(LinkWrapper)`
   z-index: 2;
 
   background-color: ${({ theme }) => theme.colors.Black};
-  opacity: 70%;
 
   padding-left: 1.6rem;
 
