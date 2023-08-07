@@ -49,7 +49,7 @@ const BannerRightContent = styled(BannerLeftContent)`
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-  span {ß
+  span {
     font-size: 25px;
     line-height: 34px;
     letter-spacing: -0.01em;
