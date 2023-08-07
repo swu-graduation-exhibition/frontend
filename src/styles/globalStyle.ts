@@ -22,8 +22,9 @@ export const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
     font: inherit;
     font-size: 62.5%;
-  }
 
+
+  }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, main, menu, nav, section {
@@ -38,8 +39,16 @@ export const GlobalStyle = createGlobalStyle`
   body {
     touch-action: manipulation;
     line-height: 1;
+   
   }
 
+  #root {
+     max-width: 192rem;
+     min-height: 100vh;
+
+     margin: 0 auto;
+  
+  }
   menu, ol, ul {
     list-style: none;
   }
