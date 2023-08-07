@@ -1,0 +1,3 @@
+export { default as MainBanner } from './MainBanner';
+export { default as UniversityContent } from './UniversityContent';
+export { default as LocationContent } from './LocationContent';
