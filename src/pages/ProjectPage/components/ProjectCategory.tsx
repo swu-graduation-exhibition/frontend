@@ -10,26 +10,31 @@ function ProjectCategory() {
   };
 
   return (
-    <Container>
-      <NavTitle>Project</NavTitle>
-      <ButtonSection>
-        {ProjectCategories.map((category, i) => {
-          return (
-            <CategoryButton
-              key={i}
-              isChecked={isSelected === category}
-              onClick={() => handleCategory(category)}
-            >
-              {category}
-            </CategoryButton>
-          );
-        })}
-      </ButtonSection>
-    </Container>
+      <Container>
+        <NavTitle>Project</NavTitle>
+        <ButtonSection>
+          {ProjectCategories.map((category, i) => {
+            return (
+              <CategoryButton
+                key={i}
+                isChecked={isSelected === category}
+                onClick={() => handleCategory(category)}
+              >
+                {category}
+              </CategoryButton>
+            );
+          })}
+        </ButtonSection>
+      </Container>
   );
 }
 
 export default ProjectCategory;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Container = styled.section`
   display: flex;

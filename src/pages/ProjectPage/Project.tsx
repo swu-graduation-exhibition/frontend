@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import ProjectCategory from './components/ProjectCategory';
 import projectBgImg from '../../assets/images/projectBgImg.png';
+import { PageLayout } from '~/common/components';
 
 function Project() {
   return (
-    <ProjectLayout>
-      <NavigationBar>
-        <StAppWrapper>Project Page</StAppWrapper>
-      </NavigationBar>
-      <ProjectCategory />
-      <ProjectCardContainer />
-    </ProjectLayout>
+    <PageLayout>
+      <ProjectLayout>
+        <ProjectCategory />
+        <ProjectCardContainer />
+      </ProjectLayout>
+    </PageLayout>
   );
 }
 
