@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
-import { ProjectCategories, TProjectCategories } from '../types/project';
+import { ProjectCategories, TProjectCategories } from '../../../types/project';
 import { useState } from 'react';
+import { IcStarAll } from '~/assets/icons';
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
@@ -10,31 +11,29 @@ function ProjectCategory() {
   };
 
   return (
-      <Container>
-        <NavTitle>Project</NavTitle>
-        <ButtonSection>
-          {ProjectCategories.map((category, i) => {
-            return (
-              <CategoryButton
-                key={i}
-                isChecked={isSelected === category}
-                onClick={() => handleCategory(category)}
-              >
-                {category}
-              </CategoryButton>
-            );
-          })}
-        </ButtonSection>
-      </Container>
+    <Container>
+      <NavTitle>
+        <IcStarAll />
+        Project
+      </NavTitle>
+      <ButtonSection>
+        {ProjectCategories.map((category, i) => {
+          return (
+            <CategoryButton
+              key={i}
+              isChecked={isSelected === category}
+              onClick={() => handleCategory(category)}
+            >
+              {category}
+            </CategoryButton>
+          );
+        })}
+      </ButtonSection>
+    </Container>
   );
 }
 
 export default ProjectCategory;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 const Container = styled.section`
   display: flex;
@@ -58,8 +57,16 @@ const Container = styled.section`
 const NavTitle = styled.header(
   ({ theme }) => theme.fonts.Headline_03,
   css`
+    display: flex;
+
     width: fit-content;
     height: fit-content;
+
+    svg {
+      position: relative;
+      top:1rem;
+      margin-right: 0.5rem;
+    }
 
     @media screen and (width <= 1400px) {
       ${({ theme }) => theme.fonts.Subtitle_02}
