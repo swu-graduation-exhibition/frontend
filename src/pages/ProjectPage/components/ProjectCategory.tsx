@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ProjectCategories, TProjectCategories } from '../../../types/project';
+import { PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 import { useState } from 'react';
 import { IcStarAll } from '~/assets/icons';
 
@@ -17,7 +17,7 @@ function ProjectCategory() {
         Project
       </NavTitle>
       <ButtonSection>
-        {ProjectCategories.map((category, i) => {
+        {PROJECT_CATEGORY.map((category, i) => {
           return (
             <CategoryButton
               key={i}
@@ -64,7 +64,7 @@ const NavTitle = styled.header(
 
     svg {
       position: relative;
-      top:1rem;
+      top: 1rem;
       margin-right: 0.5rem;
     }
 
