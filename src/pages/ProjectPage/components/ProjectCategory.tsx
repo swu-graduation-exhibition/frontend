@@ -92,7 +92,6 @@ const CategoryButton = styled.button<{ isChecked: boolean }>`
 
   @media screen and (width <= 1400px) {
     font-size: 2.1rem;
-    font-family: 'Antic Didone', serif;
 
     text-align: start;
     font-weight: 500;
