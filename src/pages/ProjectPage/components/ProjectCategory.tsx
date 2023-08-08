@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ProjectCategories, TProjectCategories } from '../types/project';
 import { useState } from 'react';
 
@@ -50,15 +50,17 @@ const Container = styled.section`
   }
 `;
 
-const NavTitle = styled.header`
-  ${({ theme }) => theme.fonts.Headline_03}
-  width: fit-content;
-  height: fit-content;
+const NavTitle = styled.header(
+  ({ theme }) => theme.fonts.Headline_03,
+  css`
+    width: fit-content;
+    height: fit-content;
 
-  @media screen and (width <= 1400px) {
-    ${({ theme }) => theme.fonts.Subtitle_02}
-  }
-`;
+    @media screen and (width <= 1400px) {
+      ${({ theme }) => theme.fonts.Subtitle_02}
+    }
+  `,
+);
 
 const ButtonSection = styled.div`
   display: flex;
@@ -77,7 +79,7 @@ const CategoryButton = styled.button<{ isChecked: boolean }>`
   border: 0.15rem solid var(--grayscales-800, #343a40);
 
   background-color: ${({ isChecked, theme }) =>
-    isChecked ? theme.colors.Grayscales_900 : theme.colors.White};
+    isChecked ? theme.colors.Grayscales_900 : `transparent`};
   color: ${({ isChecked, theme }) =>
     isChecked ? theme.colors.White : theme.colors.Grayscales_700};
 
