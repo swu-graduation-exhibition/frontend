@@ -3,17 +3,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
 import { IcDefaultBar, IcHeaderLogo, IcCloseBar } from '~/assets/icons';
 import {
-  PAGE_CATEGORIES,
-  PAGE_PATHS,
   MOBILE_PAGE_CATEGORIES,
   MOBILE_PAGE_PATHS,
+  PAGE_CATEGORIES,
+  PAGE_PATHS,
 } from '~/constants/common';
-import useWindowSize from '~/hooks/useWindowSize';
+import { Default, Mobile } from '~/utils/mediaQuery';
 
 const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { width } = useWindowSize();
   const [isToggle, setIsToggle] = useState(false);
 
   return (
@@ -21,8 +20,8 @@ const Header = () => {
       <div>
         <IcHeaderLogo onClick={() => navigate('/')} />{' '}
       </div>
-      {width <= 640 ? (
-        isToggle ? (
+      <Mobile>
+        {isToggle ? (
           <>
             <IcCloseBar onClick={() => setIsToggle(false)} />
             <MobileLinkWrapper>
@@ -35,8 +34,9 @@ const Header = () => {
           </>
         ) : (
           <IcDefaultBar onClick={() => setIsToggle(true)} />
-        )
-      ) : (
+        )}
+      </Mobile>
+      <Default>
         <LinkWrapper>
           {PAGE_CATEGORIES.map((category, idx) => (
             <LiContent key={category}>
@@ -49,7 +49,7 @@ const Header = () => {
             </LiContent>
           ))}
         </LinkWrapper>
-      )}
+      </Default>
     </HeaderWrapper>
   );
 };
@@ -63,18 +63,17 @@ const HeaderWrapper = styled(({ isToggle, ...props }) => <div {...props} />)`
   max-width: 192rem;
   height: 11rem;
   ${({ isToggle }) =>
-    isToggle && window.innerWidth <= 630
+    isToggle && window.innerWidth <= 768
       ? css`
-          border-bottom: 0.1rem solid ${({ theme }) => theme.colors.White};
           background-color: ${({ theme }) => theme.colors.Black};
           opacity: 70%;
-
           position: relative;
         `
       : css`
           border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Black};
         `}
   padding: 0 10%;
+  z-index: 2;
 
   @media screen and (width <= 1400px) {
     height: 8rem;
@@ -93,7 +92,7 @@ const HeaderWrapper = styled(({ isToggle, ...props }) => <div {...props} />)`
       height: 2.6rem;
     }
     ${({ isToggle }) =>
-      isToggle && window.innerWidth <= 630
+      isToggle && window.innerWidth <= 767
         ? css`
             path {
               fill: white;
@@ -133,17 +132,15 @@ const LiContent = styled.li`
 `;
 const MobileLinkWrapper = styled(LinkWrapper)`
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 1rem;
 
   width: 100%;
   position: absolute;
-  top: 5.5rem;
+  top: 5.4rem;
   left: 0;
   height: 100vh;
-  z-index: 2;
 
   background-color: ${({ theme }) => theme.colors.Black};
-  opacity: 70%;
 
   padding-left: 1.6rem;
 

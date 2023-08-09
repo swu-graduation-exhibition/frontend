@@ -51,6 +51,8 @@ const fonts = {
   Body_02: FONT({ weight: 300, size: 3.5, lineHeight: 5 }),
   Body_03: FONT({ weight: 500, size: 3, lineHeight: 4 }),
   Body_04: FONT({ weight: 300, size: 3, lineHeight: 4 }),
+  Mobile_Body_02: FONT({ weight: 500, size: 1.5, lineHeight: 2.17 }),
+  Mobile_Body_05: FONT({ weight: 300, size: 1.3, lineHeight: 1.8 }),
   Caption_01: FONT({ weight: 300, size: 2.5, lineHeight: 4 }),
   Caption_02: FONT({ weight: 400, size: 2.2, lineHeight: 3 }),
   Caption_03: FONT({ weight: 400, size: 2, lineHeight: 3 }),
