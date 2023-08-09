@@ -2,6 +2,13 @@ import styled, { css } from 'styled-components';
 import { PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 import { useState } from 'react';
 import { IcStarAll } from '~/assets/icons';
+import { Link } from 'react-router-dom';
+
+const CATEGORY_PATH = {
+  'UX Design': 'ux-design',
+  'Digital Fabrication': 'digital-fabrication',
+  'BX Design': 'bx-design',
+} as const;
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
@@ -19,13 +26,14 @@ function ProjectCategory() {
       <ButtonSection>
         {PROJECT_CATEGORY.map((category, i) => {
           return (
-            <CategoryButton
-              key={i}
-              isChecked={isSelected === category}
-              onClick={() => handleCategory(category)}
-            >
-              {category}
-            </CategoryButton>
+            <Link key={i} to={`/project/${CATEGORY_PATH[category]}`}>
+              <CategoryButton
+                isChecked={isSelected === category}
+                onClick={() => handleCategory(category)}
+              >
+                {category}
+              </CategoryButton>
+            </Link>
           );
         })}
       </ButtonSection>
