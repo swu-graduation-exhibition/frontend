@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { MOBILE_WIDTH } from '~/constants/common';
 
 const UniversityContent = () => {
   return (
@@ -20,6 +21,11 @@ const MainContentWrapper = styled.div`
   align-items: center;
 
   gap: 1rem;
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    position: absolute;
+    top: 1.6rem;
+    left: 1.6rem;
+  }
 `;
 
 const BannerLeftContent = styled.div`
@@ -29,7 +35,7 @@ const BannerLeftContent = styled.div`
   line-height: 83px;
   letter-spacing: -0.01em;
 
-  @media screen and (width <= 830px) {
+  @media screen and (width <= ${MOBILE_WIDTH}) {
     font-size: 30px;
     line-height: 36px;
     letter-spacing: 0em;
@@ -40,7 +46,7 @@ const BannerContentLine = styled.div`
   width: 0.1rem;
   height: 5.6rem;
 
-  @media screen and (width <= 830px) {
+  @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 3.6rem;
   }
 `;
@@ -54,7 +60,7 @@ const BannerRightContent = styled(BannerLeftContent)`
     line-height: 34px;
     letter-spacing: -0.01em;
 
-    @media screen and (width <= 830px) {
+    @media screen and (width <= ${MOBILE_WIDTH}) {
       font-size: 11px;
       line-height: 15px;
       letter-spacing: 0em;
