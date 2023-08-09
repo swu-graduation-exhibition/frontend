@@ -22,7 +22,7 @@ function ProjectCategory() {
           return (
             <Link key={i} to={`/project/${CATEGORY_PATH[category]}`}>
               <CategoryButton
-                isChecked={isSelected === category}
+                $ischecked={isSelected === category}
                 onClick={() => handleCategory(category)}
               >
                 {category}
@@ -87,15 +87,15 @@ const ButtonSection = styled.div`
   }
 `;
 
-const CategoryButton = styled.button<{ isChecked: boolean }>`
+const CategoryButton = styled.button<{ $ischecked: boolean }>`
   width: fit-content;
   padding: 1.6rem 3.2rem;
   border: 0.15rem solid var(--grayscales-800, #343a40);
 
-  background-color: ${({ isChecked, theme }) =>
-    isChecked ? theme.colors.Grayscales_900 : `transparent`};
-  color: ${({ isChecked, theme }) =>
-    isChecked ? theme.colors.White : theme.colors.Grayscales_700};
+  background-color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.colors.Grayscales_900 : `transparent`};
+  color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.colors.White : theme.colors.Grayscales_700};
 
   text-align: center;
   min-width: fit-content;
