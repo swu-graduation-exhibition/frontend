@@ -2,13 +2,24 @@ import { styled } from 'styled-components';
 import ImgHomeBanner from '~/assets/images/img1_home.png';
 import ImgMobileHomeBanner from '~/assets/images/img1_home_mobile.png';
 import { LocationContent, UniversityContent } from '.';
+import { Default, Mobile } from '~/utils/mediaQuery';
 
 const MainBanner = () => {
   return (
-    <MainBannerWrapper>
-      <UniversityContent />
-      <LocationContent />
-    </MainBannerWrapper>
+    <>
+      <Default>
+        <MainBannerWrapper>
+          <UniversityContent />
+          <LocationContent />
+        </MainBannerWrapper>
+      </Default>
+      <Mobile>
+        <MobileBannerWrapper>
+          <UniversityContent />
+          <LocationContent />
+        </MobileBannerWrapper>
+      </Mobile>
+    </>
   );
 };
 
@@ -26,11 +37,16 @@ const MainBannerWrapper = styled.div`
   background-image: url(${ImgHomeBanner});
   background-size: cover;
   background-repeat: no-repeat;
-
-  @media screen and (width <= 830px) {
-    padding: 4% 3%;
-    height: fit-content;
-    min-height: 52.9rem;
-    background-image: url(${ImgMobileHomeBanner});
-  }
+`;
+const MobileBannerWrapper = styled.div`
+  position: relative;
+  padding: 4% 3%;
+  width: 100%;
+  height: 0;
+  padding-top: calc(529 / 374 * 100%);
+  min-height: 52.9rem;
+  background-image: url(${ImgMobileHomeBanner});
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
