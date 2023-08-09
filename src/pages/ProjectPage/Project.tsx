@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import ProjectCategory from './components/ProjectCategory';
+import projectBgImg from '../../assets/images/projectBgImg.png';
+import { PageLayout } from '~/common/components';
 
 function Project() {
   return (
-    <ProjectLayout>
-      <NavigationBar>
-        <StAppWrapper>Project Page</StAppWrapper>
-      </NavigationBar>
-      <ProjectCategory />
-      <ProjectCardContainer />
-    </ProjectLayout>
+    <PageLayout>
+      <ProjectLayout>
+        <ProjectCategory />
+        <ProjectCardContainer />
+      </ProjectLayout>
+    </PageLayout>
   );
 }
 
@@ -22,6 +23,12 @@ const ProjectLayout = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  background-image: url(${projectBgImg});
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding-bottom: 15rem;
 `;
 
 const NavigationBar = styled.nav`
