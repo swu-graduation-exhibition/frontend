@@ -64,6 +64,7 @@ const Container = styled.article`
 `;
 const CardThumbnail = styled.img`
   width: 100%;
+  height: 100%;
 `;
 const CardBackDrop = styled.article`
   position: absolute;
