@@ -29,10 +29,6 @@ const FooterWrapper = styled.div`
   flex-direction: column;
   height: 9rem;
   width: 100%;
-
-  position: absolute;
-  bottom: 0;
-  z-index: 2;
 `;
 const TextCaption = styled.div`
   ${({ theme }) => theme.fonts.Caption_04};
