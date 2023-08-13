@@ -114,8 +114,8 @@ const TryItButton = styled.button(
     border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
 
     color: ${({ theme }) => theme.colors.Grayscales_900};
+
     font-family: 'Antic Didone';
-    background-attachment: fixed;
     font-weight: 400;
   `,
 );
