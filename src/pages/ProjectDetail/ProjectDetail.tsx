@@ -7,7 +7,6 @@ const ProjectDetailContainer = styled.div`
   width: 100%;
   height: 100vh;
   padding: 0 13.6rem;
-  border: 1px solid black;
 
   background-image: url(${projectBgImg});
   background-size: cover;
