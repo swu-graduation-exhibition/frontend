@@ -8,8 +8,8 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/project" element={<Project />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/project/:category" element={<Project />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,13 +1,17 @@
 import styled from 'styled-components';
-import projectData from '../data/cardData';
+import { IProjectData } from '../data/cardData';
 import ProjectCard from './ProjectCard';
 
-function ProjectCardContainer() {
+interface IProjectProps {
+  projectData: IProjectData[];
+}
+
+function ProjectCardContainer({ projectData }: IProjectProps) {
   return (
     <Container>
       <ProjectCardLayout>
-        {projectData.map((projectData, i) => (
-          <ProjectCard key={i} projectData={projectData} />
+        {projectData.map((projectInfo, i) => (
+          <ProjectCard key={i} projectInfo={projectInfo} />
         ))}
       </ProjectCardLayout>
     </Container>

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { IProjectData } from '../data/cardData';
 
 interface ProjectCardProps {
-  projectData: IProjectData;
+  projectInfo: IProjectData;
 }
 
-function ProjectCard({ projectData }: ProjectCardProps) {
-  const { category, title, participants, thumbnail }: IProjectData = projectData;
+function ProjectCard({ projectInfo }: ProjectCardProps) {
+  const { category, title, participants, thumbnail }: IProjectData = projectInfo;
   const [isMouseOn, setIsMouseOn] = useState(false);
 
   const handleMouseOver = () => {
@@ -64,6 +64,7 @@ const Container = styled.article`
 `;
 const CardThumbnail = styled.img`
   width: 100%;
+  height: 100%;
 `;
 const CardBackDrop = styled.article`
   position: absolute;
