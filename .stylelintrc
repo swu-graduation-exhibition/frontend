@@ -58,7 +58,7 @@
         "groupName": "Font",
         "emptyLineBefore": "always",
         "noEmptyLineBetween": true,
-        "properties": ["text-align", "text-indent", "vertical-align", "white-space"]
+        "properties": ["font-family", "text-align", "text-indent", "vertical-align", "white-space"]
       },
       {
         "groupName": "Animation",
