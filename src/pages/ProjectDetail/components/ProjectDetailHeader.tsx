@@ -96,7 +96,7 @@ const Description = styled.div(({ theme }) => theme.fonts.Caption_01);
 const ButtonSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
 `;
 
 const TryItButton = styled.button(
