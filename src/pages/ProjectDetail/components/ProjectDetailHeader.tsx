@@ -82,6 +82,8 @@ const Member = styled.span(
   css`
     width: fit-content;
     min-width: fit-content;
+
+    color: ${({ theme }) => theme.colors.Grayscales_700};
   `,
 );
 
@@ -91,7 +93,12 @@ const ProjectDescription = styled.div`
   gap: 4.8rem;
 `;
 
-const Description = styled.div(({ theme }) => theme.fonts.Caption_01);
+const Description = styled.div(
+  ({ theme }) => theme.fonts.Caption_01,
+  css`
+    color: ${({ theme }) => theme.colors.Grayscales_900};
+  `,
+);
 
 const ButtonSection = styled.div`
   display: flex;
@@ -105,6 +112,8 @@ const TryItButton = styled.button(
     width: fit-content;
     padding: 0.8rem 3.2rem;
     border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
+
+    color: ${({ theme }) => theme.colors.Grayscales_900};
     font-family: 'Antic Didone';
     background-attachment: fixed;
     font-weight: 400;
