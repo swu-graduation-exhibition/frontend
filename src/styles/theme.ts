@@ -35,6 +35,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
     font-weight: ${weight};
     font-size: ${size}rem;
     line-height: ${lineHeight}rem;
+    color: ${colors.Grayscales_900};
   `;
 }
 
