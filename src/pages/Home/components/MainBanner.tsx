@@ -1,18 +1,25 @@
 import { styled } from 'styled-components';
 import ImgHomeBanner from '~/assets/images/img1_home.png';
 import ImgMobileHomeBanner from '~/assets/images/img1_home_mobile.png';
+import ImgPadHomeBanner from '~/assets/images/img1_home_pad.png';
 import { LocationContent, UniversityContent } from '.';
-import { Default, Mobile } from '~/utils/mediaQuery';
+import { Default, Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 
 const MainBanner = () => {
   return (
     <>
-      <Default>
+      <Desktop>
         <MainBannerWrapper>
           <UniversityContent />
           <LocationContent />
         </MainBannerWrapper>
-      </Default>
+      </Desktop>
+      <Tablet>
+        <TabletBannerWrapper>
+          <UniversityContent />
+          <LocationContent />
+        </TabletBannerWrapper>
+      </Tablet>
       <Mobile>
         <MobileBannerWrapper>
           <UniversityContent />
@@ -49,4 +56,9 @@ const MobileBannerWrapper = styled.div`
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+`;
+const TabletBannerWrapper = styled(MainBannerWrapper)`
+  height: 72rem;
+  padding: 6.4rem;
+  background-image: url(${ImgPadHomeBanner});
 `;
