@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { PageLayout } from '~/common/components';
 import { ConceptContent, Interview, MainBanner, TrackIntroduce } from './components';
@@ -10,19 +9,17 @@ import { Default, Mobile } from '~/utils/mediaQuery';
 const Home = () => {
   return (
     <PageLayout mainBanner={<MainBanner />}>
-      <HomeWrapper>
-        <GraduationExhibitionWrapper>
-          <ConceptContent />
-          <Default>
-            <BlackFlower src={ImgBlackFlower} />
-          </Default>
-          <Mobile>
-            <MobileBlackFlower src={ImgMobileBlackFlower} />
-          </Mobile>
-          <Interview />
-          <TrackIntroduce />
-        </GraduationExhibitionWrapper>
-      </HomeWrapper>
+      <GraduationExhibitionWrapper>
+        <ConceptContent />
+        <Default>
+          <BlackFlower src={ImgBlackFlower} />
+        </Default>
+        <Mobile>
+          <MobileBlackFlower src={ImgMobileBlackFlower} />
+        </Mobile>
+        <Interview />
+        <TrackIntroduce />
+      </GraduationExhibitionWrapper>
     </PageLayout>
   );
 };
@@ -47,6 +44,8 @@ const BlackFlower = styled.img`
   position: absolute;
   right: 0;
   top: 0;
+
+  z-index: -1;
 `;
 const MobileBlackFlower = styled.img`
   width: 100%;
