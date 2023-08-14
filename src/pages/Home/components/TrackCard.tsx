@@ -25,6 +25,7 @@ const TrackCardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   width: 53.6rem;
+  height: 42rem;
 
   gap: 3.2rem;
   padding: 4rem;
