@@ -8,7 +8,6 @@ const useDragScroll = () => {
 
   const mouseTouchDown = (e: MouseEvent | TouchEvent) => {
     const ref = dragRef.current; // dragRef.current가 아래에서 반복적으로 사용되기에 선언
-    console.log(ref);
     if (ref) {
       isDown = true; // 마우스가 눌림
       if (e.type === 'mousedown' && 'pageX' in e) {
