@@ -61,6 +61,7 @@ const fonts = {
   Caption_04: FONT({ weight: 400, size: 1.5, lineHeight: 2.4 }),
   Mobile_Caption_03: FONT({ weight: 300, size: 1, lineHeight: 1.6 }),
   Mobile_Caption_01: FONT({ weight: 300, size: 1.3, lineHeight: 2 }),
+  Mobile_Caption_02: FONT({ weight: 400, size: 1.2, lineHeight: 1.8 }),
 } as const;
 
 const theme = {
