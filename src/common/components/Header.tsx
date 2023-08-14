@@ -5,6 +5,7 @@ import { IcDefaultBar, IcHeaderLogo, IcCloseBar } from '~/assets/icons';
 import {
   MOBILE_PAGE_CATEGORIES,
   MOBILE_PAGE_PATHS,
+  MOBILE_WIDTH,
   PAGE_CATEGORIES,
   PAGE_PATHS,
 } from '~/constants/common';
@@ -63,36 +64,38 @@ const HeaderWrapper = styled(({ isToggle, ...props }) => <div {...props} />)`
   max-width: 192rem;
   height: 11rem;
   ${({ isToggle }) =>
-    isToggle && window.innerWidth <= 768
+    isToggle && window.innerWidth <= 520
       ? css`
           background-color: ${({ theme }) => theme.colors.Black};
           opacity: 70%;
           position: relative;
         `
       : css`
+          background-color: ${({ theme }) => theme.colors.White};
           border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Black};
         `}
-  padding: 0 10%;
+  padding: 0 5%;
   z-index: 2;
 
-  @media screen and (width <= 1400px) {
-    height: 8rem;
-    padding: 0 8%;
-  }
   @media screen and (width <= 830px) {
+    height: 11rem;
+    padding: 0 6.4rem;
+  }
+  @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 5.5rem;
     padding: 0 1.6rem 0 0;
   }
   svg {
     cursor: pointer;
-    @media screen and (width <= 1400px) {
-      /* height: 8rem; */
-    }
+
     @media screen and (width <= 830px) {
-      height: 2.6rem;
+      height: 3.6rem;
+    }
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      height: 2.5rem;
     }
     ${({ isToggle }) =>
-      isToggle && window.innerWidth <= 767
+      isToggle && window.innerWidth <= 520
         ? css`
             path {
               fill: white;
@@ -110,7 +113,7 @@ const LinkWrapper = styled.ul`
   gap: 8.8rem;
 
   @media screen and (width <= 830px) {
-    gap: 6.8rem;
+    gap: 3.2rem;
   }
 `;
 const LiContent = styled.li`
@@ -119,11 +122,10 @@ const LiContent = styled.li`
     font-size: 25px;
     font-weight: 400;
     line-height: 36px;
-    letter-spacing: 0em;
     text-align: left;
 
     @media screen and (width <= 830px) {
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
   }
   .incorrect {
