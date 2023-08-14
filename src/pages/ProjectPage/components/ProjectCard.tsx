@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { IProjectData } from '../data/cardData';
 
 interface ProjectCardProps {
-  projectData: IProjectData;
+  projectInfo: IProjectData;
 }
 
-function ProjectCard({ projectData }: ProjectCardProps) {
-  const { category, title, participants, thumbnail }: IProjectData = projectData;
+function ProjectCard({ projectInfo }: ProjectCardProps) {
+  const { category, title, participants, thumbnail }: IProjectData = projectInfo;
   const [isMouseOn, setIsMouseOn] = useState(false);
 
   const handleMouseOver = () => {
@@ -20,9 +20,9 @@ function ProjectCard({ projectData }: ProjectCardProps) {
 
   return (
     <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <CardSection src={thumbnail} />
+      <CardThumbnail src={thumbnail} />
       {isMouseOn && (
-        <CardBackDrop>
+        <CardBackDrop className="backdrop">
           <CategoryText>{category}</CategoryText>
           <ProjectInfoContainer>
             <TitleText>{title}</TitleText>
@@ -34,6 +34,14 @@ function ProjectCard({ projectData }: ProjectCardProps) {
           </ProjectInfoContainer>
         </CardBackDrop>
       )}
+      <CaptionContainer className="caption">
+        <CaptionTitleText>{title}</CaptionTitleText>
+        <CaptionParticipants>
+          {participants.map((member, i) => {
+            return <CaptionMemberText key={i}>{member}</CaptionMemberText>;
+          })}
+        </CaptionParticipants>
+      </CaptionContainer>
     </Container>
   );
 }
@@ -42,10 +50,19 @@ export default ProjectCard;
 
 const Container = styled.article`
   position: relative;
-
   cursor: pointer;
+
+  @media screen and (width <= 520px) {
+    .caption {
+      display: flex;
+    }
+
+    .backdrop {
+      display: none;
+    }
+  }
 `;
-const CardSection = styled.img`
+const CardThumbnail = styled.img`
   width: 100%;
   height: 100%;
 `;
@@ -55,6 +72,7 @@ const CardBackDrop = styled.article`
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 3.2rem;
 
   animation: fadeinanimation 0.5s ease-in-out forwards;
   background: rgb(0 0 0 / 40%);
@@ -84,17 +102,44 @@ const TitleText = styled.span`
 `;
 
 const ProjectInfoContainer = styled.section`
-  position: absolute;
-  bottom: 3.2rem;
-  left: 3.2rem;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  flex-direction: column;
 `;
 const ParticipantsContainer = styled.div`
-  flex-direction: row;
-  gap: 1rem;
   display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 `;
 
 const MemberText = styled.span`
+  width: fit-content;
+  min-width: fit-content;
+
   color: white;
   ${({ theme }) => theme.fonts.Caption_02}
+`;
+
+const CaptionContainer = styled.section`
+  display: none;
+  flex-direction: column;
+  padding: 1.3rem 0 6.4rem 1.6rem;
+`;
+
+const CaptionTitleText = styled.span`
+  ${({ theme }) => theme.fonts.Caption_03}
+  font-weight: 700;
+
+  color: black;
+`;
+
+const CaptionParticipants = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const CaptionMemberText = styled.span`
+  ${({ theme }) => theme.fonts.Caption_04}
+  color: black;
 `;
