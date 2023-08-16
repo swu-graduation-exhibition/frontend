@@ -39,6 +39,7 @@ const Container = styled.section`
   display: flex;
   gap: 39.3rem;
   width: 100%;
+  max-width: 165rem;
   height: 50.2rem;
   padding: 16rem 0 8.2rem;
   flex-direction: row;
