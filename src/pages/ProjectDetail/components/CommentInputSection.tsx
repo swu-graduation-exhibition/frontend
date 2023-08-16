@@ -1,13 +1,30 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const CommentInputSection = () => {
+  const [comments, setComments] = useState<string>();
+
+  const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value.length < 51) {
+      setComments(e.target.value);
+    }
+  };
   return (
     <Container>
       <BBangBBangAAA>
         <FromInput placeholder="보내는 사람이 누구인지 입력해 주세요." />
         <OkJiButton>등록</OkJiButton>
       </BBangBBangAAA>
-      <TextArea placeholder="프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요." />
+      <TextAreaWrapper>
+        <TextArea
+          placeholder="프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요."
+          value={comments}
+          onChange={textAreaOnChange}
+        />
+        <CountingLetterSection>
+          <CountLetter>{`(${comments === undefined ? 0 : comments.length} / 50자)`}</CountLetter>
+        </CountingLetterSection>
+      </TextAreaWrapper>
     </Container>
   );
 };
@@ -67,5 +84,25 @@ const TextArea = styled.textarea(
     border-radius: 1rem;
 
     resize: none;
+  `,
+);
+
+const TextAreaWrapper = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const CountingLetterSection = styled.section`
+  position: absolute;
+  right: 2.4rem;
+  bottom: 2.4rem;
+`;
+
+const CountLetter = styled.span(
+  ({ theme }) => theme.fonts.Caption_03,
+  css`
+    color: ${({ theme }) => theme.colors.Grayscales_500};
   `,
 );
