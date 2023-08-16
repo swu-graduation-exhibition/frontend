@@ -26,11 +26,6 @@ const Home = () => {
 
 export default Home;
 
-const HomeWrapper = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
-`;
-
 const GraduationExhibitionWrapper = styled.section`
   position: relative;
 
