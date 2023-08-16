@@ -35,10 +35,6 @@ const ProjectLayout = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
-
-  background-image: url(${projectBgImg});
-  background-size: cover;
-  background-repeat: no-repeat;
-
+  height: fit-content;
   padding-bottom: 15rem;
 `;
