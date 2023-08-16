@@ -97,9 +97,9 @@ const CategoryButton = styled.button<{ $ischecked: boolean }>`
   color: ${({ $ischecked, theme }) =>
     $ischecked ? theme.colors.White : theme.colors.Grayscales_700};
 
+  font-family: 'Antic Didone', serif;
   text-align: center;
   min-width: fit-content;
-  font-family: 'Antic Didone', serif;
   font-size: 3.2rem;
   font-weight: 500;
   border-radius: 0.4rem;

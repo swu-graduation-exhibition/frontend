@@ -2,6 +2,7 @@ import { PageLayout } from '~/common/components';
 import styled from 'styled-components';
 import ProjectDetailHeader from './components/ProjectDetailHeader';
 import ProjectDetailAssets from './components/ProjectDetailAssets';
+import ProjectTeamInfo from './components/ProjectTeamInfo';
 
 const ProjectDetailContainer = styled.div`
   width: 100%;
@@ -15,6 +16,7 @@ function ProjectDetail() {
       <ProjectDetailContainer>
         <ProjectDetailHeader />
         <ProjectDetailAssets />
+        <ProjectTeamInfo />
       </ProjectDetailContainer>
     </PageLayout>
   );
