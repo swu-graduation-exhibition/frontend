@@ -47,11 +47,11 @@ const Container = styled.section`
 const ProjcetTitle = styled.div`
   display: flex;
   flex-direction: column;
-  width: fit-content;
   min-width: fit-content;
 
   gap: 2rem;
 `;
+
 const ProjectName = styled.div(
   ({ theme }) => theme.fonts.Subtitle_01,
   css`
@@ -74,7 +74,7 @@ const ProjectName = styled.div(
 const ProjectMembers = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 0.38rem;
 `;
 
 const Member = styled.span(
