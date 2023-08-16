@@ -19,6 +19,8 @@ const Container = styled.section`
   height: fit-content;
   gap: 6.4rem;
   margin-bottom: 21rem;
+  
+  max-width: 165rem;
 `;
 
 const TeamName = styled.div(({ theme }) => theme.fonts.Subtitle_01, css``);
