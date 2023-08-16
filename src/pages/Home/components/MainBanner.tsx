@@ -58,7 +58,6 @@ const MobileBannerWrapper = styled.div`
   background-repeat: no-repeat;
 `;
 const TabletBannerWrapper = styled(MainBannerWrapper)`
-  height: 72rem;
-  padding: 6.4rem;
+  min-height: 72rem;
   background-image: url(${ImgPadHomeBanner});
 `;

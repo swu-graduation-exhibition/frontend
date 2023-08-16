@@ -47,7 +47,8 @@ export const GlobalStyle = createGlobalStyle`
      min-height: 100vh;
 
      margin: 0 auto;
-  
+  width:100%;
+overflow-x:hidden;
   }
   menu, ol, ul {
     list-style: none;
