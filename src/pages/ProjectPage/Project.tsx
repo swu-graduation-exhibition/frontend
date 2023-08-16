@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ProjectCategory from './components/ProjectCategory';
-import projectBgImg from '../../assets/images/projectBgImg.png';
 import { PageLayout } from '~/common/components';
 import { useParams } from 'react-router-dom';
 import ProjectCardContainer from './components/ProjectCardContainer';
