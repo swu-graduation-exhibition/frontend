@@ -93,12 +93,12 @@ const CategoryText = styled.span`
   top: 3.2rem;
   right: 3.2rem;
 
-  color: white;
   ${({ theme }) => theme.fonts.Body_03}
+  color: white;
 `;
 const TitleText = styled.span`
-  color: white;
   ${({ theme }) => theme.fonts.Body_03}
+  color: white;
 `;
 
 const ProjectInfoContainer = styled.section`
@@ -117,8 +117,8 @@ const MemberText = styled.span`
   width: fit-content;
   min-width: fit-content;
 
-  color: white;
   ${({ theme }) => theme.fonts.Caption_02}
+  color: white;
 `;
 
 const CaptionContainer = styled.section`
