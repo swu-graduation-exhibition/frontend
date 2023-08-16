@@ -5,16 +5,16 @@ const CommentInputSection = () => {
   const [comments, setComments] = useState<string>();
 
   const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length < 51) {
+    if (e.target.value.length < 101) {
       setComments(e.target.value);
     }
   };
   return (
     <Container>
-      <BBangBBangAAA>
+      <ToInputWrapper>
         <FromInput placeholder="보내는 사람이 누구인지 입력해 주세요." />
-        <OkJiButton>등록</OkJiButton>
-      </BBangBBangAAA>
+        <SubmitButton>등록</SubmitButton>
+      </ToInputWrapper>
       <TextAreaWrapper>
         <TextArea
           placeholder="프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요."
@@ -22,7 +22,7 @@ const CommentInputSection = () => {
           onChange={textAreaOnChange}
         />
         <CountingLetterSection>
-          <CountLetter>{`(${comments === undefined ? 0 : comments.length} / 50자)`}</CountLetter>
+          <CountLetter>{`(${comments?.length ?? 0} / 100자)`}</CountLetter>
         </CountingLetterSection>
       </TextAreaWrapper>
     </Container>
@@ -36,7 +36,7 @@ const Container = styled.form`
   flex-direction: column;
 `;
 
-const BBangBBangAAA = styled.div`
+const ToInputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -57,7 +57,7 @@ const FromInput = styled.input(
   `,
 );
 
-const OkJiButton = styled.button(
+const SubmitButton = styled.button(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     width: 14.9rem;
