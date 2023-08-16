@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IProjectData } from '../data/cardData';
 import ProjectCard from './ProjectCard';
+import { Link } from 'react-router-dom';
 
 interface IProjectProps {
   projectData: IProjectData[];
@@ -11,7 +12,9 @@ function ProjectCardContainer({ projectData }: IProjectProps) {
     <Container>
       <ProjectCardLayout>
         {projectData.map((projectInfo, i) => (
-          <ProjectCard key={i} projectInfo={projectInfo} />
+          <Link to={`/project/detail/${i}`}>
+            <ProjectCard key={i} projectInfo={projectInfo} />
+          </Link>
         ))}
       </ProjectCardLayout>
     </Container>
