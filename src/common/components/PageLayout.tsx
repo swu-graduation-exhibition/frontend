@@ -3,7 +3,9 @@ import { styled } from 'styled-components';
 import { Footer, Header } from '.';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
+import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
 import ImgMobileGraduationExhibition from '~/assets/images/bg1_all_mobile.png';
+import { useLocation } from 'react-router-dom';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
@@ -11,6 +13,8 @@ interface PageLayoutProps {
 }
 
 const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
+  const { pathname } = useLocation();
+
   return (
     <PageLayoutWrapper>
       <Header />
@@ -19,7 +23,9 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         {children}
         <Footer />
         <Default>
-          <PageContentImg src={ImgGraduationExhibition} />
+          <PageContentImg
+            src={pathname === '/designer' ? ImgDesignerBackground : ImgGraduationExhibition}
+          />
         </Default>
         <Mobile>
           <PageContentImg src={ImgMobileGraduationExhibition} />
@@ -40,14 +46,14 @@ const PageLayoutWrapper = styled.div`
 `;
 const ContentWrapper = styled.div`
   position: relative;
+  overflow: hidden;
 `;
 const PageContentImg = styled.img`
   position: absolute;
-  top: 0;
-  left: 0;
-
   z-index: -2;
-  width: 100vw;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
