@@ -4,3 +4,5 @@ export const PAGE_PATHS = ['/project', '/designer', '/guestbook'] as const;
 export const MOBILE_PAGE_PATHS = ['/project', '/designer', '/guestbook'] as const;
 
 export const MOBILE_WIDTH = `520px`;
+export const TABLET_WIDTH = `830px`;
+export const DESKTOP_WIDTH = '1400px';
