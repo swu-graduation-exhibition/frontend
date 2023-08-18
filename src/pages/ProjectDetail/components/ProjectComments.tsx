@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import CommentInputSection from './CommentInputSection';
+import CommentFormSection from '../../../common/components/CommonFormSection';
 
 const ProjectComments = () => {
   return (
@@ -8,7 +8,7 @@ const ProjectComments = () => {
         <Title>Comments</Title>
         <CommentCount>22</CommentCount>
       </HeaderSection>
-      <CommentInputSection />
+      <CommentFormSection />
     </Container>
   );
 };
@@ -29,7 +29,7 @@ const HeaderSection = styled.div`
   margin-bottom: 4rem;
 `;
 
-const Title = styled.div(({ theme }) => theme.fonts.Subtitle_01, css``);
+const Title = styled.div(({ theme }) => theme.fonts.Subtitle_01);
 
 const CommentCount = styled.span(
   ({ theme }) => theme.fonts.Subtitle_01,

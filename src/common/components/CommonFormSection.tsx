@@ -1,35 +1,34 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import useFormHooks from '~/hooks/useFormHooks';
 
-const CommentInputSection = () => {
-  const [comments, setComments] = useState<string>();
-
-  const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length < 101) {
-      setComments(e.target.value);
-    }
-  };
+const CommentFormSection = () => {
+  const { formData, inputOnChange, textAreaOnChange } = useFormHooks();
+  const { to, message } = formData;
   return (
     <Container>
       <ToInputWrapper>
-        <FromInput placeholder="보내는 사람이 누구인지 입력해 주세요." />
+        <FromInput
+          placeholder="보내는 사람이 누구인지 입력해 주세요."
+          value={to}
+          onChange={inputOnChange}
+        />
         <SubmitButton>등록</SubmitButton>
       </ToInputWrapper>
       <TextAreaWrapper>
         <TextArea
           placeholder="프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요."
-          value={comments}
+          value={message}
           onChange={textAreaOnChange}
         />
         <CountingLetterSection>
-          <CountLetter>{`(${comments?.length ?? 0} / 100자)`}</CountLetter>
+          <CountLetter>{`(${message?.length ?? 0} / 100자)`}</CountLetter>
         </CountingLetterSection>
       </TextAreaWrapper>
     </Container>
   );
 };
 
-export default CommentInputSection;
+export default CommentFormSection;
 
 const Container = styled.form`
   display: flex;
