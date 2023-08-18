@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import CommentFormSection from '../../../common/components/CommonFormSection';
+import CommonFormSection from '../../../common/components/CommonFormSection';
 
 const ProjectComments = () => {
   return (
@@ -8,7 +8,7 @@ const ProjectComments = () => {
         <Title>Comments</Title>
         <CommentCount>22</CommentCount>
       </HeaderSection>
-      <CommentFormSection />
+      <CommonFormSection page='designer' />
     </Container>
   );
 };

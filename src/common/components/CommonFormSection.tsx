@@ -1,25 +1,34 @@
 import styled, { css } from 'styled-components';
 import useFormHooks from '~/hooks/useFormHooks';
 
-const CommentFormSection = () => {
+const Ment: any = {
+  project: {
+    toMent: '보내는 사람이 누구인지 입력해 주세요.',
+    messageMent: '프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요.',
+  },
+  designer: {
+    toMent: '보내는 사람을 입력해주세요.',
+    messageMent: '내용을 입력해주세요.',
+  },
+} as const;
+
+interface IFormSectionProps {
+  page : string
+}
+
+const CommonFormSection = ({ page }: IFormSectionProps) => {
   const { formData, inputOnChange, textAreaOnChange } = useFormHooks();
   const { to, message } = formData;
+
+  const { toMent, messageMent } = Ment[page];
   return (
     <Container>
       <ToInputWrapper>
-        <FromInput
-          placeholder="보내는 사람이 누구인지 입력해 주세요."
-          value={to}
-          onChange={inputOnChange}
-        />
+        <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
         <SubmitButton>등록</SubmitButton>
       </ToInputWrapper>
       <TextAreaWrapper>
-        <TextArea
-          placeholder="프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요."
-          value={message}
-          onChange={textAreaOnChange}
-        />
+        <TextArea placeholder={messageMent} value={message} onChange={textAreaOnChange} />
         <CountingLetterSection>
           <CountLetter>{`(${message?.length ?? 0} / 100자)`}</CountLetter>
         </CountingLetterSection>
@@ -28,7 +37,7 @@ const CommentFormSection = () => {
   );
 };
 
-export default CommentFormSection;
+export default CommonFormSection;
 
 const Container = styled.form`
   display: flex;
