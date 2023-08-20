@@ -12,8 +12,11 @@ const ProjectComments = () => {
 export default ProjectComments;
 
 const Container = styled.section`
+  display: flex;
   width: 100%;
   margin-top: 9.3rem;
+  flex-direction: column;
+  gap: 5rem;
 
   max-width: 165rem;
 `;
