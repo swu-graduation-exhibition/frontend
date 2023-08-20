@@ -8,22 +8,30 @@ import ProjectComments from './components/ProjectComments';
 function ProjectDetail() {
   return (
     <PageLayout>
-      <ProjectDetailContainer>
-        <ProjectDetailHeader />
-        <ProjectDetailAssets />
-        <ProjectTeamInfo />
-        <ProjectComments />
-      </ProjectDetailContainer>
+      <ProjectDetailSection>
+        <ProjectDetailContainer>
+          <ProjectDetailHeader />
+          <ProjectDetailAssets />
+          <ProjectTeamInfo />
+          <ProjectComments />
+        </ProjectDetailContainer>
+      </ProjectDetailSection>
     </PageLayout>
   );
 }
 
 export default ProjectDetail;
-
+const ProjectDetailSection = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 const ProjectDetailContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
+  margin: 0 7%;
+  max-width: 164.8rem;
   flex-direction: column;
 `;
