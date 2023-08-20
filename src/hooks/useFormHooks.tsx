@@ -25,7 +25,9 @@ const useFormHooks = () => {
       });
     }
   };
-  return { formData, inputOnChange, textAreaOnChange };
+
+  const isButtonActive = formData.to.length > 0 && formData.message.length > 0;
+  return { formData, isButtonActive, inputOnChange, textAreaOnChange };
 };
 
 export default useFormHooks;

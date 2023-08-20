@@ -1,16 +1,18 @@
 import styled, { css } from 'styled-components';
 import useFormHooks from '~/hooks/useFormHooks';
 
-const Ment = {
+const FormSupplies = {
   project: {
     title: 'Comments',
     toMent: '보내는 사람이 누구인지 입력해 주세요.',
     messageMent: '프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요.',
+    apiUrl: '',
   },
   designer: {
     title: 'Guest Book',
     toMent: '보내는 사람을 입력해주세요.',
     messageMent: '내용을 입력해주세요.',
+    apiUrl: '',
   },
 } as const;
 
@@ -19,20 +21,22 @@ interface IFormSectionProps {
 }
 
 const CommonFormSection = ({ page }: IFormSectionProps) => {
-  const { formData, inputOnChange, textAreaOnChange } = useFormHooks();
+  const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
   const { to, message } = formData;
 
-  const { title, toMent, messageMent } = Ment[page];
+  const { title, toMent, messageMent } = FormSupplies[page];
   return (
     <Container>
       <HeaderSection>
         <Title>{title}</Title>
-        <CommentCount>22</CommentCount>
+        {page === 'project' && <CommentCount>22</CommentCount>}
       </HeaderSection>
+      {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
-        <SubmitButton>등록</SubmitButton>
+        <SubmitButton $isButtonActive={isButtonActive}>등록</SubmitButton>
       </ToInputWrapper>
+      {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
       <TextAreaWrapper>
         <TextArea placeholder={messageMent} value={message} onChange={textAreaOnChange} />
         <CountingLetterSection>
@@ -53,8 +57,23 @@ const HeaderSection = styled.div`
   display: flex;
   flex-direction: row;
   gap: 2.4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 `;
+
+const ToLabelSection = styled.div(
+  ({ theme }) => theme.fonts.Caption_01,
+  css`
+    margin-bottom: 0.8rem;
+  `,
+);
+
+const MsgLabelSection = styled.div(
+  ({ theme }) => theme.fonts.Caption_01,
+  css`
+    margin-top: 2.2rem;
+    margin-bottom: 0.8rem;
+  `,
+);
 
 const Title = styled.div(({ theme }) => theme.fonts.Subtitle_01);
 
@@ -88,16 +107,18 @@ const FromInput = styled.input(
   `,
 );
 
-const SubmitButton = styled.button(
+const SubmitButton = styled.button<{ $isButtonActive: boolean }>(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     width: 14.9rem;
     height: 6.2rem;
 
-    background-color: ${({ theme }) => theme.colors.Grayscales_900};
+    background-color: ${({ $isButtonActive, theme }: any) =>
+      $isButtonActive ? theme.colors.Grayscales_900 : theme.colors.Grayscales_200};
     border-radius: 1rem;
 
-    color: ${({ theme }) => theme.colors.Grayscales_50};
+    color: ${({ $isButtonActive, theme }: any) =>
+      $isButtonActive ? theme.colors.Grayscales_50 : theme.colors.Grayscales_600};
   `,
 );
 
