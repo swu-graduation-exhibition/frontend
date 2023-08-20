@@ -20,7 +20,8 @@ function ProjectDetailHeader() {
       </ProjcetTitle>
       <ProjectDescription>
         <Description>
-        Scopin은 영감을 얻고 즐기는 새로운 방법입니다. 이제 일상의 경험이 재구성된 AR 공간에서 사람들과 생각을 나누며 주변을 새롭게 바라보세요!
+          Scopin은 영감을 얻고 즐기는 새로운 방법입니다. 이제 일상의 경험이 재구성된 AR 공간에서
+          사람들과 생각을 나누며 주변을 새롭게 바라보세요!
         </Description>
         <ButtonSection>
           <TryItButton>TRY IT!</TryItButton>
@@ -36,9 +37,8 @@ export default ProjectDetailHeader;
 const Container = styled.section`
   display: flex;
   justify-content: space-between;
-
-  gap: 15rem;
-
+  width: 100%;
+  gap: 5rem;
   height: 50.2rem;
   padding: 16rem 0 8.2rem;
   flex-direction: row;
@@ -47,6 +47,7 @@ const Container = styled.section`
 const ProjcetTitle = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 36.8rem;
   min-width: fit-content;
 
   gap: 2rem;
@@ -90,6 +91,7 @@ const Member = styled.span(
 const ProjectDescription = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 81.4rem;
   gap: 4.8rem;
 `;
 
