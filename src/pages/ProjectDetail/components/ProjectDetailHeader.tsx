@@ -20,9 +20,7 @@ function ProjectDetailHeader() {
       </ProjcetTitle>
       <ProjectDescription>
         <Description>
-          이 글은 평범에서 꽤 동떨어져 있는 글이에요. 여러분은 이 글의 특이성을 어느 정도로 신속히
-          눈치챌 수 있는지요? 얼핏 보기에는 너무 평범해서 전혀 그릇된 점이 없어 보이지요. 실은 이
-          글에서 그릇된 점은{' '}
+        Scopin은 영감을 얻고 즐기는 새로운 방법입니다. 이제 일상의 경험이 재구성된 AR 공간에서 사람들과 생각을 나누며 주변을 새롭게 바라보세요!
         </Description>
         <ButtonSection>
           <TryItButton>TRY IT!</TryItButton>
@@ -37,9 +35,10 @@ export default ProjectDetailHeader;
 
 const Container = styled.section`
   display: flex;
-  gap: 39.3rem;
-  width: 100%;
-  max-width: 165rem;
+  justify-content: space-between;
+
+  gap: 15rem;
+
   height: 50.2rem;
   padding: 16rem 0 8.2rem;
   flex-direction: row;
