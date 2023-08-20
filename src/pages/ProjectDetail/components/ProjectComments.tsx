@@ -1,14 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import CommonFormSection from '../../../common/components/CommonFormSection';
 
 const ProjectComments = () => {
   return (
     <Container>
-      <HeaderSection>
-        <Title>Comments</Title>
-        <CommentCount>22</CommentCount>
-      </HeaderSection>
-      <CommonFormSection page='designer' />
+      <CommonFormSection page={'project'} />
     </Container>
   );
 };
@@ -21,22 +17,3 @@ const Container = styled.section`
 
   max-width: 165rem;
 `;
-
-const HeaderSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 2.4rem;
-  margin-bottom: 4rem;
-`;
-
-const Title = styled.div(({ theme }) => theme.fonts.Subtitle_01);
-
-const CommentCount = styled.span(
-  ({ theme }) => theme.fonts.Subtitle_01,
-  css`
-    color: ${({ theme }) => theme.colors.Grayscales_600};
-
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
-  `,
-);
