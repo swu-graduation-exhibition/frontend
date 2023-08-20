@@ -1,28 +1,34 @@
 import styled, { css } from 'styled-components';
 import useFormHooks from '~/hooks/useFormHooks';
 
-const Ment: any = {
+const Ment = {
   project: {
+    title: 'Comments',
     toMent: '보내는 사람이 누구인지 입력해 주세요.',
     messageMent: '프로젝트에 대한 솔직한 피드백과 따뜻한 코멘트를 남겨주세요.',
   },
   designer: {
+    title: 'Guest Book',
     toMent: '보내는 사람을 입력해주세요.',
     messageMent: '내용을 입력해주세요.',
   },
 } as const;
 
 interface IFormSectionProps {
-  page : string
+  page: 'project' | 'designer';
 }
 
 const CommonFormSection = ({ page }: IFormSectionProps) => {
   const { formData, inputOnChange, textAreaOnChange } = useFormHooks();
   const { to, message } = formData;
 
-  const { toMent, messageMent } = Ment[page];
+  const { title, toMent, messageMent } = Ment[page];
   return (
     <Container>
+      <HeaderSection>
+        <Title>{title}</Title>
+        <CommentCount>22</CommentCount>
+      </HeaderSection>
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
         <SubmitButton>등록</SubmitButton>
@@ -43,7 +49,24 @@ const Container = styled.form`
   display: flex;
   flex-direction: column;
 `;
+const HeaderSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 2.4rem;
+  margin-bottom: 4rem;
+`;
 
+const Title = styled.div(({ theme }) => theme.fonts.Subtitle_01);
+
+const CommentCount = styled.span(
+  ({ theme }) => theme.fonts.Subtitle_01,
+  css`
+    color: ${({ theme }) => theme.colors.Grayscales_600};
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+  `,
+);
 const ToInputWrapper = styled.div`
   display: flex;
   flex-direction: row;
