@@ -50,6 +50,7 @@ export default ProjectCard;
 
 const Container = styled.article`
   position: relative;
+  height: 100%;
   cursor: pointer;
 
   @media screen and (width <= 520px) {
