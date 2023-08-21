@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import Designer from './pages/Designer/Designer';
 import DesignerDetail from './pages/Designer/DesignerDetail';
 import { DesignerContainer } from './pages/Designer/components';
+import ProjectDetail from './pages/ProjectDetail/ProjectDetail';
 
 function Router() {
   return (
@@ -17,6 +18,8 @@ function Router() {
           <Route path="" element={<DesignerContainer />} />
           <Route path=":id" element={<DesignerDetail />} />
         </Route>
+        <Route path="/designer" element={<Designer />}></Route>
+        <Route path="/project/detail/:pojectId" element={<ProjectDetail />} />
       </Routes>
     </BrowserRouter>
   );
