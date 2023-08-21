@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { FormContents } from '~/types/commonFormSection';
+import { FormPayload } from '~/types/commonFormSection';
 
 const useFormHooks = () => {
-  const [formData, setSetFormData] = useState<FormContents>({
+  const [formData, setSetFormData] = useState<FormPayload>({
     to: '',
     message: '',
   });
