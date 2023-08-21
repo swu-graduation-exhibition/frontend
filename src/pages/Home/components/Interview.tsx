@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { MOBILE_WIDTH } from '~/constants/common';
 import YoutubeList from './YoutubeList';

@@ -3,4 +3,4 @@ export const MOBILE_PAGE_CATEGORIES = ['Project', 'Designer', 'Guest Book'] as c
 export const PAGE_PATHS = ['/project', '/designer', '/guestbook'] as const;
 export const MOBILE_PAGE_PATHS = ['/project', '/designer', '/guestbook'] as const;
 
-export const MOBILE_WIDTH = `519px`;
+export const MOBILE_WIDTH = `520px`;
