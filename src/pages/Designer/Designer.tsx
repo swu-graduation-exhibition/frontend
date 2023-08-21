@@ -1,10 +1,10 @@
 import { PageLayout } from '~/common/components';
-import { DesignerContainer } from './components';
+import { Outlet } from 'react-router-dom';
 
 const Designer = () => {
   return (
     <PageLayout>
-      <DesignerContainer />
+      <Outlet />
     </PageLayout>
   );
 };

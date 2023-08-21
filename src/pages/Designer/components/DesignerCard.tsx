@@ -4,7 +4,9 @@ import ImgDefaultDesigner from '~/assets/images/img1_default_desinger.png';
 import { useState } from 'react';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { MOBILE_WIDTH } from '~/constants/common';
+import { useNavigate } from 'react-router-dom';
 const DesignerCard = ({ name, track, img }: DesingerInfo) => {
+  const navigate = useNavigate();
   const [isMouseOn, setIsMouseOn] = useState(false);
 
   const handleMouseOver = () => {
@@ -15,8 +17,16 @@ const DesignerCard = ({ name, track, img }: DesingerInfo) => {
     setIsMouseOn(false);
   };
 
+  const handleClickCard = () => {
+    navigate('1');
+  };
+
   return (
-    <CardWrapper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <CardWrapper
+      onClick={handleClickCard}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
       <CardImg src={ImgDefaultDesigner} alt="designer-card" />
       <Default>
         <>
