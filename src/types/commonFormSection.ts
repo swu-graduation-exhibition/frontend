@@ -1,4 +1,4 @@
-export interface FormContents {
+export interface FormPayload {
   to: string;
   message: string;
 }
