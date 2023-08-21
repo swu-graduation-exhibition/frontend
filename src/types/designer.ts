@@ -3,3 +3,10 @@ export interface DesingerInfo {
   track: string[];
   img: string;
 }
+
+export interface GraduationWorkInfo {
+  img: string;
+  track: string[];
+  title: string;
+  memberList: string[];
+}
