@@ -18,7 +18,6 @@ function Router() {
           <Route path="" element={<DesignerContainer />} />
           <Route path=":id" element={<DesignerDetail />} />
         </Route>
-        <Route path="/designer" element={<Designer />}></Route>
         <Route path="/project/detail/:pojectId" element={<ProjectDetail />} />
       </Routes>
     </BrowserRouter>
