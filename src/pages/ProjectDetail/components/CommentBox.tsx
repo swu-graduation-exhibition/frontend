@@ -1,15 +1,5 @@
 import styled, { css } from 'styled-components';
-
-interface CommentData {
-  from: string;
-  date: string;
-  content: string;
-}
-
-interface CommnetBoxProps {
-  commentData: CommentData;
-  lastElement: boolean;
-}
+import { CommnetBoxProps } from '../type/comment';
 
 const CommentBox = ({ commentData, lastElement }: CommnetBoxProps) => {
   const { from, date, content } = commentData;

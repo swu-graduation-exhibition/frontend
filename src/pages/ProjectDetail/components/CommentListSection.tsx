@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import CommentBox from './CommentBox';
-import { commentList } from '../data/comment';
+import { commentList } from '../data/commentData';
 
 const CommentListSection = () => {
   return (
