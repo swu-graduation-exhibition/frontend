@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import CommentBox from './CommentBox';
 import { commentList } from '../data/comment';
 
-const Container = styled.div`
-  height: fit-content;
-`;
-
 const CommentListSection = () => {
   return (
     <Container>
@@ -21,3 +17,7 @@ const CommentListSection = () => {
 };
 
 export default CommentListSection;
+
+const Container = styled.div`
+  height: fit-content;
+`;
