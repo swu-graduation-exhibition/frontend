@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import CommonFormSection from '../../../common/components/CommonFormSection';
+import CommentListSection from './CommentListSection';
 
 const ProjectComments = () => {
   return (
     <Container>
       <CommonFormSection page={'project'} />
+      <CommentListSection />
     </Container>
   );
 };
