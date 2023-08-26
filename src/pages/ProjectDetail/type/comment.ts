@@ -6,5 +6,5 @@ interface CommentData {
 
 export interface CommnetBoxProps {
   commentData: CommentData;
-  lastElement: boolean;
+  lastelement: boolean;
 }
