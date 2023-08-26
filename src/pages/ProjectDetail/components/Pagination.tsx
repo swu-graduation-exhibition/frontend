@@ -1,31 +1,46 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { IcArrowLeft, IcArrowRight } from '~/assets/icons';
 
-const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentPageArray] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+interface PaginationProps {
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  lastPage: number;
+  paginationNumbers: number[];
+}
 
+const Pagination = ({
+  currentPage,
+  setCurrentPage,
+  lastPage,
+  paginationNumbers,
+}: PaginationProps) => {
   return (
     <>
       <Container>
-        <IconWrapper onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+        <IconWrapper
+          onClick={() => {
+            if (currentPage === 1) return;
+            setCurrentPage(currentPage - 1);
+          }}
+        >
           <IcArrowLeft />
         </IconWrapper>
         <ButtonWrapper>
-          {currentPageArray.map((_, i) => (
+          {paginationNumbers.map((_, i) => (
             <PageButton
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              ariaCurrent={currentPage === i + 1 ? 'page' : null}
+              iscurrentpage={currentPage === i + 1 ? 'page' : null}
             >
               {i + 1}
             </PageButton>
           ))}
         </ButtonWrapper>
         <IconWrapper
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === currentPageArray.length + 1}
+          onClick={() => {
+            if (currentPage === lastPage) return;
+            setCurrentPage(currentPage + 1);
+          }}
         >
           <IcArrowRight />
         </IconWrapper>
@@ -42,7 +57,7 @@ const Container = styled.div`
   width: 100%;
   height: 4.6rem;
 `;
-const IconWrapper = styled.span<{ disabled: boolean }>`
+const IconWrapper = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,9 +72,9 @@ const ButtonWrapper = styled.section`
   flex-direction: row;
 `;
 
-const PageButton = styled.span<{ ariaCurrent: 'page' | null }>(
+const PageButton = styled.span<{ iscurrentpage: 'page' | null }>(
   ({ theme }) => theme.fonts.Caption_01,
-  ({ ariaCurrent }) => `color : ${ariaCurrent === 'page' ? 'black;' : 'gray;'}`,
+  ({ iscurrentpage }) => `color : ${iscurrentpage === 'page' ? 'black;' : 'gray;'}`,
   css`
     display: flex;
     justify-content: center;
