@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { CommnetBoxProps } from '../type/comment';
 
-const CommentBox = ({ commentData, lastElement }: CommnetBoxProps) => {
+const CommentBox = ({ commentData, lastelement }: CommnetBoxProps) => {
   const { from, date, content } = commentData;
   return (
-    <Container lastElement={lastElement}>
+    <Container lastelement={lastelement}>
       <CommentInfoBox>
         <Name>{from}</Name>
         <Date>{date}</Date>
@@ -16,13 +16,13 @@ const CommentBox = ({ commentData, lastElement }: CommnetBoxProps) => {
 
 export default CommentBox;
 
-const Container = styled.article<{ lastElement: boolean }>`
+const Container = styled.article<{ lastelement: boolean }>`
   display: flex;
   flex-direction: row;
   padding: 5.6rem 4.8rem;
 
-  border-bottom: ${({ lastElement, theme }) =>
-    lastElement ? `1px solid ${theme.colors.Grayscales_400}` : null};
+  border-bottom: ${({ lastelement, theme }) =>
+    lastelement ? `1px solid ${theme.colors.Grayscales_400}` : null};
 `;
 
 const CommentInfoBox = styled.div`
