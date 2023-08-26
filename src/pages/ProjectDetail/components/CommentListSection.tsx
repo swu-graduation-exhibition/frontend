@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 
 const CommentListSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const lastPage = Math.floor(commentAllList.length / 8);
+  const lastPage = Math.ceil(commentAllList.length / 8);
   const paginationNumbers = Array.from({ length: lastPage }).map((_, i) => i + 1);
 
   const commentList = commentAllList.slice(8 * currentPage - 8, 8 * currentPage - 1);
