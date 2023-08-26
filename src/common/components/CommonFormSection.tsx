@@ -1,7 +1,7 @@
 import styled, { DefaultTheme, css } from 'styled-components';
 import useFormHooks from '~/hooks/useFormHooks';
 import { FormSupplies } from '../data/commonFormSection';
-import { FormSectionProps } from '~/types/commonFormSection';
+import { FormSectionProps, SubmitButtonProps } from '~/types/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
   const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
@@ -94,11 +94,6 @@ const FromInput = styled.input(
     border-radius: 1rem;
   `,
 );
-
-interface SubmitButtonProps {
-  $isButtonActive: boolean;
-  theme: DefaultTheme;
-}
 
 const SubmitButton = styled.button<SubmitButtonProps>(
   ({ theme }) => theme.fonts.Caption_03,
