@@ -67,12 +67,12 @@ const IconWrapper = styled.span`
   cursor: pointer;
 `;
 
-const ButtonWrapper = styled.section`
+const ButtonWrapper = styled.ul`
   display: flex;
   flex-direction: row;
 `;
 
-const PageButton = styled.span<{ iscurrentpage: 'page' | null }>(
+const PageButton = styled.li<{ iscurrentpage: 'page' | null }>(
   ({ theme }) => theme.fonts.Caption_01,
   ({ iscurrentpage }) => `color : ${iscurrentpage === 'page' ? 'black;' : 'gray;'}`,
   css`
