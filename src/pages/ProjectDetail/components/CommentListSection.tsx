@@ -9,7 +9,7 @@ const CommentListSection = () => {
   const lastPage = Math.ceil(commentAllList.length / 8);
   const paginationNumbers = Array.from({ length: lastPage }).map((_, i) => i + 1);
 
-  const commentList = commentAllList.slice(8 * currentPage - 8, 8 * currentPage - 1);
+  const commentList = commentAllList.slice(8 * currentPage - 8, 8 * currentPage);
 
   return (
     <Container>
@@ -18,7 +18,7 @@ const CommentListSection = () => {
           <CommentBox
             key={i}
             commentData={commentData}
-            lastelement={commentAllList.length - 1 === i ? false : true}
+            $lastelement={i === commentList.length - 1 ? false : true}
           />
         ))}
       </CommentListWrapper>
