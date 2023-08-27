@@ -30,7 +30,7 @@ const Pagination = ({
             <PageButton
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              iscurrentpage={currentPage === i + 1 ? 'page' : null}
+              $iscurrentpage={currentPage === i + 1 && 'page'}
             >
               {i + 1}
             </PageButton>
@@ -72,9 +72,9 @@ const ButtonWrapper = styled.ul`
   flex-direction: row;
 `;
 
-const PageButton = styled.li<{ iscurrentpage: 'page' | null }>(
+const PageButton = styled.li<{ $iscurrentpage: 'page' | false }>(
   ({ theme }) => theme.fonts.Caption_01,
-  ({ iscurrentpage }) => `color : ${iscurrentpage === 'page' ? 'black;' : 'gray;'}`,
+  ({ $iscurrentpage }) => `color : ${$iscurrentpage === 'page' ? 'black;' : 'gray;'}`,
   css`
     display: flex;
     justify-content: center;
