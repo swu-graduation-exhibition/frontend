@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { DefaultTheme, css } from 'styled-components';
 import useFormHooks from '~/hooks/useFormHooks';
 import { FormSupplies } from '../data/commonFormSection';
-import { FormSectionProps } from '~/types/commonFormSection';
+import { FormSectionProps, SubmitButtonProps } from '~/types/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
   const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
@@ -17,7 +17,12 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
-        <SubmitButton $isButtonActive={isButtonActive}>등록</SubmitButton>
+        <SubmitButton
+          onClick={() => console.log('등록')}
+          $isButtonActive={isButtonActive ? true : false}
+        >
+          등록
+        </SubmitButton>
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
       <TextAreaWrapper>
@@ -90,18 +95,19 @@ const FromInput = styled.input(
   `,
 );
 
-const SubmitButton = styled.button<{ $isButtonActive: boolean }>(
+const SubmitButton = styled.button<SubmitButtonProps>(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     width: 14.9rem;
     height: 6.2rem;
+  `,
+  `
+  background-color: ${({ $isButtonActive, theme }: SubmitButtonProps) =>
+    $isButtonActive ? theme.colors.Grayscales_900 : theme.colors.Grayscales_200};
+  border-radius: 1rem;
 
-    background-color: ${({ $isButtonActive, theme }: any) =>
-      $isButtonActive ? theme.colors.Grayscales_900 : theme.colors.Grayscales_200};
-    border-radius: 1rem;
-
-    color: ${({ $isButtonActive, theme }: any) =>
-      $isButtonActive ? theme.colors.Grayscales_50 : theme.colors.Grayscales_600};
+  color: ${({ $isButtonActive, theme }: SubmitButtonProps) =>
+    $isButtonActive ? theme.colors.Grayscales_50 : theme.colors.Grayscales_600};
   `,
 );
 
