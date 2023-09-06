@@ -15,6 +15,7 @@
         "properties": [
           "display",
           "visibility",
+          "overflow",
           "float",
           "clear",
           "justify-content",
