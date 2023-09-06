@@ -17,7 +17,7 @@ const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
 
   return (
-    <HeaderWrapper isToggle={isToggle}>
+    <HeaderWrapper $istoggle={isToggle}>
       <div>
         <IcHeaderLogo onClick={() => navigate('/')} />{' '}
       </div>
@@ -57,14 +57,14 @@ const Header = () => {
 
 export default Header;
 
-const HeaderWrapper = styled(({ isToggle, ...props }) => <div {...props} />)`
+const HeaderWrapper = styled.div<{$istoggle:boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 192rem;
   height: 11rem;
-  ${({ isToggle }) =>
-    isToggle && window.innerWidth <= 520
+  ${({ $istoggle }) =>
+    $istoggle && window.innerWidth <= 520
       ? css`
           background-color: ${({ theme }) => theme.colors.Black};
           opacity: 70%;
@@ -94,8 +94,8 @@ const HeaderWrapper = styled(({ isToggle, ...props }) => <div {...props} />)`
     @media screen and (width <= ${MOBILE_WIDTH}) {
       height: 2.5rem;
     }
-    ${({ isToggle }) =>
-      isToggle && window.innerWidth <= 520
+    ${({ $istoggle }) =>
+      $istoggle && window.innerWidth <= 520
         ? css`
             path {
               fill: white;
