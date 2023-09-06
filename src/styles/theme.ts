@@ -24,7 +24,7 @@ const colors = {
 } as const;
 
 interface Font {
-  weight: 300 | 400 | 500 | 700;
+  weight: 300 |350| 400 | 500 | 700;
   size: number;
   lineHeight: number;
 }
