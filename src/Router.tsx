@@ -11,7 +11,6 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Landing />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/project/:category" element={<Project />} />
         <Route path="/designer" element={<Designer />}>
