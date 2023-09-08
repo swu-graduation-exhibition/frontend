@@ -24,7 +24,7 @@ const colors = {
 } as const;
 
 interface Font {
-  weight: 300 |350| 400 | 500 | 700;
+  weight: 300 | 350 | 400 | 500 | 700;
   size: number;
   lineHeight: number;
 }
@@ -50,6 +50,7 @@ const fonts = {
   Subtitle_04: FONT({ weight: 700, size: 2.6, lineHeight: 3.2 }),
   Subtitle_05: FONT({ weight: 700, size: 2.2, lineHeight: 3.2 }),
   Mobile_Subtitle_01: FONT({ weight: 700, size: 2.6, lineHeight: 3.2 }),
+  Mobile_Subtitle_02: FONT({ weight: 700, size: 2.6, lineHeight: 3.2 }),
   Mobile_Subtitle_03: FONT({ weight: 500, size: 2, lineHeight: 2.6 }),
   Mobile_Subtitle_04: FONT({ weight: 300, size: 2, lineHeight: 2.6 }),
   Body_01: FONT({ weight: 400, size: 4, lineHeight: 6 }),
@@ -58,6 +59,7 @@ const fonts = {
   Body_04: FONT({ weight: 300, size: 3, lineHeight: 4 }),
   Mobile_Body_01: FONT({ weight: 400, size: 1.6, lineHeight: 2.5 }),
   Mobile_Body_02: FONT({ weight: 500, size: 1.5, lineHeight: 2.17 }),
+  Mobile_Body_03: FONT({ weight: 400, size: 1.5, lineHeight: 3 }),
   Mobile_Body_04: FONT({ weight: 350, size: 1.4, lineHeight: 2 }),
   Mobile_Body_05: FONT({ weight: 300, size: 1.3, lineHeight: 1.8 }),
   Caption_01: FONT({ weight: 300, size: 2.5, lineHeight: 4 }),
