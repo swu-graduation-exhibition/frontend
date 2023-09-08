@@ -88,7 +88,7 @@ const ProfileWrapper = styled.div`
     display: flex;
     flex-direction: column;
 
-    padding: 0% 6%;
+    padding: 0% 1.5rem;
   }
 `;
 
@@ -100,6 +100,10 @@ const ProfileImg = styled.img`
   max-height: 64rem;
   object-fit: cover;
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    max-width: 30rem;
+    max-height: 30rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 17.2rem;
 
@@ -120,7 +124,7 @@ const NameHeader = styled.header`
     width: 1.9rem;
     height: 1.9rem;
 
-    @media screen and (width <= ${MOBILE_WIDTH}) {
+    @media screen and (width <= ${TABLET_WIDTH}) {
       width: 1rem;
     }
   }
@@ -137,7 +141,7 @@ const NameTitle = styled.div`
       ${({ theme }) => theme.fonts.Subtitle_02};
     }
     @media screen and (width <= ${TABLET_WIDTH}) {
-      ${({ theme }) => theme.fonts.Subtitle_03};
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_02};
     }
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Subtitle_01};
@@ -151,7 +155,7 @@ const NameTitle = styled.div`
       ${({ theme }) => theme.fonts.Body_04};
     }
     @media screen and (width <= ${TABLET_WIDTH}) {
-      ${({ theme }) => theme.fonts.Mobile_Subtitle_04};
+      ${({ theme }) => theme.fonts.Mobile_Body_03};
     }
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Caption_01};
@@ -166,7 +170,7 @@ const DesignerText = styled.div`
     ${({ theme }) => theme.fonts.Caption_03};
   }
   @media screen and (width <= ${TABLET_WIDTH}) {
-    ${({ theme }) => theme.fonts.Caption_04};
+    ${({ theme }) => theme.fonts.Mobile_Body_04};
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_01};
