@@ -2,7 +2,7 @@ import { css, styled } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
 import { designerData } from '../data/designerData';
 import DesignerCard from './DesignerCard';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
 const DesignerContainer = () => {
@@ -46,6 +46,9 @@ const Container = styled.section`
     height: fit-content;
     flex-direction: column;
   }
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin-top: 4rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin-top: 2.3rem;
   }
@@ -68,6 +71,7 @@ const NavTitle = styled.header(
     @media screen and (width <= 1400px) {
       ${({ theme }) => theme.fonts.Subtitle_02}
     }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Subtitle_01};
 
@@ -84,6 +88,10 @@ const DetailText = styled.span(
   ({ theme }) => theme.fonts.Body_04,
   css`
     margin-top: 1.6rem;
+
+    @media screen and (width <= ${TABLET_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03};
+    }
   `,
 );
 const MobileTextWrapper = styled.div`
@@ -103,12 +111,12 @@ const DesignerCardWrapper = styled.section`
   margin-bottom: 13.6rem;
   grid-template-columns: repeat(4, 1fr);
 
-  @media screen and (width <= 830px) {
-    grid-template-columns: repeat(3, 1fr);
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 8rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 3.5rem;
     margin-top: 6rem;
   }
