@@ -4,8 +4,11 @@ import { designerData } from '../data/designerData';
 import DesignerCard from './DesignerCard';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
+import { useDesignerList } from '~/lib/api/designer/get-designer-list';
 
 const DesignerContainer = () => {
+  const { data } = useDesignerList();
+
   return (
     <Container>
       <NavTitle>
@@ -22,8 +25,14 @@ const DesignerContainer = () => {
         <DetailText>Seoul Women’s University • Industrial Design</DetailText>
       </Default>
       <DesignerCardWrapper>
-        {designerData.map(({ name, track, img }, idx) => (
-          <DesignerCard key={idx} name={name} track={track} img={img} />
+        {designerData.map(({ designer_id, name_ko, field, profile }, idx) => (
+          <DesignerCard
+            key={idx}
+            designer_id={designer_id}
+            name_ko={name_ko}
+            field={field}
+            profile={profile}
+          />
         ))}
       </DesignerCardWrapper>
     </Container>
