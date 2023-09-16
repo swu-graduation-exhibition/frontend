@@ -17,7 +17,9 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
+
         {isButtonActive ? <SubmitButton>등록</SubmitButton> : <UnSubmitButton>등록</UnSubmitButton>}
+
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
       <TextAreaWrapper>
@@ -91,6 +93,7 @@ const FromInput = styled.input(
 );
 
 const SubmitButton = styled.button(
+
   ({ theme }) => theme.fonts.Caption_03,
   css`
     width: 14.9rem;
@@ -107,6 +110,7 @@ const UnSubmitButton = styled(SubmitButton)`
 
   color: ${({ theme }) => theme.colors.Grayscales_600};
 `;
+
 
 const TextArea = styled.textarea(
   ({ theme }) => theme.fonts.Caption_02,
