@@ -17,12 +17,7 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
-        <SubmitButton
-          onClick={() => console.log('등록')}
-          $isButtonActive={isButtonActive ? true : false}
-        >
-          등록
-        </SubmitButton>
+        {isButtonActive ? <SubmitButton>등록</SubmitButton> : <UnSubmitButton>등록</UnSubmitButton>}
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
       <TextAreaWrapper>
@@ -95,21 +90,23 @@ const FromInput = styled.input(
   `,
 );
 
-const SubmitButton = styled.button<SubmitButtonProps>(
+const SubmitButton = styled.button(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     width: 14.9rem;
     height: 6.2rem;
-  `,
-  `
-  background-color: ${({ $isButtonActive, theme }: SubmitButtonProps) =>
-    $isButtonActive ? theme.colors.Grayscales_900 : theme.colors.Grayscales_200};
-  border-radius: 1rem;
+    border-radius: 1rem;
 
-  color: ${({ $isButtonActive, theme }: SubmitButtonProps) =>
-    $isButtonActive ? theme.colors.Grayscales_50 : theme.colors.Grayscales_600};
+    background-color: ${({ theme }) => theme.colors.Grayscales_900};
+
+    color: ${({ theme }) => theme.colors.Grayscales_50};
   `,
 );
+const UnSubmitButton = styled(SubmitButton)`
+  background-color: ${({ theme }) => theme.colors.Grayscales_200};
+
+  color: ${({ theme }) => theme.colors.Grayscales_600};
+`;
 
 const TextArea = styled.textarea(
   ({ theme }) => theme.fonts.Caption_02,
