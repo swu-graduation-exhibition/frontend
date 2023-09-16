@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { GraduationWorkList, Profile } from './components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import CommentListSection from '../ProjectDetail/components/CommentListSection';
 import CommonFormSection from '~/common/components/CommonFormSection';
 import { guestBookCommentData } from '~/common/data/guestBookCommentList';
@@ -54,6 +54,10 @@ const DesignerDetailWrapper = styled.div`
 
 const GuestBookWrapper = styled.div`
   margin-top: 20rem;
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-left: 1.6rem;
+    margin-right: 1.6rem;
+  }
 `;
 
 const CommentListWrapper = styled.div`
@@ -64,4 +68,15 @@ const CommentListWrapper = styled.div`
 
   margin-top: 12rem;
   margin-bottom: 10rem;
+
+  @media screen and (width <= 1300px) {
+    grid-template-columns: repeat(2, minmax(27rem, 1fr));
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    grid-template-columns: repeat(1, minmax(27rem, 1fr));
+    margin-left: 1.6rem;
+    margin-right: 1.6rem;
+    margin-top: 4.6rem;
+  }
 `;
