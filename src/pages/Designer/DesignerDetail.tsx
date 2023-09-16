@@ -1,12 +1,18 @@
 import { styled } from 'styled-components';
 import { GraduationWorkList, Profile } from './components';
 import { MOBILE_WIDTH } from '~/constants/common';
+import CommentListSection from '../ProjectDetail/components/CommentListSection';
+import CommonFormSection from '~/common/components/CommonFormSection';
 
 const DesignerDetail = () => {
   return (
     <DesignerDetailWrapper>
       <Profile />
       <GraduationWorkList />
+      <GuestBookWrapper>
+        <CommonFormSection page="designer" />
+        <CommentListSection />
+      </GuestBookWrapper>
     </DesignerDetailWrapper>
   );
 };
@@ -26,4 +32,8 @@ const DesignerDetailWrapper = styled.div`
     margin-top: 1.3rem;
     padding: 0%;
   }
+`;
+
+const GuestBookWrapper = styled.div`
+  margin-top: 20rem;
 `;
