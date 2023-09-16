@@ -8,6 +8,7 @@ import {
   MOBILE_WIDTH,
   PAGE_CATEGORIES,
   PAGE_PATHS,
+  TABLET_WIDTH,
 } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
@@ -57,7 +58,7 @@ const Header = () => {
 
 export default Header;
 
-const HeaderWrapper = styled.div<{$istoggle:boolean}>`
+const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,9 +78,9 @@ const HeaderWrapper = styled.div<{$istoggle:boolean}>`
   padding: 0 5%;
   z-index: 2;
 
-  @media screen and (width <= 830px) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     height: 11rem;
-    padding: 0 6.4rem;
+    padding: 4.3rem 6.4rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 5.5rem;
@@ -88,7 +89,7 @@ const HeaderWrapper = styled.div<{$istoggle:boolean}>`
   svg {
     cursor: pointer;
 
-    @media screen and (width <= 830px) {
+    @media screen and (width <=${TABLET_WIDTH}) {
       height: 3.6rem;
     }
     @media screen and (width <= ${MOBILE_WIDTH}) {
@@ -112,7 +113,7 @@ const LinkWrapper = styled.ul`
   display: flex;
   gap: 8.8rem;
 
-  @media screen and (width <= 830px) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     gap: 3.2rem;
   }
 `;
@@ -124,7 +125,7 @@ const LiContent = styled.li`
     line-height: 36px;
     text-align: left;
 
-    @media screen and (width <= 830px) {
+    @media screen and (width <= ${TABLET_WIDTH}) {
       font-size: 2rem;
     }
   }

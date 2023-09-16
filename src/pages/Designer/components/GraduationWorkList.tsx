@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { graduationWorkList } from '../data/graduationData';
 import GraduationWorkCard from './GraduationWorkCard';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 const GraduationWorkList = () => {
   return (
@@ -23,14 +23,17 @@ const GraduationWorkList = () => {
 export default GraduationWorkList;
 
 const ListWrapper = styled.div`
-  display: grid;
-  gap: 1%;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  gap: 4.8rem;
 
   margin-top: 16rem;
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin-top: 12.2rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin-top: 5rem;
-    grid-template-columns: repeat(1, 1fr);
+    gap: 6.4rem;
+    flex-direction: column;
   }
 `;
