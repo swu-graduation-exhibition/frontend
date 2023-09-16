@@ -1,7 +1,8 @@
 export interface DesingerInfo {
-  name: string;
-  track: string[];
-  img: string;
+  designer_id: number;
+  name_ko: string;
+  field: string;
+  profile: string;
 }
 
 export interface GraduationWorkInfo {
