@@ -5,8 +5,10 @@ import { useState } from 'react';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { MOBILE_WIDTH } from '~/constants/common';
 import { useNavigate } from 'react-router-dom';
-const DesignerCard = ({ name, track, img }: DesingerInfo) => {
+import { getFieldArray } from '~/utils/getFieldArray';
+const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) => {
   const navigate = useNavigate();
+
   const [isMouseOn, setIsMouseOn] = useState(false);
 
   const handleMouseOver = () => {
@@ -27,29 +29,29 @@ const DesignerCard = ({ name, track, img }: DesingerInfo) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <CardImg src={ImgDefaultDesigner} alt="designer-card" />
+      <CardImg src={profile} alt="designer-card" />
       <Default>
         <>
           <CardHoverContent>
             {isMouseOn && (
               <TrackUl>
-                {track.map((data) => (
-                  <TrackList key={name + data}>{data}</TrackList>
+                {getFieldArray(field).map((data) => (
+                  <TrackList key={name_ko + data}>{data}</TrackList>
                 ))}
               </TrackUl>
             )}
           </CardHoverContent>
-          <NameTitle>{name}</NameTitle>
+          <NameTitle>{name_ko}</NameTitle>
         </>
       </Default>
       <Mobile>
         <>
           <TrackUl>
-            {track.map((data) => (
-              <TrackList key={name + data}>{data}</TrackList>
+            {getFieldArray(field).map((data) => (
+              <TrackList key={designer_id}>{data}</TrackList>
             ))}
           </TrackUl>
-          <MobileNameTitle>{name}</MobileNameTitle>
+          <MobileNameTitle>{name_ko}</MobileNameTitle>
         </>
       </Mobile>
     </CardWrapper>
