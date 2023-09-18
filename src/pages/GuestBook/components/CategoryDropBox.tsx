@@ -32,7 +32,7 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
         {designerId === -1 ? (
           <NoneReceiver>모두</NoneReceiver>
         ) : (
-          <YesReceiver>{DESIGNERS[designerId]}</YesReceiver>
+          <YesReceiver isLarger={designerId === 0}>{DESIGNERS[designerId]}</YesReceiver>
         )}
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
@@ -107,9 +107,9 @@ const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
 const Box = styled.div`
   overflow: scroll;
   position: absolute;
-  width: 39.2rem;
+  width: 11.9rem;
   height: 37.6rem;
-  margin-top: 12.2rem;
+  margin-top: 7.2rem;
   border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
 
   border-radius: 1rem;
@@ -118,8 +118,8 @@ const Box = styled.div`
   cursor: pointer;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 26.9 rem;
-    margin-top: 7rem;
+    width: 12.4 rem;
+    margin-top: 6rem;
   }
 `;
 
@@ -164,10 +164,11 @@ const NoneReceiver = styled.p`
   }
 `;
 
-const YesReceiver = styled.p`
-  ${({ theme }) => theme.fonts.Caption_03};
+const YesReceiver = styled.p<{ isLarger: boolean }>`
+  ${({ isLarger, theme }) =>
+    isLarger ? theme.fonts.Caption_03_Gray500_Size : theme.fonts.Caption_03_Gray500};
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    ${({ theme }) => theme.fonts.Mobile_Body_03};
+    ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
   }
 `;

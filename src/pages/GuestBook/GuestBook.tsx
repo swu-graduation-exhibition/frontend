@@ -9,7 +9,7 @@ import Title from './components/Title';
 
 const GuestBook = () => {
   return (
-    <>
+    <GuestBookWrapper>
       <Header />
       <GuestBookBackground
         desktopBackground={desktopBackground}
@@ -20,21 +20,38 @@ const GuestBook = () => {
         <GuestBookInput />
         <Letters />
       </PageLayout>
-      <Footer />
-    </>
+      <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
+    </GuestBookWrapper>
   );
 };
 
 export default GuestBook;
 
+const FooterWrapper = styled.div`
+  position: sticky;
+  top: 195rem;
+`;
+
+const GuestBookWrapper = styled.div`
+  overflow: scroll;
+`;
+
 const GuestBookBackground = styled.div<{ desktopBackground: string; mobileBackground: string }>`
   position: absolute;
   z-index: -2;
   width: 100%;
+  margin-top: -47rem;
 
   content: url(${({ desktopBackground }) => desktopBackground});
 
+  @media screen and (width <= 1500px) {
+    margin-top: 0;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-top: 0;
     content: url(${({ mobileBackground }) => mobileBackground});
   }
 `;
