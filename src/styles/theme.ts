@@ -92,6 +92,12 @@ const fonts = {
     lineHeight: 3,
     color: colors.Grayscales_500,
   }),
+  Caption_03_Gray500_Size: GRAY_FONT({
+    weight: 400,
+    size: 1.8,
+    lineHeight: 3,
+    color: colors.Grayscales_500,
+  }),
   Caption_03_Gray600: GRAY_FONT({
     weight: 400,
     size: 2,
@@ -121,6 +127,18 @@ const fonts = {
     size: 1.5,
     lineHeight: 3,
     color: colors.White,
+  }),
+  Subtitle_04_Gray700: GRAY_FONT({
+    weight: 700,
+    size: 2.6,
+    lineHeight: 3.2,
+    color: colors.Grayscales_700,
+  }),
+  Mobile_Headline_01_Gray700: GRAY_FONT({
+    weight: 700,
+    size: 1.6,
+    lineHeight: 2.4,
+    color: colors.Grayscales_700,
   }),
 } as const;
 
