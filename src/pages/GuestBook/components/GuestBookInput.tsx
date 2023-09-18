@@ -6,7 +6,7 @@ import SenderInput from './SenderInput';
 const GuestBookInput = () => {
   const [guestBookContents, setGuestBookContents] = useState({
     sender: '',
-    receiver: 0,
+    receiver: -1,
     content: '',
   });
 
@@ -44,7 +44,7 @@ const GuestBookInputWrapper = styled.div`
 const PeopleInputContainer = styled.section`
   display: flex;
   justify-content: space-between;
-  width: 69.5rem;
+  width: 80rem;
 `;
 
 const InputWrapper = styled.article`
