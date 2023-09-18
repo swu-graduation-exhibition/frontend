@@ -3,6 +3,7 @@ import { Footer, Header } from '~/common/components';
 import { MOBILE_WIDTH } from '~/constants/common';
 import background from '../../assets/images/guestBookBackgroundImage.png';
 import Title from './components/Title';
+import GuestBookInput from './components/guestBookInput';
 
 const GuestBook = () => {
   return (
@@ -11,6 +12,7 @@ const GuestBook = () => {
       <GuestBookBackground src={background} alt="배경지" />
       <PageLayout>
         <Title />
+        <GuestBookInput />
       </PageLayout>
       <Footer />
     </>

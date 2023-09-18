@@ -1,41 +1,43 @@
-import styled from 'styled-components';
-import { GuestBookTitleIc } from '~/assets/icons';
+import styled, { css } from 'styled-components';
+import { IcStarAll } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
 
 const Title = () => {
   return (
-    <GuestBookTitle>
-      <GuestBookTitleIcon />
-      <h1>Guest Book</h1>
-    </GuestBookTitle>
+    <NavTitle>
+      <IcStarAll />
+      Guest Book
+    </NavTitle>
   );
 };
 
 export default Title;
 
-const GuestBookTitle = styled.header`
-  display: flex;
-  align-items: flex-start;
+const NavTitle = styled.header(
+  ({ theme }) => theme.fonts.Headline_03,
+  css`
+    display: flex;
 
-  height: 7.5rem;
+    width: fit-content;
+    height: fit-content;
 
-  color: ${({ theme }) => theme.colors.Grayscales_800};
-  ${({ theme }) => theme.fonts.Headline_03};
+    svg {
+      position: relative;
+      top: 1rem;
+      margin-right: 0.5rem;
+    }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    align-items: flex-start;
+    @media screen and (width <= 1400px) {
+      ${({ theme }) => theme.fonts.Subtitle_02}
+    }
 
-    height: 4.2rem;
-
-    ${({ theme }) => theme.fonts.Subtitle_02};
-  }
-`;
-
-const GuestBookTitleIcon = styled(GuestBookTitleIc)`
-  width: 1.9rem;
-  margin-top: 0.5rem;
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 1rem;
-  }
-`;
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_01};
+      svg {
+        top: 0;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  `,
+);
