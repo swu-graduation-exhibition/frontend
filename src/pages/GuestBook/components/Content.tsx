@@ -34,7 +34,7 @@ export default Content;
 
 const ContentArea = styled.textarea`
   resize: none;
-  width: 164.8rem;
+  width: 100%;
   height: 25.6rem;
   padding: 2.4rem;
   border-radius: 0.8rem;
@@ -53,7 +53,6 @@ const ContentArea = styled.textarea`
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 100%;
     height: 16.9rem;
 
     &::placeholder {

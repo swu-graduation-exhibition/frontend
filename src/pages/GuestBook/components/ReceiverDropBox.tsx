@@ -5,15 +5,14 @@ import { MOBILE_WIDTH } from '~/constants/common';
 import { DESIGNERS } from '../data/designers';
 
 interface DropBoxProps {
-  isReceiver: boolean;
   guestBookContents: { sender: string; receiver: number; content: string };
   setGuestBookContents: Dispatch<
     SetStateAction<{ sender: string; receiver: number; content: string }>
   >;
 }
 
-const DropBox = (props: DropBoxProps) => {
-  const { isReceiver, guestBookContents, setGuestBookContents } = props;
+const ReceiverDropBox = (props: DropBoxProps) => {
+  const { guestBookContents, setGuestBookContents } = props;
   const [isDrop, setIsDrop] = useState(false);
 
   const handleDrop = () => {
@@ -30,7 +29,7 @@ const DropBox = (props: DropBoxProps) => {
   };
   return (
     <>
-      <Drop isDrop={isDrop} isReceiver={isReceiver} onClick={handleDrop}>
+      <Drop isDrop={isDrop} onClick={handleDrop}>
         {guestBookContents.receiver === -1 ? (
           <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
         ) : (
@@ -39,7 +38,7 @@ const DropBox = (props: DropBoxProps) => {
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
       {isDrop && (
-        <Box isReceiver={isReceiver}>
+        <Box>
           <Designer
             paddingTop={1.6}
             isSelected={checkSelected(DESIGNERS.length - 1)}
@@ -62,7 +61,7 @@ const DropBox = (props: DropBoxProps) => {
   );
 };
 
-export default DropBox;
+export default ReceiverDropBox;
 
 const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
   display: flex;
@@ -92,10 +91,10 @@ const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
   background-blend-mode: ${({ isSelected }) => isSelected && 'multiply'};
 `;
 
-const Box = styled.div<{ isReceiver: boolean }>`
+const Box = styled.div`
   overflow: scroll;
   position: absolute;
-  width: ${({ isReceiver }) => (isReceiver ? 39.2 : 11.9)}rem;
+  width: 39.2rem;
   height: 37.6rem;
   margin-top: 12.2rem;
   border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
@@ -106,16 +105,16 @@ const Box = styled.div<{ isReceiver: boolean }>`
   cursor: pointer;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: ${({ isReceiver }) => (isReceiver ? 26.9 : 12.4)}rem;
+    width: 26.9 rem;
     margin-top: 7rem;
   }
 `;
 
-const Drop = styled.div<{ isDrop: boolean; isReceiver: boolean }>`
+const Drop = styled.div<{ isDrop: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${({ isReceiver }) => (isReceiver ? 28.6 : 12.3)}rem;
+  width: 28.6 rem;
   margin-right: 10.6rem;
   padding: 1.6rem;
   border: 1px solid
@@ -126,7 +125,7 @@ const Drop = styled.div<{ isDrop: boolean; isReceiver: boolean }>`
   border-radius: 1rem;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: ${({ isReceiver }) => (isReceiver ? 26.9 : 12.4)}rem;
+    width: 26.9 rem;
     margin-right: 0;
   }
 `;

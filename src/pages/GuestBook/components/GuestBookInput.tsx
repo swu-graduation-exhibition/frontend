@@ -2,9 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { MOBILE_WIDTH } from '~/constants/common';
 import Content from './Content';
-import DropBox from './DropBox';
+import ReceiverDropBox from './ReceiverDropBox';
 import SenderInput from './SenderInput';
-
 const GuestBookInput = () => {
   const [guestBookContents, setGuestBookContents] = useState({
     sender: '',
@@ -33,7 +32,7 @@ const GuestBookInput = () => {
           </InputWrapper>
           <InputWrapper gridArea={'receiver'}>
             <SubTitle>받는 사람</SubTitle>
-            <DropBox
+            <ReceiverDropBox
               isReceiver={true}
               guestBookContents={guestBookContents}
               setGuestBookContents={setGuestBookContents}
@@ -76,8 +75,6 @@ const SendButton = styled.button<{ isReady: Boolean }>`
     isReady ? theme.fonts.Caption_03_White : theme.fonts.Caption_03_Gray600}
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    /* width: 6.9rem; */
-
     margin-left: 0.5rem;
     height: 13rem;
     ${({ theme, isReady }) =>
