@@ -94,19 +94,21 @@ const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
 
 const Box = styled.div<{ isReceiver: boolean }>`
   overflow: scroll;
+  position: absolute;
   width: ${({ isReceiver }) => (isReceiver ? 39.2 : 11.9)}rem;
   height: 37.6rem;
-  margin-top: 1.2rem;
+  margin-top: 12.2rem;
   border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
 
   border-radius: 1rem;
   background: ${({ theme }) => theme.colors.White};
 
+  cursor: pointer;
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: ${({ isReceiver }) => (isReceiver ? 26.9 : 12.4)}rem;
+    margin-top: 7rem;
   }
-
-  cursor: pointer;
 `;
 
 const Drop = styled.div<{ isDrop: boolean; isReceiver: boolean }>`
@@ -127,8 +129,6 @@ const Drop = styled.div<{ isDrop: boolean; isReceiver: boolean }>`
     width: ${({ isReceiver }) => (isReceiver ? 26.9 : 12.4)}rem;
     margin-right: 0;
   }
-
-  cursor: pointer;
 `;
 
 const DropBoxUpIcon = styled(DropBoxUpIc)`
@@ -145,8 +145,16 @@ const DropBoxDownIcon = styled(DropBoxDownIc)`
 
 const NoneReceiver = styled.p`
   ${({ theme }) => theme.fonts.Caption_03_Gray500};
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
+  }
 `;
 
 const YesReceiver = styled.p`
   ${({ theme }) => theme.fonts.Caption_03};
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03};
+  }
 `;

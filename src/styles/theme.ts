@@ -98,6 +98,30 @@ const fonts = {
     lineHeight: 3,
     color: colors.Grayscales_600,
   }),
+  Caption_03_White: GRAY_FONT({
+    weight: 400,
+    size: 2,
+    lineHeight: 3,
+    color: colors.White,
+  }),
+  Mobile_Body_03_Gray500: GRAY_FONT({
+    weight: 400,
+    size: 1.5,
+    lineHeight: 3,
+    color: colors.Grayscales_500,
+  }),
+  Mobile_Body_02_Gray600: GRAY_FONT({
+    weight: 400,
+    size: 1.5,
+    lineHeight: 3,
+    color: colors.Grayscales_600,
+  }),
+  Mobile_Body_02_White: GRAY_FONT({
+    weight: 400,
+    size: 1.5,
+    lineHeight: 3,
+    color: colors.White,
+  }),
 } as const;
 
 const theme = {
