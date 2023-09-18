@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import Content from './Content';
 import ReceiverDropBox from './ReceiverDropBox';
 import SenderInput from './SenderInput';
@@ -17,6 +17,10 @@ const GuestBookInput = () => {
       guestBookContents.receiver !== -1 &&
       guestBookContents.content !== ''
     );
+  };
+
+  const handleSendGuestBook = () => {
+    // guest book post
   };
 
   return (
@@ -39,7 +43,7 @@ const GuestBookInput = () => {
             />
           </InputWrapper>
         </PeopleInputContainer>
-        <SendButton type="button" isReady={checkReadyToSend()}>
+        <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
           등록
         </SendButton>
       </GuestBookHeadLine>
@@ -85,7 +89,7 @@ const SendButton = styled.button<{ isReady: Boolean }>`
 const ContentWrapper = styled.div`
   margin-top: 4rem;
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     margin-top: 1.8rem;
   }
 `;
@@ -96,8 +100,6 @@ const GuestBookInputWrapper = styled.div`
 
 const PeopleInputContainer = styled.section`
   display: flex;
-  justify-content: space-between;
-  width: 80rem;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     flex-direction: column;
@@ -110,8 +112,20 @@ const InputWrapper = styled.article<{ gridArea: string }>`
   display: flex;
   flex-direction: column;
   grid-area: ${({ gridArea }) => gridArea};
+  margin-left: ${({ gridArea }) => gridArea === 'receiver' && 13.6}rem;
 
-  margin-top: ${({ gridArea }) => gridArea === 'receiver' && 0.5}rem;
+  @media screen and (width <= 1300px) {
+    margin-left: ${({ gridArea }) => gridArea === 'receiver' && 5}rem;
+  }
+
+  @media screen and (width <= 970px) {
+    margin-left: ${({ gridArea }) => gridArea === 'receiver' && 1.6}rem;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-top: ${({ gridArea }) => gridArea === 'receiver' && 0.5}rem;
+    margin-left: 0;
+  }
 `;
 
 const SubTitle = styled.p`
@@ -121,7 +135,7 @@ const SubTitle = styled.p`
 
   ${({ theme }) => theme.fonts.Caption_01};
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     display: none;
   }
 `;

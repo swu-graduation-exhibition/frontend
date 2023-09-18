@@ -57,6 +57,10 @@ const Input = styled.input`
     ${({ theme }) => theme.fonts.Caption_03_Gray500};
   }
 
+  @media screen and (width <= 955px) {
+    width: 27.2rem;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     &::placeholder {
       ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};

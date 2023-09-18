@@ -1,18 +1,16 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { DropBoxDownIc, DropBoxUpIc } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
 import { DESIGNERS } from '../data/designers';
 
-interface DropBoxProps {
-  guestBookContents: { sender: string; receiver: number; content: string };
-  setGuestBookContents: Dispatch<
-    SetStateAction<{ sender: string; receiver: number; content: string }>
-  >;
+interface CategoryDropBoxProps {
+  designerId: number;
+  setDesignerId: Dispatch<SetStateAction<number>>;
 }
 
-const ReceiverDropBox = (props: DropBoxProps) => {
-  const { guestBookContents, setGuestBookContents } = props;
+const CategoryDropBox = (props: CategoryDropBoxProps) => {
+  const { designerId, setDesignerId } = props;
   const [isDrop, setIsDrop] = useState(false);
 
   const handleDrop = () => {
@@ -20,21 +18,21 @@ const ReceiverDropBox = (props: DropBoxProps) => {
   };
 
   const handleSelectDesigner = (index: number) => {
-    setGuestBookContents({ ...guestBookContents, receiver: index });
+    setDesignerId(index);
     setIsDrop(false);
   };
 
   const checkSelected = (index: number) => {
-    return index === guestBookContents.receiver;
+    return index === designerId;
   };
 
   return (
-    <>
+    <CategoryDropBoxWrapper>
       <Drop isDrop={isDrop} onClick={handleDrop}>
-        {guestBookContents.receiver === -1 ? (
-          <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
+        {designerId === -1 ? (
+          <NoneReceiver>모두</NoneReceiver>
         ) : (
-          <YesReceiver>{DESIGNERS[guestBookContents.receiver]}</YesReceiver>
+          <YesReceiver>{DESIGNERS[designerId]}</YesReceiver>
         )}
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
@@ -58,11 +56,25 @@ const ReceiverDropBox = (props: DropBoxProps) => {
           ))}
         </Box>
       )}
-    </>
+    </CategoryDropBoxWrapper>
   );
 };
 
-export default ReceiverDropBox;
+export default CategoryDropBox;
+
+const CategoryDropBoxWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 2.4rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4.6rem;
+  }
+`;
 
 const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
   display: flex;
@@ -115,7 +127,8 @@ const Drop = styled.div<{ isDrop: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 28.6 rem;
+  width: 12.3rem;
+  height: 6.2rem;
   padding: 1.6rem;
   border: 1px solid
     ${({ theme, isDrop }) => (isDrop ? theme.colors.Black : theme.colors.Grayscales_500)};
@@ -124,12 +137,10 @@ const Drop = styled.div<{ isDrop: boolean }>`
 
   border-radius: 1rem;
 
-  @media screen and (width <= 955px) {
-    width: 27.2rem;
-  }
-
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 26.9 rem;
+    width: 12.4rem;
+    height: 4.9rem;
+    margin-right: 0;
   }
 `;
 
