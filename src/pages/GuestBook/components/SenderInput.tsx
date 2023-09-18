@@ -68,6 +68,6 @@ const Input = styled.input`
 
     ${({ theme }) => theme.fonts.Mobile_Body_03};
 
-    width: 26.9rem;
+    width: 100%;
   }
 `;

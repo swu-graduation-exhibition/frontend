@@ -129,7 +129,7 @@ const Drop = styled.div<{ isDrop: boolean }>`
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 26.9 rem;
+    width: 100%;
   }
 `;
 

@@ -37,7 +37,6 @@ const GuestBookInput = () => {
           <InputWrapper gridArea={'receiver'}>
             <SubTitle>받는 사람</SubTitle>
             <ReceiverDropBox
-              isReceiver={true}
               guestBookContents={guestBookContents}
               setGuestBookContents={setGuestBookContents}
             />
@@ -103,8 +102,7 @@ const PeopleInputContainer = styled.section`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     flex-direction: column;
-
-    width: 26.9rem;
+    width: 79%;
   }
 `;
 
