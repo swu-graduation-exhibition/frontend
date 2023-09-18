@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import DropBox from './DropBox';
+import SenderInput from './SenderInput';
 
 const GuestBookInput = () => {
   const [guestBookContents, setGuestBookContents] = useState({
@@ -8,31 +10,47 @@ const GuestBookInput = () => {
     content: '',
   });
 
-  const handleInputFrom = (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    if (e.target.value.length <= 8) {
-      setGuestBookContents({ ...guestBookContents, sender: e.target.value });
-    }
-  };
-
   console.log(guestBookContents.sender);
 
   return (
-    <>
-      <SubTitle>보내는 사람</SubTitle>
-      <FromInput
-        type="text"
-        placeholder="보내는 사람을 입력해 주세요."
-        maxLength={8}
-        onChange={handleInputFrom}
-        value={guestBookContents.sender}
-      />
-    </>
+    <GuestBookInputWrapper>
+      <PeopleInputContainer>
+        <InputWrapper>
+          <SubTitle>보내는 사람</SubTitle>
+          <SenderInput
+            guestBookContents={guestBookContents}
+            setGuestBookContents={setGuestBookContents}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <SubTitle>받는 사람</SubTitle>
+          <DropBox
+            isReceiver={true}
+            guestBookContents={guestBookContents}
+            setGuestBookContents={setGuestBookContents}
+          />
+        </InputWrapper>
+      </PeopleInputContainer>
+    </GuestBookInputWrapper>
   );
 };
 
 export default GuestBookInput;
+
+const GuestBookInputWrapper = styled.div`
+  margin-top: 4.3rem;
+`;
+
+const PeopleInputContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  width: 69.5rem;
+`;
+
+const InputWrapper = styled.article`
+  display: flex;
+  flex-direction: column;
+`;
 
 const SubTitle = styled.p`
   margin-bottom: 0.8rem;
@@ -40,20 +58,4 @@ const SubTitle = styled.p`
   color: ${({ theme }) => theme.colors.Black};
 
   ${({ theme }) => theme.fonts.Caption_01};
-`;
-
-const FromInput = styled.input`
-  display: inline-flex;
-  align-items: center;
-  width: 27.2rem;
-  padding: 1.6rem;
-  border: 1px solid ${({ theme }) => theme.colors.Grayscales_500};
-
-  background: ${({ theme }) => theme.colors.white};
-  gap: 0.8rem;
-
-  border-radius: 1rem;
-
-  color: ${({ theme }) => theme.colors.Grayscales_500};
-  ${({ theme }) => theme.fonts.Caption_03};
 `;
