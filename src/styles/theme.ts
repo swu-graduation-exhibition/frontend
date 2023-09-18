@@ -29,6 +29,13 @@ interface Font {
   lineHeight: number;
 }
 
+interface GrayFont {
+  weight: 300 | 350 | 400 | 500 | 700;
+  size: number;
+  lineHeight: number;
+  color: string;
+}
+
 function FONT({ weight, size, lineHeight }: Font): string {
   return `
     font-family: 'Noto Sans' ;
@@ -36,6 +43,16 @@ function FONT({ weight, size, lineHeight }: Font): string {
     font-size: ${size}rem;
     line-height: ${lineHeight}rem;
     color: ${colors.Grayscales_900};
+  `;
+}
+
+function GRAY_FONT({ weight, size, lineHeight, color }: GrayFont): string {
+  return `
+    font-family: 'Noto Sans' ;
+    font-weight: ${weight};
+    font-size: ${size}rem;
+    line-height: ${lineHeight}rem;
+    color: ${color};
   `;
 }
 
@@ -69,6 +86,42 @@ const fonts = {
   Mobile_Caption_03: FONT({ weight: 300, size: 1, lineHeight: 1.6 }),
   Mobile_Caption_01: FONT({ weight: 300, size: 1.3, lineHeight: 2 }),
   Mobile_Caption_02: FONT({ weight: 400, size: 1.2, lineHeight: 1.8 }),
+  Caption_03_Gray500: GRAY_FONT({
+    weight: 400,
+    size: 2,
+    lineHeight: 3,
+    color: colors.Grayscales_500,
+  }),
+  Caption_03_Gray600: GRAY_FONT({
+    weight: 400,
+    size: 2,
+    lineHeight: 3,
+    color: colors.Grayscales_600,
+  }),
+  Caption_03_White: GRAY_FONT({
+    weight: 400,
+    size: 2,
+    lineHeight: 3,
+    color: colors.White,
+  }),
+  Mobile_Body_03_Gray500: GRAY_FONT({
+    weight: 400,
+    size: 1.5,
+    lineHeight: 3,
+    color: colors.Grayscales_500,
+  }),
+  Mobile_Body_02_Gray600: GRAY_FONT({
+    weight: 400,
+    size: 1.5,
+    lineHeight: 3,
+    color: colors.Grayscales_600,
+  }),
+  Mobile_Body_02_White: GRAY_FONT({
+    weight: 400,
+    size: 1.5,
+    lineHeight: 3,
+    color: colors.White,
+  }),
 } as const;
 
 const theme = {
