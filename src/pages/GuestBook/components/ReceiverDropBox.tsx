@@ -42,20 +42,23 @@ const ReceiverDropBox = (props: DropBoxProps) => {
         <Box>
           <Designer
             paddingTop={1.6}
-            isSelected={checkSelected(DESIGNERS.length - 1)}
-            onClick={() => handleSelectDesigner(DESIGNERS.length - 1)}
+            isSelected={checkSelected(49)}
+            onClick={() => handleSelectDesigner(49)}
           >
-            {DESIGNERS[DESIGNERS.length - 1]}
+            모두에게
           </Designer>
-          {DESIGNERS.map((designer, index) => (
-            <Designer
-              paddingTop={0.8}
-              isSelected={checkSelected(index)}
-              onClick={() => handleSelectDesigner(index)}
-            >
-              {designer}
-            </Designer>
-          ))}
+          {DESIGNERS.map(
+            (designer, index) =>
+              index !== 0 && (
+                <Designer
+                  paddingTop={0.8}
+                  isSelected={checkSelected(index)}
+                  onClick={() => handleSelectDesigner(index)}
+                >
+                  {designer}
+                </Designer>
+              ),
+          )}
         </Box>
       )}
     </>

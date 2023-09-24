@@ -1,5 +1,5 @@
 export const DESIGNERS = [
-  '모두에게',
+  '',
   '김나현',
   '김연진',
   '이다영',
