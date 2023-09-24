@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MOBILE_WIDTH } from '~/constants/common';
+import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import { guestBookData } from '../data/guestBookData';
 import CategoryDropBox from './CategoryDropBox';
 import GuestBookCard from './GuestBookCard';
@@ -10,7 +11,7 @@ const Letters = () => {
   const [guestBookList, setGuestBookList] = useState(guestBookData);
 
   useEffect(() => {
-    // 필터링
+    // 필터링 - api 연결 후 삭제 예정
     if (designerId === 49 || designerId === -1) {
       setGuestBookList(guestBookData);
     } else {
@@ -22,22 +23,29 @@ const Letters = () => {
   return (
     <>
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
-
-      {guestBookList.length > 0 ? (
-        <LettersWrapper>
-          {guestBookList.map(({ sender, content, createdAt, receiver }, idx) => (
-            <GuestBookCard
-              key={idx}
-              sender={sender}
-              content={content}
-              createdAt={createdAt}
-              receiver={receiver}
-            />
-          ))}
-        </LettersWrapper>
-      ) : (
-        <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
-      )}
+      <Desktop>
+        {guestBookList.length > 0 ? (
+          <LettersWrapper>
+            {guestBookList.map(({ sender, content, createdAt, receiver }, idx) => (
+              <GuestBookCard
+                key={idx}
+                sender={sender}
+                content={content}
+                createdAt={createdAt}
+                receiver={receiver}
+              />
+            ))}
+          </LettersWrapper>
+        ) : (
+          <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
+        )}
+      </Desktop>
+      <Tablet>
+        <>태블릿 6개씩 페이지네이션</>
+      </Tablet>
+      <Mobile>
+        <>모바일 무한스크롤 데이터</>
+      </Mobile>
     </>
   );
 };
