@@ -13,7 +13,6 @@ const MobileCommentContainer = () => {
 
   if (isLoading) return <div>불러오기</div>;
 
-  console.log('모바일');
   if (data) {
     const commentList = data?.reduce(
       (acc: GuestBookCommentInfo[], { response }): GuestBookCommentInfo[] => {
