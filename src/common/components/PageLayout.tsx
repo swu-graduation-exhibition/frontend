@@ -50,9 +50,13 @@ const ContentWrapper = styled.div`
 `;
 const PageContentImg = styled.img`
   position: absolute;
+
+  object-fit: cover;
   z-index: -2;
   width: 100%;
   height: 100%;
+  width: auto;
+  max-height: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

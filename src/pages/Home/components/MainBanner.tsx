@@ -37,7 +37,7 @@ const MainBannerWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  padding: 9rem 5% 9rem 10%;
+  padding: 6rem 5%;
 
   height: 96.8rem;
   background-position: center center;
@@ -51,13 +51,14 @@ const MobileBannerWrapper = styled.div`
   width: 100%;
   height: 0;
   padding-top: calc(529 / 374 * 100%);
-  min-height: 52.9rem;
+
+  height: 52.9rem;
   background-image: url(${ImgMobileHomeBanner});
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 `;
 const TabletBannerWrapper = styled(MainBannerWrapper)`
-  min-height: 72rem;
+  height: 83rem;
   background-image: url(${ImgPadHomeBanner});
 `;
