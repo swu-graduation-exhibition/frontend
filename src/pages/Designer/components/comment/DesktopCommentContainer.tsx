@@ -7,7 +7,7 @@ import { MOBILE_WIDTH } from '~/constants/common';
 import { useDefaultCommentList } from '~/lib/api/designer/get-designer-comment-list';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
 
-const DefaultCommentContainer = () => {
+const DesktopCommentContainer = () => {
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const { data: commmentDesignerList } = useDefaultCommentList(id || '1', 8, currentPage);
@@ -37,7 +37,7 @@ const DefaultCommentContainer = () => {
   );
 };
 
-export default DefaultCommentContainer;
+export default DesktopCommentContainer;
 
 const CommentListWrapper = styled.div`
   display: grid;
@@ -48,14 +48,7 @@ const CommentListWrapper = styled.div`
   margin-top: 12rem;
   margin-bottom: 10rem;
 
-  @media screen and (width <= 1300px) {
+  @media screen and (width <= 1400px) {
     grid-template-columns: repeat(2, minmax(27rem, 1fr));
-  }
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    grid-template-columns: repeat(1, minmax(27rem, 1fr));
-    margin-left: 1.6rem;
-    margin-right: 1.6rem;
-    margin-top: 4.6rem;
   }
 `;
