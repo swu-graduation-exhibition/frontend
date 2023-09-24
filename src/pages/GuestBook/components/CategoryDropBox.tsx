@@ -10,6 +10,7 @@ interface CategoryDropBoxProps {
 }
 
 const CategoryDropBox = (props: CategoryDropBoxProps) => {
+  // All -> -1 , 모두에게 -> 0
   const { designerId, setDesignerId } = props;
   const [isDrop, setIsDrop] = useState(false);
 
@@ -30,9 +31,9 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
     <CategoryDropBoxWrapper>
       <Drop isDrop={isDrop} onClick={handleDrop}>
         {designerId === -1 ? (
-          <NoneReceiver>모두</NoneReceiver>
+          <Receiver>All</Receiver>
         ) : (
-          <YesReceiver isLarger={designerId === 0}>{DESIGNERS[designerId]}</YesReceiver>
+          <Receiver>{DESIGNERS[designerId]}</Receiver>
         )}
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
@@ -40,10 +41,10 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
         <Box>
           <Designer
             paddingTop={1.6}
-            isSelected={checkSelected(DESIGNERS.length - 1)}
-            onClick={() => handleSelectDesigner(DESIGNERS.length - 1)}
+            isSelected={checkSelected(-1)}
+            onClick={() => handleSelectDesigner(-1)}
           >
-            {DESIGNERS[DESIGNERS.length - 1]}
+            All
           </Designer>
           {DESIGNERS.map((designer, index) => (
             <Designer
@@ -107,7 +108,7 @@ const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
 const Box = styled.div`
   overflow: scroll;
   position: absolute;
-  width: 11.9rem;
+  width: 14.1rem;
   height: 37.6rem;
   margin-top: 7.2rem;
   border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
@@ -118,7 +119,7 @@ const Box = styled.div`
   cursor: pointer;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 12.4 rem;
+    width: 12.4rem;
     margin-top: 6rem;
   }
 `;
@@ -127,7 +128,7 @@ const Drop = styled.div<{ isDrop: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 12.3rem;
+  width: 14.1rem;
   height: 6.2rem;
   padding: 1.6rem;
   border: 1px solid
@@ -156,17 +157,8 @@ const DropBoxDownIcon = styled(DropBoxDownIc)`
   cursor: pointer;
 `;
 
-const NoneReceiver = styled.p`
+const Receiver = styled.p`
   ${({ theme }) => theme.fonts.Caption_03_Gray500};
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
-  }
-`;
-
-const YesReceiver = styled.p<{ isLarger: boolean }>`
-  ${({ isLarger, theme }) =>
-    isLarger ? theme.fonts.Caption_03_Gray500_Size : theme.fonts.Caption_03_Gray500};
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};

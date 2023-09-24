@@ -48,5 +48,4 @@ export const DESIGNERS = [
   '엄희수',
   '안지현',
   '이해민',
-  'ALL',
 ];
