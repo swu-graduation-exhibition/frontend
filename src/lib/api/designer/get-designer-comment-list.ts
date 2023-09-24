@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import { axiosRequest, client } from '~/lib/axios';
 import { ApiResponse } from '../api.type';
@@ -19,24 +19,28 @@ const getCommentList = (
 const fetchCommentList = async (designer_id: string, limit: number, pageParam: number) => {
   const { data } = await getCommentList(designer_id, limit, pageParam);
 
-  const { data: listData, count } = data;
+  const { designerCommentList: listData, count } = data;
 
   return {
     response: listData,
-    nextPage: pageParam + 1,
+    nextPage: listData?.length >= limit ? pageParam + 1 : undefined,
     count,
   };
+};
+
+export const useDefaultCommentList = (designer_id: string, limit: number, pageParam: number) => {
+  return useQuery(['get-designer-comment-list-default', designer_id, limit, pageParam], () =>
+    getCommentList(designer_id, limit, pageParam),
+  );
 };
 
 export const useCommentList = (designer_id: string, limit: number) => {
   return useInfiniteQuery(
     ['get-designer-comment-List', designer_id, limit],
-    ({ pageParam = 0 }) => fetchCommentList(designer_id, limit, pageParam),
+    ({ pageParam = 1 }) => fetchCommentList(designer_id, limit, pageParam),
     {
       getNextPageParam: (lastPage) => {
-        const count = lastPage.count;
-        const items = lastPage.response;
-        return items && items.length > 0 ? lastPage.nextPage : false;
+        return lastPage.nextPage;
       },
     },
   );
