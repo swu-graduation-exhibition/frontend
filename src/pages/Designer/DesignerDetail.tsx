@@ -4,10 +4,11 @@ import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import CommonFormSection from '~/common/components/CommonFormSection';
 import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
 import { useParams } from 'react-router-dom';
-import { Default, Mobile } from '~/utils/mediaQuery';
+import { Default, Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-comment-scroll';
-import DefaultCommentContainer from './components/DefaultCommentContainer';
-import MobileCommentContainer from './components/MobileCommentContainer';
+import DesktopCommentContainer from './components/comment/DesktopCommentContainer';
+import MobileCommentContainer from './components/comment/MobileCommentContainer';
+import TabletCommentContainer from './components/comment/TabletCommentContainer';
 
 const DesignerDetail = () => {
   const { id } = useParams();
@@ -32,9 +33,12 @@ const DesignerDetail = () => {
         <CommonFormSection page="designer" />
       </GuestBookWrapper>
 
-      <Default>
-        <DefaultCommentContainer />
-      </Default>
+      <Desktop>
+        <DesktopCommentContainer />
+      </Desktop>
+      <Tablet>
+        <TabletCommentContainer />
+      </Tablet>
       <Mobile>
         <MobileCommentContainer />
       </Mobile>
