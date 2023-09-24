@@ -1,32 +1,46 @@
-import { QueryClient, useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import { client } from '~/lib/axios';
+import { axiosRequest, client } from '~/lib/axios';
 import { ApiResponse } from '../api.type';
 import { GuestBookPaginationInfo } from '~/types/guestBook';
 
 const getCommentList = (
-  path: string | undefined | null,
+  designer_id: string,
+  limit: number,
   page: number,
-): Promise<ApiResponse<GuestBookPaginationInfo>> | null => {
-  return client.get(`${path}&page=${page}`);
+): Promise<ApiResponse<GuestBookPaginationInfo>> => {
+  return axiosRequest(
+    client,
+    'get',
+    `comment/designer?id=${designer_id}&page=${page}&limit=${limit}`,
+  );
 };
 
-const fetchCommentList = async (path: string | undefined | null, page: number) => {
+const fetchCommentList = async (designer_id: string, limit: number, pageParam: number) => {
+  const { data } = await getCommentList(designer_id, limit, pageParam);
+
+  const { designerCommentList: listData, count } = data;
+
   return {
-    response: await getCommentList(path, page),
-    nextPage: page + 1,
+    response: listData,
+    nextPage: listData?.length >= limit ? pageParam + 1 : undefined,
+    count,
   };
 };
 
-export const useCommentList = (path: string | undefined | null) => {
+export const useDefaultCommentList = (designer_id: string, limit: number, pageParam: number) => {
+  return useQuery(['get-designer-comment-list-default', designer_id, limit, pageParam], () =>
+    getCommentList(designer_id, limit, pageParam),
+  );
+};
+
+export const useCommentList = (designer_id: string, limit: number) => {
   return useInfiniteQuery(
-    ['get-designer-comment-List', path],
-    ({ pageParam = 0 }) => fetchCommentList(path, pageParam),
+    ['get-designer-comment-List', designer_id, limit],
+    ({ pageParam = 1 }) => fetchCommentList(designer_id, limit, pageParam),
     {
       getNextPageParam: (lastPage) => {
-        const totalSize = lastPage.response?.data.totalSize;
-        const items = lastPage.response?.data.data;
-        return items && items.length > 0 ? lastPage.nextPage : false;
+        return lastPage.nextPage;
       },
     },
   );

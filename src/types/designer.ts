@@ -5,6 +5,25 @@ export interface DesingerInfo {
   profile: string;
 }
 
+export interface DesignerDetailInfo {
+  designerId: number;
+  profile: string;
+  koreanName: string;
+  englishName: string;
+  desc: string;
+  tel?: string;
+  email?: string;
+  instagram?: string;
+  behance: string;
+  projectList: ProjectInfo[];
+}
+
+export interface ProjectInfo {
+  projectId: number;
+  photo: string;
+  title: string;
+  type: number;
+}
 export interface GraduationWorkInfo {
   img: string;
   track: string[];

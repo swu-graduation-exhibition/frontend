@@ -5,17 +5,34 @@ import ImgDefaultDesigner from '~/assets/images/img1_default_desinger.png';
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
-const Profile = () => {
-  const { id } = useParams();
-
+interface ProfileProps {
+  // profile: string;
+  koreanName: string;
+  // englishName: string;
+  // desc: string;
+  tel?: string;
+  email?: string;
+  instagram?: string;
+  behance?: string;
+}
+const Profile = ({
+  // profile,
+  koreanName,
+  // englishName,
+  // desc,
+  tel,
+  email,
+  behance,
+  instagram,
+}: ProfileProps) => {
   return (
     <ProfileWrapper>
       <Mobile>
         <NameHeader>
           <IcStarAll />
           <NameTitle>
-            <h3>{'유은서'}</h3>
-            <span>{'Yu EunSeo'}</span>
+            <h3>{koreanName}</h3>
+            <span>{'You'}</span>
           </NameTitle>
         </NameHeader>
       </Mobile>
@@ -28,18 +45,24 @@ const Profile = () => {
             }
           </DesignerText>
           <DesignerSNSList>
-            <DesignerSNS>
-              <span>E-mail</span>
-              <span>00000@gmail.com</span>
-            </DesignerSNS>
-            <DesignerSNS>
-              <span>Instargram</span>
-              <span>@0000000000</span>
-            </DesignerSNS>
-            <DesignerSNS>
-              <span>Behance</span>
-              <span>@0000000000</span>
-            </DesignerSNS>
+            {email && (
+              <DesignerSNS>
+                <span>E-mail</span>
+                <span>{email}</span>
+              </DesignerSNS>
+            )}
+            {instagram && (
+              <DesignerSNS>
+                <span>Instargram</span>
+                <span>@0000000000</span>
+              </DesignerSNS>
+            )}
+            {behance && (
+              <DesignerSNS>
+                <span>Behance</span>
+                <span>@0000000000</span>
+              </DesignerSNS>
+            )}
           </DesignerSNSList>
         </>
       </Mobile>
@@ -48,8 +71,8 @@ const Profile = () => {
           <NameHeader>
             <IcStarAll />
             <NameTitle>
-              <h3>{'유은서'}</h3>
-              <span>{'Yu EunSeo'}</span>
+              <h3>{koreanName}</h3>
+              <span>{'You'}</span>
             </NameTitle>
           </NameHeader>
           <DesignerText>
@@ -58,18 +81,24 @@ const Profile = () => {
             }
           </DesignerText>
           <DesignerSNSList>
-            <DesignerSNS>
-              <span>E-mail</span>
-              <span>00000@gmail.com</span>
-            </DesignerSNS>
-            <DesignerSNS>
-              <span>Instargram</span>
-              <span>@0000000000</span>
-            </DesignerSNS>
-            <DesignerSNS>
-              <span>Behance</span>
-              <span>@0000000000</span>
-            </DesignerSNS>
+            {email && (
+              <DesignerSNS>
+                <span>E-mail</span>
+                <span>{email}</span>
+              </DesignerSNS>
+            )}
+            {instagram && (
+              <DesignerSNS>
+                <span>Instargram</span>
+                <span>@0000000000</span>
+              </DesignerSNS>
+            )}
+            {behance && (
+              <DesignerSNS>
+                <span>Behance</span>
+                <span>@0000000000</span>
+              </DesignerSNS>
+            )}
           </DesignerSNSList>
         </TextInfoWrapper>
       </Default>

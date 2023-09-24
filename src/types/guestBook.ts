@@ -5,6 +5,6 @@ export interface GuestBookCommentInfo {
 }
 
 export interface GuestBookPaginationInfo {
-  totalSize: number;
-  data: GuestBookCommentInfo[];
+  count: number;
+  designerCommentList: GuestBookCommentInfo[];
 }

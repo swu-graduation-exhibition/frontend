@@ -1,36 +1,43 @@
 import { styled } from 'styled-components';
 import { GraduationWorkList, Profile } from './components';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
-import CommentListSection from '../ProjectDetail/components/CommentListSection';
 import CommonFormSection from '~/common/components/CommonFormSection';
-import { guestBookCommentData } from '~/common/data/guestBookCommentList';
-import GuestBookCommentCard from '~/common/components/GuestBookCommentCard';
-import Pagination from '../ProjectDetail/components/Pagination';
-import { useState } from 'react';
+import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
+import { useParams } from 'react-router-dom';
+import { Default, Mobile } from '~/utils/mediaQuery';
+import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-comment-scroll';
+import DefaultCommentContainer from './components/DefaultCommentContainer';
+import MobileCommentContainer from './components/MobileCommentContainer';
 
 const DesignerDetail = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const lastPage = Math.ceil(100 / 8);
-  const paginationNumbers = Array.from({ length: lastPage }).map((_, i) => i + 1);
+  const { id } = useParams();
+  const { data } = useDesignerDetail(id || '1');
+  const designerData = data?.data;
+
+  // const { koreanName, englishName, desc, tel, email, behance, instagram } = designerData;
+
+  if (!designerData) return <div>데이터 없음</div>;
 
   return (
     <DesignerDetailWrapper>
-      <Profile />
+      <Profile
+        // profile={profile}
+        koreanName={designerData.koreanName}
+        // englishName={englishName}
+        // desc={desc}
+        // behance={behance}
+      />
       <GraduationWorkList />
       <GuestBookWrapper>
         <CommonFormSection page="designer" />
       </GuestBookWrapper>
-      <CommentListWrapper>
-        {guestBookCommentData.map(({ sender, content, createdAt }, idx) => (
-          <GuestBookCommentCard key={idx} sender={sender} content={content} createdAt={createdAt} />
-        ))}
-      </CommentListWrapper>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        lastPage={lastPage}
-        paginationNumbers={paginationNumbers}
-      />
+
+      <Default>
+        <DefaultCommentContainer />
+      </Default>
+      <Mobile>
+        <MobileCommentContainer />
+      </Mobile>
     </DesignerDetailWrapper>
   );
 };
