@@ -20,7 +20,7 @@ const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) =>
   };
 
   const handleClickCard = () => {
-    navigate('1');
+    navigate(String(designer_id));
   };
 
   return (
