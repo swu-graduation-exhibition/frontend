@@ -5,6 +5,7 @@ import Pagination from '~/pages/ProjectDetail/components/Pagination';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import { guestBookData } from '../data/guestBookData';
 import CategoryDropBox from './CategoryDropBox';
+import Flowers from './Flowers';
 import GuestBookCard from './GuestBookCard';
 
 const Letters = () => {
@@ -101,6 +102,7 @@ const Letters = () => {
       <Mobile>
         <>모바일 무한스크롤 데이터</>
       </Mobile>
+      <Flowers length={guestBookData.length} />
     </>
   );
 };
