@@ -55,7 +55,6 @@ const PageContentImg = styled.img`
   z-index: -2;
   width: 100%;
   height: 100%;
-  width: auto;
   max-height: 100%;
   top: 50%;
   left: 50%;
