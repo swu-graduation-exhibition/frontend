@@ -33,7 +33,13 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
         {designerId === -1 ? (
           <Receiver>All</Receiver>
         ) : (
-          <Receiver>{DESIGNERS[designerId]}</Receiver>
+          <>
+            {designerId === 49 ? (
+              <Receiver>모두에게</Receiver>
+            ) : (
+              <Receiver>{DESIGNERS[designerId]}</Receiver>
+            )}
+          </>
         )}
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
@@ -47,7 +53,7 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
             All
           </Designer>
           <Designer
-            paddingTop={1.6}
+            paddingTop={0.8}
             isSelected={checkSelected(49)}
             onClick={() => handleSelectDesigner(49)}
           >
