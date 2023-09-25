@@ -5,6 +5,7 @@ import DesignerCard from './DesignerCard';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { useDesignerList } from '~/lib/api/designer/get-designer-list';
+import TopButton from '~/common/components/TopButton';
 
 const DesignerContainer = () => {
   const { data } = useDesignerList();
@@ -27,7 +28,7 @@ const DesignerContainer = () => {
       <DesignerCardWrapper>
         {designerData.map(({ designer_id, name_ko, field, profile }, idx) => (
           <DesignerCard
-            key={idx}
+            key={`${designer_id}-${name_ko}`}
             designer_id={designer_id}
             name_ko={name_ko}
             field={field}
@@ -35,6 +36,9 @@ const DesignerContainer = () => {
           />
         ))}
       </DesignerCardWrapper>
+      <Mobile>
+        <TopButton />
+      </Mobile>
     </Container>
   );
 };

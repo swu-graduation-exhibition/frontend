@@ -3,7 +3,7 @@ import { DesingerInfo } from '~/types/designer';
 import ImgDefaultDesigner from '~/assets/images/img1_default_desinger.png';
 import { useState } from 'react';
 import { Default, Mobile } from '~/utils/mediaQuery';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useNavigate } from 'react-router-dom';
 import { getFieldArray } from '~/utils/getFieldArray';
 const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) => {
@@ -47,8 +47,8 @@ const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) =>
       <Mobile>
         <>
           <TrackUl>
-            {getFieldArray(field).map((data) => (
-              <TrackList key={designer_id}>{data}</TrackList>
+            {getFieldArray(field).map((data, idx) => (
+              <TrackList key={designer_id * idx}>{data}</TrackList>
             ))}
           </TrackUl>
           <MobileNameTitle>{name_ko}</MobileNameTitle>
@@ -62,7 +62,7 @@ export default DesignerCard;
 
 const CardWrapper = styled.div`
   position: relative;
-  height: 412px;
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: flex;
     flex-direction: column;
@@ -72,7 +72,14 @@ const CardWrapper = styled.div`
 
 const CardImg = styled.img`
   width: 100%;
-  height: 100%;
+  height: 412px;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    height: 351px;
+  }
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    height: 172px;
+  }
 
   object-fit: cover;
 `;
