@@ -62,6 +62,7 @@ export default DesignerCard;
 
 const CardWrapper = styled.div`
   position: relative;
+  height: 412px;
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: flex;
     flex-direction: column;
@@ -72,6 +73,8 @@ const CardWrapper = styled.div`
 const CardImg = styled.img`
   width: 100%;
   height: 100%;
+
+  object-fit: cover;
 `;
 const CardHoverContent = styled.article`
   position: absolute;
