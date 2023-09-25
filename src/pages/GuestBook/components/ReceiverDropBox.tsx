@@ -131,6 +131,10 @@ const Drop = styled.div<{ isDrop: boolean }>`
     width: 27.2rem;
   }
 
+  @media screen and (width <= 720px) {
+    width: 22rem;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 100%;
   }
@@ -154,12 +158,20 @@ const NoneReceiver = styled.p`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
   }
+
+  @media screen and (width <= 720px) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
+  }
 `;
 
 const YesReceiver = styled.p`
   ${({ theme }) => theme.fonts.Caption_03};
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03};
+  }
+
+  @media screen and (width <= 720px) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 `;
