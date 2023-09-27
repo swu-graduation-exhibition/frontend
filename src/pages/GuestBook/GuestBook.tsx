@@ -1,25 +1,38 @@
 import styled from 'styled-components';
 import { Footer, Header } from '~/common/components';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { TABLET_WIDTH } from '~/constants/common';
+import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import desktopBackground from '../../assets/images/guestBookBackgroundImage.png';
 import mobileBackground from '../../assets/images/guestBookMobileBackgroundImage.png';
+import Flowers from './components/Flowers';
 import GuestBookInput from './components/GuestBookInput';
 import Letters from './components/Letters';
 import Title from './components/Title';
 
 const GuestBook = () => {
+  // 서버에서 데이터 받아오기 -> 커스텀 훅 구현하기
+  const count = 20;
+
   return (
     <GuestBookWrapper>
       <Header />
-      <GuestBookBackground
-        desktopBackground={desktopBackground}
-        mobileBackground={mobileBackground}
-      />
+      <Flowers length={count} />
+      <Desktop>
+        <GuestBookBackground src={desktopBackground} alt="배경지" />
+      </Desktop>
+      <Tablet>
+        <GuestBookBackground src={mobileBackground} alt="배경지" />
+      </Tablet>
+      <Mobile>
+        <GuestBookBackground src={mobileBackground} alt="배경지" />
+      </Mobile>
+
       <PageLayout>
         <Title />
         <GuestBookInput />
         <Letters />
       </PageLayout>
+
       <FooterWrapper>
         <Footer />
       </FooterWrapper>
@@ -36,24 +49,14 @@ const FooterWrapper = styled.div`
 
 const GuestBookWrapper = styled.div`
   overflow: scroll;
+
+  height:;
 `;
 
-const GuestBookBackground = styled.div<{ desktopBackground: string; mobileBackground: string }>`
+const GuestBookBackground = styled.img`
   position: absolute;
-  z-index: -2;
+  z-index: -10;
   width: 100%;
-  margin-top: -47rem;
-
-  content: url(${({ desktopBackground }) => desktopBackground});
-
-  @media screen and (width <= 1500px) {
-    margin-top: 0;
-  }
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-top: 0;
-    content: url(${({ mobileBackground }) => mobileBackground});
-  }
 `;
 
 const PageLayout = styled.div`

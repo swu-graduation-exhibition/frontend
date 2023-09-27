@@ -203,13 +203,13 @@ const Flowers = ({ length }: FlowerProp) => {
   return (
     <>
       <Desktop>
-        <Container>{desktopFlowers()}</Container>
+        <DesktopContainer>{desktopFlowers()}</DesktopContainer>
       </Desktop>
       <Tablet>
-        <Container>{tabletFlowers()}</Container>
+        <DesktopContainer>{tabletFlowers()}</DesktopContainer>
       </Tablet>
       <Mobile>
-        <Container>{mobileFlowers()}</Container>
+        <MobileContainer>{mobileFlowers()}</MobileContainer>
       </Mobile>
     </>
   );
@@ -217,8 +217,31 @@ const Flowers = ({ length }: FlowerProp) => {
 
 export default Flowers;
 
-const Container = styled.section`
+const DesktopContainer = styled.section`
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: flex-end;
+  position: absolute;
+
+  /* margin-top: 100rem; */
+
+  bottom: 0;
+  z-index: -3;
+
+  width: 105%;
+  margin-left: -2.5%;
+`;
+
+const MobileContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  z-index: -1;
+
+  width: 105%;
+
+  /* height: 139.5rem; */
+
+  margin-left: -2.5%;
 `;

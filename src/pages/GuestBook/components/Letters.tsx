@@ -1,53 +1,93 @@
-import { useEffect, useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { getGuestBook } from '~/api/getGuestBook';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
+import useGetGuestBookTablet from '~/hooks/useGetGuestBookTablet';
+import useInfiniteScroll from '~/hooks/useInfiniteScroll';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
+import { GuestBookPageCard } from '~/types/guestBook';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
-import { guestBookData } from '../data/guestBookData';
 import CategoryDropBox from './CategoryDropBox';
-import Flowers from './Flowers';
 import GuestBookCard from './GuestBookCard';
 
 const Letters = () => {
   const [designerId, setDesignerId] = useState(-1);
   // 서버에서 데이터 받아오기
-  const [guestBookList, setGuestBookList] = useState(guestBookData);
+  // useGetGuestBook(page)
+  // const [guestBookList, setGuestBookList] = useState(guestBookData);
+  // const count = 20;
 
   // 데스크탑
   const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
-  const lastDesktopPage = Math.ceil(guestBookList.length / 8);
+  const { desktopData } = useGetGuestBookDesktop(designerId, currentDesktopPage);
+  const lastDesktopPage = Math.ceil(desktopData?.count / 8);
   const paginationDesktopNumbers = Array.from({ length: lastDesktopPage }).map((_, i) => i + 1);
 
   // 태블릿
   const [currentTabletPage, setCurrentTabletPage] = useState(1);
-  const lastTabletPage = Math.ceil(guestBookList.length / 6);
+  const { tabletData } = useGetGuestBookTablet(designerId, currentTabletPage);
+  const lastTabletPage = Math.ceil(tabletData?.count / 6);
   const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
 
   // 모바일
-  const [currentMobilePage, setCurrentMobilePage] = useState(1);
-  const lastMobilePage = Math.ceil(guestBookList.length / 3);
-  const paginationMobileNumbers = Array.from({ length: lastMobilePage }).map((_, i) => i + 1);
+  // const { trackData, fetchNextPage, hasNextPage } = useGetGuestBook({
+  //   id: designerId,
+  // });
 
-  useEffect(() => {
-    // 필터링 - api 연결 후 삭제 예정
-    if (designerId === 49 || designerId === -1) {
-      setGuestBookList(guestBookData);
-    } else {
-      const newList = [...guestBookData.filter(({ receiver }) => receiver === designerId)];
-      setGuestBookList(newList);
+  // const [mobileGuests, setMobileGuests] = useState<GuestBookPageCard[]>([]);
+
+  // const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+  //   useInfiniteQuery(['guestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
+  //     getNextPageParam: (lastPage, allPages) => {
+  //       return lastPage?.response.length !== 0 ? lastPage?.nextPage : undefined;
+  //     },
+  //     refetchOnWindowFocus: false,
+  //   });
+
+  // async function getData(page: number) {
+  //   if (hasNextPage !== false) {
+  //     const response = await getGuestBook(designerId, page, 3);
+  //     setMobileGuests((prev) => [...prev, ...response.designerCommentList]);
+  //     return { response, nextPage: page + 1 };
+  //   }
+  // }
+
+  const [mobileDesignerCommentList, setMobileDesignerCommentList] = useState<GuestBookPageCard[]>(
+    [],
+  );
+
+  const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery(['getMobileGuestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage?.list.length !== 0 ? lastPage?.nextPage : undefined;
+      },
+      refetchOnWindowFocus: false,
+    });
+
+  const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
+
+  async function getData(page: number) {
+    if (hasNextPage !== false) {
+      const response = await getGuestBook(designerId, page, 3);
+      console.log(response);
+      const list = response.designerCommentList;
+      setMobileDesignerCommentList((prev) => [...prev, ...list]);
+
+      return { list, nextPage: page + 1 };
     }
-  }, [designerId]);
-  console.log(guestBookList.length);
+  }
+
   return (
     <>
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <Desktop>
         <>
-          {guestBookList.length > 0 ? (
+          {lastDesktopPage > 0 ? (
             <LettersWrapper>
-              {guestBookList
-                .slice(8 * (currentDesktopPage - 1), 8 * currentDesktopPage)
-                .map(({ sender, content, createdAt, receiver }, idx) => (
+              {desktopData?.designerCommentList.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
                     sender={sender}
@@ -55,7 +95,8 @@ const Letters = () => {
                     createdAt={createdAt}
                     receiver={receiver}
                   />
-                ))}
+                ),
+              )}
             </LettersWrapper>
           ) : (
             <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
@@ -72,11 +113,10 @@ const Letters = () => {
       </Desktop>
       <Tablet>
         <>
-          {guestBookList.length > 0 ? (
+          {lastTabletPage > 0 ? (
             <LettersWrapper>
-              {guestBookList
-                .slice(6 * (currentTabletPage - 1), 6 * currentTabletPage)
-                .map(({ sender, content, createdAt, receiver }, idx) => (
+              {tabletData?.designerCommentList.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
                     sender={sender}
@@ -84,7 +124,8 @@ const Letters = () => {
                     createdAt={createdAt}
                     receiver={receiver}
                   />
-                ))}
+                ),
+              )}
             </LettersWrapper>
           ) : (
             <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
@@ -100,15 +141,38 @@ const Letters = () => {
         </>
       </Tablet>
       <Mobile>
-        <>모바일 무한스크롤 데이터</>
+        <>
+          {lastDesktopPage > 0 ? (
+            <LettersWrapper>
+              {mobileDesignerCommentList?.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
+                  <GuestBookCard
+                    key={idx}
+                    sender={sender}
+                    content={content}
+                    createdAt={createdAt}
+                    receiver={receiver}
+                  />
+                ),
+              )}
+            </LettersWrapper>
+          ) : (
+            <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
+          )}
+          <Target ref={observerRef} />
+        </>
       </Mobile>
-      <Flowers length={guestBookData.length} />
     </>
   );
 };
 
 export default Letters;
 
+const Target = styled.div`
+  height: 10px;
+
+  background-color: pink;
+`;
 const LettersWrapper = styled.section`
   display: grid;
   margin-top: 4.3rem;
@@ -119,6 +183,12 @@ const LettersWrapper = styled.section`
   @media screen and (width <= ${TABLET_WIDTH}) {
     margin: 9.4rem 0;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    /* margin: 9.4rem 0; */
+
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 

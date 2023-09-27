@@ -1,19 +1,14 @@
 import { styled } from 'styled-components';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
-import { GuestBookCommentInfo } from '~/types/guestBook';
+import { GuestBookPageCard } from '~/types/guestBook';
 import { getParseDate } from '~/utils/getParseDate';
-import { DESIGNERS } from '../data/designers';
 
-interface GuestBookCarProps extends GuestBookCommentInfo {
-  receiver: number;
-}
-
-const GuestBookCard = ({ sender, content, createdAt, receiver }: GuestBookCarProps) => {
+const GuestBookCard = ({ sender, content, createdAt, receiver }: GuestBookPageCard) => {
   return (
     <Container>
       <Sender>From. {sender}</Sender>
       <CreatedAt>{getParseDate(createdAt)}</CreatedAt>
-      <Receiver>To. {DESIGNERS[receiver]}</Receiver>
+      <Receiver>To. {receiver}</Receiver>
       <Content>{content}</Content>
     </Container>
   );
