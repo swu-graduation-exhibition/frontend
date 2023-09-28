@@ -42,20 +42,23 @@ const ReceiverDropBox = (props: DropBoxProps) => {
         <Box>
           <Designer
             paddingTop={1.6}
-            isSelected={checkSelected(DESIGNERS.length - 1)}
-            onClick={() => handleSelectDesigner(DESIGNERS.length - 1)}
+            isSelected={checkSelected(49)}
+            onClick={() => handleSelectDesigner(49)}
           >
-            {DESIGNERS[DESIGNERS.length - 1]}
+            모두에게
           </Designer>
-          {DESIGNERS.map((designer, index) => (
-            <Designer
-              paddingTop={0.8}
-              isSelected={checkSelected(index)}
-              onClick={() => handleSelectDesigner(index)}
-            >
-              {designer}
-            </Designer>
-          ))}
+          {DESIGNERS.map(
+            (designer, index) =>
+              index !== 0 && (
+                <Designer
+                  paddingTop={0.8}
+                  isSelected={checkSelected(index)}
+                  onClick={() => handleSelectDesigner(index)}
+                >
+                  {designer}
+                </Designer>
+              ),
+          )}
         </Box>
       )}
     </>
@@ -128,6 +131,10 @@ const Drop = styled.div<{ isDrop: boolean }>`
     width: 27.2rem;
   }
 
+  @media screen and (width <= 720px) {
+    width: 22rem;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 100%;
   }
@@ -151,12 +158,20 @@ const NoneReceiver = styled.p`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
   }
+
+  @media screen and (width <= 720px) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
+  }
 `;
 
 const YesReceiver = styled.p`
   ${({ theme }) => theme.fonts.Caption_03};
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03};
+  }
+
+  @media screen and (width <= 720px) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 `;

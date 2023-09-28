@@ -1,50 +1,166 @@
-import { useEffect, useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { getGuestBook } from '~/api/getGuestBook';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
+import useGetGuestBookTablet from '~/hooks/useGetGuestBookTablet';
+import useInfiniteScroll from '~/hooks/useInfiniteScroll';
+import Pagination from '~/pages/ProjectDetail/components/Pagination';
+import { GuestBookPageCard } from '~/types/guestBook';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
-import { guestBookData } from '../data/guestBookData';
 import CategoryDropBox from './CategoryDropBox';
 import GuestBookCard from './GuestBookCard';
 
 const Letters = () => {
   const [designerId, setDesignerId] = useState(-1);
-  const [guestBookList, setGuestBookList] = useState(guestBookData);
+  // 서버에서 데이터 받아오기
+  // useGetGuestBook(page)
+  // const [guestBookList, setGuestBookList] = useState(guestBookData);
+  // const count = 20;
 
-  useEffect(() => {
-    // 필터링 - api 연결 후 삭제 예정
-    if (designerId === 49 || designerId === -1) {
-      setGuestBookList(guestBookData);
-    } else {
-      const newList = [...guestBookData.filter(({ receiver }) => receiver === designerId)];
-      setGuestBookList(newList);
+  // 데스크탑
+  const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
+  const { desktopData } = useGetGuestBookDesktop(designerId, currentDesktopPage);
+  const lastDesktopPage = Math.ceil(desktopData?.count / 8);
+  const paginationDesktopNumbers = Array.from({ length: lastDesktopPage }).map((_, i) => i + 1);
+
+  // 태블릿
+  const [currentTabletPage, setCurrentTabletPage] = useState(1);
+  const { tabletData } = useGetGuestBookTablet(designerId, currentTabletPage);
+  const lastTabletPage = Math.ceil(tabletData?.count / 6);
+  const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
+
+  // 모바일
+  // const { trackData, fetchNextPage, hasNextPage } = useGetGuestBook({
+  //   id: designerId,
+  // });
+
+  // const [mobileGuests, setMobileGuests] = useState<GuestBookPageCard[]>([]);
+
+  // const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+  //   useInfiniteQuery(['guestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
+  //     getNextPageParam: (lastPage, allPages) => {
+  //       return lastPage?.response.length !== 0 ? lastPage?.nextPage : undefined;
+  //     },
+  //     refetchOnWindowFocus: false,
+  //   });
+
+  // async function getData(page: number) {
+  //   if (hasNextPage !== false) {
+  //     const response = await getGuestBook(designerId, page, 3);
+  //     setMobileGuests((prev) => [...prev, ...response.designerCommentList]);
+  //     return { response, nextPage: page + 1 };
+  //   }
+  // }
+
+  const [mobileDesignerCommentList, setMobileDesignerCommentList] = useState<GuestBookPageCard[]>(
+    [],
+  );
+
+  const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery(['getMobileGuestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage?.list.length !== 0 ? lastPage?.nextPage : undefined;
+      },
+      refetchOnWindowFocus: false,
+    });
+
+  const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
+
+  async function getData(page: number) {
+    if (hasNextPage !== false) {
+      const response = await getGuestBook(designerId, page, 3);
+      console.log(response);
+      const list = response.designerCommentList;
+      setMobileDesignerCommentList((prev) => [...prev, ...list]);
+
+      return { list, nextPage: page + 1 };
     }
-  }, [designerId]);
+  }
 
   return (
     <>
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <Desktop>
-        {guestBookList.length > 0 ? (
-          <LettersWrapper>
-            {guestBookList.map(({ sender, content, createdAt, receiver }, idx) => (
-              <GuestBookCard
-                key={idx}
-                sender={sender}
-                content={content}
-                createdAt={createdAt}
-                receiver={receiver}
-              />
-            ))}
-          </LettersWrapper>
-        ) : (
-          <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
-        )}
+        <>
+          {lastDesktopPage > 0 ? (
+            <LettersWrapper>
+              {desktopData?.designerCommentList.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
+                  <GuestBookCard
+                    key={idx}
+                    sender={sender}
+                    content={content}
+                    createdAt={createdAt}
+                    receiver={receiver}
+                  />
+                ),
+              )}
+            </LettersWrapper>
+          ) : (
+            <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
+          )}
+          <PaginationWrapper>
+            <Pagination
+              currentPage={currentDesktopPage}
+              setCurrentPage={setCurrentDesktopPage}
+              lastPage={lastDesktopPage}
+              paginationNumbers={paginationDesktopNumbers}
+            />
+          </PaginationWrapper>
+        </>
       </Desktop>
       <Tablet>
-        <>태블릿 6개씩 페이지네이션</>
+        <>
+          {lastTabletPage > 0 ? (
+            <LettersWrapper>
+              {tabletData?.designerCommentList.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
+                  <GuestBookCard
+                    key={idx}
+                    sender={sender}
+                    content={content}
+                    createdAt={createdAt}
+                    receiver={receiver}
+                  />
+                ),
+              )}
+            </LettersWrapper>
+          ) : (
+            <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
+          )}
+          <PaginationWrapper>
+            <Pagination
+              currentPage={currentTabletPage}
+              setCurrentPage={setCurrentTabletPage}
+              lastPage={lastTabletPage}
+              paginationNumbers={paginationTabletNumbers}
+            />
+          </PaginationWrapper>
+        </>
       </Tablet>
       <Mobile>
-        <>모바일 무한스크롤 데이터</>
+        <>
+          {lastDesktopPage > 0 ? (
+            <LettersWrapper>
+              {mobileDesignerCommentList?.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
+                  <GuestBookCard
+                    key={idx}
+                    sender={sender}
+                    content={content}
+                    createdAt={createdAt}
+                    receiver={receiver}
+                  />
+                ),
+              )}
+            </LettersWrapper>
+          ) : (
+            <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
+          )}
+          <Target ref={observerRef} />
+        </>
       </Mobile>
     </>
   );
@@ -52,6 +168,11 @@ const Letters = () => {
 
 export default Letters;
 
+const Target = styled.div`
+  height: 10px;
+
+  background-color: pink;
+`;
 const LettersWrapper = styled.section`
   display: grid;
   margin-top: 4.3rem;
@@ -59,20 +180,15 @@ const LettersWrapper = styled.section`
 
   gap: 2rem;
 
-  @media screen and (width <= 1500px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media screen and (width <= 1400px) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin: 9.4rem 0;
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 3.2rem;
-    gap: 1.7rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
+    /* margin: 9.4rem 0; */
+
     grid-template-columns: repeat(1, 1fr);
-    margin-top: 3rem;
-    gap: 1.2rem;
   }
 `;
 
@@ -86,4 +202,8 @@ const NoMessage = styled.h1`
     margin: 9.4rem 0;
     ${({ theme }) => theme.fonts.Mobile_Caption_03}
   }
+`;
+
+const PaginationWrapper = styled.section`
+  margin-top: 4.2rem;
 `;
