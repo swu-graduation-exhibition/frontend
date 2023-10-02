@@ -14,10 +14,6 @@ import GuestBookCard from './GuestBookCard';
 
 const Letters = () => {
   const [designerId, setDesignerId] = useState(-1);
-  // 서버에서 데이터 받아오기
-  // useGetGuestBook(page)
-  // const [guestBookList, setGuestBookList] = useState(guestBookData);
-  // const count = 20;
 
   // 데스크탑
   const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
@@ -59,34 +55,66 @@ const Letters = () => {
   );
 
   const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(['getMobileGuestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
-      getNextPageParam: (lastPage, allPages) => {
-        return lastPage?.list.length !== 0 ? lastPage?.nextPage : undefined;
+    useInfiniteQuery(
+      ['getGuestBookMobile', designerId],
+      async ({ pageParam = 1 }) => await getData(pageParam),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage?.nextPage;
+        },
+        refetchOnWindowFocus: false,
       },
-      refetchOnWindowFocus: false,
-    });
+    );
 
   const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
 
   async function getData(page: number) {
     if (hasNextPage !== false) {
-      const response = await getGuestBook(designerId, page, 3);
-      console.log(response);
-      const list = response.designerCommentList;
-      setMobileDesignerCommentList((prev) => [...prev, ...list]);
+      const id = designerId === -1 ? '' : designerId;
+      const response = await getGuestBook(id, page, 3);
 
-      return { list, nextPage: page + 1 };
+      setMobileDesignerCommentList((prev) => [...prev, ...response?.commentList]);
+
+      return { response, nextPage: page + 1 };
     }
   }
+
+  console.log(mobileDesignerCommentList);
+
+  // const lastPage=desktopData.count
+
+  // const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+  //   useInfiniteQuery(
+  //     ['getMobileGuestBooks', designerId],
+  //     ({ pageParam = 1 }) => getData(pageParam),
+  //     {
+  //       getNextPageParam: (lastPage, allPages) => {
+  //         return lastPage?.list.length !== 0 ? lastPage?.nextPage : undefined;
+  //       },
+  //     },
+  //   );
+
+  // const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
+
+  // async function getData(page: number) {
+  //   if (hasNextPage !== false) {
+  //     const response = await getGuestBook(designerId, page, 3);
+  //     console.log(response.commentList);
+  //     const list = response.commentList;
+  //     setMobileDesignerCommentList([...mobileDesignerCommentList].push(list));
+
+  //     return { list, nextPage: page + 1 };
+  //   }
+  // }
 
   return (
     <>
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <Desktop>
         <>
-          {lastDesktopPage > 0 ? (
+          {desktopData?.count > 0 ? (
             <LettersWrapper>
-              {desktopData?.designerCommentList.map(
+              {desktopData.commentList.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
@@ -113,9 +141,9 @@ const Letters = () => {
       </Desktop>
       <Tablet>
         <>
-          {lastTabletPage > 0 ? (
+          {tabletData?.count > 0 ? (
             <LettersWrapper>
-              {tabletData?.designerCommentList.map(
+              {tabletData?.commentList.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
@@ -142,7 +170,7 @@ const Letters = () => {
       </Tablet>
       <Mobile>
         <>
-          {lastDesktopPage > 0 ? (
+          {tabletData?.count > 0 ? (
             <LettersWrapper>
               {mobileDesignerCommentList?.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (

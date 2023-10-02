@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export async function getGuestBook(id: number, page: number, limit: number) {
+export async function getGuestBook(id: number | string, page: number, limit: number) {
   const data = await axios.get(
-    `${import.meta.env.VITE_APP_BASE_URL}/comment/designer?id=${id}&page=${page}&limit=${limit}`,
+    `http://3.38.119.61:3000/comment/list?id=${id}&page=${page}&limit=${limit}`,
     {
       headers: {
         'Content-Type': 'application/json',

@@ -2,9 +2,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getGuestBook } from '~/api/getGuestBook';
 
 const useGetGuestBookMobile = (id: number) => {
+  const designerId = id === -1 ? '' : id;
   const pageParams = 1;
   const fetchGuestBook = async (pageParams: number) => {
-    const response = await getGuestBook(id, pageParams, 3);
+    const response = await getGuestBook(designerId, pageParams, 3);
     const list = response.designerCommentList;
     return { list, nextPage: pageParams + 1 };
   };
@@ -17,7 +18,7 @@ const useGetGuestBookMobile = (id: number) => {
       },
     },
   );
-  console.log(data);
+
   return {
     mobileDesignerCommentList: data?.pages,
     fetchNextPage,
