@@ -200,8 +200,6 @@ export default Letters;
 
 const Target = styled.div`
   height: 10px;
-
-  background-color: pink;
 `;
 const LettersWrapper = styled.section`
   display: grid;
