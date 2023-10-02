@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { getGuestBook } from '~/api/getGuestBook';
+import TopButton from '~/common/components/TopButton';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
 import useGetGuestBookTablet from '~/hooks/useGetGuestBookTablet';
@@ -170,6 +171,7 @@ const Letters = () => {
       </Tablet>
       <Mobile>
         <>
+          <TopButton />
           {tabletData?.count > 0 ? (
             <LettersWrapper>
               {mobileDesignerCommentList?.map(
