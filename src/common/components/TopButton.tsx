@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { keyframes, styled } from 'styled-components';
+import { FloatingIc } from '~/assets/icons';
 
 const TopButton = () => {
   const [showButton, setShowButton] = useState(false);
@@ -30,7 +31,7 @@ const TopButton = () => {
     showButton && (
       <ButtonWrapper>
         <CustomButton onClick={scrollToTop} type="button">
-          Top
+          <FloatingIc />
         </CustomButton>
       </ButtonWrapper>
     )
@@ -59,18 +60,13 @@ const ButtonWrapper = styled.div`
 `;
 
 const CustomButton = styled.button`
-  font-weight: bold;
-  font-size: 15px;
-  padding: 15px 10px;
-  background-color: #000;
-  color: #fff;
-  border: 1px solid rgb(210, 204, 193);
+  animation: ${boxFade} 1s linear alternate;
+
   border-radius: 50%;
   outline: none;
   cursor: pointer;
-  animation: ${boxFade} 1s linear alternate;
 
   &:hover {
-    color: rgb(142, 26, 26);
+    color: rgb(142 26 26);
   }
 `;
