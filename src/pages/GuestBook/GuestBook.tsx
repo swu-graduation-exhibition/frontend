@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Footer, Header } from '~/common/components';
 import { TABLET_WIDTH } from '~/constants/common';
-import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
+import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
+import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import desktopBackground from '../../assets/images/guestBookBackgroundImage.png';
 import mobileBackground from '../../assets/images/guestBookMobileBackgroundImage.png';
 import Flowers from './components/Flowers';
@@ -10,19 +11,18 @@ import Letters from './components/Letters';
 import Title from './components/Title';
 
 const GuestBook = () => {
-  // 서버에서 데이터 받아오기 -> 커스텀 훅 구현하기
-  const count = 20;
+  const { desktopData } = useGetGuestBookDesktop(1, 1);
 
   return (
     <GuestBookWrapper>
       <Header />
-      <Flowers length={count} />
-      <Desktop>
+
+      <GuestBookDesktop>
         <GuestBookBackground src={desktopBackground} alt="배경지" />
-      </Desktop>
-      <Tablet>
+      </GuestBookDesktop>
+      <GuestBookTablet>
         <GuestBookBackground src={mobileBackground} alt="배경지" />
-      </Tablet>
+      </GuestBookTablet>
       <Mobile>
         <GuestBookBackground src={mobileBackground} alt="배경지" />
       </Mobile>
@@ -32,7 +32,7 @@ const GuestBook = () => {
         <GuestBookInput />
         <Letters />
       </PageLayout>
-
+      <Flowers length={desktopData?.count} />
       <FooterWrapper>
         <Footer />
       </FooterWrapper>
@@ -50,7 +50,7 @@ const FooterWrapper = styled.div`
 const GuestBookWrapper = styled.div`
   overflow: scroll;
 
-  height:;
+  /* height:; */
 `;
 
 const GuestBookBackground = styled.img`

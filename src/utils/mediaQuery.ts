@@ -5,8 +5,18 @@ const Desktop = ({ children }: { children: JSX.Element }): JSX.Element | null =>
   return isDesktop ? children : null;
 };
 
+const GuestBookDesktop = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isDesktop = useMediaQuery({ minWidth: 1201 });
+  return isDesktop ? children : null;
+};
+
 const Tablet = ({ children }: { children: JSX.Element }): JSX.Element | null => {
   const isTablet = useMediaQuery({ minWidth: 521, maxWidth: 831 });
+  return isTablet ? children : null;
+};
+
+const GuestBookTablet = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isTablet = useMediaQuery({ minWidth: 521, maxWidth: 1200 });
   return isTablet ? children : null;
 };
 
@@ -21,4 +31,4 @@ const Default = ({ children }: { children: JSX.Element }): JSX.Element | null =>
   return isNotMobile ? children : null;
 };
 
-export { Desktop, Tablet, Mobile, Default };
+export { Default, Desktop, GuestBookDesktop, GuestBookTablet, Mobile, Tablet };
