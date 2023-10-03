@@ -1,25 +1,23 @@
-import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
-import ImgDefaultDesigner from '~/assets/images/img1_default_desinger.png';
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
 interface ProfileProps {
-  // profile: string;
+  profile: string;
   koreanName: string;
-  // englishName: string;
-  // desc: string;
+  englishName: string;
+  desc: string;
   tel?: string;
   email?: string;
   instagram?: string;
   behance?: string;
 }
 const Profile = ({
-  // profile,
+  profile,
   koreanName,
-  // englishName,
-  // desc,
+  englishName,
+  desc,
   tel,
   email,
   behance,
@@ -32,18 +30,14 @@ const Profile = ({
           <IcStarAll />
           <NameTitle>
             <h3>{koreanName}</h3>
-            <span>{'You'}</span>
+            <span>{englishName}</span>
           </NameTitle>
         </NameHeader>
       </Mobile>
-      <ProfileImg src={ImgDefaultDesigner} />
+      <ProfileImg src={profile} />
       <Mobile>
         <>
-          <DesignerText>
-            {
-              '나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.'
-            }
-          </DesignerText>
+          <DesignerText>{desc}</DesignerText>
           <DesignerSNSList>
             {email && (
               <DesignerSNS>
@@ -54,13 +48,13 @@ const Profile = ({
             {instagram && (
               <DesignerSNS>
                 <span>Instargram</span>
-                <span>@0000000000</span>
+                <span>{instagram}</span>
               </DesignerSNS>
             )}
             {behance && (
               <DesignerSNS>
                 <span>Behance</span>
-                <span>@0000000000</span>
+                <span>{behance}</span>
               </DesignerSNS>
             )}
           </DesignerSNSList>
@@ -72,14 +66,10 @@ const Profile = ({
             <IcStarAll />
             <NameTitle>
               <h3>{koreanName}</h3>
-              <span>{'You'}</span>
+              <span>{englishName}</span>
             </NameTitle>
           </NameHeader>
-          <DesignerText>
-            {
-              '나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.나는 똥입니다.'
-            }
-          </DesignerText>
+          <DesignerText>{desc}</DesignerText>
           <DesignerSNSList>
             {email && (
               <DesignerSNS>
@@ -90,13 +80,13 @@ const Profile = ({
             {instagram && (
               <DesignerSNS>
                 <span>Instargram</span>
-                <span>@0000000000</span>
+                <span>{instagram}</span>
               </DesignerSNS>
             )}
             {behance && (
               <DesignerSNS>
                 <span>Behance</span>
-                <span>@0000000000</span>
+                <span>{behance}</span>
               </DesignerSNS>
             )}
           </DesignerSNSList>
@@ -125,17 +115,17 @@ const ProfileImg = styled.img`
   width: 100%;
   height: 100%;
 
-  max-width: 64rem;
-  max-height: 64rem;
+  width: 64rem;
+  height: 64rem;
   object-fit: cover;
 
   @media screen and (width <= ${TABLET_WIDTH}) {
-    max-width: 30rem;
-    max-height: 30rem;
+    width: 30rem;
+    height: 30rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 17.2rem;
-
+    height: 17.2rem;
     margin-top: 2.6rem;
   }
 `;

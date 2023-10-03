@@ -16,18 +16,21 @@ const DesignerDetail = () => {
   const { data } = useDesignerDetail(id || '1');
   const designerData = data?.data;
 
-  // const { koreanName, englishName, desc, tel, email, behance, instagram } = designerData;
-
   if (!designerData) return <div>데이터 없음</div>;
+
+  const { koreanName, englishName, profile, desc, tel, email, behance, instagram } = designerData;
 
   return (
     <DesignerDetailWrapper>
       <Profile
-        // profile={profile}
-        koreanName={designerData.koreanName}
-        // englishName={englishName}
-        // desc={desc}
-        // behance={behance}
+        profile={profile}
+        koreanName={koreanName}
+        englishName={englishName}
+        desc={desc}
+        tel={tel}
+        email={email}
+        behance={behance}
+        instagram={instagram}
       />
       <GraduationWorkList />
       <GuestBookWrapper>
