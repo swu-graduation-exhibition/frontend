@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getGuestBook } from '~/api/guestBook';
 import TopButton from '~/common/components/TopButton';
@@ -33,10 +33,24 @@ const Letters = () => {
   const [mobileDesignerCommentList, setMobileDesignerCommentList] = useState<GuestBookPageCard[]>(
     [],
   );
+  const [mobileCount, setMobileCount] = useState(0);
+  const [isKey, setIsKey] = useState(false);
+
+  useEffect(() => {
+    setMobileDesignerCommentList([]);
+  }, [designerId]);
+
+  useEffect(() => {
+    if (mobileDesignerCommentList.length === 0) {
+      setIsKey((ik) => !ik);
+    }
+  }, [mobileDesignerCommentList]);
+
+  console.log(mobileDesignerCommentList);
 
   const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(
-      ['getGuestBook', designerId],
+      ['getGuestBook', isKey],
       async ({ pageParam = 1 }) => await getData(pageParam),
       {
         getNextPageParam: (lastPage, allPages) => {
@@ -52,7 +66,7 @@ const Letters = () => {
     if (hasNextPage !== false) {
       const id = designerId === -1 ? '' : designerId;
       const response = await getGuestBook(id, page, 3);
-
+      setMobileCount(response?.count);
       setMobileDesignerCommentList((prev) => [...prev, ...response?.commentList]);
 
       return { response, nextPage: page + 1 };
@@ -123,7 +137,8 @@ const Letters = () => {
       <Mobile>
         <>
           <TopButton />
-          {tabletData?.count > 0 ? (
+          {/* {desktopData?.count > 0 ? ( */}
+          {mobileDesignerCommentList ? (
             <LettersWrapper>
               {mobileDesignerCommentList?.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
