@@ -4,6 +4,8 @@ import { PageLayout } from '~/common/components';
 import { useParams } from 'react-router-dom';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import { projectData, projectData1, projectData2 } from './data/cardData';
+import { Mobile } from '~/utils/mediaQuery';
+import TopButton from '~/common/components/TopButton';
 
 const CategoryData = {
   'ux-design': projectData,
@@ -22,6 +24,9 @@ function Project() {
         <ProjectCategory />
         <ProjectCardContainer projectData={projectData} />
       </ProjectLayout>
+      <Mobile>
+        <TopButton />
+      </Mobile>
     </PageLayout>
   );
 }

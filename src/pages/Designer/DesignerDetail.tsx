@@ -9,6 +9,7 @@ import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-co
 import DesktopCommentContainer from './components/comment/DesktopCommentContainer';
 import MobileCommentContainer from './components/comment/MobileCommentContainer';
 import TabletCommentContainer from './components/comment/TabletCommentContainer';
+import TopButton from '~/common/components/TopButton';
 
 const DesignerDetail = () => {
   const { id } = useParams();
@@ -40,7 +41,10 @@ const DesignerDetail = () => {
         <TabletCommentContainer />
       </Tablet>
       <Mobile>
-        <MobileCommentContainer />
+        <>
+          <MobileCommentContainer />
+          <TopButton />
+        </>
       </Mobile>
     </DesignerDetailWrapper>
   );
