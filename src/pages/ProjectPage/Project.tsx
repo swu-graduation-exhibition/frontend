@@ -1,8 +1,10 @@
-import styled from 'styled-components';
-import ProjectCategory from './components/ProjectCategory';
-import { PageLayout } from '~/common/components';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { PageLayout } from '~/common/components';
+import TopButton from '~/common/components/TopButton';
+import { Mobile } from '~/utils/mediaQuery';
 import ProjectCardContainer from './components/ProjectCardContainer';
+import ProjectCategory from './components/ProjectCategory';
 import { projectData, projectData1, projectData2 } from './data/cardData';
 
 const CategoryData = {
@@ -21,6 +23,9 @@ function Project() {
       <ProjectLayout>
         <ProjectCategory />
         <ProjectCardContainer projectData={projectData} />
+        <Mobile>
+          <TopButton />
+        </Mobile>
       </ProjectLayout>
     </PageLayout>
   );
