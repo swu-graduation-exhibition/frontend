@@ -1,16 +1,34 @@
 import styled from 'styled-components';
-import { PageLayout } from '~/common/components';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Landing() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {}, 8000);
+  }, []);
   return (
-    <PageLayout>
-      <h1>메인입니다</h1>
-    </PageLayout>
+    <PlayerWrapper>
+      <video muted={true} autoPlay={true} loop={true} playsInline>
+        <source src={'moving_poster.mp4'} type="video/mp4" />
+        {/* <source src={`${import.meta.env.PUBLIC_URL}`} type="video/mp4" /> */}
+      </video>
+    </PlayerWrapper>
   );
 }
 
 export default Landing;
 
-const StAppWrapper = styled.div`
-  ${({ theme }) => theme.fonts.Headline_01};
+const PlayerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+  video {
+    width: 100%;
+    height: 100%;
+  }
 `;
