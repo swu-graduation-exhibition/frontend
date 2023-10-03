@@ -35,9 +35,11 @@ const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) =>
           <CardHoverContent>
             {isMouseOn && (
               <TrackUl>
-                {getFieldArray(field).map((data) => (
-                  <TrackList key={name_ko + data}>{data}</TrackList>
-                ))}
+                {getFieldArray(field)
+                  .reverse()
+                  .map((data) => (
+                    <TrackList key={name_ko + data}>{data}</TrackList>
+                  ))}
               </TrackUl>
             )}
           </CardHoverContent>
@@ -111,16 +113,18 @@ const MobileNameTitle = styled.header`
 const TrackUl = styled.ul`
   position: absolute;
   top: 7%;
-  right: 17%;
+  right: 7%;
 
   display: flex;
-  gap: 10%;
+  flex-direction: row-reverse;
+  gap: 1.6rem;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     position: relative;
     top: 0;
     right: 0;
     gap: 1.2rem;
+    flex-direction: row;
   }
 `;
 const TrackList = styled.li(
