@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getGuestBook } from '~/api/getGuestBook';
+import { getGuestBook } from '~/api/guestBook';
 
 const useGetGuestBookMobile = (id: number) => {
   const designerId = id === -1 ? '' : id;
@@ -10,7 +10,7 @@ const useGetGuestBookMobile = (id: number) => {
     return { list, nextPage: pageParams + 1 };
   };
   const { data, fetchNextPage, hasNextPage, ...restValues } = useInfiniteQuery(
-    ['getGuestMobile'],
+    ['getGuestBook'],
     () => fetchGuestBook(pageParams),
     {
       getNextPageParam: (lastPage) => {

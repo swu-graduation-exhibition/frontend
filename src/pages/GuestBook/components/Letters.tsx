@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { getGuestBook } from '~/api/getGuestBook';
+import { getGuestBook } from '~/api/guestBook';
 import TopButton from '~/common/components/TopButton';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
@@ -36,7 +36,7 @@ const Letters = () => {
 
   const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(
-      ['getGuestBookMobile', designerId],
+      ['getGuestBook', designerId],
       async ({ pageParam = 1 }) => await getData(pageParam),
       {
         getNextPageParam: (lastPage, allPages) => {
