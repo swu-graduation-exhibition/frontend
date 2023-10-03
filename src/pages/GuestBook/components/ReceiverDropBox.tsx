@@ -34,7 +34,9 @@ const ReceiverDropBox = (props: DropBoxProps) => {
         {guestBookContents.receiver === -1 ? (
           <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
         ) : (
-          <YesReceiver>{DESIGNERS[guestBookContents.receiver]}</YesReceiver>
+          <YesReceiver>
+            {guestBookContents.receiver === 49 ? '모두에게' : DESIGNERS[guestBookContents.receiver]}
+          </YesReceiver>
         )}
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>

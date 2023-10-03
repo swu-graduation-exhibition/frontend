@@ -1,23 +1,20 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getGuestBook } from '~/api/getGuestBook';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { getGuestBook } from '~/api/guestBook';
+import TopButton from '~/common/components/TopButton';
+import { MOBILE_WIDTH } from '~/constants/common';
 import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
 import useGetGuestBookTablet from '~/hooks/useGetGuestBookTablet';
 import useInfiniteScroll from '~/hooks/useInfiniteScroll';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
 import { GuestBookPageCard } from '~/types/guestBook';
-import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
+import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import CategoryDropBox from './CategoryDropBox';
 import GuestBookCard from './GuestBookCard';
 
 const Letters = () => {
   const [designerId, setDesignerId] = useState(-1);
-  // 서버에서 데이터 받아오기
-  // useGetGuestBook(page)
-  // const [guestBookList, setGuestBookList] = useState(guestBookData);
-  // const count = 20;
 
   // 데스크탑
   const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
@@ -32,61 +29,58 @@ const Letters = () => {
   const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
 
   // 모바일
-  // const { trackData, fetchNextPage, hasNextPage } = useGetGuestBook({
-  //   id: designerId,
-  // });
-
-  // const [mobileGuests, setMobileGuests] = useState<GuestBookPageCard[]>([]);
-
-  // const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-  //   useInfiniteQuery(['guestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
-  //     getNextPageParam: (lastPage, allPages) => {
-  //       return lastPage?.response.length !== 0 ? lastPage?.nextPage : undefined;
-  //     },
-  //     refetchOnWindowFocus: false,
-  //   });
-
-  // async function getData(page: number) {
-  //   if (hasNextPage !== false) {
-  //     const response = await getGuestBook(designerId, page, 3);
-  //     setMobileGuests((prev) => [...prev, ...response.designerCommentList]);
-  //     return { response, nextPage: page + 1 };
-  //   }
-  // }
 
   const [mobileDesignerCommentList, setMobileDesignerCommentList] = useState<GuestBookPageCard[]>(
     [],
   );
+  const [mobileCount, setMobileCount] = useState(0);
+  const [isKey, setIsKey] = useState(false);
+
+  useEffect(() => {
+    setMobileDesignerCommentList([]);
+  }, [designerId]);
+
+  useEffect(() => {
+    if (mobileDesignerCommentList.length === 0) {
+      setIsKey((ik) => !ik);
+    }
+  }, [mobileDesignerCommentList]);
+
+  console.log(mobileDesignerCommentList);
 
   const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(['getMobileGuestBooks'], ({ pageParam = 1 }) => getData(pageParam), {
-      getNextPageParam: (lastPage, allPages) => {
-        return lastPage?.list.length !== 0 ? lastPage?.nextPage : undefined;
+    useInfiniteQuery(
+      ['getGuestBook', isKey],
+      async ({ pageParam = 1 }) => await getData(pageParam),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage?.nextPage;
+        },
+        refetchOnWindowFocus: false,
       },
-      refetchOnWindowFocus: false,
-    });
+    );
 
   const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
 
   async function getData(page: number) {
     if (hasNextPage !== false) {
-      const response = await getGuestBook(designerId, page, 3);
-      console.log(response);
-      const list = response.designerCommentList;
-      setMobileDesignerCommentList((prev) => [...prev, ...list]);
+      const id = designerId === -1 ? '' : designerId;
+      const response = await getGuestBook(id, page, 3);
+      setMobileCount(response?.count);
+      setMobileDesignerCommentList((prev) => [...prev, ...response?.commentList]);
 
-      return { list, nextPage: page + 1 };
+      return { response, nextPage: page + 1 };
     }
   }
 
   return (
     <>
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
-      <Desktop>
+      <GuestBookDesktop>
         <>
-          {lastDesktopPage > 0 ? (
+          {desktopData?.count > 0 ? (
             <LettersWrapper>
-              {desktopData?.designerCommentList.map(
+              {desktopData.commentList.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
@@ -110,12 +104,12 @@ const Letters = () => {
             />
           </PaginationWrapper>
         </>
-      </Desktop>
-      <Tablet>
+      </GuestBookDesktop>
+      <GuestBookTablet>
         <>
-          {lastTabletPage > 0 ? (
+          {tabletData?.count > 0 ? (
             <LettersWrapper>
-              {tabletData?.designerCommentList.map(
+              {tabletData?.commentList.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
@@ -139,10 +133,12 @@ const Letters = () => {
             />
           </PaginationWrapper>
         </>
-      </Tablet>
+      </GuestBookTablet>
       <Mobile>
         <>
-          {lastDesktopPage > 0 ? (
+          <TopButton />
+          {/* {desktopData?.count > 0 ? ( */}
+          {mobileDesignerCommentList ? (
             <LettersWrapper>
               {mobileDesignerCommentList?.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
@@ -169,9 +165,7 @@ const Letters = () => {
 export default Letters;
 
 const Target = styled.div`
-  height: 10px;
-
-  background-color: pink;
+  height: 30px;
 `;
 const LettersWrapper = styled.section`
   display: grid;
@@ -180,7 +174,7 @@ const LettersWrapper = styled.section`
 
   gap: 2rem;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1200px) {
     margin: 9.4rem 0;
     grid-template-columns: repeat(2, 1fr);
   }

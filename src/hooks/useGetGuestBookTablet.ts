@@ -1,15 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import { getGuestBook } from '~/api/getGuestBook';
+import { getGuestBook } from '~/api/guestBook';
 
 const useGetGuestBookTablet = (id: number, page: number) => {
-  const { data: tabletData } = useQuery(['getGuestTablet'], () => getGuestBook(id, page, 6), {
-    onSuccess: (res) => {
-      // console.log(res);
+  const designerId = id === -1 ? '' : id;
+  const { data: tabletData } = useQuery(
+    ['getGuestBook', id],
+    () => getGuestBook(designerId, page, 6),
+    {
+      onSuccess: (res) => {
+        // console.log(res);
+      },
+      onError: (err) => {
+        console.log(tabletData);
+      },
     },
-    onError: (err) => {
-      console.log(tabletData);
-    },
-  });
+  );
 
   return { tabletData };
 };

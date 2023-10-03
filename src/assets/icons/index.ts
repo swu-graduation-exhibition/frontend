@@ -70,3 +70,5 @@ export { ReactComponent as MobileFlower6 } from './flower/mobile/MobileFlower6.s
 export { ReactComponent as MobileFlower7 } from './flower/mobile/MobileFlower7.svg';
 export { ReactComponent as MobileFlower8 } from './flower/mobile/MobileFlower8.svg';
 export { ReactComponent as MobileFlower9 } from './flower/mobile/MobileFlower9.svg';
+
+export { ReactComponent as FloatingIc } from './btn_floating.svg';

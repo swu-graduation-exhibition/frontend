@@ -1,5 +1,7 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { postGuestBook } from '~/api/guestBook';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import Content from './Content';
 import ReceiverDropBox from './ReceiverDropBox';
@@ -19,8 +21,28 @@ const GuestBookInput = () => {
     );
   };
 
+  const queryClient = useQueryClient();
+
+  const { mutate: sendGuestBook } = useMutation(
+    ['sendGuestBook'],
+    () => postGuestBook(guestBookContents),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['getGuestBook']);
+        setGuestBookContents({
+          sender: '',
+          receiver: -1,
+          content: '',
+        });
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    },
+  );
+
   const handleSendGuestBook = () => {
-    // guest book post
+    sendGuestBook();
   };
 
   return (
