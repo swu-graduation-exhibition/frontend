@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
+import { MOBILE_WIDTH } from '~/constants/common';
 import theme from '~/styles/theme';
 
 function ProjectDetailHeader() {
@@ -42,6 +43,10 @@ const Container = styled.section`
   height: 50.2rem;
   padding: 16rem 0 8.2rem;
   flex-direction: row;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    flex-direction: column;
+  }
 `;
 
 const ProjcetTitle = styled.div`
