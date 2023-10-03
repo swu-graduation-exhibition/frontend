@@ -10,7 +10,7 @@ const useGetGuestBookMobile = (id: number) => {
     return { list, nextPage: pageParams + 1 };
   };
   const { data, fetchNextPage, hasNextPage, ...restValues } = useInfiniteQuery(
-    ['getGuestBook'],
+    ['getGuestBook', id],
     () => fetchGuestBook(pageParams),
     {
       getNextPageParam: (lastPage) => {
