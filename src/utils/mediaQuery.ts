@@ -31,4 +31,9 @@ const Default = ({ children }: { children: JSX.Element }): JSX.Element | null =>
   return isNotMobile ? children : null;
 };
 
-export { Default, Desktop, GuestBookDesktop, GuestBookTablet, Mobile, Tablet };
+const ProjectDesktop = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isDesktop = useMediaQuery({ minWidth: 521 });
+  return isDesktop ? children : null;
+};
+
+export { Default, Desktop, GuestBookDesktop, GuestBookTablet, Mobile, ProjectDesktop, Tablet };

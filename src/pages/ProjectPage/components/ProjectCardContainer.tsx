@@ -28,6 +28,14 @@ const Container = styled.div`
   justify-content: center;
 
   margin: 0 13.6rem;
+
+  @media screen and (width <= 830px) {
+    margin: 0 6.4rem;
+  }
+
+  @media screen and (width <= 520px) {
+    margin: 0;
+  }
 `;
 
 const ProjectCardLayout = styled.section`

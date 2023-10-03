@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { MOBILE_WIDTH } from '~/constants/common';
+import { Mobile, ProjectDesktop } from '~/utils/mediaQuery';
 import { IProjectData } from '../data/cardData';
 
 interface ProjectCardProps {
@@ -19,30 +21,47 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
   };
 
   return (
-    <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <CardThumbnail src={thumbnail} />
-      {isMouseOn && (
-        <CardBackDrop className="backdrop">
-          <CategoryText>{category}</CategoryText>
-          <ProjectInfoContainer>
-            <TitleText>{title}</TitleText>
-            <ParticipantsContainer>
+    <>
+      <ProjectDesktop>
+        <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+          <CardThumbnail src={thumbnail} />
+          {isMouseOn && (
+            <CardBackDrop>
+              <CategoryText>{category}</CategoryText>
+              <ProjectInfoContainer>
+                <TitleText>{title}</TitleText>
+                <ParticipantsContainer>
+                  {participants.map((member, i) => {
+                    return <MemberText key={i}>{member}</MemberText>;
+                  })}
+                </ParticipantsContainer>
+              </ProjectInfoContainer>
+            </CardBackDrop>
+          )}
+          <CaptionContainer>
+            <CaptionTitleText>{title}</CaptionTitleText>
+            <CaptionParticipants>
               {participants.map((member, i) => {
-                return <MemberText key={i}>{member}</MemberText>;
+                return <CaptionMemberText key={i}>{member}</CaptionMemberText>;
               })}
-            </ParticipantsContainer>
-          </ProjectInfoContainer>
-        </CardBackDrop>
-      )}
-      <CaptionContainer className="caption">
-        <CaptionTitleText>{title}</CaptionTitleText>
-        <CaptionParticipants>
-          {participants.map((member, i) => {
-            return <CaptionMemberText key={i}>{member}</CaptionMemberText>;
-          })}
-        </CaptionParticipants>
-      </CaptionContainer>
-    </Container>
+            </CaptionParticipants>
+          </CaptionContainer>
+        </Container>
+      </ProjectDesktop>
+      <Mobile>
+        <Container>
+          <CardThumbnail src={thumbnail} />
+          <CaptionContainer>
+            <CaptionTitleText>{title}</CaptionTitleText>
+            <CaptionParticipants>
+              {participants.map((member, i) => {
+                return <CaptionMemberText key={i}>{member}</CaptionMemberText>;
+              })}
+            </CaptionParticipants>
+          </CaptionContainer>
+        </Container>
+      </Mobile>
+    </>
   );
 }
 
@@ -50,18 +69,12 @@ export default ProjectCard;
 
 const Container = styled.article`
   position: relative;
-  height: 100%;
-  cursor: pointer;
 
-  @media screen and (width <= 520px) {
-    .caption {
-      display: flex;
-    }
-
-    .backdrop {
-      display: none;
-    }
+  @media screen and (width >= ${MOBILE_WIDTH}) {
+    height: 100%;
   }
+
+  cursor: pointer;
 `;
 const CardThumbnail = styled.img`
   width: 100%;
@@ -123,7 +136,6 @@ const MemberText = styled.span`
 `;
 
 const CaptionContainer = styled.section`
-  display: none;
   flex-direction: column;
   padding: 1.3rem 0 6.4rem 1.6rem;
 `;
