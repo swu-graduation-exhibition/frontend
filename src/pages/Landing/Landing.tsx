@@ -6,7 +6,9 @@ function Landing() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {}, 8000);
+    setTimeout(() => {
+      navigate('/home');
+    }, 8000);
   }, []);
   return (
     <PlayerWrapper>
