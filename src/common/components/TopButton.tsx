@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { keyframes, styled } from 'styled-components';
+import { keyframes, styled, css } from 'styled-components';
 import { FloatingIc } from '~/assets/icons';
 
 const TopButton = () => {
@@ -20,7 +20,6 @@ const TopButton = () => {
       }
     };
 
-    console.log(window.scrollY);
     window.addEventListener('scroll', handleShowButton);
     return () => {
       window.removeEventListener('scroll', handleShowButton);
@@ -28,13 +27,11 @@ const TopButton = () => {
   }, []);
 
   return (
-    showButton && (
-      <ButtonWrapper>
-        <CustomButton onClick={scrollToTop} type="button">
-          <FloatingIc />
-        </CustomButton>
-      </ButtonWrapper>
-    )
+    <ButtonWrapper>
+      <CustomButton onClick={scrollToTop} type="button" $isshow={showButton}>
+        <FloatingIc />
+      </CustomButton>
+    </ButtonWrapper>
   );
 };
 
@@ -51,6 +48,15 @@ const boxFade = keyframes`
     opacity: 1;
   }
 `;
+const boxFadeOut = keyframes`
+   0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+`;
 
 const ButtonWrapper = styled.div`
   position: fixed;
@@ -59,10 +65,19 @@ const ButtonWrapper = styled.div`
   z-index: 1;
 `;
 
-const CustomButton = styled.button`
-  animation: ${boxFade} 1s linear alternate;
-
-  border-radius: 50%;
+const CustomButton = styled.button<{ $isshow: boolean }>`
+  ${({ $isshow }) =>
+    $isshow
+      ? css`
+          opacity: 1;
+          animation: ${boxFade} ease-in-out 1s;
+        `
+      : css`
+          opacity: 0;
+          animation: ${boxFadeOut} ease-in-out 0.8s;
+        `}
+  border-radius: 100px;
+  border-color: ${({ theme }) => theme.colors.Grayscales_800};
   outline: none;
   cursor: pointer;
 
