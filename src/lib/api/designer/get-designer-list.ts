@@ -4,7 +4,7 @@ import { ApiResponse } from '../api.type';
 import { DesingerInfo } from '~/types/designer';
 
 /** 메인페이지 배너 및 퀵메뉴 */
-const getDesignerList = (): Promise<ApiResponse<DesingerInfo>> => {
+const getDesignerList = (): Promise<ApiResponse<DesingerInfo[]>> => {
   const path = `/designer/list`;
   return axiosRequest(client, 'get', path);
 };
