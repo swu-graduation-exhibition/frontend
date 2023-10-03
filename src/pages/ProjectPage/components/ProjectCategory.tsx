@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
-import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 import { useState } from 'react';
-import { IcStarAll } from '~/assets/icons';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { IcStarAll } from '~/assets/icons';
+import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
@@ -43,9 +43,7 @@ const Container = styled.section`
   width: 100%;
   max-width: 165rem;
   height: 31.5rem;
-  border-bottom: 1px solid black;
-
-  padding: 16rem 0 8rem;
+  padding: 16rem 13.6rem 8rem;
 
   @media screen and (width <= 1400px) {
     justify-content: flex-start;

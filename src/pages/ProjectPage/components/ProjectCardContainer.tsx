@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IProjectData } from '../data/cardData';
 import ProjectCard from './ProjectCard';
-import { Link } from 'react-router-dom';
 
 interface IProjectProps {
   projectData: IProjectData[];
@@ -26,6 +26,8 @@ export default ProjectCardContainer;
 const Container = styled.div`
   display: flex;
   justify-content: center;
+
+  margin: 0 13.6rem;
 `;
 
 const ProjectCardLayout = styled.section`
