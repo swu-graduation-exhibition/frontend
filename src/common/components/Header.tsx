@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <HeaderWrapper $istoggle={isToggle}>
       <div>
-        <IcHeaderLogo onClick={() => navigate('/')} />{' '}
+        <IcHeaderLogo onClick={() => navigate('/home')} />
       </div>
       <Mobile>
         {isToggle ? (
