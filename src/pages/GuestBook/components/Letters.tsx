@@ -46,8 +46,6 @@ const Letters = () => {
     }
   }, [mobileDesignerCommentList]);
 
-  console.log(mobileDesignerCommentList);
-
   const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(
       ['getGuestBook', isKey],
