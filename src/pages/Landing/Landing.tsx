@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import ReactPlayer from 'react-player';
 function Landing() {
   const navigate = useNavigate();
 
@@ -12,10 +12,14 @@ function Landing() {
   }, []);
   return (
     <PlayerWrapper>
-      <video muted={true} autoPlay={true} loop={true} playsInline>
-        <source src={'moving_poster.mp4'} type="video/mp4" />
-        {/* <source src={`${import.meta.env.PUBLIC_URL}`} type="video/mp4" /> */}
-      </video>
+      <ReactPlayer
+        url={'moving_poster.mp4'}
+        width="100%"
+        height="100%"
+        loop={true}
+        muted={true} //chrome정책으로 인해 자동 재생을 위해 mute 옵션을 true로 해주었다.
+        playing={true}
+      />
     </PlayerWrapper>
   );
 }
@@ -27,7 +31,7 @@ const PlayerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   video {
     width: 100%;
