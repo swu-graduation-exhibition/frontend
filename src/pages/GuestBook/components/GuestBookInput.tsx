@@ -28,7 +28,11 @@ const GuestBookInput = () => {
     () => postGuestBook(guestBookContents),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['getGuestBook']);
+        queryClient.invalidateQueries(['getGuestBookDesktop']);
+
+        queryClient.invalidateQueries(['getGuestBookTablet']);
+
+        queryClient.invalidateQueries(['getGuestBookMobile']);
         setGuestBookContents({
           sender: '',
           receiver: -1,

@@ -39,11 +39,16 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 50.2rem;
-  margin: 16rem 0;
   padding: 0 0 8.2rem;
-  gap: 5rem;
+
   flex-direction: row;
+
+  @media screen and (width >${TABLET_WIDTH}) {
+    height: 50.2rem;
+    gap: 5rem;
+
+    margin: 16rem 0 0;
+  }
 
   @media screen and (width <= ${TABLET_WIDTH}) {
     margin: 5.6rem 0 6.4rem;
@@ -88,8 +93,12 @@ const ProjectName = styled.div(
 );
 const ProjectMembers = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   gap: 0.38rem;
+
+  ${({ theme }) => theme.fonts.Caption_01};
+  color: ${({ theme }) => theme.colors.Grayscales_700};
+  margin-bottom: 3.2rem;
 `;
 
 const Member = styled.span(

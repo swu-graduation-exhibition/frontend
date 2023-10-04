@@ -1,4 +1,7 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { postProjectComment } from '~/api/project';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
 import { FormSectionProps } from '~/types/commonFormSection';
@@ -7,8 +10,36 @@ import { FormSupplies } from '../data/commonFormSection';
 const CommonFormSection = ({ page }: FormSectionProps) => {
   const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
   const { to, message } = formData;
+  const { projectId } = useParams();
 
   const { title, toMent, messageMent } = FormSupplies[page];
+
+  const queryClient = useQueryClient();
+  const { mutate: sendComment } = useMutation(
+    () =>
+      postProjectComment({
+        sender: formData.to,
+        receiver: Number(projectId),
+        content: formData.message,
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['getProjectCommentDesktop']);
+
+        queryClient.invalidateQueries(['getProjectCommentTablet']);
+
+        queryClient.invalidateQueries(['getProjectCommentMobile']);
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    },
+  );
+
+  const sendProjectComment = () => {
+    sendComment();
+  };
+
   return (
     <Container>
       <HeaderSection>
@@ -19,7 +50,11 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
 
-        {isButtonActive ? <SubmitButton>등록</SubmitButton> : <UnSubmitButton>등록</UnSubmitButton>}
+        {isButtonActive ? (
+          <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
+        ) : (
+          <UnSubmitButton>등록</UnSubmitButton>
+        )}
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
       <TextAreaWrapper>
