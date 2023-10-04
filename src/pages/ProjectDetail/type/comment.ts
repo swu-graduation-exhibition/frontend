@@ -1,6 +1,6 @@
 interface CommentData {
-  from: string;
-  date: string;
+  sender: string;
+  createdAt: string;
   content: string;
 }
 

@@ -17,7 +17,7 @@ function Router() {
           <Route path="" element={<DesignerContainer />} />
           <Route path=":id" element={<DesignerDetail />} />
         </Route>
-        <Route path="/project/detail/:pojectId" element={<ProjectDetail />} />
+        <Route path="/project/detail/:projectId" element={<ProjectDetail />} />
         <Route path="/guestbook" element={<GuestBook />} />
       </Routes>
     </BrowserRouter>
