@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PageLayout } from '~/common/components';
+import { TABLET_WIDTH } from '~/constants/common';
 import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
 import GuestBookInput from './components/GuestBookInput';
 import Letters from './components/Letters';
@@ -11,9 +12,11 @@ const GuestBook = () => {
   return (
     <GuestBookWrapper>
       <PageLayout>
-        <Title />
-        <GuestBookInput />
-        <Letters />
+        <PageWrapper>
+          <Title />
+          <GuestBookInput />
+          <Letters />
+        </PageWrapper>
       </PageLayout>
     </GuestBookWrapper>
   );
@@ -21,9 +24,16 @@ const GuestBook = () => {
 
 export default GuestBook;
 
-const FooterWrapper = styled.div`
-  position: sticky;
-  top: 195rem;
+const PageWrapper = styled.div`
+  padding: 16rem 13.6rem 0;
+
+  @media screen and (width <= 955px) {
+    padding: 4rem 6.4rem 0;
+  }
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    padding: 2.4rem 1.6rem 0;
+  }
 `;
 
 const GuestBookWrapper = styled.div`
