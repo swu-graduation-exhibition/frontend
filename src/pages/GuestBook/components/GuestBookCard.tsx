@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH } from '~/constants/common';
 import { GuestBookPageCard } from '~/types/guestBook';
 import { getParseDate } from '~/utils/getParseDate';
 

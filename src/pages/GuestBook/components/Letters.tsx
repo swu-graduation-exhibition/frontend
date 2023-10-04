@@ -110,7 +110,9 @@ const Letters = () => {
             />
           </PaginationWrapper>
 
-          <Flowers length={desktopData?.count} />
+          {/* <Flowers length={desktopData?.count} /> */}
+
+          <Flowers length={250} />
         </>
       </GuestBookDesktop>
       <GuestBookTablet>
@@ -142,7 +144,9 @@ const Letters = () => {
             />
           </PaginationWrapper>
 
-          <Flowers length={tabletData?.count} />
+          {/* <Flowers length={tabletData?.count} /> */}
+
+          <Flowers length={250} />
         </>
       </GuestBookTablet>
       <Mobile>
@@ -168,7 +172,9 @@ const Letters = () => {
           )}
           <Target ref={observerRef} />
 
-          <Flowers length={mobileDesignerCommentList?.length} />
+          {/* <Flowers length={mobileDesignerCommentList?.length} /> */}
+
+          <Flowers length={250} />
         </>
       </Mobile>
     </>
