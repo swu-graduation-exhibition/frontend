@@ -6,6 +6,8 @@ import ImgGraduationExhibition from '~/assets/images/home_middle_background.png'
 import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
 import ImgMobileGraduationExhibition from '~/assets/images/bg1_all_mobile.png';
 import { useLocation } from 'react-router-dom';
+import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
+import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
@@ -24,11 +26,19 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         <Footer />
         <Default>
           <PageContentImg
-            src={pathname === '/designer' ? ImgDesignerBackground : ImgGraduationExhibition}
+            src={
+              pathname === '/designer'
+                ? ImgDesignerBackground
+                : pathname === '/guestbook'
+                ? desktopBackground
+                : ImgGraduationExhibition
+            }
           />
         </Default>
         <Mobile>
-          <PageContentImg src={ImgMobileGraduationExhibition} />
+          <PageContentImg
+            src={pathname === '/guestbook' ? mobileBackground : ImgMobileGraduationExhibition}
+          />
         </Mobile>
       </ContentWrapper>
     </PageLayoutWrapper>
