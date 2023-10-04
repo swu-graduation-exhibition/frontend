@@ -8,8 +8,6 @@ import { Mobile } from '~/utils/mediaQuery';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import ProjectCategory from './components/ProjectCategory';
 import { projectData, projectData1, projectData2 } from './data/cardData';
-import { Mobile } from '~/utils/mediaQuery';
-import TopButton from '~/common/components/TopButton';
 
 const CategoryData = {
   'ux-design': projectData,
