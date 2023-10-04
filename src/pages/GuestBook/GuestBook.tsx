@@ -17,7 +17,7 @@ const GuestBook = () => {
     <GuestBookWrapper>
       <Header />
 
-      <GuestBookDesktop>
+      {/* <GuestBookDesktop>
         <GuestBookBackground src={desktopBackground} alt="배경지" />
       </GuestBookDesktop>
       <GuestBookTablet>
@@ -25,7 +25,7 @@ const GuestBook = () => {
       </GuestBookTablet>
       <Mobile>
         <GuestBookBackground src={mobileBackground} alt="배경지" />
-      </Mobile>
+      </Mobile> */}
 
       <PageLayout>
         <Title />
@@ -56,6 +56,10 @@ const GuestBookBackground = styled.img`
   position: absolute;
   z-index: -10;
   width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
 `;
 
 const PageLayout = styled.div`
