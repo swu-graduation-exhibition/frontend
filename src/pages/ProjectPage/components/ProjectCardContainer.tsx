@@ -11,11 +11,13 @@ function ProjectCardContainer({ projectData }: IProjectProps) {
   return (
     <Container>
       <ProjectCardLayout>
-        {projectData.map((projectInfo, i) => (
-          <Link to={`/project/detail/${i}`}>
-            <ProjectCard key={i} projectInfo={projectInfo} />
-          </Link>
-        ))}
+        {projectData?.map((projectInfo, i) => {
+          return (
+            <Link to={`/project/detail/${i + 1}`}>
+              <ProjectCard key={i} projectInfo={projectInfo} />
+            </Link>
+          );
+        })}
       </ProjectCardLayout>
     </Container>
   );

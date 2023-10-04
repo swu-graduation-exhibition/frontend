@@ -1,5 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { getProjectList } from '~/api/project';
 import { PageLayout } from '~/common/components';
 import TopButton from '~/common/components/TopButton';
 import { Mobile } from '~/utils/mediaQuery';
@@ -15,8 +17,32 @@ const CategoryData = {
 
 function Project() {
   const { category } = useParams();
-  type TCategory = keyof typeof CategoryData;
-  const projectData = CategoryData[category as TCategory];
+
+  const checkCategoryType = () => {
+    switch (category) {
+      case 'ux-design':
+        return 1;
+      case 'digital-fabrication':
+        return 2;
+      case 'bx-design':
+        return 3;
+      default:
+        return 1;
+    }
+  };
+
+  const { data: projectData } = useQuery(
+    ['projectData', category],
+    () => getProjectList(checkCategoryType()),
+    {
+      onSuccess: () => {},
+      onError: (err) => {
+        console.log(err);
+      },
+    },
+  );
+
+  console.log(projectData);
 
   return (
     <PageLayout>
