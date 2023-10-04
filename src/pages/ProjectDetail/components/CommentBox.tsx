@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { MOBILE_WIDTH } from '~/constants/common';
 import { CommnetBoxProps } from '../type/comment';
 
 const CommentBox = ({ commentData, $lastelement }: CommnetBoxProps) => {
@@ -27,6 +28,13 @@ const Container = styled.article<{ $lastelement: boolean }>`
 
   border-bottom: ${({ $lastelement, theme }) =>
     $lastelement ? `1px solid ${theme.colors.Grayscales_400}` : null};
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    flex-direction: column;
+    margin: 0 4rem;
+    padding: 2.4rem 0;
+    border-bottom: ${({ theme }) => `1px solid ${theme.colors.Grayscales_400}`};
+  }
 `;
 
 const CommentInfoBox = styled.div`
@@ -36,14 +44,33 @@ const CommentInfoBox = styled.div`
   min-width: 18.3rem;
 `;
 
-const Name = styled.span(({ theme }) => theme.fonts.Subtitle_04);
+const Name = styled.span`
+  ${({ theme }) => theme.fonts.Subtitle_04}
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_01}
+    font-weight: 700;
+  }
+`;
+
 const Date = styled.span(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     margin-top: 0.8rem;
 
     color: ${({ theme }) => theme.colors.Grayscales_500};
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Body_05};
+      color: ${({ theme }) => theme.colors.Grayscales_500};
+    }
   `,
 );
 
-const Content = styled.span(({ theme }) => theme.fonts.Caption_03);
+const Content = styled.span`
+  ${({ theme }) => theme.fonts.Caption_03}
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_03}
+  }
+`;

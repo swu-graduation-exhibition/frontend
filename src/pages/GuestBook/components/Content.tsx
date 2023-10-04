@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import styled, { css } from 'styled-components';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 interface ContentProps {
   guestBookContents: { sender: string; receiver: number; content: string };
@@ -21,16 +21,58 @@ const Content = (props: ContentProps) => {
   };
 
   return (
-    <ContentArea
-      placeholder="내용을 입력해 주세요."
-      maxLength={100}
-      value={guestBookContents.content}
-      onChange={handleInputContent}
-    />
+    <TextAreaWrapper>
+      <ContentArea
+        placeholder="내용을 입력해 주세요."
+        maxLength={100}
+        value={guestBookContents.content}
+        onChange={handleInputContent}
+      />
+      <CountingLetterSection>
+        <CountLetter>{`${guestBookContents.content?.length ?? 0} / 100`}</CountLetter>
+      </CountingLetterSection>
+    </TextAreaWrapper>
   );
 };
 
 export default Content;
+
+const TextAreaWrapper = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const CountingLetterSection = styled.section`
+  position: absolute;
+  right: 2.4rem;
+  bottom: 2.4rem;
+`;
+
+const CountLetter = styled.span(
+  ({ theme }) => theme.fonts.Caption_03,
+  css`
+    color: ${({ theme }) => theme.colors.Grayscales_500};
+  `,
+);
+
+const CommentBox = styled.p`
+  position: absolute;
+  right: 12%;
+  margin-top: -4rem;
+
+  ${({ theme }) => theme.fonts.Caption_03_Gray500};
+  font-size: 1.5rem;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    right: 10%;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    right: 7%;
+  }
+`;
 
 const ContentArea = styled.textarea`
   resize: none;

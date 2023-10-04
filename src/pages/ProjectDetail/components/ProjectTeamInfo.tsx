@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import ProjectTeamDesignerCard from './ProjectTeamDesignerCard';
 
 const ProjectTeamInfo = () => {
@@ -37,6 +37,7 @@ const ProjectTeamInfo = () => {
   return (
     <Container>
       <TeamName>Team.name</TeamName>
+
       <TeamCardContainer>
         {memberList.map((member) => {
           return <ProjectTeamDesignerCard member={member} />;
@@ -54,21 +55,32 @@ const Container = styled.section`
   width: 100%;
   height: fit-content;
   gap: 6.4rem;
-  margin-bottom: 21rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    gap: 0.6rem;
+  }
 
   max-width: 165rem;
 `;
 
-const TeamName = styled.div(({ theme }) => theme.fonts.Subtitle_01, css``);
+const TeamName = styled.div(
+  ({ theme }) => theme.fonts.Subtitle_01,
+  css`
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_02}
+    }
+  `,
+);
 
 const TeamCardContainer = styled.div`
   display: grid;
   width: 100%;
-  height: 41.2rem;
+
+  /* height: 41.2rem; */
 
   grid-template-columns: repeat(4, 1fr);
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;

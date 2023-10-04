@@ -4,7 +4,7 @@ import { getProjectComment } from '~/api/project';
 const useGetProjectCommentTablet = (id: number, page: number) => {
   const { data: tabletData } = useQuery(
     ['getProjectCommentTablet', id, page],
-    () => getProjectComment(id, page, 6),
+    () => getProjectComment(id, page, 3),
     {
       onSuccess: (res) => {
         // console.log(res);
@@ -15,6 +15,7 @@ const useGetProjectCommentTablet = (id: number, page: number) => {
     },
   );
 
+  console.log(tabletData);
   return { tabletData };
 };
 

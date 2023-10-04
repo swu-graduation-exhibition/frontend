@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 const ProjectDetailAssets = () => {
   const photo =
@@ -15,4 +16,12 @@ const Container = styled.img`
   max-width: 165rem;
   height: 140rem;
   margin-bottom: 20rem;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin-bottom: 12.8rem;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-bottom: 5rem;
+  }
 `;
