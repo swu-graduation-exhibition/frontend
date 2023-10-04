@@ -25,7 +25,7 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       <TextAreaWrapper>
         <TextArea placeholder={messageMent} value={message} onChange={textAreaOnChange} />
         <CountingLetterSection>
-          <CountLetter>{`(${message?.length ?? 0} / 100자)`}</CountLetter>
+          <CountLetter>{`${message?.length ?? 0} / 100`}</CountLetter>
         </CountingLetterSection>
       </TextAreaWrapper>
     </Container>
@@ -108,6 +108,13 @@ const FromInput = styled.input(
     background-color: white;
 
     border-radius: 1rem;
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      width: 39.2rem;
+      padding: 1.6rem 2.4rem;
+      font-size: 1.5rem;
+    }
   `,
 );
 
@@ -120,11 +127,27 @@ const SubmitButton = styled.button(
 
     background-color: ${({ theme }) => theme.colors.Grayscales_900};
     color: ${({ theme }) => theme.colors.Grayscales_50};
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      color: ${({ theme }) => theme.colors.Grayscales_50};
+      margin-left: 1rem;
+
+      font-size: 1.5rem;
+    }
   `,
 );
 const UnSubmitButton = styled(SubmitButton)`
   background-color: ${({ theme }) => theme.colors.Grayscales_200};
   color: ${({ theme }) => theme.colors.Grayscales_600};
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Caption_03}
+    color: ${({ theme }) => theme.colors.Grayscales_600};
+    margin-left: 1rem;
+
+    font-size: 1.5rem;
+  }
 `;
 
 const TextArea = styled.textarea(
@@ -141,6 +164,12 @@ const TextArea = styled.textarea(
     border-radius: 1rem;
 
     resize: none;
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      font-size: 1.5rem;
+      height: 25.6rem;
+    }
   `,
 );
 
@@ -161,5 +190,6 @@ const CountLetter = styled.span(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     color: ${({ theme }) => theme.colors.Grayscales_500};
+    font-size: 1.5rem;
   `,
 );
