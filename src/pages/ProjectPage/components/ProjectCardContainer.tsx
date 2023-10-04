@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { IProjectData } from '../data/cardData';
 import ProjectCard from './ProjectCard';
 
 interface IProjectProps {
-  projectData: IProjectData[];
+  projectData: { type: number; title: string; members: string; photo: string }[];
 }
 
 function ProjectCardContainer({ projectData }: IProjectProps) {

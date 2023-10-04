@@ -1,11 +1,47 @@
 import styled, { css } from 'styled-components';
-import theme from '~/styles/theme';
+import { MOBILE_WIDTH } from '~/constants/common';
+import ProjectTeamDesignerCard from './ProjectTeamDesignerCard';
 
 const ProjectTeamInfo = () => {
+  const memberList = [
+    {
+      designerId: 19,
+      name: '엄희수',
+      profile:
+        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
+      field: 'UX',
+    },
+    {
+      designerId: 22,
+      name: '원예린',
+      profile:
+        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
+      field: 'BX',
+    },
+    {
+      designerId: 32,
+      name: '이인영',
+      profile:
+        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
+      field: 'UX BX',
+    },
+    {
+      designerId: 34,
+      name: '이지은',
+      profile:
+        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
+      field: 'UX',
+    },
+  ];
+
   return (
     <Container>
       <TeamName>Team.name</TeamName>
-      <TeamCardContainer></TeamCardContainer>
+      <TeamCardContainer>
+        {memberList.map((member) => {
+          return <ProjectTeamDesignerCard member={member} />;
+        })}
+      </TeamCardContainer>
     </Container>
   );
 };
@@ -19,15 +55,20 @@ const Container = styled.section`
   height: fit-content;
   gap: 6.4rem;
   margin-bottom: 21rem;
-  
+
   max-width: 165rem;
 `;
 
 const TeamName = styled.div(({ theme }) => theme.fonts.Subtitle_01, css``);
 
 const TeamCardContainer = styled.div`
+  display: grid;
   width: 100%;
   height: 41.2rem;
 
-  background-color: slateblue;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;

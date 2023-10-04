@@ -24,7 +24,7 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
     setIsMouseOn(false);
   };
 
-  const category = ['', 'ux-design', 'digital-fabrication', 'bx-design'];
+  const category = ['', 'UX', 'DF', 'BX'];
 
   return (
     <>
