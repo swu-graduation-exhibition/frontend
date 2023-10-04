@@ -58,7 +58,7 @@ const ContentWrapper = styled.div`
   position: relative;
 `;
 const PageContentImg = styled.img`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   z-index: -10;
