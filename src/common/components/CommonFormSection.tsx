@@ -1,13 +1,45 @@
-import styled, { DefaultTheme, css } from 'styled-components';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { postProjectComment } from '~/api/project';
+import { MOBILE_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
+import { FormSectionProps } from '~/types/commonFormSection';
 import { FormSupplies } from '../data/commonFormSection';
-import { FormSectionProps, SubmitButtonProps } from '~/types/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
   const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
   const { to, message } = formData;
+  const { projectId } = useParams();
 
   const { title, toMent, messageMent } = FormSupplies[page];
+
+  const queryClient = useQueryClient();
+  const { mutate: sendComment } = useMutation(
+    () =>
+      postProjectComment({
+        sender: formData.to,
+        receiver: Number(projectId),
+        content: formData.message,
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['getProjectCommentDesktop']);
+
+        queryClient.invalidateQueries(['getProjectCommentTablet']);
+
+        queryClient.invalidateQueries(['getProjectCommentMobile']);
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    },
+  );
+
+  const sendProjectComment = () => {
+    sendComment();
+  };
+
   return (
     <Container>
       <HeaderSection>
@@ -18,14 +50,17 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
 
-        {isButtonActive ? <SubmitButton>등록</SubmitButton> : <UnSubmitButton>등록</UnSubmitButton>}
-
+        {isButtonActive ? (
+          <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
+        ) : (
+          <UnSubmitButton>등록</UnSubmitButton>
+        )}
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
       <TextAreaWrapper>
         <TextArea placeholder={messageMent} value={message} onChange={textAreaOnChange} />
         <CountingLetterSection>
-          <CountLetter>{`(${message?.length ?? 0} / 100자)`}</CountLetter>
+          <CountLetter>{`${message?.length ?? 0} / 100`}</CountLetter>
         </CountingLetterSection>
       </TextAreaWrapper>
     </Container>
@@ -40,9 +75,14 @@ const Container = styled.form`
 `;
 const HeaderSection = styled.div`
   display: flex;
+  align-items: center;
+  margin-bottom: 5rem;
   flex-direction: row;
   gap: 2.4rem;
-  margin-bottom: 5rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-bottom: 4rem;
+  }
 `;
 
 const ToLabelSection = styled.div(
@@ -60,7 +100,14 @@ const MsgLabelSection = styled.div(
   `,
 );
 
-const Title = styled.div(({ theme }) => theme.fonts.Subtitle_01);
+const Title = styled.div(
+  ({ theme }) => theme.fonts.Subtitle_01,
+  css`
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_01}
+    }
+  `,
+);
 
 const CommentCount = styled.span(
   ({ theme }) => theme.fonts.Subtitle_01,
@@ -69,6 +116,13 @@ const CommentCount = styled.span(
 
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 300;
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Body_02}
+      font-weight: 300;
+
+      color: ${({ theme }) => theme.colors.Grayscales_600};
+    }
   `,
 );
 const ToInputWrapper = styled.div`
@@ -89,11 +143,17 @@ const FromInput = styled.input(
     background-color: white;
 
     border-radius: 1rem;
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      width: 39.2rem;
+      padding: 1.6rem 2.4rem;
+      font-size: 1.5rem;
+    }
   `,
 );
 
 const SubmitButton = styled.button(
-
   ({ theme }) => theme.fonts.Caption_03,
   css`
     width: 14.9rem;
@@ -101,16 +161,29 @@ const SubmitButton = styled.button(
     border-radius: 1rem;
 
     background-color: ${({ theme }) => theme.colors.Grayscales_900};
-
     color: ${({ theme }) => theme.colors.Grayscales_50};
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      color: ${({ theme }) => theme.colors.Grayscales_50};
+      margin-left: 1rem;
+
+      font-size: 1.5rem;
+    }
   `,
 );
 const UnSubmitButton = styled(SubmitButton)`
   background-color: ${({ theme }) => theme.colors.Grayscales_200};
-
   color: ${({ theme }) => theme.colors.Grayscales_600};
-`;
 
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Caption_03}
+    color: ${({ theme }) => theme.colors.Grayscales_600};
+    margin-left: 1rem;
+
+    font-size: 1.5rem;
+  }
+`;
 
 const TextArea = styled.textarea(
   ({ theme }) => theme.fonts.Caption_02,
@@ -126,6 +199,12 @@ const TextArea = styled.textarea(
     border-radius: 1rem;
 
     resize: none;
+
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      font-size: 1.5rem;
+      height: 25.6rem;
+    }
   `,
 );
 
@@ -146,5 +225,6 @@ const CountLetter = styled.span(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     color: ${({ theme }) => theme.colors.Grayscales_500};
+    font-size: 1.5rem;
   `,
 );

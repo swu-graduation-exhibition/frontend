@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import theme from '~/styles/theme';
 
 function ProjectDetailHeader() {
@@ -39,12 +39,26 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 5rem;
-  height: 50.2rem;
-  padding: 16rem 0 8.2rem;
+  padding: 0 0 8.2rem;
+
   flex-direction: row;
 
+  @media screen and (width >${TABLET_WIDTH}) {
+    height: 50.2rem;
+    gap: 5rem;
+
+    margin: 16rem 0 0;
+  }
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin: 5.6rem 0 6.4rem;
+    padding: 0;
+    flex-direction: column;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin: 2.3rem 0 6.4rem;
+    padding: 0;
     flex-direction: column;
   }
 `;
@@ -79,8 +93,12 @@ const ProjectName = styled.div(
 );
 const ProjectMembers = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   gap: 0.38rem;
+
+  ${({ theme }) => theme.fonts.Caption_01};
+  color: ${({ theme }) => theme.colors.Grayscales_700};
+  margin-bottom: 3.2rem;
 `;
 
 const Member = styled.span(

@@ -1,11 +1,12 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { getProjectComment } from '~/api/project';
 import TopButton from '~/common/components/TopButton';
 import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
-import useGetProjectCommentMobile from '~/hooks/useGetProjectCommentMobile';
 import useGetProjectCommentTablet from '~/hooks/useGetProjectCommentTablet';
+import useInfiniteScroll from '~/hooks/useInfiniteScroll';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import CommentBox from './CommentBox';
 import Pagination from './Pagination';
@@ -21,20 +22,55 @@ const CommentListSection = () => {
   // 태블릿
   const [currentTabletPage, setCurrentTabletPage] = useState(1);
   const { tabletData } = useGetProjectCommentTablet(Number(projectId), currentTabletPage);
-  const lastTabletPage = Math.ceil(tabletData?.count / 6);
+  const lastTabletPage = Math.ceil(tabletData?.count / 3);
   const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
 
   // 모바일
-  const [currentMobilePage, setCurrentMobilePage] = useState(1);
-  const { mobileData } = useGetProjectCommentMobile(Number(projectId), currentMobilePage);
-  const lastMobilePage = Math.ceil(mobileData?.count / 3);
-  const paginationMobileNumbers = Array.from({ length: lastMobilePage }).map((_, i) => i + 1);
-
   const queryClient = useQueryClient();
 
   const getQuery = (key: string) => {
     queryClient.invalidateQueries([key]);
   };
+
+  // 모바일
+
+  const [mobilComment, setMobilComment] = useState<any>([]);
+  const [mobileCount, setMobileCount] = useState(0);
+  const [isKey, setIsKey] = useState(false);
+
+  useEffect(() => {
+    setMobilComment([]);
+  }, [projectId]);
+
+  useEffect(() => {
+    if (mobilComment.length === 0) {
+      setIsKey((ik) => !ik);
+    }
+  }, [mobilComment]);
+
+  const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery(
+      ['getProjectCommentMobile', isKey],
+      async ({ pageParam = 1 }) => await getData(pageParam),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage?.nextPage;
+        },
+        refetchOnWindowFocus: false,
+      },
+    );
+
+  const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
+
+  async function getData(page: number) {
+    if (hasNextPage !== false) {
+      const response = await getProjectComment(Number(projectId), page, 3);
+      setMobileCount(response?.count);
+      setMobilComment((prev: any) => [...prev, ...response?.projectCommentList]);
+
+      return { response, nextPage: page + 1 };
+    }
+  }
 
   return (
     <Container>
@@ -97,32 +133,25 @@ const CommentListSection = () => {
       </Tablet>
       <Mobile>
         <>
-          {getQuery('getProjectCommentMobile')}
-
           <TopButton />
           <CommentListWrapper>
-            {mobileData?.count > 0 ? (
+            {mobileCount > 0 ? (
               <>
-                {mobileData.projectCommentList.map((commentData: any, i: number) => (
-                  <CommentBox
-                    key={i}
-                    commentData={commentData}
-                    $lastelement={i === mobileData.projectCommentList.length - 1 ? false : true}
-                  />
-                ))}
+                {[...mobilComment]
+                  .filter((comment, i) => i > 2 && comment)
+                  .map((commentData: any, i: number) => (
+                    <CommentBox
+                      key={i}
+                      commentData={commentData}
+                      $lastelement={i === mobileCount - 1 ? false : true}
+                    />
+                  ))}
               </>
             ) : (
               <>아직 등록되어 있는 메시지가 없어요.</>
             )}
           </CommentListWrapper>
-          {mobileData?.count > 3 && (
-            <Pagination
-              currentPage={currentMobilePage}
-              setCurrentPage={setCurrentMobilePage}
-              lastPage={lastMobilePage}
-              paginationNumbers={paginationMobileNumbers}
-            />
-          )}
+          <Target ref={observerRef} />
         </>
       </Mobile>
     </Container>
@@ -130,6 +159,10 @@ const CommentListSection = () => {
 };
 
 export default CommentListSection;
+
+const Target = styled.div`
+  height: 50px;
+`;
 
 const Container = styled.div`
   height: fit-content;

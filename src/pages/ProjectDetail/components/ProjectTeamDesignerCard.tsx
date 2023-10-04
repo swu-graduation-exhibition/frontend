@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { MOBILE_WIDTH } from '~/constants/common';
+import { Mobile } from '~/utils/mediaQuery';
 
 interface ProjectTeamDesignerCardProp {
   member: { designerId: number; name: string; profile: string; field: string };
@@ -43,11 +44,51 @@ const ProjectTeamDesignerCard = ({ member }: ProjectTeamDesignerCardProp) => {
           </CardBackDrop>
         )}
       </Container>
+
+      <Mobile>
+        <MobileContainer onClick={moveToDesignerPage}>
+          <CardThumbnail src={member.profile} />
+          <CaptionContainer>
+            <CaptionTitleText>{member.field}</CaptionTitleText>
+            <CaptionParticipants>
+              <MemberText>{member.name}</MemberText>
+            </CaptionParticipants>
+          </CaptionContainer>
+        </MobileContainer>
+      </Mobile>
     </>
   );
 };
 
 export default ProjectTeamDesignerCard;
+
+const MobileContainer = styled.article`
+  position: relative;
+
+  cursor: pointer;
+  margin-bottom: 10rem;
+`;
+
+const CaptionContainer = styled.section`
+  flex-direction: column;
+  padding: 1.3rem 0 6.4rem 1.6rem;
+`;
+
+const CaptionTitleText = styled.span`
+  ${({ theme }) => theme.fonts.Caption_03}
+  font-weight: 700;
+
+  color: black;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Subtitle_04}
+  }
+`;
+
+const CaptionParticipants = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
 
 const Container = styled.article`
   position: relative;
@@ -55,7 +96,12 @@ const Container = styled.article`
   cursor: pointer;
 
   margin-bottom: -0.2rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    display: none;
+  }
 `;
+
 const CardThumbnail = styled.img`
   width: 100%;
   height: 100%;
@@ -117,7 +163,9 @@ const MemberText = styled.p`
   color: white;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    ${({ theme }) => theme.fonts.Mobile_Body_04};
+    margin-top: 0.6rem;
+
+    ${({ theme }) => theme.fonts.Mobile_Subtitle_03};
     color: ${({ theme }) => theme.colors.Black};
   }
 `;
