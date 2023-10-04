@@ -6,7 +6,7 @@ const Desktop = ({ children }: { children: JSX.Element }): JSX.Element | null =>
 };
 
 const GuestBookDesktop = ({ children }: { children: JSX.Element }): JSX.Element | null => {
-  const isDesktop = useMediaQuery({ minWidth: 1201 });
+  const isDesktop = useMediaQuery({ minWidth: 1401 });
   return isDesktop ? children : null;
 };
 
@@ -16,7 +16,7 @@ const Tablet = ({ children }: { children: JSX.Element }): JSX.Element | null => 
 };
 
 const GuestBookTablet = ({ children }: { children: JSX.Element }): JSX.Element | null => {
-  const isTablet = useMediaQuery({ minWidth: 521, maxWidth: 1200 });
+  const isTablet = useMediaQuery({ minWidth: 521, maxWidth: 1400 });
   return isTablet ? children : null;
 };
 

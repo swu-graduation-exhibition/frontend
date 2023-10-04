@@ -32,7 +32,8 @@ const Container = styled.article<{ $lastelement: boolean }>`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     flex-direction: column;
     padding: 2.4rem 0;
-    border-bottom: ${({ theme }) => `1px solid ${theme.colors.Grayscales_400}`};
+
+    /* border-bottom: ${({ theme }) => `1px solid ${theme.colors.Grayscales_400}`}; */
   }
 `;
 

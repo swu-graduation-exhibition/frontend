@@ -47,16 +47,6 @@ const Container = styled.div`
 
   @media screen and (width <= 1500px) {
     height: 30rem;
-    padding: 3rem;
-  }
-
-  @media screen and (width <= 1400px) {
-    height: 24rem;
-    padding: 3rem;
-  }
-
-  @media screen and (width <= 1500px) {
-    height: 24rem;
     padding: 2rem;
   }
 

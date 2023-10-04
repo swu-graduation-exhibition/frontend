@@ -152,11 +152,11 @@ const Letters = () => {
       <Mobile>
         <>
           <TopButton />
-          {/* {desktopData?.count > 0 ? ( */}
           {mobileDesignerCommentList ? (
             <LettersWrapper>
-              {mobileDesignerCommentList?.map(
-                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
+              {[...mobileDesignerCommentList]
+                .filter((comment, i) => i > 2 && comment)
+                .map(({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
                     sender={sender}
@@ -164,8 +164,7 @@ const Letters = () => {
                     createdAt={createdAt}
                     receiver={receiver}
                   />
-                ),
-              )}
+                ))}
             </LettersWrapper>
           ) : (
             <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
@@ -184,7 +183,7 @@ const Letters = () => {
 export default Letters;
 
 const Target = styled.div`
-  height: 10px;
+  height: 50px;
 `;
 const LettersWrapper = styled.section`
   display: grid;
@@ -193,7 +192,7 @@ const LettersWrapper = styled.section`
 
   gap: 2rem;
 
-  @media screen and (width <= 1500px) {
+  @media screen and (width <= 1400px) {
     margin: 9.4rem 0;
     grid-template-columns: repeat(2, 1fr);
   }

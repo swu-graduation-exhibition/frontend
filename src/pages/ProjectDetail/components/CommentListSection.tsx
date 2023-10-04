@@ -72,8 +72,6 @@ const CommentListSection = () => {
     }
   }
 
-  // console.log(desktopData);
-
   return (
     <Container>
       <Desktop>
@@ -139,13 +137,15 @@ const CommentListSection = () => {
           <CommentListWrapper>
             {mobileCount > 0 ? (
               <>
-                {mobilComment.map((commentData: any, i: number) => (
-                  <CommentBox
-                    key={i}
-                    commentData={commentData}
-                    $lastelement={i === mobileCount - 1 ? false : true}
-                  />
-                ))}
+                {[...mobilComment]
+                  .filter((comment, i) => i > 2 && comment)
+                  .map((commentData: any, i: number) => (
+                    <CommentBox
+                      key={i}
+                      commentData={commentData}
+                      $lastelement={i === mobileCount - 1 ? false : true}
+                    />
+                  ))}
               </>
             ) : (
               <>아직 등록되어 있는 메시지가 없어요.</>
@@ -161,7 +161,7 @@ const CommentListSection = () => {
 export default CommentListSection;
 
 const Target = styled.div`
-  height: 30px;
+  height: 50px;
 `;
 
 const Container = styled.div`
