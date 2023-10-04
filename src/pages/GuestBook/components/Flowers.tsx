@@ -61,6 +61,7 @@ import {
   TabletFlower8,
   TabletFlower9,
 } from '~/assets/icons';
+import { TABLET_WIDTH } from '~/constants/common';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 
 interface FlowerProp {
@@ -223,8 +224,9 @@ const DesktopContainer = styled.section`
   align-items: flex-end;
   position: absolute;
   z-index: -3;
-  width: 105%;
+  width: 110%;
   margin-top: -35%;
+  margin-left: -18rem;
 
   @media screen and (width <= 1400px) {
     margin-top: -40%;
@@ -233,17 +235,30 @@ const DesktopContainer = styled.section`
   @media screen and (width <= 1200px) {
     margin-top: -45%;
   }
+
+  @media screen and (width <= 1000px) {
+    margin-left: -16rem;
+  }
+
+  @media screen and (width <= 950px) {
+    margin-left: -10rem;
+  }
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin-left: -5rem;
+  }
 `;
 
 const MobileContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  position: absolute;
+  position: fixed;
+  top: 65%;
+  left: -0.5rem;
   z-index: -1;
 
   width: 105%;
-  margin-top: -25%;
 `;
 
 const DesktopFlower20Img = styled(DesktopFlower20)`

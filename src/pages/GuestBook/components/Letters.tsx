@@ -11,6 +11,7 @@ import Pagination from '~/pages/ProjectDetail/components/Pagination';
 import { GuestBookPageCard } from '~/types/guestBook';
 import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import CategoryDropBox from './CategoryDropBox';
+import Flowers from './Flowers';
 import GuestBookCard from './GuestBookCard';
 
 const Letters = () => {
@@ -108,6 +109,8 @@ const Letters = () => {
               paginationNumbers={paginationDesktopNumbers}
             />
           </PaginationWrapper>
+
+          <Flowers length={desktopData?.count} />
         </>
       </GuestBookDesktop>
       <GuestBookTablet>
@@ -138,6 +141,8 @@ const Letters = () => {
               paginationNumbers={paginationTabletNumbers}
             />
           </PaginationWrapper>
+
+          <Flowers length={tabletData?.count} />
         </>
       </GuestBookTablet>
       <Mobile>
@@ -162,6 +167,8 @@ const Letters = () => {
             <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
           )}
           <Target ref={observerRef} />
+
+          <Flowers length={mobileDesignerCommentList?.length} />
         </>
       </Mobile>
     </>
@@ -171,7 +178,7 @@ const Letters = () => {
 export default Letters;
 
 const Target = styled.div`
-  height: 50px;
+  height: 10px;
 `;
 const LettersWrapper = styled.section`
   display: grid;

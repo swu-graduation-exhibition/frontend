@@ -32,7 +32,6 @@ const GuestBook = () => {
         <GuestBookInput />
         <Letters />
       </PageLayout>
-      <Flowers length={desktopData?.count} />
       <FooterWrapper>
         <Footer />
       </FooterWrapper>
