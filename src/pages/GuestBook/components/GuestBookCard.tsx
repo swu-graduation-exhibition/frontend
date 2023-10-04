@@ -19,7 +19,7 @@ export default GuestBookCard;
 const Receiver = styled.p`
   ${({ theme }) => theme.fonts.Subtitle_04_Gray700};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1200px) {
     ${({ theme }) => theme.fonts.Mobile_Headline_01_Gray700};
   }
 `;
@@ -79,7 +79,7 @@ const CreatedAt = styled.div`
   ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Grayscales_600};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <=1500px) {
     ${({ theme }) => theme.fonts.Mobile_Body_05};
   }
 `;
