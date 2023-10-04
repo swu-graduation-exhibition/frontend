@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { IProjectData } from '../data/cardData';
+import { MOBILE_WIDTH } from '~/constants/common';
+import { Mobile, ProjectDesktop } from '~/utils/mediaQuery';
 
 interface ProjectCardProps {
-  projectInfo: IProjectData;
+  projectInfo: { type: number; title: string; members: string; photo: string };
 }
 
 function ProjectCard({ projectInfo }: ProjectCardProps) {
-  const { category, title, participants, thumbnail }: IProjectData = projectInfo;
+  // const { type, title, members, photo } = projectInfo;
   const [isMouseOn, setIsMouseOn] = useState(false);
+  const type = 1;
+  const title = '제목제목';
+  const members = '홍서희 이용택 서지수';
+  const photo =
+    'https://post-phinf.pstatic.net/MjAyMTAyMjNfMjkg/MDAxNjE0MDQ4NTUxMzYw.pyVNFQcsE2G6hKY3NWGifpRZ20AY3N-WcI2EnajLKI0g.ogPk2GuTe38BoGSdIixOtIiR7p4FpS8_cky70baZIdUg.PNG/%EC%8A%A4%ED%8F%B0%EC%A7%80%EB%B0%A5%284%29.png?type=w800_q75';
 
   const handleMouseOver = () => {
     setIsMouseOn(true);
@@ -18,31 +24,38 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
     setIsMouseOn(false);
   };
 
+  const category = ['', 'UX', 'DF', 'BX'];
+
   return (
-    <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <CardThumbnail src={thumbnail} />
-      {isMouseOn && (
-        <CardBackDrop className="backdrop">
-          <CategoryText>{category}</CategoryText>
-          <ProjectInfoContainer>
-            <TitleText>{title}</TitleText>
-            <ParticipantsContainer>
-              {participants.map((member, i) => {
-                return <MemberText key={i}>{member}</MemberText>;
-              })}
-            </ParticipantsContainer>
-          </ProjectInfoContainer>
-        </CardBackDrop>
-      )}
-      <CaptionContainer className="caption">
-        <CaptionTitleText>{title}</CaptionTitleText>
-        <CaptionParticipants>
-          {participants.map((member, i) => {
-            return <CaptionMemberText key={i}>{member}</CaptionMemberText>;
-          })}
-        </CaptionParticipants>
-      </CaptionContainer>
-    </Container>
+    <>
+      <ProjectDesktop>
+        <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+          <CardThumbnail src={photo} alt="프로젝트 사진" />
+          {isMouseOn && (
+            <CardBackDrop>
+              <CategoryText>{category[type]}</CategoryText>
+              <ProjectInfoContainer>
+                <TitleText>{title}</TitleText>
+                <ParticipantsContainer>
+                  <MemberText>{members}</MemberText>
+                </ParticipantsContainer>
+              </ProjectInfoContainer>
+            </CardBackDrop>
+          )}
+        </Container>
+      </ProjectDesktop>
+      <Mobile>
+        <Container>
+          <CardThumbnail src={photo} />
+          <CaptionContainer>
+            <CaptionTitleText>{title}</CaptionTitleText>
+            <CaptionParticipants>
+              <MemberText>{members}</MemberText>
+            </CaptionParticipants>
+          </CaptionContainer>
+        </Container>
+      </Mobile>
+    </>
   );
 }
 
@@ -50,22 +63,14 @@ export default ProjectCard;
 
 const Container = styled.article`
   position: relative;
-  height: 100%;
+
   cursor: pointer;
-
-  @media screen and (width <= 520px) {
-    .caption {
-      display: flex;
-    }
-
-    .backdrop {
-      display: none;
-    }
-  }
+  margin-bottom: -0.2rem;
 `;
 const CardThumbnail = styled.img`
   width: 100%;
   height: 100%;
+  border: 1px solid black;
 `;
 const CardBackDrop = styled.article`
   position: absolute;
@@ -114,16 +119,20 @@ const ParticipantsContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const MemberText = styled.span`
+const MemberText = styled.p`
   width: fit-content;
   min-width: fit-content;
 
   ${({ theme }) => theme.fonts.Caption_02}
   color: white;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Mobile_Body_04};
+    color: ${({ theme }) => theme.colors.Black};
+  }
 `;
 
 const CaptionContainer = styled.section`
-  display: none;
   flex-direction: column;
   padding: 1.3rem 0 6.4rem 1.6rem;
 `;
@@ -133,6 +142,10 @@ const CaptionTitleText = styled.span`
   font-weight: 700;
 
   color: black;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    ${({ theme }) => theme.fonts.Subtitle_03}
+  }
 `;
 
 const CaptionParticipants = styled.div`

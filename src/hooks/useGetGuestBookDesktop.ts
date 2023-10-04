@@ -4,7 +4,7 @@ import { getGuestBook } from '~/api/guestBook';
 const useGetGuestBookDesktop = (id: number, page: number) => {
   const designerId = id === -1 ? '' : id;
   const { data: desktopData } = useQuery(
-    ['getGuestBook', id],
+    ['getGuestBookDesktop', id, page],
     () => getGuestBook(designerId, page, 8),
     {
       onSuccess: (res) => {

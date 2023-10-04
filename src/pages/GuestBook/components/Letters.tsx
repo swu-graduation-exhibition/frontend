@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getGuestBook } from '~/api/guestBook';
@@ -27,6 +27,12 @@ const Letters = () => {
   const { tabletData } = useGetGuestBookTablet(designerId, currentTabletPage);
   const lastTabletPage = Math.ceil(tabletData?.count / 6);
   const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
+
+  const queryClient = useQueryClient();
+
+  const getQuery = (key: string) => {
+    queryClient.invalidateQueries([key]);
+  };
 
   // 모바일
 
@@ -76,6 +82,7 @@ const Letters = () => {
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <GuestBookDesktop>
         <>
+          {getQuery('getGuestBookDesktop')}
           {desktopData?.count > 0 ? (
             <LettersWrapper>
               {desktopData.commentList.map(
@@ -105,6 +112,7 @@ const Letters = () => {
       </GuestBookDesktop>
       <GuestBookTablet>
         <>
+          {getQuery('getGuestBookTablet')}
           {tabletData?.count > 0 ? (
             <LettersWrapper>
               {tabletData?.commentList.map(
@@ -163,7 +171,7 @@ const Letters = () => {
 export default Letters;
 
 const Target = styled.div`
-  height: 30px;
+  height: 50px;
 `;
 const LettersWrapper = styled.section`
   display: grid;

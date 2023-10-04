@@ -1,8 +1,9 @@
-import styled, { css } from 'styled-components';
-import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 import { useState } from 'react';
-import { IcStarAll } from '~/assets/icons';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { IcStarAll } from '~/assets/icons';
+import { MOBILE_WIDTH } from '~/constants/common';
+import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
@@ -43,14 +44,12 @@ const Container = styled.section`
   width: 100%;
   max-width: 165rem;
   height: 31.5rem;
-  border-bottom: 1px solid black;
-
-  padding: 16rem 0 8rem;
+  padding: 16rem 13.6rem 8rem;
 
   @media screen and (width <= 1400px) {
     justify-content: flex-start;
     height: fit-content;
-    padding: 1.3rem 0 5.2rem 2.9rem;
+    padding: 5.6rem 6.4rem 5.2rem;
     flex-direction: column;
     gap: 1.8rem;
   }
@@ -82,7 +81,7 @@ const ButtonSection = styled.div`
   gap: 1.6rem;
   width: fit-content;
 
-  @media screen and (width <= 1400px) {
+  @media screen and (width <= ${MOBILE_WIDTH}) {
     flex-direction: column;
   }
 `;
