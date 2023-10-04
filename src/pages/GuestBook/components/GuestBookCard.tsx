@@ -19,7 +19,7 @@ export default GuestBookCard;
 const Receiver = styled.p`
   ${({ theme }) => theme.fonts.Subtitle_04_Gray700};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1500px) {
     ${({ theme }) => theme.fonts.Mobile_Headline_01_Gray700};
   }
 `;
@@ -55,7 +55,7 @@ const Container = styled.div`
     padding: 3rem;
   }
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1500px) {
     height: 24rem;
     padding: 2rem;
   }
@@ -70,7 +70,7 @@ const Sender = styled.div`
   ${({ theme }) => theme.fonts.Subtitle_04};
   color: ${({ theme }) => theme.colors.Grayscales_900};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1500px) {
     ${({ theme }) => theme.fonts.Mobile_Headline_01};
   }
 `;
@@ -79,7 +79,7 @@ const CreatedAt = styled.div`
   ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Grayscales_600};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1500px) {
     ${({ theme }) => theme.fonts.Mobile_Body_05};
   }
 `;
@@ -87,7 +87,7 @@ const Content = styled.div`
   ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Black};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1500px) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 `;
