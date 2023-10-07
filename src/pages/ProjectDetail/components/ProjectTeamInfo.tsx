@@ -58,9 +58,15 @@ const Container = styled.section`
   gap: 6.4rem;
 
   max-width: 165rem;
+  padding: 0 13.6rem;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    padding: 0 6.4rem;
+  }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     gap: 0.6rem;
+    padding: 0;
   }
 `;
 
