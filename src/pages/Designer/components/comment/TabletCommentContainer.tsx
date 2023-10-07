@@ -48,4 +48,5 @@ const CommentListWrapper = styled.div`
   margin-left: 1.6rem;
   margin-right: 1.6rem;
   margin-top: 4.6rem;
+  margin-bottom: 10rem;
 `;

@@ -38,7 +38,12 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
                 <ProjectDetailBottomImg src={ImgGraduationExhibition} />
               </>
             )}
-            {pathname.includes('/designer') && <PageContentImg src={ImgDesignerBackground} />}
+            {pathname.includes('/designer') && (
+              <>
+                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
+                <ProjectDetailBottomImg src={ImgDesignerBackground} />
+              </>
+            )}
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
         </Default>
@@ -48,13 +53,18 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
               <PageContentAbosoulteImg src={ImgMobileGraduationExhibition} />
             )}
             {pathname === '/guestbook' && <PageContentImg src={mobileBackground} />}
-            {pathname.includes('/designer') ||
-              (pathname.includes('/project') && !pathname.includes('/project/detail') && (
-                <>
-                  <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
-                  <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
-                </>
-              ))}
+            {pathname.includes('/designer') && (
+              <>
+                <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+              </>
+            )}
+            {pathname.includes('/project') && !pathname.includes('/project/detail') && (
+              <>
+                <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+              </>
+            )}
             {pathname.includes('/project/detail') && (
               <>
                 <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
