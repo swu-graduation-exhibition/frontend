@@ -1,21 +1,23 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { postProjectComment } from '~/api/project';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
-import { commentCount } from '~/recoil/project';
+import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import { FormSectionProps } from '~/types/commonFormSection';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
-  const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
+  const { formData, setSetFormData, isButtonActive, inputOnChange, textAreaOnChange } =
+    useFormHooks();
   const { to, message } = formData;
   const { projectId } = useParams();
 
-  const [count, setCount] = useRecoilState(commentCount);
+  const { desktopData } = useGetProjectCommentDesktop(Number(projectId), 1);
+  console.log(desktopData);
+
   const { title, toMent, messageMent } = FormSupplies[page];
 
   const queryClient = useQueryClient();
@@ -29,7 +31,10 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       }),
     {
       onSuccess: () => {
-        console.log('Asdf');
+        setSetFormData({
+          to: '',
+          message: '',
+        });
         queryClient.invalidateQueries(['getProjectCommentDesktop']);
         queryClient.invalidateQueries(['getProjectCommentTablet']);
         queryClient.invalidateQueries(['getProjectCommentMobile']);
@@ -48,7 +53,7 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
     <Container>
       <HeaderSection>
         <Title>{title}</Title>
-        {page === 'project' && <CommentCount>{count}</CommentCount>}
+        {page === 'project' && <CommentCount>{desktopData && desktopData.count}</CommentCount>}
       </HeaderSection>
       {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>

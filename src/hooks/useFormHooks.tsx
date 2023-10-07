@@ -19,7 +19,7 @@ const useFormHooks = () => {
   };
 
   const isButtonActive = formData.to.length && formData.message.length;
-  return { formData, isButtonActive, inputOnChange, textAreaOnChange };
+  return { formData, setSetFormData, isButtonActive, inputOnChange, textAreaOnChange };
 };
 
 export default useFormHooks;
