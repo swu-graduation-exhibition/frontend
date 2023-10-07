@@ -253,11 +253,11 @@ const MobileContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  position: fixed;
+  position: absolute;
   top: 65%;
+  bottom: 12rem;
   left: -0.5rem;
   z-index: -1;
-
   width: 105%;
 `;
 
