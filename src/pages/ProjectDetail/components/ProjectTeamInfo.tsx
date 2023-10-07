@@ -51,16 +51,17 @@ export default ProjectTeamInfo;
 
 const Container = styled.section`
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: fit-content;
+  margin: 0 7%;
+  flex-direction: column;
   gap: 6.4rem;
+
+  max-width: 165rem;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     gap: 0.6rem;
   }
-
-  max-width: 165rem;
 `;
 
 const TeamName = styled.div(

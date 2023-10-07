@@ -53,9 +53,6 @@ function Project() {
           <TopButton />
         </Mobile>
       </ProjectLayout>
-      <Mobile>
-        <TopButton />
-      </Mobile>
     </PageLayout>
   );
 }

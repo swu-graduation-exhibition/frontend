@@ -37,7 +37,7 @@ const ProjectDetailContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  margin: 0 7%;
+
   max-width: 164.8rem;
   flex-direction: column;
 `;
