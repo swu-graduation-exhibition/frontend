@@ -32,8 +32,8 @@ const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) =>
       <CardImg src={profile} alt="designer-card" />
       <Default>
         <>
-          <CardHoverContent>
-            {isMouseOn && (
+          {isMouseOn && (
+            <CardHoverContent>
               <TrackUl>
                 {getFieldArray(field)
                   .reverse()
@@ -41,8 +41,8 @@ const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) =>
                     <TrackList key={name_ko + data}>{data}</TrackList>
                   ))}
               </TrackUl>
-            )}
-          </CardHoverContent>
+            </CardHoverContent>
+          )}
           <NameTitle>{name_ko}</NameTitle>
         </>
       </Default>
