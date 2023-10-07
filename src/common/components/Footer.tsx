@@ -75,5 +75,6 @@ const TextLink = styled.a`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_02};
+    color: ${({ theme }) => theme.colors.Yello_Main_700};
   }
 `;

@@ -8,7 +8,7 @@ function Landing() {
   useEffect(() => {
     setTimeout(() => {
       navigate('/home');
-    }, 8000);
+    }, 8500);
   }, []);
   return (
     <PlayerWrapper>
@@ -16,7 +16,7 @@ function Landing() {
         url={'moving_poster.mp4'}
         width="100%"
         height="100%"
-        loop={true}
+        loop={false}
         muted={true} //chrome정책으로 인해 자동 재생을 위해 mute 옵션을 true로 해주었다.
         playing={true}
       />
