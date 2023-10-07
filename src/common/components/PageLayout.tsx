@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import ImgDesignerBackgroundCir from '~/assets/images/DesignerBgCir.png';
+import ImgProjectDetailTopBg from '~/assets/images/ImgProjectDetail.png';
 import ImgMobileGraduationExhibition from '~/assets/images/bg1_all_mobile.png';
 import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
 import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
@@ -28,6 +29,15 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         <Default>
           <>
             {pathname === '/home' && <PageContentAbosoulteImg src={ImgGraduationExhibition} />}
+            {pathname.includes('/project') && !pathname.includes('/project/detail') && (
+              <ProjectDetailBottomImg src={ImgGraduationExhibition} />
+            )}
+            {pathname.includes('/project/detail') && (
+              <>
+                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
+                <ProjectDetailBottomImg src={ImgGraduationExhibition} />
+              </>
+            )}
             {pathname.includes('/designer') && <PageContentImg src={ImgDesignerBackground} />}
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
@@ -38,9 +48,16 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
               <PageContentAbosoulteImg src={ImgMobileGraduationExhibition} />
             )}
             {pathname === '/guestbook' && <PageContentImg src={mobileBackground} />}
-            {pathname.includes('/designer') && (
+            {pathname.includes('/designer') ||
+              (pathname.includes('/project') && !pathname.includes('/project/detail') && (
+                <>
+                  <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                  <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+                </>
+              ))}
+            {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
                 <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
               </>
             )}
@@ -104,4 +121,12 @@ const DesignerBackgrodundCirImg = styled.img`
 
   width: 100%;
   height: 70rem;
+`;
+const ProjectDetailBottomImg = styled(DesignerBackgrodunImg)`
+  position: absolute;
+  bottom: 0;
+  z-index: -10;
+
+  width: 100%;
+  height: 259rem;
 `;
