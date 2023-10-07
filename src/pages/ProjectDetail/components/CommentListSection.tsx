@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getProjectComment } from '~/api/project';
 import TopButton from '~/common/components/TopButton';
+import { MOBILE_WIDTH } from '~/constants/common';
 import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import useGetProjectCommentTablet from '~/hooks/useGetProjectCommentTablet';
 import useInfiniteScroll from '~/hooks/useInfiniteScroll';
@@ -90,7 +91,7 @@ const CommentListSection = () => {
                 ))}
               </>
             ) : (
-              <>아직 등록되어 있는 메시지가 없어요.</>
+              <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
           {desktopData?.count > 8 && (
@@ -119,7 +120,7 @@ const CommentListSection = () => {
                 ))}
               </>
             ) : (
-              <>아직 등록되어 있는 메시지가 없어요.</>
+              <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
           {tabletData?.count > 6 && (
@@ -149,7 +150,7 @@ const CommentListSection = () => {
                   ))}
               </>
             ) : (
-              <>아직 등록되어 있는 메시지가 없어요.</>
+              <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
           <Target ref={observerRef} />
@@ -160,6 +161,18 @@ const CommentListSection = () => {
 };
 
 export default CommentListSection;
+
+const NoMessage = styled.h1`
+  margin: 12.4rem 0;
+
+  text-align: center;
+  ${({ theme }) => theme.fonts.Caption_03}
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin: 9.4rem 0;
+    ${({ theme }) => theme.fonts.Mobile_Caption_03}
+  }
+`;
 
 const Target = styled.div`
   height: 50px;
