@@ -8,6 +8,7 @@ import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
+import ImgProjectDetailTopBg from '~/assets/images/ImgProjectDetail.png';
 import ImgDesignerBackgroundCir from '~/assets/images/DesignerBgCir.png';
 
 interface PageLayoutProps {
@@ -28,6 +29,15 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         <Default>
           <>
             {pathname === '/home' && <PageContentAbosoulteImg src={ImgGraduationExhibition} />}
+            {pathname.includes('/project') && !pathname.includes('/project/detail') && (
+              <ProjectDetailBottomImg src={ImgGraduationExhibition} />
+            )}
+            {pathname.includes('/project/detail') && (
+              <>
+                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
+                <ProjectDetailBottomImg src={ImgGraduationExhibition} />
+              </>
+            )}
             {pathname.includes('/designer') && <PageContentImg src={ImgDesignerBackground} />}
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
@@ -38,9 +48,16 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
               <PageContentAbosoulteImg src={ImgMobileGraduationExhibition} />
             )}
             {pathname === '/guestbook' && <PageContentImg src={mobileBackground} />}
-            {pathname.includes('/designer') && (
+            {pathname.includes('/designer') ||
+              (pathname.includes('/project') && !pathname.includes('/project/detail') && (
+                <>
+                  <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                  <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+                </>
+              ))}
+            {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
                 <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
               </>
             )}
@@ -104,4 +121,12 @@ const DesignerBackgrodundCirImg = styled.img`
 
   width: 100%;
   height: 70rem;
+`;
+const ProjectDetailBottomImg = styled(DesignerBackgrodunImg)`
+  position: absolute;
+  bottom: 0;
+  z-index: -10;
+
+  width: 100%;
+  height: 259rem;
 `;
