@@ -16,6 +16,7 @@ interface PageLayoutProps {
 
 const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
   const { pathname } = useLocation();
+  console.log(pathname);
 
   return (
     <PageLayoutWrapper>
@@ -27,7 +28,7 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         <Default>
           <PageContentImg
             src={
-              pathname === '/designer'
+              pathname === '/designer' || pathname === '/project/detail'
                 ? ImgDesignerBackground
                 : pathname === '/guestbook'
                 ? desktopBackground
@@ -37,7 +38,11 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         </Default>
         <Mobile>
           <PageContentImg
-            src={pathname === '/guestbook' ? mobileBackground : ImgMobileGraduationExhibition}
+            src={
+              pathname === '/guestbook' || pathname === '/project/detail'
+                ? mobileBackground
+                : ImgMobileGraduationExhibition
+            }
           />
         </Mobile>
       </ContentWrapper>

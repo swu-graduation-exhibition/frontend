@@ -29,6 +29,6 @@ const Container = styled.section`
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    padding: 0;
+    padding: 0 2.8rem;
   }
 `;

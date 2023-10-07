@@ -27,10 +27,6 @@ const ProjectDetailSection = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    padding: 0 2.8rem;
-  }
 `;
 const ProjectDetailContainer = styled.div`
   display: flex;

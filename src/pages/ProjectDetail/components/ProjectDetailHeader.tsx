@@ -38,7 +38,6 @@ const Container = styled.section`
   flex-direction: row;
 
   @media screen and (width >${TABLET_WIDTH}) {
-    height: 50.2rem;
     gap: 5rem;
   }
 
