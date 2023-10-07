@@ -74,6 +74,7 @@ const fonts = {
   Body_02: FONT({ weight: 300, size: 3.5, lineHeight: 5 }),
   Body_03: FONT({ weight: 500, size: 3, lineHeight: 4 }),
   Body_04: FONT({ weight: 300, size: 3, lineHeight: 4 }),
+  Body_05: FONT({ weight: 500, size: 2.7, lineHeight: 4 }),
   Mobile_Body_01: FONT({ weight: 400, size: 1.6, lineHeight: 2.5 }),
   Mobile_Body_02: FONT({ weight: 500, size: 1.5, lineHeight: 2.17 }),
   Mobile_Body_03: FONT({ weight: 400, size: 1.5, lineHeight: 3 }),
