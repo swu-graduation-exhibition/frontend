@@ -66,5 +66,6 @@ const Description = styled.div`
   ${({ theme }) => theme.fonts.Body_04};
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_05};
+    background-color: ${({ theme }) => theme.colors.White};
   }
 `;
