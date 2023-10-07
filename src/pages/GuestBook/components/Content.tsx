@@ -54,6 +54,10 @@ const CountLetter = styled.span(
   ({ theme }) => theme.fonts.Caption_03,
   css`
     color: ${({ theme }) => theme.colors.Grayscales_500};
+
+    @media screen and (width <= 1000px) {
+      ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
+    }
   `,
 );
 
@@ -94,7 +98,7 @@ const ContentArea = styled.textarea`
     outline: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
   }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= 1000px) {
     height: 16.9rem;
 
     &::placeholder {

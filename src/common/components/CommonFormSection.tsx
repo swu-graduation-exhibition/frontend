@@ -4,17 +4,24 @@ import styled, { css } from 'styled-components';
 import { postProjectComment } from '~/api/project';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
+import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import { FormSectionProps } from '~/types/commonFormSection';
+import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
-  const { formData, isButtonActive, inputOnChange, textAreaOnChange } = useFormHooks();
+  const { formData, setSetFormData, isButtonActive, inputOnChange, textAreaOnChange } =
+    useFormHooks();
   const { to, message } = formData;
   const { projectId } = useParams();
+
+  const { desktopData } = useGetProjectCommentDesktop(Number(projectId), 1);
+  console.log(desktopData);
 
   const { title, toMent, messageMent } = FormSupplies[page];
 
   const queryClient = useQueryClient();
+
   const { mutate: sendComment } = useMutation(
     () =>
       postProjectComment({
@@ -24,10 +31,12 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       }),
     {
       onSuccess: () => {
+        setSetFormData({
+          to: '',
+          message: '',
+        });
         queryClient.invalidateQueries(['getProjectCommentDesktop']);
-
         queryClient.invalidateQueries(['getProjectCommentTablet']);
-
         queryClient.invalidateQueries(['getProjectCommentMobile']);
       },
       onError: (err) => {
@@ -44,16 +53,34 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
     <Container>
       <HeaderSection>
         <Title>{title}</Title>
-        {page === 'project' && <CommentCount>22</CommentCount>}
+        {page === 'project' && <CommentCount>{desktopData && desktopData.count}</CommentCount>}
       </HeaderSection>
       {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
 
         {isButtonActive ? (
-          <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
+          page === 'designer' ? (
+            <SubmitButton>등록</SubmitButton>
+          ) : (
+            <>
+              <Desktop>
+                <SubmitButton type="button" onClick={sendProjectComment}>
+                  등록
+                </SubmitButton>
+              </Desktop>
+              <Tablet>
+                <SubmitButton type="button" onClick={sendProjectComment}>
+                  등록
+                </SubmitButton>
+              </Tablet>
+              <Mobile>
+                <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
+              </Mobile>
+            </>
+          )
         ) : (
-          <UnSubmitButton>등록</UnSubmitButton>
+          <UnSubmitButton type="button">등록</UnSubmitButton>
         )}
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
@@ -144,6 +171,10 @@ const FromInput = styled.input(
 
     border-radius: 1rem;
 
+    &:focus {
+      border: 1px solid black;
+    }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Caption_03}
       width: 39.2rem;
@@ -199,6 +230,10 @@ const TextArea = styled.textarea(
     border-radius: 1rem;
 
     resize: none;
+
+    &:focus {
+      border: 1px solid black;
+    }
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Caption_03}

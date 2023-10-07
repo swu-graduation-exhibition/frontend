@@ -11,7 +11,7 @@ const ProjectDetailAssets = () => {
 export default ProjectDetailAssets;
 
 const Container = styled.img`
-  width: 116.5%;
+  width: 100%;
 
   max-width: 165rem;
   height: 140rem;

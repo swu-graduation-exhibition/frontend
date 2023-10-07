@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import CommonFormSection from '../../../common/components/CommonFormSection';
 import CommentListSection from './CommentListSection';
 
@@ -16,9 +17,18 @@ export default ProjectComments;
 const Container = styled.section`
   display: flex;
   width: 100%;
-  margin-top: 9.3rem;
+  margin-top: 6.3rem;
   flex-direction: column;
   gap: 5rem;
+  padding: 0 13.6rem;
 
   max-width: 165rem;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    padding: 0 6.4rem;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    padding: 0 2.8rem;
+  }
 `;

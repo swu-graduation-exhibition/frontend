@@ -2,7 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { postGuestBook } from '~/api/guestBook';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { TABLET_WIDTH } from '~/constants/common';
+import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import Content from './Content';
 import ReceiverDropBox from './ReceiverDropBox';
 import SenderInput from './SenderInput';
@@ -68,9 +69,21 @@ const GuestBookInput = () => {
             />
           </InputWrapper>
         </PeopleInputContainer>
-        <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-          등록
-        </SendButton>
+        <GuestBookDesktop>
+          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+            등록
+          </SendButton>
+        </GuestBookDesktop>
+        <GuestBookTablet>
+          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+            등록
+          </SendButton>
+        </GuestBookTablet>
+        <Mobile>
+          <SendButton isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+            등록
+          </SendButton>
+        </Mobile>
       </GuestBookHeadLine>
       <ContentWrapper>
         <SubTitle>메시지</SubTitle>
@@ -85,7 +98,7 @@ const GuestBookInput = () => {
 
 export default GuestBookInput;
 
-const GuestBookHeadLine = styled.div`
+const GuestBookHeadLine = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -103,7 +116,7 @@ const SendButton = styled.button<{ isReady: Boolean }>`
   ${({ theme, isReady }) =>
     isReady ? theme.fonts.Caption_03_White : theme.fonts.Caption_03_Gray600}
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= 600px) {
     margin-left: 0.5rem;
     height: 13rem;
     ${({ theme, isReady }) =>
@@ -126,7 +139,7 @@ const GuestBookInputWrapper = styled.div`
 const PeopleInputContainer = styled.section`
   display: flex;
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= 600px) {
     flex-direction: column;
     width: 79%;
   }
@@ -146,7 +159,7 @@ const InputWrapper = styled.article<{ gridArea: string }>`
     margin-left: ${({ gridArea }) => gridArea === 'receiver' && 1.6}rem;
   }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= 600px) {
     margin-top: ${({ gridArea }) => gridArea === 'receiver' && 0.5}rem;
     margin-left: 0;
   }

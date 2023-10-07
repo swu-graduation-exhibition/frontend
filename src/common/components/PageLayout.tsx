@@ -1,15 +1,15 @@
 import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import ImgDesignerBackgroundCir from '~/assets/images/DesignerBgCir.png';
+import ImgProjectDetailTopBg from '~/assets/images/ImgProjectDetail.png';
 import ImgMobileGraduationExhibition from '~/assets/images/bg1_all_mobile.png';
 import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
 import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
 import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png';
+import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
-import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
-import ImgProjectDetailTopBg from '~/assets/images/ImgProjectDetail.png';
-import ImgDesignerBackgroundCir from '~/assets/images/DesignerBgCir.png';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;

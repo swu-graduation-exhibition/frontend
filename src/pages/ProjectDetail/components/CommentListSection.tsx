@@ -13,6 +13,7 @@ import Pagination from './Pagination';
 
 const CommentListSection = () => {
   const { projectId } = useParams();
+
   // 데스크탑
   const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
   const { desktopData } = useGetProjectCommentDesktop(Number(projectId), currentDesktopPage);
