@@ -11,9 +11,7 @@ function ProjectDetailHeader() {
           <IcStarAll />
           Project.Name
         </ProjectName>
-        <ProjectMembers>
-          <Member>김나현 오연정 이주연 주은서 주하영</Member>
-        </ProjectMembers>
+        <ProjectMembers>김나현 오연정 이주연 주은서 주하영</ProjectMembers>
       </ProjcetTitle>
       <ProjectDescription>
         <Description>
@@ -64,6 +62,14 @@ const ProjcetTitle = styled.div`
   min-width: fit-content;
 
   gap: 2rem;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    gap: 1.2rem;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    gap: 0.2rem;
+  }
 `;
 
 const ProjectName = styled.div(
@@ -100,24 +106,20 @@ const ProjectMembers = styled.div`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_04}
+    color: ${({ theme }) => theme.colors.Grayscales_700};
+    margin-bottom: 1.4rem;
   }
 `;
-
-const Member = styled.span(
-  ({ theme }) => theme.fonts.Caption_01,
-  css`
-    width: fit-content;
-    min-width: fit-content;
-
-    color: ${({ theme }) => theme.colors.Grayscales_700};
-  `,
-);
 
 const ProjectDescription = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 81.4rem;
   gap: 4.8rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    gap: 2rem;
+  }
 `;
 
 const Description = styled.div(
@@ -135,6 +137,10 @@ const ButtonSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    gap: 0.4rem;
+  }
 `;
 
 const TryItButton = styled.button(

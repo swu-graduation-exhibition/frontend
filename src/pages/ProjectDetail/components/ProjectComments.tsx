@@ -17,7 +17,7 @@ const Container = styled.section`
   display: flex;
   width: 100%;
   margin: 0 7%;
-  margin-top: 9.3rem;
+  margin-top: 6.3rem;
   flex-direction: column;
   gap: 5rem;
 

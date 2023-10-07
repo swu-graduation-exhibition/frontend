@@ -1,18 +1,23 @@
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { getProjectComment } from '~/api/project';
 import TopButton from '~/common/components/TopButton';
 import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import useGetProjectCommentTablet from '~/hooks/useGetProjectCommentTablet';
 import useInfiniteScroll from '~/hooks/useInfiniteScroll';
+import { commentCount } from '~/recoil/project';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import CommentBox from './CommentBox';
 import Pagination from './Pagination';
 
 const CommentListSection = () => {
   const { projectId } = useParams();
+
+  const [count, setCount] = useRecoilState(commentCount);
+
   // 데스크탑
   const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
   const { desktopData } = useGetProjectCommentDesktop(Number(projectId), currentDesktopPage);

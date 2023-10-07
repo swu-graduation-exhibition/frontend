@@ -100,6 +100,7 @@ const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
 const Box = styled.div`
   overflow: scroll;
   position: absolute;
+  z-index: 2;
   width: 39.2rem;
   height: 37.6rem;
   margin-top: 12.2rem;

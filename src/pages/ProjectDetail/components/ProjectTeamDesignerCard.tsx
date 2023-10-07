@@ -70,8 +70,10 @@ const MobileContainer = styled.article`
 `;
 
 const CaptionContainer = styled.section`
+  height: 6rem;
+  margin-bottom: 3rem;
+  padding: 0.5rem 0.3rem;
   flex-direction: column;
-  padding: 1.3rem 0 6.4rem 1.6rem;
 `;
 
 const CaptionTitleText = styled.span`

@@ -1,10 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { postProjectComment } from '~/api/project';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
+import { commentCount } from '~/recoil/project';
 import { FormSectionProps } from '~/types/commonFormSection';
+import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
@@ -12,9 +15,11 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
   const { to, message } = formData;
   const { projectId } = useParams();
 
+  const [count, setCount] = useRecoilState(commentCount);
   const { title, toMent, messageMent } = FormSupplies[page];
 
   const queryClient = useQueryClient();
+
   const { mutate: sendComment } = useMutation(
     () =>
       postProjectComment({
@@ -24,10 +29,9 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       }),
     {
       onSuccess: () => {
+        console.log('Asdf');
         queryClient.invalidateQueries(['getProjectCommentDesktop']);
-
         queryClient.invalidateQueries(['getProjectCommentTablet']);
-
         queryClient.invalidateQueries(['getProjectCommentMobile']);
       },
       onError: (err) => {
@@ -44,16 +48,34 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
     <Container>
       <HeaderSection>
         <Title>{title}</Title>
-        {page === 'project' && <CommentCount>22</CommentCount>}
+        {page === 'project' && <CommentCount>{count}</CommentCount>}
       </HeaderSection>
       {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
       <ToInputWrapper>
         <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
 
         {isButtonActive ? (
-          <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
+          page === 'designer' ? (
+            <SubmitButton>등록</SubmitButton>
+          ) : (
+            <>
+              <Desktop>
+                <SubmitButton type="button" onClick={sendProjectComment}>
+                  등록
+                </SubmitButton>
+              </Desktop>
+              <Tablet>
+                <SubmitButton type="button" onClick={sendProjectComment}>
+                  등록
+                </SubmitButton>
+              </Tablet>
+              <Mobile>
+                <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
+              </Mobile>
+            </>
+          )
         ) : (
-          <UnSubmitButton>등록</UnSubmitButton>
+          <UnSubmitButton type="button">등록</UnSubmitButton>
         )}
       </ToInputWrapper>
       {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
@@ -144,6 +166,10 @@ const FromInput = styled.input(
 
     border-radius: 1rem;
 
+    &:focus {
+      border: 1px solid black;
+    }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Caption_03}
       width: 39.2rem;
@@ -199,6 +225,10 @@ const TextArea = styled.textarea(
     border-radius: 1rem;
 
     resize: none;
+
+    &:focus {
+      border: 1px solid black;
+    }
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Caption_03}

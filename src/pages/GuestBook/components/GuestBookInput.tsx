@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { postGuestBook } from '~/api/guestBook';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import Content from './Content';
 import ReceiverDropBox from './ReceiverDropBox';
 import SenderInput from './SenderInput';
@@ -68,9 +69,21 @@ const GuestBookInput = () => {
             />
           </InputWrapper>
         </PeopleInputContainer>
-        <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-          등록
-        </SendButton>
+        <GuestBookDesktop>
+          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+            등록
+          </SendButton>
+        </GuestBookDesktop>
+        <GuestBookTablet>
+          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+            등록
+          </SendButton>
+        </GuestBookTablet>
+        <Mobile>
+          <SendButton isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+            등록
+          </SendButton>
+        </Mobile>
       </GuestBookHeadLine>
       <ContentWrapper>
         <SubTitle>메시지</SubTitle>
@@ -85,7 +98,7 @@ const GuestBookInput = () => {
 
 export default GuestBookInput;
 
-const GuestBookHeadLine = styled.div`
+const GuestBookHeadLine = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
