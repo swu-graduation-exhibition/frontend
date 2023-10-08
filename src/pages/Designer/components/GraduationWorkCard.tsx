@@ -18,10 +18,17 @@ const GraduationWorkCard = ({ img, track, title, memberList }: GraduationWorkInf
 
   return (
     <CardWrapper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <ImgWrapper>
-        {isMouseOn && <CardHoverContent />}
-        <WorkImg src={ImgCardDefault} />
-      </ImgWrapper>
+      <Default>
+        <ImgWrapper>
+          {isMouseOn && <CardHoverContent />}
+          <WorkImg src={ImgCardDefault} />
+        </ImgWrapper>
+      </Default>
+      <Mobile>
+        <ImgWrapper>
+          <WorkImg src={ImgCardDefault} />
+        </ImgWrapper>
+      </Mobile>
 
       <Default>
         <>
