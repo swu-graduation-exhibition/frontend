@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 const LocationContent = () => {
   return (
@@ -29,6 +29,9 @@ const MainContentWrapper = styled.div`
 const BannerTopContent = styled.div`
   ${({ theme }) => theme.fonts.Body_04};
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    ${({ theme }) => theme.fonts.Caption_01};
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_05};
   }
@@ -37,6 +40,9 @@ const BannerTopContent = styled.div`
 const BannerBottomContent = styled.div`
   ${({ theme }) => theme.fonts.Body_03};
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    ${({ theme }) => theme.fonts.Body_05};
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_02};
   }

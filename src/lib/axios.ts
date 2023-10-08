@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, Method } from 'axios';
 
 const client = axios.create({
-  baseURL: 'http://3.38.119.61:3000', //import.meta.env.VITE_SWU_IP,
+  baseURL: import.meta.env.VITE_SWU_IP,
   headers: {
     'Access-Control-Allow-Origin': import.meta.env.VITE_SWU_IP,
     'Content-type': 'application/json',

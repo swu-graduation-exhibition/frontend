@@ -49,9 +49,7 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
         </Default>
         <Mobile>
           <>
-            {pathname === '/home' && (
-              <PageContentAbosoulteImg src={ImgMobileGraduationExhibition} />
-            )}
+            {pathname === '/home' && <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />}
             {pathname === '/guestbook' && <PageContentImg src={mobileBackground} />}
             {pathname.includes('/designer') && (
               <>
