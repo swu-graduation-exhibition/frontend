@@ -37,7 +37,7 @@ const MainBannerWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  padding: 15rem 5% 6rem 5%;
+  padding: 6rem 5% 10rem 5%;
 
   height: 96.8rem;
   background-position: center center;

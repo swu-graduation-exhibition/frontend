@@ -9,7 +9,8 @@ import { HomeTablet, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
 const Home = () => {
   return (
-    <PageLayout mainBanner={<MainBanner />}>
+    <PageLayout>
+      <MainBanner />
       <GraduationExhibitionWrapper>
         <ConceptContent />
         <HomeDesktop>
@@ -33,7 +34,7 @@ export default Home;
 const GraduationExhibitionWrapper = styled.section`
   position: relative;
 
-  padding: 12rem 13.6rem;
+  padding: 11rem 13.6rem;
 
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     padding: 8rem 6rem;

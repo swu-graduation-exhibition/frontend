@@ -8,9 +8,9 @@ import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
 import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
 import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png';
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
-import { Default, Mobile } from '~/utils/mediaQuery';
+import { Default, HomeDesktop, HomeTablet, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
@@ -27,9 +27,11 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
       <ContentWrapper>
         {children}
         <Footer />
+        <HomeDesktop>
+          <>{pathname === '/home' && <PageContentAbosoulteImg src={ImgGraduationExhibition} />}</>
+        </HomeDesktop>
         <Default>
           <>
-            {pathname === '/home' && <PageContentAbosoulteImg src={ImgGraduationExhibition} />}
             {pathname.includes('/project') && !pathname.includes('/project/detail') && (
               <ProjectDetailBottomImg src={ImgGraduationExhibition} />
             )}
@@ -48,6 +50,9 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
         </Default>
+        <HomeTablet>
+          <>{pathname === '/home' && <HomeBackgrodunImg src={ImgMobileGraduationExhibition} />}</>
+        </HomeTablet>
         <Mobile>
           <>
             {pathname === '/home' && <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />}
@@ -119,7 +124,15 @@ const PageContentAbosoulteImg = styled.img`
   max-height: 100%;
   transform: translate(-50%, -50%);
 `;
+const HomeBackgrodunImg = styled.img`
+  position: absolute;
+  bottom: 0;
+  z-index: -10;
 
+  width: 100%;
+  height: 45%;
+  object-fit: cover;
+`;
 const DesignerBackgrodunImg = styled.img`
   position: absolute;
   bottom: 0;
