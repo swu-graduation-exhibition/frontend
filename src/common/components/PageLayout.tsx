@@ -10,6 +10,7 @@ import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
+import { MOBILE_WIDTH } from '~/constants/common';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
@@ -87,6 +88,11 @@ const PageLayoutWrapper = styled.div`
 const ContentWrapper = styled.div`
   overflow: hidden;
   position: relative;
+
+  padding-top: 11rem;
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    padding-top: 5.5rem;
+  }
 `;
 const PageContentImg = styled.img`
   position: fixed;
