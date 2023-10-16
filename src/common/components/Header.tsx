@@ -59,6 +59,9 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,7 +72,7 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
       ? css`
           background-color: ${({ theme }) => theme.colors.Black};
           opacity: 70%;
-          position: relative;
+          position: fixed;
         `
       : css`
           background-color: ${({ theme }) => theme.colors.White};
@@ -88,6 +91,7 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
   }
   svg {
     cursor: pointer;
+    /* position: fixed; */
 
     @media screen and (width <=${TABLET_WIDTH}) {
       height: 3.6rem;
@@ -138,7 +142,7 @@ const MobileLinkWrapper = styled(LinkWrapper)`
   gap: 1rem;
 
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 5.4rem;
   left: 0;
   height: 100vh;
