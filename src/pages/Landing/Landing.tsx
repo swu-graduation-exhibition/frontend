@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import ReactPlayer from 'react-player';
+
 import MovingLandingGif from 'assets/moving_landing.gif';
-import { MOBILE_WIDTH } from '~/constants/common';
 function Landing() {
   const navigate = useNavigate();
 

@@ -3,17 +3,21 @@ import { PageLayout } from '~/common/components';
 import { ConceptContent, Interview, MainBanner, TrackIntroduce } from './components';
 import ImgBlackFlower from '~/assets/images/img2_home.png';
 import ImgMobileBlackFlower from '~/assets/images/img2_home_mobile.png';
-import { MOBILE_WIDTH } from '~/constants/common';
-import { Default, Mobile } from '~/utils/mediaQuery';
+import ImgTabletBlackFlower from '~/assets/images/img2_home_pad.png';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HomeTablet, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
 const Home = () => {
   return (
     <PageLayout mainBanner={<MainBanner />}>
       <GraduationExhibitionWrapper>
         <ConceptContent />
-        <Default>
+        <HomeDesktop>
           <BlackFlower src={ImgBlackFlower} />
-        </Default>
+        </HomeDesktop>
+        <HomeTablet>
+          <MobileBlackFlower src={ImgTabletBlackFlower} />
+        </HomeTablet>
         <Mobile>
           <MobileBlackFlower src={ImgMobileBlackFlower} />
         </Mobile>
@@ -29,8 +33,11 @@ export default Home;
 const GraduationExhibitionWrapper = styled.section`
   position: relative;
 
-  /* height: 251.9rem; */
-  padding: 3% 0 3% 10%;
+  padding: 12rem 13.6rem;
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    padding: 8rem 6rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     padding: 2rem 1.6rem;
   }

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { IcHeaderLogo } from '~/assets/icons';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 const ConceptContent = () => {
   return (
@@ -56,6 +56,7 @@ const Title = styled.div`
 const SubTitle = styled.div`
   ${({ theme }) => theme.fonts.Body_01};
   margin-bottom: 5rem;
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_01};
     margin-bottom: 2.6rem;
@@ -64,6 +65,9 @@ const SubTitle = styled.div`
 
 const Description = styled.div`
   ${({ theme }) => theme.fonts.Body_04};
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    ${({ theme }) => theme.fonts.Caption_01};
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_05};
     background-color: ${({ theme }) => theme.colors.White};
