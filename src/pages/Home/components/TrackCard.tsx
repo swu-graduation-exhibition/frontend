@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { IcArrowHome } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
@@ -5,8 +6,10 @@ import { MOBILE_WIDTH } from '~/constants/common';
 import { TrackDataInfo } from '~/types/home';
 
 const TrackCard = ({ title, desc, url }: TrackDataInfo) => {
+  const navigate = useNavigate();
+
   const handleClickCard = () => {
-    console.log('카드 클릭!');
+    navigate(url);
   };
   return (
     <TrackCardWrapper onClick={handleClickCard}>
