@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import YoutubeList from './YoutubeList';
 
 const Interview = () => {
@@ -17,7 +17,9 @@ const InterviewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16.7rem;
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    margin-top: 10rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin-top: 3.4rem;
   }
@@ -25,9 +27,10 @@ const InterviewWrapper = styled.div`
 
 const Title = styled.h1`
   ${({ theme }) => theme.fonts.Headline_03};
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    ${({ theme }) => theme.fonts.Subtitle_01};
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Headline_01};
-    margin-top: 3.4rem;
   }
 `;

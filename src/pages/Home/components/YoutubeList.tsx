@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { youtubeData } from '../data/youtubeData';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import useDragScroll from '~/hooks/useDragScroll';
 
 const YoutubeList = () => {
@@ -35,6 +35,10 @@ const YoutubeCard = styled.img`
   height: 45.9rem;
 
   background-color: aliceblue;
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    width: 56.8rem;
+    height: 32rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 21.4rem;
     height: 12rem;
@@ -46,7 +50,9 @@ const DragSlider = styled.section`
   gap: 1.6rem;
 
   width: 331.2rem;
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    width: 229.4rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 86.5rem;
   }

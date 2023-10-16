@@ -3,23 +3,23 @@ import ImgHomeBanner from '~/assets/images/img1_home.png';
 import ImgMobileHomeBanner from '~/assets/images/img1_home_mobile.png';
 import ImgPadHomeBanner from '~/assets/images/img1_home_pad.png';
 import { LocationContent, UniversityContent } from '.';
-import { Default, Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
+import { HomeDesktop, HomeTablet, Mobile } from '~/utils/mediaQuery';
 
 const MainBanner = () => {
   return (
     <>
-      <Desktop>
+      <HomeDesktop>
         <MainBannerWrapper>
           <UniversityContent />
           <LocationContent />
         </MainBannerWrapper>
-      </Desktop>
-      <Tablet>
+      </HomeDesktop>
+      <HomeTablet>
         <TabletBannerWrapper>
           <UniversityContent />
           <LocationContent />
         </TabletBannerWrapper>
-      </Tablet>
+      </HomeTablet>
       <Mobile>
         <MobileBannerWrapper>
           <UniversityContent />
@@ -59,6 +59,7 @@ const MobileBannerWrapper = styled.div`
   background-repeat: no-repeat;
 `;
 const TabletBannerWrapper = styled(MainBannerWrapper)`
-  height: 83rem;
+  width: 100vw;
+  background-position: initial;
   background-image: url(${ImgPadHomeBanner});
 `;

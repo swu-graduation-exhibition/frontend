@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { trackCardData } from '../data/trackData';
 import { TrackCard } from '.';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import useDragScroll from '~/hooks/useDragScroll';
 
 const TrackIntroduce = () => {
@@ -24,7 +24,9 @@ export default TrackIntroduce;
 
 const TrackIntroduceWrapper = styled.div`
   margin-top: 14.2rem;
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    margin-top: 14rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin-top: 8.6rem;
   }
