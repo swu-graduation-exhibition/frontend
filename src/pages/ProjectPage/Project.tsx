@@ -42,8 +42,6 @@ function Project() {
     },
   );
 
-  console.log(projectData);
-
   return (
     <PageLayout>
       <ProjectLayout>
