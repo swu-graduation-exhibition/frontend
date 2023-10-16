@@ -6,3 +6,4 @@ export const MOBILE_PAGE_PATHS = ['/project/ux-design', '/designer', '/guestbook
 export const MOBILE_WIDTH = `521px`;
 export const TABLET_WIDTH = `831px`;
 export const DESKTOP_WIDTH = '1400px';
+export const HOME_TABLET_WIDTH = '1024px';
