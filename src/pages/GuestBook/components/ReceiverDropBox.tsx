@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { DropBoxDownIc, DropBoxUpIc } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
@@ -28,6 +28,25 @@ const ReceiverDropBox = (props: DropBoxProps) => {
     return index === guestBookContents.receiver;
   };
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', closeModal);
+    return () => {
+      document.removeEventListener('mousedown', closeModal);
+    };
+  }, [isDrop]);
+
+  function isClickedOutside(e: MouseEvent) {
+    return isDrop && !modalRef.current?.contains(e.target as Node);
+  }
+
+  function closeModal(e: MouseEvent) {
+    if (isClickedOutside(e)) {
+      setIsDrop(false);
+    }
+  }
+
   return (
     <>
       <Drop isDrop={isDrop} onClick={handleDrop}>
@@ -41,19 +60,24 @@ const ReceiverDropBox = (props: DropBoxProps) => {
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
       {isDrop && (
-        <Box>
-          <Designer
-            paddingTop={1.6}
-            isSelected={checkSelected(49)}
-            onClick={() => handleSelectDesigner(49)}
-          >
+        <Box ref={modalRef}>
+          {guestBookContents.receiver !== -1 && guestBookContents.receiver !== 49 && (
+            <Designer
+              isSelected={checkSelected(guestBookContents.receiver)}
+              onClick={() => handleSelectDesigner(guestBookContents.receiver)}
+            >
+              {DESIGNERS[guestBookContents.receiver]}
+            </Designer>
+          )}
+          <Designer isSelected={checkSelected(49)} onClick={() => handleSelectDesigner(49)}>
             모두에게
           </Designer>
+
           {DESIGNERS.map(
             (designer, index) =>
-              index !== 0 && (
+              index !== 0 &&
+              index !== guestBookContents.receiver && (
                 <Designer
-                  paddingTop={0.8}
                   isSelected={checkSelected(index)}
                   onClick={() => handleSelectDesigner(index)}
                 >
@@ -69,12 +93,12 @@ const ReceiverDropBox = (props: DropBoxProps) => {
 
 export default ReceiverDropBox;
 
-const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
+const Designer = styled.p<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
 
   height: 4rem;
-  padding: ${({ paddingTop }) => paddingTop}rem 1rem 0.8rem 1.6rem;
+  padding: 0.8rem 1rem 0.8rem 1.6rem;
 
   ${({ theme }) => theme.fonts.Caption_04};
 
