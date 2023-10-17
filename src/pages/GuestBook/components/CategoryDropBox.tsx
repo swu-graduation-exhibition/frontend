@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { DropBoxDownIc, DropBoxUpIc } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
+
 import { DESIGNERS } from '../data/designers';
 
 interface CategoryDropBoxProps {
@@ -27,6 +28,25 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
     return index === designerId;
   };
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', closeModal);
+    return () => {
+      document.removeEventListener('mousedown', closeModal);
+    };
+  }, [isDrop]);
+
+  function isClickedOutside(e: MouseEvent) {
+    return isDrop && !modalRef.current?.contains(e.target as Node);
+  }
+
+  function closeModal(e: MouseEvent) {
+    if (isClickedOutside(e)) {
+      setIsDrop(false);
+    }
+  }
+
   return (
     <CategoryDropBoxWrapper>
       <Drop isDrop={isDrop} onClick={handleDrop}>
@@ -44,7 +64,7 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
         <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
       </Drop>
       {isDrop && (
-        <Box>
+        <Box ref={modalRef}>
           <Designer
             paddingTop={1.6}
             isSelected={checkSelected(-1)}

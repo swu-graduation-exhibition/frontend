@@ -24,7 +24,7 @@ const CommentListSection = () => {
   // 태블릿
   const [currentTabletPage, setCurrentTabletPage] = useState(1);
   const { tabletData } = useGetProjectCommentTablet(Number(projectId), currentTabletPage);
-  const lastTabletPage = Math.ceil(tabletData?.count / 3);
+  const lastTabletPage = Math.ceil(tabletData?.count / 6);
   const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
 
   // 모바일
