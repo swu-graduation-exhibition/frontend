@@ -93,6 +93,7 @@ const PageLayoutWrapper = styled.div`
 const ContentWrapper = styled.div`
   overflow: hidden;
   position: relative;
+  width: 100%;
 
   padding-top: 11rem;
   @media screen and (width <= ${MOBILE_WIDTH}) {
@@ -114,15 +115,11 @@ const PageContentImg = styled.img`
 `;
 const PageContentAbosoulteImg = styled.img`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  bottom: 0;
   z-index: -10;
   width: 100%;
-  height: 100%;
-
   object-fit: cover;
   max-height: 100%;
-  transform: translate(-50%, -50%);
 `;
 const HomeBackgrodunImg = styled.img`
   position: absolute;
@@ -130,7 +127,6 @@ const HomeBackgrodunImg = styled.img`
   z-index: -10;
 
   width: 100%;
-  height: 45%;
   object-fit: cover;
 `;
 const DesignerBackgrodunImg = styled.img`
@@ -149,11 +145,11 @@ const DesignerBackgrodundCirImg = styled.img`
   width: 100%;
   height: 70rem;
 `;
-const ProjectDetailBottomImg = styled(DesignerBackgrodunImg)`
+const ProjectDetailBottomImg = styled.img`
   position: absolute;
   bottom: 0;
   z-index: -10;
 
   width: 100%;
-  height: 259rem;
+  object-fit: cover;
 `;

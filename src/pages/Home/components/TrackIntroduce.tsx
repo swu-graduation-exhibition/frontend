@@ -26,9 +26,10 @@ const TrackIntroduceWrapper = styled.div`
   margin-top: 14.2rem;
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     margin-top: 14rem;
+    margin-bottom: 3.1rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-top: 8.6rem;
+    margin-top: 6.6rem;
   }
 `;
 const DragListWrapper = styled.article`

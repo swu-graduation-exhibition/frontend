@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 const UniversityContent = () => {
   return (
@@ -19,10 +19,18 @@ export default UniversityContent;
 const MainContentWrapper = styled.div`
   display: flex;
   align-items: center;
+  position: absolute;
 
   gap: 1rem;
+  top: 5.8rem;
+  left: 13.9rem;
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    top: 5.5rem;
+    left: 6.4rem;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    position: absolute;
     top: 1.6rem;
     left: 1.6rem;
   }

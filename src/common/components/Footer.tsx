@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import useWindowSize from '~/hooks/useWindowSize';
 
 const Footer = () => {
@@ -40,18 +40,17 @@ const FooterWrapper = styled.div`
 
   width: 100%;
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    height: 8.3rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    height: 7.2rem;
     margin: 5rem 0;
   }
 `;
 const TextCaption = styled.div`
-  ${({ theme }) => theme.fonts.Caption_04};
+  ${({ theme }) => theme.fonts.Caption_03};
   @media screen and (width <= 830px) {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    letter-spacing: 0em;
+    ${({ theme }) => theme.fonts.Mobile_Caption_02};
     text-align: center;
   }
 `;
@@ -70,7 +69,7 @@ const LineDiv = styled.span`
   }
 `;
 const TextLink = styled.a`
-  ${({ theme }) => theme.fonts.Caption_04};
+  ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Yello_Main_700};
 
   @media screen and (width <= ${MOBILE_WIDTH}) {

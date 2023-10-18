@@ -64,5 +64,4 @@ const ProjectLayout = styled.section`
   align-items: center;
   width: 100%;
   height: fit-content;
-  padding-bottom: 15rem;
 `;

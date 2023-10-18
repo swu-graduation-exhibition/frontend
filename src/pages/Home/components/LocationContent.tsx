@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 const LocationContent = () => {
   return (
@@ -19,8 +19,16 @@ const MainContentWrapper = styled.div`
 
   gap: 1rem;
 
+  position: absolute;
+  bottom: 8.7rem;
+  right: 13.5rem;
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    bottom: 6.4rem;
+    right: 6.4rem;
+  }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    position: absolute;
     bottom: 2rem;
     right: 1.5rem;
   }
