@@ -49,7 +49,8 @@ const FooterWrapper = styled.div`
 `;
 const TextCaption = styled.div`
   ${({ theme }) => theme.fonts.Caption_03};
-  @media screen and (width <= 830px) {
+  text-align: center;
+  @media screen and (width <= ${TABLET_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_02};
     text-align: center;
   }
@@ -63,6 +64,10 @@ const LineDiv = styled.span`
   height: 1.6rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.Yello_Main_700};
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    height: 1.2rem;
+    border-width: 0.08rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 1rem;
     border-width: 0.099rem;
@@ -72,6 +77,10 @@ const TextLink = styled.a`
   ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Yello_Main_700};
 
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    ${({ theme }) => theme.fonts.Caption_04};
+    color: ${({ theme }) => theme.colors.Yello_Main_700};
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_02};
     color: ${({ theme }) => theme.colors.Yello_Main_700};
