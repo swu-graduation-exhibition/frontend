@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Designer from './pages/Designer/Designer';
-import DesignerDetail from './pages/Designer/DesignerDetail';
-import { DesignerContainer } from './pages/Designer/components';
-import GuestBook from './pages/GuestBook/GuestBook';
-import Home from './pages/Home/Home';
-import ProjectDetail from './pages/ProjectDetail/ProjectDetail';
-import Project from './pages/ProjectPage/Project';
-import Landing from './pages/Landing/Landing';
+import { lazy } from 'react';
+
+const Landing = lazy(() => import('./pages/Landing/Landing'));
+const Project = lazy(() => import('./pages/ProjectPage/Project'));
+const Home = lazy(() => import('./pages/Home/Home'));
+const GuestBook = lazy(() => import('./pages/GuestBook/GuestBook'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail/ProjectDetail'));
+const DesignerContainer = lazy(() => import('./pages/Designer/components/DesignerContainer'));
+const DesignerDetail = lazy(() => import('./pages/Designer/DesignerDetail'));
+const Designer = lazy(() => import('./pages/Designer/Designer'));
 
 function Router() {
   return (
