@@ -44,7 +44,11 @@ const Header = () => {
             <LiContent key={category}>
               <Link
                 to={PAGE_PATHS[idx]}
-                className={pathname === PAGE_PATHS[idx] ? 'correct' : 'incorrect'}
+                className={
+                  pathname === PAGE_PATHS[idx] || (pathname.includes('/project') && idx === 0)
+                    ? 'correct'
+                    : 'incorrect'
+                }
               >
                 {category}
               </Link>
