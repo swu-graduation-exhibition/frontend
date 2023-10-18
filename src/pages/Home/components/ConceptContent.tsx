@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcHeaderLogo } from '~/assets/icons';
+import { ReactComponent as IcHeaderLogo } from '~/assets/icons/ic_header_logo.svg';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 const ConceptContent = () => {

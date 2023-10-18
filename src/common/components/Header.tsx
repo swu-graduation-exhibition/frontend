@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
-import { IcDefaultBar, IcHeaderLogo, IcCloseBar } from '~/assets/icons';
+import { ReactComponent as IcCloseBar } from '~/assets/icons/x.svg';
+import { ReactComponent as IcDefaultBar } from '~/assets/icons/ic_default_bar.svg';
+import { ReactComponent as IcHeaderLogo } from '~/assets/icons/ic_header_logo.svg';
+
 import {
   MOBILE_PAGE_CATEGORIES,
   MOBILE_PAGE_PATHS,

@@ -10,7 +10,7 @@ import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
 import { Default, HomeDesktop, HomeTablet, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH } from '~/constants/common';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;

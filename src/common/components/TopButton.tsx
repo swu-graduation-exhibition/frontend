@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { keyframes, styled, css } from 'styled-components';
-import { FloatingIc } from '~/assets/icons';
 
+import { ReactComponent as FloatingIc } from '~/assets/icons/btn_floating.svg';
 const TopButton = () => {
   const [showButton, setShowButton] = useState(false);
 

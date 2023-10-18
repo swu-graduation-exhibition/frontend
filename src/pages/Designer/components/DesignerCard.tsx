@@ -1,6 +1,5 @@
 import { css, styled } from 'styled-components';
 import { DesingerInfo } from '~/types/designer';
-import ImgDefaultDesigner from '~/assets/images/img1_default_desinger.png';
 import { useState } from 'react';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';

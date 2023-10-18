@@ -4,7 +4,7 @@ import { ConceptContent, Interview, MainBanner, TrackIntroduce } from './compone
 import ImgBlackFlower from '~/assets/images/img2_home.png';
 import ImgMobileBlackFlower from '~/assets/images/img2_home_mobile.png';
 import ImgTabletBlackFlower from '~/assets/images/img2_home_pad.png';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import { HomeTablet, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
 const Home = () => {

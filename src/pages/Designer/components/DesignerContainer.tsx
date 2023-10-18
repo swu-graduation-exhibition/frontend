@@ -5,6 +5,7 @@ import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { useDesignerList } from '~/lib/api/designer/get-designer-list';
 import TopButton from '~/common/components/TopButton';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 const DesignerContainer = () => {
   const { data } = useDesignerList();
@@ -27,17 +28,19 @@ const DesignerContainer = () => {
         <Default>
           <DetailText>Seoul Women’s University • Industrial Design</DetailText>
         </Default>
-        <DesignerCardWrapper>
-          {designerInfoList.map(({ designer_id, name_ko, field, profile }, idx) => (
-            <DesignerCard
-              key={`${designer_id}-${name_ko}`}
-              designer_id={designer_id}
-              name_ko={name_ko}
-              field={field}
-              profile={profile}
-            />
-          ))}
-        </DesignerCardWrapper>
+        <LazyLoadComponent>
+          <DesignerCardWrapper>
+            {designerInfoList.map(({ designer_id, name_ko, field, profile }, idx) => (
+              <DesignerCard
+                key={`${designer_id}-${name_ko}`}
+                designer_id={designer_id}
+                name_ko={name_ko}
+                field={field}
+                profile={profile}
+              />
+            ))}
+          </DesignerCardWrapper>
+        </LazyLoadComponent>
         <Mobile>
           <TopButton />
         </Mobile>

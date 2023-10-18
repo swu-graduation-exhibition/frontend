@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MovingLandingGif from 'assets/moving_landing.gif';

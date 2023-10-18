@@ -1,66 +1,67 @@
 import styled from 'styled-components';
-import {
-  DesktopFlower1,
-  DesktopFlower10,
-  DesktopFlower11,
-  DesktopFlower12,
-  DesktopFlower13,
-  DesktopFlower14,
-  DesktopFlower15,
-  DesktopFlower16,
-  DesktopFlower17,
-  DesktopFlower18,
-  DesktopFlower19,
-  DesktopFlower2,
-  DesktopFlower20,
-  DesktopFlower3,
-  DesktopFlower4,
-  DesktopFlower5,
-  DesktopFlower6,
-  DesktopFlower7,
-  DesktopFlower8,
-  DesktopFlower9,
-  MobileFlower1,
-  MobileFlower10,
-  MobileFlower11,
-  MobileFlower12,
-  MobileFlower13,
-  MobileFlower14,
-  MobileFlower15,
-  MobileFlower16,
-  MobileFlower17,
-  MobileFlower18,
-  MobileFlower19,
-  MobileFlower2,
-  MobileFlower20,
-  MobileFlower3,
-  MobileFlower4,
-  MobileFlower5,
-  MobileFlower6,
-  MobileFlower7,
-  MobileFlower8,
-  MobileFlower9,
-  TabletFlower1,
-  TabletFlower10,
-  TabletFlower11,
-  TabletFlower12,
-  TabletFlower13,
-  TabletFlower14,
-  TabletFlower15,
-  TabletFlower16,
-  TabletFlower17,
-  TabletFlower18,
-  TabletFlower19,
-  TabletFlower2,
-  TabletFlower20,
-  TabletFlower3,
-  TabletFlower4,
-  TabletFlower5,
-  TabletFlower6,
-  TabletFlower7,
-  TabletFlower8,
-  TabletFlower9,
-} from '~/assets/icons';
+
+import { ReactComponent as DesktopFlower1 } from '~/assets/icons/flower/desktop/DesktopFlower1.svg';
+import { ReactComponent as DesktopFlower10 } from '~/assets/icons/flower/desktop/DesktopFlower10.svg';
+import { ReactComponent as DesktopFlower11 } from '~/assets/icons/flower/desktop/DesktopFlower11.svg';
+import { ReactComponent as DesktopFlower12 } from '~/assets/icons/flower/desktop/DesktopFlower12.svg';
+import { ReactComponent as DesktopFlower13 } from '~/assets/icons/flower/desktop/DesktopFlower13.svg';
+import { ReactComponent as DesktopFlower14 } from '~/assets/icons/flower/desktop/DesktopFlower14.svg';
+import { ReactComponent as DesktopFlower15 } from '~/assets/icons/flower/desktop/DesktopFlower15.svg';
+import { ReactComponent as DesktopFlower16 } from '~/assets/icons/flower/desktop/DesktopFlower16.svg';
+import { ReactComponent as DesktopFlower17 } from '~/assets/icons/flower/desktop/DesktopFlower17.svg';
+import { ReactComponent as DesktopFlower18 } from '~/assets/icons/flower/desktop/DesktopFlower18.svg';
+import { ReactComponent as DesktopFlower19 } from '~/assets/icons/flower/desktop/DesktopFlower19.svg';
+import { ReactComponent as DesktopFlower2 } from '~/assets/icons/flower/desktop/DesktopFlower2.svg';
+import { ReactComponent as DesktopFlower20 } from '~/assets/icons/flower/desktop/DesktopFlower20.svg';
+import { ReactComponent as DesktopFlower3 } from '~/assets/icons/flower/desktop/DesktopFlower3.svg';
+import { ReactComponent as DesktopFlower4 } from '~/assets/icons/flower/desktop/DesktopFlower4.svg';
+import { ReactComponent as DesktopFlower5 } from '~/assets/icons/flower/desktop/DesktopFlower5.svg';
+import { ReactComponent as DesktopFlower6 } from '~/assets/icons/flower/desktop/DesktopFlower6.svg';
+import { ReactComponent as DesktopFlower7 } from '~/assets/icons/flower/desktop/DesktopFlower7.svg';
+import { ReactComponent as DesktopFlower8 } from '~/assets/icons/flower/desktop/DesktopFlower8.svg';
+import { ReactComponent as DesktopFlower9 } from '~/assets/icons/flower/desktop/DesktopFlower9.svg';
+
+import { ReactComponent as TabletFlower1 } from '~/assets/icons/flower/tablet/TabletFlower1.svg';
+import { ReactComponent as TabletFlower10 } from '~/assets/icons/flower/tablet/TabletFlower10.svg';
+import { ReactComponent as TabletFlower11 } from '~/assets/icons/flower/tablet/TabletFlower11.svg';
+import { ReactComponent as TabletFlower12 } from '~/assets/icons/flower/tablet/TabletFlower12.svg';
+import { ReactComponent as TabletFlower13 } from '~/assets/icons/flower/tablet/TabletFlower13.svg';
+import { ReactComponent as TabletFlower14 } from '~/assets/icons/flower/tablet/TabletFlower14.svg';
+import { ReactComponent as TabletFlower15 } from '~/assets/icons/flower/tablet/TabletFlower15.svg';
+import { ReactComponent as TabletFlower16 } from '~/assets/icons/flower/tablet/TabletFlower16.svg';
+import { ReactComponent as TabletFlower17 } from '~/assets/icons/flower/tablet/TabletFlower17.svg';
+import { ReactComponent as TabletFlower18 } from '~/assets/icons/flower/tablet/TabletFlower18.svg';
+import { ReactComponent as TabletFlower19 } from '~/assets/icons/flower/tablet/TabletFlower19.svg';
+import { ReactComponent as TabletFlower2 } from '~/assets/icons/flower/tablet/TabletFlower2.svg';
+import { ReactComponent as TabletFlower20 } from '~/assets/icons/flower/tablet/TabletFlower20.svg';
+import { ReactComponent as TabletFlower3 } from '~/assets/icons/flower/tablet/TabletFlower3.svg';
+import { ReactComponent as TabletFlower4 } from '~/assets/icons/flower/tablet/TabletFlower4.svg';
+import { ReactComponent as TabletFlower5 } from '~/assets/icons/flower/tablet/TabletFlower5.svg';
+import { ReactComponent as TabletFlower6 } from '~/assets/icons/flower/tablet/TabletFlower6.svg';
+import { ReactComponent as TabletFlower7 } from '~/assets/icons/flower/tablet/TabletFlower7.svg';
+import { ReactComponent as TabletFlower8 } from '~/assets/icons/flower/tablet/TabletFlower8.svg';
+import { ReactComponent as TabletFlower9 } from '~/assets/icons/flower/tablet/TabletFlower9.svg';
+
+import { ReactComponent as MobileFlower1 } from '~/assets/icons/flower/mobile/MobileFlower1.svg';
+import { ReactComponent as MobileFlower10 } from '~/assets/icons/flower/mobile/MobileFlower10.svg';
+import { ReactComponent as MobileFlower11 } from '~/assets/icons/flower/mobile/MobileFlower11.svg';
+import { ReactComponent as MobileFlower12 } from '~/assets/icons/flower/mobile/MobileFlower12.svg';
+import { ReactComponent as MobileFlower13 } from '~/assets/icons/flower/mobile/MobileFlower13.svg';
+import { ReactComponent as MobileFlower14 } from '~/assets/icons/flower/mobile/MobileFlower14.svg';
+import { ReactComponent as MobileFlower15 } from '~/assets/icons/flower/mobile/MobileFlower15.svg';
+import { ReactComponent as MobileFlower16 } from '~/assets/icons/flower/mobile/MobileFlower16.svg';
+import { ReactComponent as MobileFlower17 } from '~/assets/icons/flower/mobile/MobileFlower17.svg';
+import { ReactComponent as MobileFlower18 } from '~/assets/icons/flower/mobile/MobileFlower18.svg';
+import { ReactComponent as MobileFlower19 } from '~/assets/icons/flower/mobile/MobileFlower19.svg';
+import { ReactComponent as MobileFlower2 } from '~/assets/icons/flower/mobile/MobileFlower2.svg';
+import { ReactComponent as MobileFlower20 } from '~/assets/icons/flower/mobile/MobileFlower20.svg';
+import { ReactComponent as MobileFlower3 } from '~/assets/icons/flower/mobile/MobileFlower3.svg';
+import { ReactComponent as MobileFlower4 } from '~/assets/icons/flower/mobile/MobileFlower4.svg';
+import { ReactComponent as MobileFlower5 } from '~/assets/icons/flower/mobile/MobileFlower5.svg';
+import { ReactComponent as MobileFlower6 } from '~/assets/icons/flower/mobile/MobileFlower6.svg';
+import { ReactComponent as MobileFlower7 } from '~/assets/icons/flower/mobile/MobileFlower7.svg';
+import { ReactComponent as MobileFlower8 } from '~/assets/icons/flower/mobile/MobileFlower8.svg';
+import { ReactComponent as MobileFlower9 } from '~/assets/icons/flower/mobile/MobileFlower9.svg';
 import { TABLET_WIDTH } from '~/constants/common';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 
