@@ -29,6 +29,7 @@ const Container = styled.div`
   justify-content: center;
 
   margin: 0 13.6rem;
+  min-height: 165rem;
 
   @media screen and (width <= 830px) {
     margin: 0 6.4rem;
@@ -43,6 +44,7 @@ const ProjectCardLayout = styled.section`
   display: grid;
   max-width: 165rem;
   grid-template-columns: repeat(3, minmax(27rem, 1fr));
+  grid-template-rows: max-content;
 
   @media screen and (width <= 830px) {
     grid-template-columns: repeat(2, minmax(27rem, 1fr));
