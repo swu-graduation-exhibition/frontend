@@ -1,5 +1,6 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Loading from './pages/Loading';
 
 const Landing = lazy(() => import('./pages/Landing/Landing'));
 const Project = lazy(() => import('./pages/ProjectPage/Project'));
@@ -24,6 +25,7 @@ function Router() {
           </Route>
           <Route path="/project/detail/:projectId" element={<ProjectDetail />} />
           <Route path="/guestbook" element={<GuestBook />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

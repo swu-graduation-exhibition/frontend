@@ -24,7 +24,8 @@ const LoadingImage = styled(LoadingIc)`
   z-index: 10;
   height: 20rem;
 
-  animation: fadeinanimation 0.5s ease-out;
+  animation: fadeinanimation 1s ease-out;
+  animation-iteration-count: infinite;
 
   @keyframes fadeinanimation {
     0% {
@@ -36,7 +37,7 @@ const LoadingImage = styled(LoadingIc)`
     }
 
     100% {
-      opacity: 1;
+      opacity: 0;
     }
   }
 `;
