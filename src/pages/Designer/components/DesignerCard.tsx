@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components';
 import { DesingerInfo } from '~/types/designer';
 import { useState } from 'react';
-import { Default, Mobile } from '~/utils/mediaQuery';
+import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useNavigate } from 'react-router-dom';
 import { getFieldArray } from '~/utils/getFieldArray';
@@ -35,17 +35,22 @@ const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: Designe
       <CardImg src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
       <Default>
         <>
-          {isMouseOn && (
-            <CardHoverContent>
-              <TrackUl>
-                {getFieldArray(field)
-                  .reverse()
-                  .map((data) => (
-                    <TrackList key={name_ko + data}>{data}</TrackList>
-                  ))}
-              </TrackUl>
-            </CardHoverContent>
-          )}
+          <HomeDesktop>
+            <>
+              {isMouseOn && (
+                <CardHoverContent>
+                  <TrackUl>
+                    {getFieldArray(field)
+                      .reverse()
+                      .map((data) => (
+                        <TrackList key={name_ko + data}>{data}</TrackList>
+                      ))}
+                  </TrackUl>
+                </CardHoverContent>
+              )}
+            </>
+          </HomeDesktop>
+
           <NameTitle>{name_ko}</NameTitle>
         </>
       </Default>
@@ -87,7 +92,7 @@ const CardImg = styled.img`
     height: 527.25px;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    height: 172px;
+    height: 257.25px;
     border-bottom: 0.2px solid black;
     border-top: 0.2px solid black;
     border-left: 0.2px solid black;
