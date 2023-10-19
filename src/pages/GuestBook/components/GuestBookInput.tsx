@@ -3,7 +3,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { postGuestBook } from '~/api/guestBook';
 import { TABLET_WIDTH } from '~/constants/common';
-import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import Content from './Content';
 import ReceiverDropBox from './ReceiverDropBox';
 import SenderInput from './SenderInput';
@@ -54,14 +53,14 @@ const GuestBookInput = () => {
     <GuestBookInputWrapper>
       <GuestBookHeadLine>
         <PeopleInputContainer>
-          <InputWrapper gridArea={'sender'}>
+          <InputWrapper $gridArea={'sender'}>
             <SubTitle>보내는 사람</SubTitle>
             <SenderInput
               guestBookContents={guestBookContents}
               setGuestBookContents={setGuestBookContents}
             />
           </InputWrapper>
-          <InputWrapper gridArea={'receiver'}>
+          <InputWrapper $gridArea={'receiver'}>
             <SubTitle>받는 사람</SubTitle>
             <ReceiverDropBox
               guestBookContents={guestBookContents}
@@ -69,21 +68,9 @@ const GuestBookInput = () => {
             />
           </InputWrapper>
         </PeopleInputContainer>
-        <GuestBookDesktop>
-          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-            등록
-          </SendButton>
-        </GuestBookDesktop>
-        <GuestBookTablet>
-          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-            등록
-          </SendButton>
-        </GuestBookTablet>
-        <Mobile>
-          <SendButton isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-            등록
-          </SendButton>
-        </Mobile>
+        <SendButton type="button" $isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+          등록
+        </SendButton>
       </GuestBookHeadLine>
       <ContentWrapper>
         <SubTitle>메시지</SubTitle>
@@ -105,22 +92,22 @@ const GuestBookHeadLine = styled.form`
   width: 100%;
 `;
 
-const SendButton = styled.button<{ isReady: Boolean }>`
+const SendButton = styled.button<{ $isReady: Boolean }>`
   width: 10.9rem;
   height: 6.2rem;
   border-radius: 1rem;
 
-  background-color: ${({ isReady, theme }) =>
-    isReady ? theme.colors.Grayscales_900 : theme.colors.Grayscales_200};
+  background-color: ${({ $isReady, theme }) =>
+    $isReady ? theme.colors.Grayscales_900 : theme.colors.Grayscales_200};
 
-  ${({ theme, isReady }) =>
-    isReady ? theme.fonts.Caption_03_White : theme.fonts.Caption_03_Gray600}
+  ${({ theme, $isReady }) =>
+    $isReady ? theme.fonts.Caption_03_White : theme.fonts.Caption_03_Gray600}
 
   @media screen and (width <= 600px) {
     margin-left: 0.5rem;
     height: 13rem;
-    ${({ theme, isReady }) =>
-      isReady ? theme.fonts.Mobile_Body_02_White : theme.fonts.Mobile_Body_02_Gray600}
+    ${({ theme, $isReady }) =>
+      $isReady ? theme.fonts.Mobile_Body_02_White : theme.fonts.Mobile_Body_02_Gray600}
   }
 `;
 
@@ -145,22 +132,22 @@ const PeopleInputContainer = styled.section`
   }
 `;
 
-const InputWrapper = styled.article<{ gridArea: string }>`
+const InputWrapper = styled.article<{ $gridArea: string }>`
   display: flex;
   flex-direction: column;
-  grid-area: ${({ gridArea }) => gridArea};
-  margin-left: ${({ gridArea }) => gridArea === 'receiver' && 13.6}rem;
+  grid-area: ${({ $gridArea }) => $gridArea};
+  margin-left: ${({ $gridArea }) => $gridArea === 'receiver' && 13.6}rem;
 
   @media screen and (width <= 1300px) {
-    margin-left: ${({ gridArea }) => gridArea === 'receiver' && 5}rem;
+    margin-left: ${({ $gridArea }) => $gridArea === 'receiver' && 5}rem;
   }
 
   @media screen and (width <= 970px) {
-    margin-left: ${({ gridArea }) => gridArea === 'receiver' && 1.6}rem;
+    margin-left: ${({ $gridArea }) => $gridArea === 'receiver' && 1.6}rem;
   }
 
   @media screen and (width <= 600px) {
-    margin-top: ${({ gridArea }) => gridArea === 'receiver' && 0.5}rem;
+    margin-top: ${({ $gridArea }) => $gridArea === 'receiver' && 0.5}rem;
     margin-left: 0;
   }
 `;

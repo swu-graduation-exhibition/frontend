@@ -45,8 +45,10 @@ function Project() {
   return (
     <PageLayout>
       <ProjectLayout>
-        <ProjectCategory />
-        <ProjectCardContainer projectData={projectData} />
+        <Container>
+          <ProjectCategory />
+          <ProjectCardContainer projectData={projectData} />
+        </Container>
         <Mobile>
           <TopButton />
         </Mobile>
@@ -64,4 +66,21 @@ const ProjectLayout = styled.section`
   align-items: center;
   width: 100%;
   height: fit-content;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 13.6rem;
+  min-height: 130rem;
+
+  @media screen and (width <= 830px) {
+    margin: 0 6.4rem;
+  }
+
+  @media screen and (width <= 520px) {
+    margin: 0;
+  }
 `;

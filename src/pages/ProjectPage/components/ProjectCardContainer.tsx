@@ -8,7 +8,7 @@ interface IProjectProps {
 
 function ProjectCardContainer({ projectData }: IProjectProps) {
   return (
-    <Container>
+    <>
       <ProjectCardLayout>
         {projectData?.map((projectInfo, i) => {
           return (
@@ -18,27 +18,11 @@ function ProjectCardContainer({ projectData }: IProjectProps) {
           );
         })}
       </ProjectCardLayout>
-    </Container>
+    </>
   );
 }
 
 export default ProjectCardContainer;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-
-  margin: 0 13.6rem;
-  min-height: 130rem;
-
-  @media screen and (width <= 830px) {
-    margin: 0 6.4rem;
-  }
-
-  @media screen and (width <= 520px) {
-    margin: 0;
-  }
-`;
 
 const ProjectCardLayout = styled.section`
   display: grid;

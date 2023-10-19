@@ -49,7 +49,7 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
 
   return (
     <CategoryDropBoxWrapper>
-      <Drop isDrop={isDrop} onClick={handleDrop}>
+      <Drop $isDrop={isDrop} onClick={handleDrop}>
         {designerId === -1 ? (
           <Receiver>All</Receiver>
         ) : (
@@ -160,7 +160,7 @@ const Box = styled.div`
   }
 `;
 
-const Drop = styled.div<{ isDrop: boolean }>`
+const Drop = styled.div<{ $isDrop: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -168,7 +168,7 @@ const Drop = styled.div<{ isDrop: boolean }>`
   height: 6.2rem;
   padding: 1.6rem;
   border: 1px solid
-    ${({ theme, isDrop }) => (isDrop ? theme.colors.Black : theme.colors.Grayscales_500)};
+    ${({ theme, $isDrop }) => ($isDrop ? theme.colors.Black : theme.colors.Grayscales_500)};
 
   background-color: ${({ theme }) => theme.colors.White};
 

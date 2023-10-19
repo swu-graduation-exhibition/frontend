@@ -8,7 +8,7 @@ function ProjectDetailHeader() {
     <Container>
       <ProjcetTitle>
         <ProjectName>
-          <IcStarAll />
+          <IconStarAll />
           Project.Name
         </ProjectName>
         <ProjectMembers>김나현 오연정 이주연 주은서 주하영</ProjectMembers>
@@ -29,6 +29,20 @@ function ProjectDetailHeader() {
 
 export default ProjectDetailHeader;
 
+const IconStarAll = styled(IcStarAll)`
+  width: 1.9rem;
+  margin-right: 0.4rem;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    width: 1rem;
+    margin-right: 0.2rem;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    margin-right: 0;
+  }
+`;
+
 const Container = styled.section`
   display: flex;
   justify-content: space-between;
@@ -37,20 +51,14 @@ const Container = styled.section`
 
   flex-direction: row;
 
-  @media screen and (width >${TABLET_WIDTH}) {
-    gap: 5rem;
-  }
-
-  @media screen and (width <= ${TABLET_WIDTH}) {
-    padding: 6rem 6.4rem 6.4rem;
+  @media screen and (width <= 1100px) {
+    padding: 5.6rem 6.4rem 6.4rem;
 
     flex-direction: column;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    padding: 2.3rem 1.6rem 1.6rem;
-
-    flex-direction: column;
+    padding: 2.3rem 2.7rem 6rem;
   }
 `;
 
@@ -60,9 +68,7 @@ const ProjcetTitle = styled.div`
   max-width: 36.8rem;
   min-width: fit-content;
 
-  gap: 2rem;
-
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1100px) {
     gap: 1.2rem;
   }
 
@@ -85,11 +91,12 @@ const ProjectName = styled.div(
       margin-right: 0.5rem;
     }
 
-    @media screen and (width <= 1400px) {
+    @media screen and (width <= 1100px) {
       ${({ theme }) => theme.fonts.Subtitle_02}
     }
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
+      margin-left: -1rem;
       ${({ theme }) => theme.fonts.Mobile_Subtitle_02}
     }
   `,
@@ -113,8 +120,24 @@ const ProjectMembers = styled.div`
 const ProjectDescription = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 81.4rem;
+
   gap: 4.8rem;
+
+  @media screen and (width>1100px) {
+    width: 50rem;
+  }
+
+  @media screen and (width>1300px) {
+    width: 60rem;
+  }
+
+  @media screen and (width>1400px) {
+    width: 70rem;
+  }
+
+  @media screen and (width>1500px) {
+    width: 81.4rem;
+  }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     gap: 2rem;
@@ -142,29 +165,29 @@ const ButtonSection = styled.div`
   }
 `;
 
-const TryItButton = styled.button(
-  ({ theme }) => theme.fonts.Subtitle_01,
-  css`
-    width: fit-content;
-    padding: 0.8rem 3.2rem;
-    border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
+const TryItButton = styled.button`
+  width: fit-content;
+  padding: 0.8rem 3.2rem;
+  border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
 
-    color: ${({ theme }) => theme.colors.Grayscales_900};
+  color: ${({ theme }) => theme.colors.Grayscales_900};
+
+  font-family: 'Antic Didone';
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    padding: 0.4rem 1.7rem;
 
     font-family: 'Antic Didone';
+    font-size: 1.5rem;
+    font-style: normal;
     font-weight: 400;
-
-    @media screen and (width <= ${MOBILE_WIDTH}) {
-      padding: 0.4rem 1.7rem;
-
-      font-family: 'Antic Didone';
-      font-size: 1.5rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 1.7rem;
-    }
-  `,
-);
+    line-height: 1.7rem;
+  }
+`;
 
 const ButtonCaption = styled.span(
   ({ theme }) => theme.fonts.Caption_03,

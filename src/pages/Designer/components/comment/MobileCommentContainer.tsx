@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GuestBookCommentCard from '~/common/components/GuestBookCommentCard';
-import { guestBookCommentData } from '~/common/data/guestBookCommentList';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-comment-scroll';
 import { GuestBookCommentInfo } from '~/types/guestBook';
@@ -42,21 +41,18 @@ export default MobileCommentContainer;
 
 const CommentListWrapper = styled.div`
   display: grid;
-  max-width: 165rem;
-  grid-template-columns: repeat(4, minmax(27rem, 1fr));
+  margin-top: 4.3rem;
+  grid-template-columns: repeat(4, 1fr);
+
   gap: 2rem;
 
-  margin-top: 12rem;
-  margin-bottom: 10rem;
-
-  @media screen and (width <= 1300px) {
-    grid-template-columns: repeat(2, minmax(27rem, 1fr));
+  @media screen and (width <= 1400px) {
+    margin: 4rem 0;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    grid-template-columns: repeat(1, minmax(27rem, 1fr));
-    margin-left: 1.6rem;
-    margin-right: 1.6rem;
     margin-top: 4.6rem;
+    grid-template-columns: repeat(1, 1fr);
   }
 `;

@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
 import { GuestBookPageCard } from '~/types/guestBook';
 import { getParseDate } from '~/utils/getParseDate';
 
@@ -17,6 +16,7 @@ const GuestBookCard = ({ sender, content, createdAt, receiver }: GuestBookPageCa
 export default GuestBookCard;
 
 const Receiver = styled.p`
+  margin-top: 1.2rem;
   ${({ theme }) => theme.fonts.Subtitle_04_Gray700};
 
   @media screen and (width <= 1600px) {
@@ -50,8 +50,18 @@ const Container = styled.div`
     padding: 2rem;
   }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= 600px) {
+    height: 34rem;
+    padding: 2rem;
+  }
+
+  @media screen and (width <= 521px) {
     height: 22rem;
+    padding: 2rem;
+  }
+
+  @media screen and (width<=420px) {
+    height: 25rem;
     padding: 2rem;
   }
 `;
@@ -76,6 +86,7 @@ const CreatedAt = styled.div`
 const Content = styled.div`
   ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Black};
+  word-break: break-all;
 
   @media screen and (width <= 1600px) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};

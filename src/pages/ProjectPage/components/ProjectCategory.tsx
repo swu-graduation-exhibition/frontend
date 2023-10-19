@@ -1,12 +1,33 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+
 import { IcStarAll } from '~/assets/icons';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
+  const { pathname } = useLocation();
+  const pathArr = pathname.split('/');
+  const category = pathArr[pathArr.length - 1];
+
+  useEffect(() => {
+    switch (category) {
+      case 'ux-design':
+        setIsSelected('UX Design');
+        break;
+      case 'digital-fabrication':
+        setIsSelected('Digital Fabrication');
+        break;
+      case 'bx-design':
+        setIsSelected('BX Design');
+        break;
+      default:
+        setIsSelected('UX Design');
+        break;
+    }
+  }, []);
 
   const handleCategory = (category: TProjectCategories) => {
     setIsSelected(category);
@@ -15,7 +36,7 @@ function ProjectCategory() {
   return (
     <Container>
       <NavTitle>
-        <IcStarAll />
+        <IconStarAll />
         Project
       </NavTitle>
       <ButtonSection>
@@ -38,20 +59,39 @@ function ProjectCategory() {
 
 export default ProjectCategory;
 
+const IconStarAll = styled(IcStarAll)`
+  width: 1.9rem;
+  margin-right: 0.4rem;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    width: 1rem;
+    margin-right: 0.2rem;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    margin-right: 0;
+  }
+`;
+
 const Container = styled.section`
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  max-width: 165rem;
-  height: 31.5rem;
-  padding: 16rem 13.6rem 8rem;
+  align-items: flex-start;
 
-  @media screen and (width <= 1400px) {
-    justify-content: flex-start;
-    height: fit-content;
-    padding: 5.6rem 6.4rem 5.2rem;
-    flex-direction: column;
-    gap: 1.8rem;
+  flex-direction: column;
+
+  width: 100%;
+
+  /* max-width: 165rem; */
+
+  padding: 16rem 0 7.2rem;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    padding: 5.6rem 0;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    padding: 2.3rem 0 4.2rem;
   }
 `;
 
@@ -62,15 +102,17 @@ const NavTitle = styled.header(
 
     width: fit-content;
     height: fit-content;
+    margin-bottom: 4rem;
 
-    svg {
-      position: relative;
-      top: 1rem;
-      margin-right: 0.5rem;
+    @media screen and (width <= ${TABLET_WIDTH}) {
+      ${({ theme }) => theme.fonts.Subtitle_02}
+      margin-bottom: 2.4rem;
     }
 
-    @media screen and (width <= 1400px) {
-      ${({ theme }) => theme.fonts.Subtitle_02}
+    @media screen and (width<=${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_02}
+      margin-bottom: 1.8rem;
+      margin-left: 1.7rem;
     }
   `,
 );
@@ -83,12 +125,16 @@ const ButtonSection = styled.div`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     flex-direction: column;
+    padding-left: 2.9rem;
   }
 `;
 
 const CategoryButton = styled.button<{ $ischecked: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: fit-content;
-  padding: 1.6rem 3.2rem;
+  padding: 1.2rem 3.2rem;
   border: 0.15rem solid var(--grayscales-800, #343a40);
 
   background-color: ${({ $ischecked, theme }) =>
@@ -102,11 +148,14 @@ const CategoryButton = styled.button<{ $ischecked: boolean }>`
   font-size: 3.2rem;
   font-weight: 500;
   border-radius: 0.4rem;
+  gap: 0.4rem;
 
-  @media screen and (width <= 1400px) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     font-size: 2.1rem;
+    padding: 0.8rem 2rem;
+  }
 
-    text-align: start;
-    font-weight: 500;
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    padding: 1.08rem 2.16rem;
   }
 `;

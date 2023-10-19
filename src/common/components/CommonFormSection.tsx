@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { postProjectComment } from '~/api/project';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
 import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import { FormSectionProps } from '~/types/commonFormSection';
-import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
+import { Desktop, ProjectDetailBig, ProjectDetailMobile } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
@@ -18,7 +18,7 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
   const { desktopData } = useGetProjectCommentDesktop(Number(projectId), 1);
   console.log(desktopData);
 
-  const { title, toMent, messageMent } = FormSupplies[page];
+  const { title, toMent, mobilMent, messageMent } = FormSupplies[page];
 
   const queryClient = useQueryClient();
 
@@ -49,41 +49,48 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
     sendComment();
   };
 
+  const sendDesignerGuestBook = () => {
+    // 디자이너 게스트북 api
+  };
+
   return (
     <Container>
       <HeaderSection>
         <Title>{title}</Title>
         {page === 'project' && <CommentCount>{desktopData && desktopData.count}</CommentCount>}
       </HeaderSection>
-      {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
+      {page === 'designer' && (
+        <Desktop>
+          <ToLabelSection>보내는 사람</ToLabelSection>
+        </Desktop>
+      )}
       <ToInputWrapper>
-        <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
+        <ProjectDetailBig>
+          <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
+        </ProjectDetailBig>
+        <ProjectDetailMobile>
+          <FromInput placeholder={mobilMent} value={to} onChange={inputOnChange} />
+        </ProjectDetailMobile>
 
         {isButtonActive ? (
           page === 'designer' ? (
-            <SubmitButton>등록</SubmitButton>
+            <SubmitButton type="button" onClick={sendDesignerGuestBook}>
+              등록
+            </SubmitButton>
           ) : (
-            <>
-              <Desktop>
-                <SubmitButton type="button" onClick={sendProjectComment}>
-                  등록
-                </SubmitButton>
-              </Desktop>
-              <Tablet>
-                <SubmitButton type="button" onClick={sendProjectComment}>
-                  등록
-                </SubmitButton>
-              </Tablet>
-              <Mobile>
-                <SubmitButton onClick={sendProjectComment}>등록</SubmitButton>
-              </Mobile>
-            </>
+            <SubmitButton type="button" onClick={sendProjectComment}>
+              등록
+            </SubmitButton>
           )
         ) : (
           <UnSubmitButton type="button">등록</UnSubmitButton>
         )}
       </ToInputWrapper>
-      {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
+      {page === 'designer' && (
+        <Desktop>
+          <MsgLabelSection>메시지</MsgLabelSection>
+        </Desktop>
+      )}
       <TextAreaWrapper>
         <TextArea placeholder={messageMent} value={message} onChange={textAreaOnChange} />
         <CountingLetterSection>
@@ -109,6 +116,7 @@ const HeaderSection = styled.div`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin-bottom: 4rem;
+    gap: 1rem;
   }
 `;
 
@@ -137,15 +145,12 @@ const Title = styled.div(
 );
 
 const CommentCount = styled.span(
-  ({ theme }) => theme.fonts.Subtitle_01,
+  ({ theme }) => theme.fonts.Body_02,
   css`
     color: ${({ theme }) => theme.colors.Grayscales_600};
 
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
-
     @media screen and (width <= ${MOBILE_WIDTH}) {
-      ${({ theme }) => theme.fonts.Mobile_Body_02}
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_04}
       font-weight: 300;
 
       color: ${({ theme }) => theme.colors.Grayscales_600};
@@ -175,9 +180,17 @@ const FromInput = styled.input(
       border: 1px solid black;
     }
 
-    @media screen and (width <= ${MOBILE_WIDTH}) {
-      ${({ theme }) => theme.fonts.Caption_03}
+    @media screen and (width <= ${TABLET_WIDTH}) {
       width: 39.2rem;
+    }
+
+    @media screen and (width <= 690px) {
+      width: 31rem;
+    }
+
+    @media screen and (width <= 540px) {
+      ${({ theme }) => theme.fonts.Caption_03}
+      width: 26.9rem;
       padding: 1.6rem 2.4rem;
       font-size: 1.5rem;
     }
@@ -194,11 +207,11 @@ const SubmitButton = styled.button(
     background-color: ${({ theme }) => theme.colors.Grayscales_900};
     color: ${({ theme }) => theme.colors.Grayscales_50};
 
-    @media screen and (width <= ${MOBILE_WIDTH}) {
+    @media screen and (width <= 540px) {
       ${({ theme }) => theme.fonts.Caption_03}
       color: ${({ theme }) => theme.colors.Grayscales_50};
       margin-left: 1rem;
-
+      width: 6.9rem;
       font-size: 1.5rem;
     }
   `,
@@ -207,7 +220,7 @@ const UnSubmitButton = styled(SubmitButton)`
   background-color: ${({ theme }) => theme.colors.Grayscales_200};
   color: ${({ theme }) => theme.colors.Grayscales_600};
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= 540px) {
     ${({ theme }) => theme.fonts.Caption_03}
     color: ${({ theme }) => theme.colors.Grayscales_600};
     margin-left: 1rem;
@@ -235,10 +248,10 @@ const TextArea = styled.textarea(
       border: 1px solid black;
     }
 
-    @media screen and (width <= ${MOBILE_WIDTH}) {
+    @media screen and (width <= 540px) {
       ${({ theme }) => theme.fonts.Caption_03}
       font-size: 1.5rem;
-      height: 25.6rem;
+      height: 16.9rem;
     }
   `,
 );

@@ -1,11 +1,11 @@
-import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { getProjectComment } from '~/api/project';
 import TopButton from '~/common/components/TopButton';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
+import useGetProjectCommentMobile from '~/hooks/useGetProjectCommentMobile';
 import useGetProjectCommentTablet from '~/hooks/useGetProjectCommentTablet';
 import useInfiniteScroll from '~/hooks/useInfiniteScroll';
 import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
@@ -35,50 +35,16 @@ const CommentListSection = () => {
   };
 
   // 모바일
-
-  const [mobilComment, setMobilComment] = useState<any>([]);
-  const [mobileCount, setMobileCount] = useState(0);
-  const [isKey, setIsKey] = useState(false);
-
-  useEffect(() => {
-    setMobilComment([]);
-  }, [projectId]);
-
-  useEffect(() => {
-    if (mobilComment.length === 0) {
-      setIsKey((ik) => !ik);
-    }
-  }, [mobilComment]);
-
-  const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(
-      ['getProjectCommentMobile', isKey],
-      async ({ pageParam = 1 }) => await getData(pageParam),
-      {
-        getNextPageParam: (lastPage, allPages) => {
-          return lastPage?.nextPage;
-        },
-        refetchOnWindowFocus: false,
-      },
-    );
-
+  const { mobileCount, mobileData, fetchNextPage, hasNextPage } = useGetProjectCommentMobile(
+    Number(projectId),
+  );
   const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
-
-  async function getData(page: number) {
-    if (hasNextPage !== false) {
-      const response = await getProjectComment(Number(projectId), page, 3);
-      setMobileCount(response?.count);
-      setMobilComment((prev: any) => [...prev, ...response?.projectCommentList]);
-
-      return { response, nextPage: page + 1 };
-    }
-  }
 
   return (
     <Container>
       <Desktop>
         <>
-          {getQuery('getProjectCommentDesktop')}
+          {/* {getQuery('getProjectCommentDesktop')} */}
           <CommentListWrapper>
             {desktopData?.count > 0 ? (
               <>
@@ -94,19 +60,19 @@ const CommentListSection = () => {
               <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
-          {desktopData?.count > 8 && (
-            <Pagination
-              currentPage={currentDesktopPage}
-              setCurrentPage={setCurrentDesktopPage}
-              lastPage={lastDesktopPage}
-              paginationNumbers={paginationDesktopNumbers}
-            />
-          )}
+          {/* {desktopData?.count > 8 && ( */}
+          <Pagination
+            currentPage={currentDesktopPage}
+            setCurrentPage={setCurrentDesktopPage}
+            lastPage={lastDesktopPage}
+            paginationNumbers={paginationDesktopNumbers}
+          />
+          {/* )} */}
         </>
       </Desktop>
       <Tablet>
         <>
-          {getQuery('getProjectCommentTablet')}
+          {/* {getQuery('getProjectCommentTablet')} */}
 
           <CommentListWrapper>
             {tabletData?.count > 0 ? (
@@ -123,14 +89,14 @@ const CommentListSection = () => {
               <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
-          {tabletData?.count > 6 && (
-            <Pagination
-              currentPage={currentTabletPage}
-              setCurrentPage={setCurrentTabletPage}
-              lastPage={lastTabletPage}
-              paginationNumbers={paginationTabletNumbers}
-            />
-          )}
+          {/* {tabletData?.count > 6 && ( */}
+          <Pagination
+            currentPage={currentTabletPage}
+            setCurrentPage={setCurrentTabletPage}
+            lastPage={lastTabletPage}
+            paginationNumbers={paginationTabletNumbers}
+          />
+          {/* )} */}
         </>
       </Tablet>
       <Mobile>
@@ -139,15 +105,13 @@ const CommentListSection = () => {
           <CommentListWrapper>
             {mobileCount > 0 ? (
               <>
-                {[...mobilComment]
-                  .filter((comment, i) => i > 2 && comment)
-                  .map((commentData: any, i: number) => (
-                    <CommentBox
-                      key={i}
-                      commentData={commentData}
-                      $lastelement={i === mobileCount - 1 ? false : true}
-                    />
-                  ))}
+                {mobileData?.map((commentData: any, i: number) => (
+                  <CommentBox
+                    key={i}
+                    commentData={commentData}
+                    $lastelement={i === mobileCount - 1 ? false : true}
+                  />
+                ))}
               </>
             ) : (
               <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>

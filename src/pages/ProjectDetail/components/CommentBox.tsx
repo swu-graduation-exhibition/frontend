@@ -32,16 +32,14 @@ const Container = styled.article<{ $lastelement: boolean }>`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     flex-direction: column;
     padding: 2.4rem 0;
-
-    /* border-bottom: ${({ theme }) => `1px solid ${theme.colors.Grayscales_400}`}; */
   }
 `;
 
 const CommentInfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 18.3rem;
   min-width: 18.3rem;
+  margin-right: 4.8rem;
 `;
 
 const Name = styled.span`
@@ -69,6 +67,7 @@ const Date = styled.span(
 
 const Content = styled.span`
   ${({ theme }) => theme.fonts.Caption_03}
+  word-break: break-all;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03}

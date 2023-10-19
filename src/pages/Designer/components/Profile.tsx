@@ -27,7 +27,7 @@ const Profile = ({
     <ProfileWrapper>
       <Mobile>
         <NameHeader>
-          <IcStarAll />
+          <IconStarAll />
           <NameTitle>
             <h3>{koreanName}</h3>
             <span>{englishName}</span>
@@ -63,7 +63,7 @@ const Profile = ({
       <Default>
         <TextInfoWrapper>
           <NameHeader>
-            <IcStarAll />
+            <IconStarAll />
             <NameTitle>
               <h3>{koreanName}</h3>
               <span>{englishName}</span>
@@ -98,6 +98,20 @@ const Profile = ({
 
 export default Profile;
 
+const IconStarAll = styled(IcStarAll)`
+  width: 1.9rem;
+  margin-right: 0.4rem;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    width: 1rem;
+    margin-right: 0.2rem;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    margin-right: 0;
+  }
+`;
+
 const ProfileWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -113,9 +127,8 @@ const ProfileWrapper = styled.div`
 
 const ProfileImg = styled.img`
   width: 100%;
-  height: 100%;
-
   width: 64rem;
+  height: 100%;
   height: 64rem;
   object-fit: cover;
 
@@ -123,6 +136,7 @@ const ProfileImg = styled.img`
     width: 30rem;
     height: 30rem;
   }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 17.2rem;
     height: 17.2rem;
@@ -139,14 +153,6 @@ const TextInfoWrapper = styled.div`
 const NameHeader = styled.header`
   display: flex;
   height: fit-content;
-  svg {
-    width: 1.9rem;
-    height: 1.9rem;
-
-    @media screen and (width <= ${TABLET_WIDTH}) {
-      width: 1rem;
-    }
-  }
 `;
 
 const NameTitle = styled.div`
@@ -159,9 +165,11 @@ const NameTitle = styled.div`
     @media screen and (width <= ${DESKTOP_WIDTH}) {
       ${({ theme }) => theme.fonts.Subtitle_02};
     }
+
     @media screen and (width <= ${TABLET_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Subtitle_02};
     }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Subtitle_01};
     }
@@ -169,13 +177,14 @@ const NameTitle = styled.div`
 
   span {
     ${({ theme }) => theme.fonts.Body_02};
-
     @media screen and (width <= ${DESKTOP_WIDTH}) {
       ${({ theme }) => theme.fonts.Body_04};
     }
+
     @media screen and (width <= ${TABLET_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Body_03};
     }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Caption_01};
     }
@@ -188,9 +197,11 @@ const DesignerText = styled.div`
   @media screen and (width <= ${DESKTOP_WIDTH}) {
     ${({ theme }) => theme.fonts.Caption_03};
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_04};
   }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_01};
     margin-top: 1.2rem;
@@ -213,22 +224,25 @@ const DesignerSNS = styled.li`
   @media screen and (width <= ${DESKTOP_WIDTH}) {
     grid-template-columns: repeat(2, 120px);
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     grid-template-columns: repeat(2, 90px);
   }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     grid-template-columns: repeat(2, 70px);
   }
 
   span {
     ${({ theme }) => theme.fonts.Caption_02};
-
     @media screen and (width <= ${DESKTOP_WIDTH}) {
       ${({ theme }) => theme.fonts.Caption_03};
     }
+
     @media screen and (width <= ${TABLET_WIDTH}) {
       ${({ theme }) => theme.fonts.Caption_04};
     }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Caption_01};
     }

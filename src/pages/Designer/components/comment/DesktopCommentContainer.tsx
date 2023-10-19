@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GuestBookCommentCard from '~/common/components/GuestBookCommentCard';
-import { guestBookCommentData } from '~/common/data/guestBookCommentList';
 import { MOBILE_WIDTH } from '~/constants/common';
 import { useDefaultCommentList } from '~/lib/api/designer/get-designer-comment-list';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
@@ -41,14 +40,19 @@ export default DesktopCommentContainer;
 
 const CommentListWrapper = styled.div`
   display: grid;
-  max-width: 165rem;
-  grid-template-columns: repeat(4, minmax(27rem, 1fr));
+  margin-top: 4.3rem;
+  grid-template-columns: repeat(4, 1fr);
+
   gap: 2rem;
 
-  margin-top: 12rem;
-  margin-bottom: 10rem;
-
   @media screen and (width <= 1400px) {
-    grid-template-columns: repeat(2, minmax(27rem, 1fr));
+    margin: 4rem 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    /* margin: 9.4rem 0; */
+
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
