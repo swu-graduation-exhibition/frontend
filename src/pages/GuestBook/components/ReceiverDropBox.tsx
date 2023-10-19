@@ -136,7 +136,7 @@ const Box = styled.div`
   cursor: pointer;
 
   @media screen and (width <= 600px) {
-    width: 26.9 rem;
+    width: 26.9rem;
     margin-top: 7rem;
   }
 `;

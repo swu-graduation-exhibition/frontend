@@ -8,7 +8,7 @@ const useFormHooks = () => {
   });
 
   const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length < 8) {
+    if (e.target.value.length <= 8) {
       setSetFormData((prev) => ({ ...prev, to: e.target.value }));
     }
   };

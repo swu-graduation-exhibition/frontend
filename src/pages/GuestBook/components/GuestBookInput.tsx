@@ -3,7 +3,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { postGuestBook } from '~/api/guestBook';
 import { TABLET_WIDTH } from '~/constants/common';
-import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
 import Content from './Content';
 import ReceiverDropBox from './ReceiverDropBox';
 import SenderInput from './SenderInput';
@@ -69,21 +68,9 @@ const GuestBookInput = () => {
             />
           </InputWrapper>
         </PeopleInputContainer>
-        <GuestBookDesktop>
-          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-            등록
-          </SendButton>
-        </GuestBookDesktop>
-        <GuestBookTablet>
-          <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-            등록
-          </SendButton>
-        </GuestBookTablet>
-        <Mobile>
-          <SendButton isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
-            등록
-          </SendButton>
-        </Mobile>
+        <SendButton type="button" isReady={checkReadyToSend()} onClick={handleSendGuestBook}>
+          등록
+        </SendButton>
       </GuestBookHeadLine>
       <ContentWrapper>
         <SubTitle>메시지</SubTitle>

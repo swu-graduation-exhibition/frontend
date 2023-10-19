@@ -23,7 +23,7 @@ const Pagination = ({
             setCurrentPage(currentPage - 1);
           }}
         >
-          <IcArrowLeft />
+          <IconArrowLeft />
         </IconWrapper>
         <ButtonWrapper>
           {paginationNumbers.map((_, i) => (
@@ -42,7 +42,7 @@ const Pagination = ({
             setCurrentPage(currentPage + 1);
           }}
         >
-          <IcArrowRight />
+          <IconArrowRight />
         </IconWrapper>
       </Container>
     </>
@@ -51,9 +51,20 @@ const Pagination = ({
 
 export default Pagination;
 
+const IconArrowLeft = styled(IcArrowLeft)`
+  width: 2.3rem;
+  height: 2.3rem;
+`;
+
+const IconArrowRight = styled(IcArrowRight)`
+  width: 2.3rem;
+  height: 2.3rem;
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 4.6rem;
 `;
@@ -81,7 +92,5 @@ const PageButton = styled.li<{ $iscurrentpage: 'page' | false }>(
     align-items: center;
     width: 4.6rem;
     height: 4.6rem;
-    font-weight: 400;
-    cursor: pointer;
   `,
 );

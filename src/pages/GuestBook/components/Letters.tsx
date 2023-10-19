@@ -1,10 +1,10 @@
-import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { getGuestBook } from '~/api/guestBook';
 import TopButton from '~/common/components/TopButton';
 import { MOBILE_WIDTH } from '~/constants/common';
 import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
+import useGetGuestBookMobile from '~/hooks/useGetGuestBookMobile';
 import useGetGuestBookTablet from '~/hooks/useGetGuestBookTablet';
 import useInfiniteScroll from '~/hooks/useInfiniteScroll';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
@@ -37,53 +37,15 @@ const Letters = () => {
 
   // 모바일
 
-  const [mobileDesignerCommentList, setMobileDesignerCommentList] = useState<GuestBookPageCard[]>(
-    [],
-  );
-  const [mobileCount, setMobileCount] = useState(0);
-  const [isKey, setIsKey] = useState(false);
-
-  useEffect(() => {
-    setMobileDesignerCommentList([]);
-  }, [designerId]);
-
-  useEffect(() => {
-    if (mobileDesignerCommentList.length === 0) {
-      setIsKey((ik) => !ik);
-    }
-  }, [mobileDesignerCommentList]);
-
-  const { data, isSuccess, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(
-      ['getGuestBook', isKey],
-      async ({ pageParam = 1 }) => await getData(pageParam),
-      {
-        getNextPageParam: (lastPage, allPages) => {
-          return lastPage?.nextPage;
-        },
-        refetchOnWindowFocus: false,
-      },
-    );
-
+  const { mobileCount, mobileData, fetchNextPage, hasNextPage } = useGetGuestBookMobile(designerId);
   const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
-
-  async function getData(page: number) {
-    if (hasNextPage !== false) {
-      const id = designerId === -1 ? '' : designerId;
-      const response = await getGuestBook(id, page, 3);
-      setMobileCount(response?.count);
-      setMobileDesignerCommentList((prev) => [...prev, ...response?.commentList]);
-
-      return { response, nextPage: page + 1 };
-    }
-  }
 
   return (
     <>
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <GuestBookDesktop>
         <>
-          {getQuery('getGuestBookDesktop')}
+          {/* {getQuery('getGuestBookDesktop')} */}
           {desktopData?.count > 0 ? (
             <LettersWrapper>
               {desktopData.commentList.map(
@@ -110,14 +72,12 @@ const Letters = () => {
             />
           </PaginationWrapper>
 
-          {/* <Flowers length={desktopData?.count} /> */}
-
-          <Flowers length={250} />
+          <Flowers length={desktopData?.count} />
         </>
       </GuestBookDesktop>
       <GuestBookTablet>
         <>
-          {getQuery('getGuestBookTablet')}
+          {/* {getQuery('getGuestBookTablet')} */}
           {tabletData?.count > 0 ? (
             <LettersWrapper>
               {tabletData?.commentList.map(
@@ -144,19 +104,16 @@ const Letters = () => {
             />
           </PaginationWrapper>
 
-          {/* <Flowers length={tabletData?.count} /> */}
-
-          <Flowers length={250} />
+          <Flowers length={tabletData?.count} />
         </>
       </GuestBookTablet>
       <Mobile>
         <>
           <TopButton />
-          {mobileDesignerCommentList ? (
+          {mobileData ? (
             <LettersWrapper>
-              {[...mobileDesignerCommentList]
-                .filter((comment, i) => i > 2 && comment)
-                .map(({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
+              {mobileData.map(
+                ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
                     sender={sender}
@@ -164,16 +121,15 @@ const Letters = () => {
                     createdAt={createdAt}
                     receiver={receiver}
                   />
-                ))}
+                ),
+              )}
             </LettersWrapper>
           ) : (
             <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
           )}
           <Target ref={observerRef} />
 
-          {/* <Flowers length={mobileDesignerCommentList?.length} /> */}
-
-          <Flowers length={250} />
+          <Flowers length={mobileCount} />
         </>
       </Mobile>
     </>

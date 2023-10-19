@@ -29,6 +29,16 @@ const GuestBookTablet = ({ children }: { children: JSX.Element }): JSX.Element |
   return isTablet ? children : null;
 };
 
+const ProjectDetailBig = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isTablet = useMediaQuery({ minWidth: 691 });
+  return isTablet ? children : null;
+};
+
+const ProjectDetailMobile = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isTablet = useMediaQuery({ maxWidth: 690 });
+  return isTablet ? children : null;
+};
+
 const Mobile = ({ children }: { children: JSX.Element }): JSX.Element | null => {
   const isMobile = useMediaQuery({ maxWidth: 520 });
   return isMobile ? children : null;
@@ -50,9 +60,11 @@ export {
   Desktop,
   GuestBookDesktop,
   GuestBookTablet,
+  HomeDesktop,
+  HomeTablet,
   Mobile,
   ProjectDesktop,
+  ProjectDetailBig,
+  ProjectDetailMobile,
   Tablet,
-  HomeTablet,
-  HomeDesktop,
 };

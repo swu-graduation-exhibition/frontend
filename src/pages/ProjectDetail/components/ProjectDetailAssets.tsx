@@ -13,8 +13,10 @@ export default ProjectDetailAssets;
 const Container = styled.img`
   width: 100%;
 
-  max-width: 165rem;
-  height: 140rem;
+  /* max-width: 165rem; */
+
+  /* height: 140rem; */
+
   margin-bottom: 20rem;
 
   @media screen and (width <= ${TABLET_WIDTH}) {

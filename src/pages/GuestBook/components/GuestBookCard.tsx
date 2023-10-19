@@ -54,6 +54,11 @@ const Container = styled.div`
     height: 22rem;
     padding: 2rem;
   }
+
+  @media screen and (width<=420px) {
+    height: 25rem;
+    padding: 2rem;
+  }
 `;
 
 const Sender = styled.div`
@@ -76,6 +81,7 @@ const CreatedAt = styled.div`
 const Content = styled.div`
   ${({ theme }) => theme.fonts.Caption_03};
   color: ${({ theme }) => theme.colors.Black};
+  word-break: break-all;
 
   @media screen and (width <= 1600px) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
