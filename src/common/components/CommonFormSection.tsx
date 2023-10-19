@@ -6,7 +6,7 @@ import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
 import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import { FormSectionProps } from '~/types/commonFormSection';
-import { ProjectDetailBig, ProjectDetailMobile } from '~/utils/mediaQuery';
+import { Desktop, ProjectDetailBig, ProjectDetailMobile } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
@@ -59,7 +59,11 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
         <Title>{title}</Title>
         {page === 'project' && <CommentCount>{desktopData && desktopData.count}</CommentCount>}
       </HeaderSection>
-      {page === 'designer' && <ToLabelSection>보내는 사람</ToLabelSection>}
+      {page === 'designer' && (
+        <Desktop>
+          <ToLabelSection>보내는 사람</ToLabelSection>
+        </Desktop>
+      )}
       <ToInputWrapper>
         <ProjectDetailBig>
           <FromInput placeholder={toMent} value={to} onChange={inputOnChange} />
@@ -82,7 +86,11 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
           <UnSubmitButton type="button">등록</UnSubmitButton>
         )}
       </ToInputWrapper>
-      {page === 'designer' && <MsgLabelSection>메시지</MsgLabelSection>}
+      {page === 'designer' && (
+        <Desktop>
+          <MsgLabelSection>메시지</MsgLabelSection>
+        </Desktop>
+      )}
       <TextAreaWrapper>
         <TextArea placeholder={messageMent} value={message} onChange={textAreaOnChange} />
         <CountingLetterSection>
@@ -243,7 +251,7 @@ const TextArea = styled.textarea(
     @media screen and (width <= 540px) {
       ${({ theme }) => theme.fonts.Caption_03}
       font-size: 1.5rem;
-      height: 25.6rem;
+      height: 16.9rem;
     }
   `,
 );

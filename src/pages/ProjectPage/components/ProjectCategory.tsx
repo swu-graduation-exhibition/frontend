@@ -1,12 +1,33 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+
 import { IcStarAll } from '~/assets/icons';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 
 function ProjectCategory() {
   const [isSelected, setIsSelected] = useState('UX Design');
+  const { pathname } = useLocation();
+  const pathArr = pathname.split('/');
+  const category = pathArr[pathArr.length - 1];
+
+  useEffect(() => {
+    switch (category) {
+      case 'ux-design':
+        setIsSelected('UX Design');
+        break;
+      case 'digital-fabrication':
+        setIsSelected('Digital Fabrication');
+        break;
+      case 'bx-design':
+        setIsSelected('BX Design');
+        break;
+      default:
+        setIsSelected('UX Design');
+        break;
+    }
+  }, []);
 
   const handleCategory = (category: TProjectCategories) => {
     setIsSelected(category);
@@ -15,7 +36,7 @@ function ProjectCategory() {
   return (
     <Container>
       <NavTitle>
-        <IcStarAll />
+        <IconStarAll />
         Project
       </NavTitle>
       <ButtonSection>
@@ -37,6 +58,20 @@ function ProjectCategory() {
 }
 
 export default ProjectCategory;
+
+const IconStarAll = styled(IcStarAll)`
+  width: 1.9rem;
+  margin-right: 0.4rem;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    width: 1rem;
+    margin-right: 0.2rem;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    margin-right: 0;
+  }
+`;
 
 const Container = styled.section`
   display: flex;
@@ -67,13 +102,6 @@ const NavTitle = styled.header(
 
     width: fit-content;
     height: fit-content;
-
-    svg {
-      position: relative;
-      top: 1rem;
-      margin-right: 0.5rem;
-    }
-
     margin-bottom: 4rem;
 
     @media screen and (width <= ${TABLET_WIDTH}) {
@@ -82,6 +110,7 @@ const NavTitle = styled.header(
     }
 
     @media screen and (width<=${MOBILE_WIDTH}) {
+      ${({ theme }) => theme.fonts.Mobile_Subtitle_02}
       margin-bottom: 1.8rem;
       margin-left: 1.7rem;
     }

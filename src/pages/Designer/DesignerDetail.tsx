@@ -1,15 +1,14 @@
-import { styled } from 'styled-components';
-import { GraduationWorkList, Profile } from './components';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
-import CommonFormSection from '~/common/components/CommonFormSection';
-import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
 import { useParams } from 'react-router-dom';
-import { Default, Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
-import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-comment-scroll';
+import { styled } from 'styled-components';
+import CommonFormSection from '~/common/components/CommonFormSection';
+import TopButton from '~/common/components/TopButton';
+import { MOBILE_WIDTH } from '~/constants/common';
+import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
+import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
+import { GraduationWorkList, Profile } from './components';
 import DesktopCommentContainer from './components/comment/DesktopCommentContainer';
 import MobileCommentContainer from './components/comment/MobileCommentContainer';
 import TabletCommentContainer from './components/comment/TabletCommentContainer';
-import TopButton from '~/common/components/TopButton';
 
 const DesignerDetail = () => {
   const { id } = useParams();
@@ -35,20 +34,19 @@ const DesignerDetail = () => {
       <GraduationWorkList />
       <GuestBookWrapper>
         <CommonFormSection page="designer" />
+        <Desktop>
+          <DesktopCommentContainer />
+        </Desktop>
+        <Tablet>
+          <TabletCommentContainer />
+        </Tablet>
+        <Mobile>
+          <>
+            <MobileCommentContainer />
+            <TopButton />
+          </>
+        </Mobile>
       </GuestBookWrapper>
-
-      <Desktop>
-        <DesktopCommentContainer />
-      </Desktop>
-      <Tablet>
-        <TabletCommentContainer />
-      </Tablet>
-      <Mobile>
-        <>
-          <MobileCommentContainer />
-          <TopButton />
-        </>
-      </Mobile>
     </DesignerDetailWrapper>
   );
 };
@@ -60,7 +58,6 @@ const DesignerDetailWrapper = styled.div`
   flex-direction: column;
 
   width: 100%;
-
   margin-top: 13.6rem;
   padding: 0% 7%;
 
@@ -72,9 +69,10 @@ const DesignerDetailWrapper = styled.div`
 
 const GuestBookWrapper = styled.div`
   margin-top: 20rem;
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-left: 1.6rem;
     margin-right: 1.6rem;
+    margin-left: 1.6rem;
   }
 `;
 
@@ -92,9 +90,9 @@ const CommentListWrapper = styled.div`
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    grid-template-columns: repeat(1, minmax(27rem, 1fr));
-    margin-left: 1.6rem;
-    margin-right: 1.6rem;
     margin-top: 4.6rem;
+    margin-right: 1.6rem;
+    margin-left: 1.6rem;
+    grid-template-columns: repeat(1, minmax(27rem, 1fr));
   }
 `;

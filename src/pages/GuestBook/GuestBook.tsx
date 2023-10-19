@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { PageLayout } from '~/common/components';
 import { TABLET_WIDTH } from '~/constants/common';
-import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
 import GuestBookInput from './components/GuestBookInput';
 import Letters from './components/Letters';
 import Title from './components/Title';
 
 const GuestBook = () => {
-  const { desktopData } = useGetGuestBookDesktop(1, 1);
-
   return (
     <GuestBookWrapper>
       <PageLayout>

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import theme from '~/styles/theme';
 
 function ProjectDetailHeader() {
@@ -8,7 +8,7 @@ function ProjectDetailHeader() {
     <Container>
       <ProjcetTitle>
         <ProjectName>
-          <IcStarAll />
+          <IconStarAll />
           Project.Name
         </ProjectName>
         <ProjectMembers>김나현 오연정 이주연 주은서 주하영</ProjectMembers>
@@ -28,6 +28,20 @@ function ProjectDetailHeader() {
 }
 
 export default ProjectDetailHeader;
+
+const IconStarAll = styled(IcStarAll)`
+  width: 1.9rem;
+  margin-right: 0.4rem;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    width: 1rem;
+    margin-right: 0.2rem;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    margin-right: 0;
+  }
+`;
 
 const Container = styled.section`
   display: flex;

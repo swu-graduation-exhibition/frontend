@@ -49,7 +49,7 @@ const ReceiverDropBox = (props: DropBoxProps) => {
 
   return (
     <>
-      <Drop isDrop={isDrop} onClick={handleDrop}>
+      <Drop $isDrop={isDrop} onClick={handleDrop}>
         {guestBookContents.receiver === -1 ? (
           <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
         ) : (
@@ -141,14 +141,14 @@ const Box = styled.div`
   }
 `;
 
-const Drop = styled.div<{ isDrop: boolean }>`
+const Drop = styled.div<{ $isDrop: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 28.6 rem;
   padding: 1.6rem;
   border: 1px solid
-    ${({ theme, isDrop }) => (isDrop ? theme.colors.Black : theme.colors.Grayscales_500)};
+    ${({ theme, $isDrop }) => ($isDrop ? theme.colors.Black : theme.colors.Grayscales_500)};
 
   background-color: ${({ theme }) => theme.colors.White};
 
