@@ -11,8 +11,6 @@ const TabletCommentContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data: commmentDesignerList } = useDefaultCommentList(id || '1', 6, currentPage);
 
-  console.log(commmentDesignerList);
-
   if (!commmentDesignerList?.data.designerCommentList) return <div>로딩중</div>;
 
   const { data } = commmentDesignerList;
@@ -40,20 +38,13 @@ export default TabletCommentContainer;
 
 const CommentListWrapper = styled.div`
   display: grid;
-  margin-top: 12rem;
-
-  grid-template-columns: repeat(4, 1fr);
+  margin: 12rem 0 16rem 0;
+  grid-template-columns: repeat(2, 1fr);
 
   gap: 2rem;
 
   @media screen and (width <= ${TABLET_WIDTH}) {
     margin: 4rem 0 16rem 0;
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    /* margin: 9.4rem 0; */
-
-    grid-template-columns: repeat(1, 1fr);
   }
 `;
