@@ -2,10 +2,14 @@ import { css, styled } from 'styled-components';
 import { DesingerInfo } from '~/types/designer';
 import { useState } from 'react';
 import { Default, Mobile } from '~/utils/mediaQuery';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useNavigate } from 'react-router-dom';
 import { getFieldArray } from '~/utils/getFieldArray';
-const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) => {
+
+interface DesignerCardProps extends DesingerInfo {
+  isFirst: boolean;
+}
+const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: DesignerCardProps) => {
   const navigate = useNavigate();
 
   const [isMouseOn, setIsMouseOn] = useState(false);
@@ -28,7 +32,7 @@ const DesignerCard = ({ designer_id, name_ko, field, profile }: DesingerInfo) =>
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <CardImg src={profile} alt="designer-card" />
+      <CardImg src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
       <Default>
         <>
           {isMouseOn && (
@@ -68,18 +72,25 @@ const CardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    .second {
+      border-right: 0.2px solid black;
+    }
   }
 `;
 
 const CardImg = styled.img`
   width: 100%;
-  height: 412px;
+  height: 618px;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
-    height: 351px;
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    height: 527.25px;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 172px;
+    border-bottom: 0.2px solid black;
+    border-top: 0.2px solid black;
+    border-left: 0.2px solid black;
   }
 
   object-fit: cover;

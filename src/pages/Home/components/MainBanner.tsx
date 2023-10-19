@@ -9,10 +9,11 @@ const MainBanner = () => {
   return (
     <>
       <HomeDesktop>
-        <MainBannerWrapper>
+        <Wrapper>
+          <MainBannerWrapper src={ImgHomeBanner} />
           <UniversityContent />
           <LocationContent />
-        </MainBannerWrapper>
+        </Wrapper>
       </HomeDesktop>
       <HomeTablet>
         <TabletBannerWrapper>
@@ -32,17 +33,19 @@ const MainBanner = () => {
 
 export default MainBanner;
 
-const MainBannerWrapper = styled.div`
+const Wrapper = styled.div`
   position: relative;
-  padding: 6rem 5% 10rem 5%;
   width: 100%;
-  padding-top: calc(968 / 1916 * 100%);
+  max-height: 974px;
+  border-bottom: 1px solid black;
+`;
+const MainBannerWrapper = styled.img`
+  /* margin: 6rem 5% 10rem 5%; */
+  /* width: 100%; */
+  /* max-width: 1931px;
+  max-height: 1018px; */
 
-  height: 96.8rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-image: url(${ImgHomeBanner});
+  object-fit: cover;
 `;
 const MobileBannerWrapper = styled.div`
   position: relative;

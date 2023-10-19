@@ -8,15 +8,14 @@ import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import { FormSectionProps } from '~/types/commonFormSection';
 import { Desktop, ProjectDetailBig, ProjectDetailMobile } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
+import { postDesignerComment } from '~/api/designer';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
   const { formData, setSetFormData, isButtonActive, inputOnChange, textAreaOnChange } =
     useFormHooks();
   const { to, message } = formData;
-  const { projectId } = useParams();
-
+  const { projectId, id } = useParams();
   const { desktopData } = useGetProjectCommentDesktop(Number(projectId), 1);
-  console.log(desktopData);
 
   const { title, toMent, mobilMent, messageMent } = FormSupplies[page];
 
@@ -44,14 +43,27 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
       },
     },
   );
-
-  const sendProjectComment = () => {
-    sendComment();
-  };
-
-  const sendDesignerGuestBook = () => {
-    // 디자이너 게스트북 api
-  };
+  const { mutate: sendDesignerComment } = useMutation(
+    () =>
+      postDesignerComment({
+        sender: formData.to,
+        receiver: Number(id),
+        content: formData.message,
+      }),
+    {
+      onSuccess: () => {
+        setSetFormData({
+          to: '',
+          message: '',
+        });
+        queryClient.invalidateQueries(['get-designer-comment-list-default']);
+        queryClient.invalidateQueries(['get-designer-comment-List']);
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    },
+  );
 
   return (
     <Container>
@@ -74,11 +86,23 @@ const CommonFormSection = ({ page }: FormSectionProps) => {
 
         {isButtonActive ? (
           page === 'designer' ? (
-            <SubmitButton type="button" onClick={sendDesignerGuestBook}>
+            <SubmitButton
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                sendDesignerComment();
+              }}
+            >
               등록
             </SubmitButton>
           ) : (
-            <SubmitButton type="button" onClick={sendProjectComment}>
+            <SubmitButton
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                sendComment();
+              }}
+            >
               등록
             </SubmitButton>
           )

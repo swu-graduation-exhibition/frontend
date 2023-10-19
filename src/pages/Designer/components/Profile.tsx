@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
-import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { DESKTOP_WIDTH, HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
 interface ProfileProps {
@@ -99,47 +99,56 @@ const Profile = ({
 export default Profile;
 
 const IconStarAll = styled(IcStarAll)`
+  position: absolute;
   width: 1.9rem;
   margin-right: 0.4rem;
+
+  top: 0;
+  left: -15px;
 
   @media screen and (width<=${TABLET_WIDTH}) {
     width: 1rem;
     margin-right: 0.2rem;
+
+    left: -8px;
   }
 
   @media screen and (width<=${MOBILE_WIDTH}) {
     margin-right: 0;
+    left: -8px;
   }
 `;
 
 const ProfileWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 2%;
+  display: flex;
+  gap: 10%;
+
+  @media screen and (width<=${TABLET_WIDTH}) {
+    gap: 4rem;
+  }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: flex;
     flex-direction: column;
-
+    gap: 0;
     padding: 0% 1.5rem;
   }
 `;
 
 const ProfileImg = styled.img`
-  width: 100%;
-  width: 64rem;
-  height: 100%;
-  height: 64rem;
+  width: 412px;
+  height: 61.8rem;
   object-fit: cover;
+  border: 1px solid var(--Black, #000);
 
   @media screen and (width <= ${TABLET_WIDTH}) {
-    width: 30rem;
-    height: 30rem;
+    width: 215px;
+    height: 322.5px;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 17.2rem;
-    height: 17.2rem;
+    height: 25.725rem;
     margin-top: 2.6rem;
   }
 `;
@@ -153,6 +162,11 @@ const TextInfoWrapper = styled.div`
 const NameHeader = styled.header`
   display: flex;
   height: fit-content;
+
+  position: relative;
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-left: 1.2rem;
+  }
 `;
 
 const NameTitle = styled.div`
@@ -204,7 +218,7 @@ const DesignerText = styled.div`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_01};
-    margin-top: 1.2rem;
+    margin-top: 2.9rem;
   }
 `;
 
@@ -212,8 +226,10 @@ const DesignerSNSList = styled.ul`
   display: flex;
   flex-direction: column;
 
+  gap: 8px;
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin-top: 1.9rem;
+    gap: 0;
   }
 `;
 
@@ -240,7 +256,7 @@ const DesignerSNS = styled.li`
     }
 
     @media screen and (width <= ${TABLET_WIDTH}) {
-      ${({ theme }) => theme.fonts.Caption_04};
+      ${({ theme }) => theme.fonts.Mobile_Body_04};
     }
 
     @media screen and (width <= ${MOBILE_WIDTH}) {

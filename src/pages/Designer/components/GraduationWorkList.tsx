@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { graduationWorkList } from '../data/graduationData';
 import GraduationWorkCard from './GraduationWorkCard';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 const GraduationWorkList = () => {
   return (
@@ -26,13 +26,13 @@ const ListWrapper = styled.div`
   display: flex;
   gap: 4.8rem;
 
-  margin-top: 16rem;
+  margin-top: 15rem;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     margin-top: 12.2rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-top: 5rem;
+    margin-top: 4rem;
     gap: 6.4rem;
     flex-direction: column;
   }

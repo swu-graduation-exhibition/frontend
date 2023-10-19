@@ -41,11 +41,14 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
                 <ProjectDetailBottomImg src={ImgGraduationExhibition} />
               </>
             )}
-            {pathname.includes('/designer') && (
+            {pathname === '/designer' && (
               <>
                 <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
                 <ProjectDetailBottomImg src={ImgDesignerBackground} />
               </>
+            )}
+            {pathname !== '/designer' && pathname.includes('/designer') && (
+              <DesignerDetailImg src={ImgDesignerBackground} />
             )}
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
@@ -59,19 +62,19 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
             {pathname === '/guestbook' && <PageContentImg src={mobileBackground} />}
             {pathname.includes('/designer') && (
               <>
-                <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                <DesignerBackgrodundMoblieCirImg src={ImgDesignerBackgroundCir} />
                 <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
               </>
             )}
             {pathname.includes('/project') && !pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundCirImg src={ImgDesignerBackgroundCir} />
+                <DesignerBackgrodundMoblieCirImg src={ImgDesignerBackgroundCir} />
                 <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
               </>
             )}
             {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
+                <DesignerBackgrodundMoblieCirImg src={ImgProjectDetailTopBg} />
                 <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
               </>
             )}
@@ -137,9 +140,17 @@ const DesignerBackgrodunImg = styled.img`
   width: 100%;
   height: 70rem;
 `;
+const DesignerBackgrodundMoblieCirImg = styled.img`
+  position: absolute;
+  top: 55px;
+  z-index: -10;
+
+  width: 100%;
+  height: 70rem;
+`;
 const DesignerBackgrodundCirImg = styled.img`
   position: absolute;
-  top: 0;
+  top: 110px;
   z-index: -10;
 
   width: 100%;
@@ -151,5 +162,14 @@ const ProjectDetailBottomImg = styled.img`
   z-index: -10;
 
   width: 100%;
+  object-fit: cover;
+`;
+const DesignerDetailImg = styled.img`
+  position: absolute;
+  top: 110px;
+  z-index: -10;
+
+  width: 100%;
+  /* height: 5580px; */
   object-fit: cover;
 `;

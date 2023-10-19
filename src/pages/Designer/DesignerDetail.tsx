@@ -1,14 +1,15 @@
-import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import CommonFormSection from '~/common/components/CommonFormSection';
-import TopButton from '~/common/components/TopButton';
-import { MOBILE_WIDTH } from '~/constants/common';
-import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
-import { Desktop, Mobile, Tablet } from '~/utils/mediaQuery';
 import { GraduationWorkList, Profile } from './components';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import CommonFormSection from '~/common/components/CommonFormSection';
+import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
+import { useParams } from 'react-router-dom';
+import { Default, Desktop, HomeDesktop, HomeTablet, Mobile, Tablet } from '~/utils/mediaQuery';
+import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-comment-scroll';
 import DesktopCommentContainer from './components/comment/DesktopCommentContainer';
 import MobileCommentContainer from './components/comment/MobileCommentContainer';
 import TabletCommentContainer from './components/comment/TabletCommentContainer';
+import TopButton from '~/common/components/TopButton';
 
 const DesignerDetail = () => {
   const { id } = useParams();
@@ -34,12 +35,13 @@ const DesignerDetail = () => {
       <GraduationWorkList />
       <GuestBookWrapper>
         <CommonFormSection page="designer" />
-        <Desktop>
+
+        <HomeDesktop>
           <DesktopCommentContainer />
-        </Desktop>
-        <Tablet>
+        </HomeDesktop>
+        <HomeTablet>
           <TabletCommentContainer />
-        </Tablet>
+        </HomeTablet>
         <Mobile>
           <>
             <MobileCommentContainer />
@@ -58,41 +60,25 @@ const DesignerDetailWrapper = styled.div`
   flex-direction: column;
 
   width: 100%;
-  margin-top: 13.6rem;
-  padding: 0% 7%;
 
+  margin-top: 13.6rem;
+  padding: 0% 8%;
+
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin-top: 6.5rem;
+    padding-left: 6.5rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-top: 1.3rem;
+    margin-top: 2.3rem;
     padding: 0%;
   }
 `;
 
 const GuestBookWrapper = styled.div`
   margin-top: 20rem;
-
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-right: 1.6rem;
+    margin-top: 5.4rem;
     margin-left: 1.6rem;
-  }
-`;
-
-const CommentListWrapper = styled.div`
-  display: grid;
-  max-width: 165rem;
-  grid-template-columns: repeat(4, minmax(27rem, 1fr));
-  gap: 2rem;
-
-  margin-top: 12rem;
-  margin-bottom: 10rem;
-
-  @media screen and (width <= 1300px) {
-    grid-template-columns: repeat(2, minmax(27rem, 1fr));
-  }
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    margin-top: 4.6rem;
     margin-right: 1.6rem;
-    margin-left: 1.6rem;
-    grid-template-columns: repeat(1, minmax(27rem, 1fr));
   }
 `;

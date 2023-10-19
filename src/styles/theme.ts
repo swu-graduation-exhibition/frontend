@@ -30,7 +30,7 @@ interface Font {
 }
 
 interface GrayFont {
-  weight: 300 | 350 | 400 | 500 | 700;
+  weight: 200 | 300 | 350 | 400 | 500 | 700;
   size: number;
   lineHeight: number;
   color: string;
@@ -87,6 +87,18 @@ const fonts = {
   Mobile_Caption_03: FONT({ weight: 300, size: 1, lineHeight: 1.6 }),
   Mobile_Caption_01: FONT({ weight: 300, size: 1.3, lineHeight: 2 }),
   Mobile_Caption_02: FONT({ weight: 400, size: 1.2, lineHeight: 1.8 }),
+  Headline_03_Gray800: GRAY_FONT({
+    weight: 700,
+    size: 5.2,
+    lineHeight: 7.53,
+    color: colors.Grayscales_800,
+  }),
+  Body_04_Gray700: GRAY_FONT({
+    weight: 300,
+    size: 3,
+    lineHeight: 4,
+    color: colors.Grayscales_700,
+  }),
   Caption_03_Gray500: GRAY_FONT({
     weight: 400,
     size: 2,
@@ -111,6 +123,12 @@ const fonts = {
     lineHeight: 3,
     color: colors.White,
   }),
+  Caption_03_Gray700: GRAY_FONT({
+    weight: 200,
+    size: 2,
+    lineHeight: 3,
+    color: colors.Grayscales_700,
+  }),
   Mobile_Body_03_Gray500: GRAY_FONT({
     weight: 400,
     size: 1.5,
@@ -134,6 +152,12 @@ const fonts = {
     size: 2.6,
     lineHeight: 3.2,
     color: colors.Grayscales_700,
+  }),
+  Subtitle_02_Gray800: GRAY_FONT({
+    weight: 700,
+    size: 3.6,
+    lineHeight: 5.2,
+    color: colors.Grayscales_800,
   }),
   Mobile_Headline_01_Gray700: GRAY_FONT({
     weight: 700,

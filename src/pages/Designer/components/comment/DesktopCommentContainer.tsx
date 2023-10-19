@@ -11,8 +11,6 @@ const DesktopCommentContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data: commmentDesignerList } = useDefaultCommentList(id || '1', 8, currentPage);
 
-  console.log(commmentDesignerList);
-
   if (!commmentDesignerList?.data.designerCommentList) return <div>로딩중</div>;
 
   const { data } = commmentDesignerList;
@@ -40,19 +38,14 @@ export default DesktopCommentContainer;
 
 const CommentListWrapper = styled.div`
   display: grid;
-  margin-top: 4.3rem;
+  margin-top: 12rem;
+  margin-bottom: 9.9rem;
   grid-template-columns: repeat(4, 1fr);
 
   gap: 2rem;
 
   @media screen and (width <= 1400px) {
-    margin: 4rem 0;
+    margin: 12rem 0 16rem 0;
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    /* margin: 9.4rem 0; */
-
-    grid-template-columns: repeat(1, 1fr);
   }
 `;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import ImgCardDefault from '~/assets/images/card3_default_desigenr.png';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { GraduationWorkInfo } from '~/types/designer';
-import { Default, Mobile } from '~/utils/mediaQuery';
+import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
 const GraduationWorkCard = ({ img, track, title, memberList }: GraduationWorkInfo) => {
   const [isMouseOn, setIsMouseOn] = useState(false);
@@ -20,7 +20,9 @@ const GraduationWorkCard = ({ img, track, title, memberList }: GraduationWorkInf
     <CardWrapper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Default>
         <ImgWrapper>
-          {isMouseOn && <CardHoverContent />}
+          <HomeDesktop>
+            <>{isMouseOn && <CardHoverContent />}</>
+          </HomeDesktop>
           <WorkImg src={ImgCardDefault} />
         </ImgWrapper>
       </Default>
@@ -81,14 +83,14 @@ const ImgWrapper = styled.div`
 
   cursor: pointer;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 30rem;
     height: 30rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 100%;
-    height: 29.7rem;
+    height: 37.5rem;
   }
 `;
 const WorkImg = styled.img`
@@ -110,7 +112,8 @@ const TrackWrapper = styled.div`
 
   span {
     ${({ theme }) => theme.fonts.Subtitle_03};
-    @media screen and (width <= ${TABLET_WIDTH}) {
+
+    @media screen and (width <= ${HOME_TABLET_WIDTH}) {
       ${({ theme }) => theme.fonts.Subtitle_02};
     }
 
@@ -124,7 +127,7 @@ const ProjectName = styled.div`
   ${({ theme }) => theme.fonts.Body_03};
   margin-top: 1rem;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     ${({ theme }) => theme.fonts.Caption_02};
   }
 

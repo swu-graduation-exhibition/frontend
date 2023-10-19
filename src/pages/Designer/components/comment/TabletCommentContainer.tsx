@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GuestBookCommentCard from '~/common/components/GuestBookCommentCard';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useDefaultCommentList } from '~/lib/api/designer/get-designer-comment-list';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
 
@@ -40,13 +40,14 @@ export default TabletCommentContainer;
 
 const CommentListWrapper = styled.div`
   display: grid;
-  margin-top: 4.3rem;
+  margin-top: 12rem;
+
   grid-template-columns: repeat(4, 1fr);
 
   gap: 2rem;
 
-  @media screen and (width <= 1400px) {
-    margin: 4rem 0;
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    margin: 4rem 0 16rem 0;
     grid-template-columns: repeat(2, 1fr);
   }
 
