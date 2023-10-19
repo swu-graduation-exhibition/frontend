@@ -48,7 +48,9 @@ const Header = () => {
               <Link
                 to={PAGE_PATHS[idx]}
                 className={
-                  pathname === PAGE_PATHS[idx] || (pathname.includes('/project') && idx === 0)
+                  pathname === PAGE_PATHS[idx] ||
+                  (pathname.includes('/project') && idx === 0) ||
+                  (pathname.includes('/designer') && idx === 1)
                     ? 'correct'
                     : 'incorrect'
                 }
