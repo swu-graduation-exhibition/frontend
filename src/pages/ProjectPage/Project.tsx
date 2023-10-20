@@ -8,6 +8,7 @@ import { Mobile } from '~/utils/mediaQuery';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import ProjectCategory from './components/ProjectCategory';
 import { projectData, projectData1, projectData2 } from './data/cardData';
+import { useEffect } from 'react';
 
 const CategoryData = {
   'ux-design': projectData,
@@ -42,6 +43,12 @@ function Project() {
     },
   );
 
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, []);
   return (
     <PageLayout>
       <ProjectLayout>
