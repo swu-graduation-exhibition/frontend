@@ -5,6 +5,7 @@ import ImgDesignerBackgroundCir from '~/assets/images/DesignerBgCir.png';
 import ImgProjectDetailTopBg from '~/assets/images/ImgProjectDetail.png';
 import ImgMobileGraduationExhibition from '~/assets/images/bg1_all_mobile.png';
 import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
+import ImgDesignerDetailBackground from '~/assets/images/bg2_default_designer.png';
 import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
 import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png';
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
@@ -61,7 +62,7 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
               </>
             )}
             {pathname !== '/designer' && pathname.includes('/designer') && (
-              <DesignerDetailImg src={ImgDesignerBackground} />
+              <DesignerDetailImg src={ImgDesignerDetailBackground} />
             )}
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
@@ -219,5 +220,6 @@ const DesignerDetailImg = styled.img`
   z-index: -10;
 
   width: 100%;
-  object-fit: cover;
+  height: 100%;
+  object-fit: fill;
 `;
