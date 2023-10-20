@@ -74,7 +74,7 @@ const Container = styled.div`
   align-items: center;
 
   margin: 0 13.6rem;
-  min-height: 200rem;
+  height: fit-content;
 
   @media screen and (width <= 830px) {
     margin: 0 6.4rem;

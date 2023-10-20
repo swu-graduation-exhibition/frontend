@@ -8,9 +8,14 @@ import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
 import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
 import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png';
 import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
-import { Default, HomeDesktop, HomeTablet, Mobile } from '~/utils/mediaQuery';
+
+import ImgLeftDot from '~/assets/images/left_dot.png';
+import ImgRightDot from '~/assets/images/right_dot.png';
+import ImgDotWrapper from '~/assets/images/dot_wrapper.png';
+
+import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
@@ -27,13 +32,21 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
       <ContentWrapper>
         {children}
         <Footer />
-        <HomeDesktop>
-          <>{pathname === '/home' && <PageContentAbosoulteImg src={ImgGraduationExhibition} />}</>
-        </HomeDesktop>
         <Default>
           <>
+            {pathname === '/home' && (
+              <>
+                <DotLeftHomeImg src={ImgLeftDot} />
+                <DotRightImg src={ImgRightDot} />
+                <DotWrapperImg src={ImgDotWrapper} />
+              </>
+            )}
             {pathname.includes('/project') && !pathname.includes('/project/detail') && (
-              <ProjectDetailBottomImg src={ImgGraduationExhibition} />
+              <>
+                <DotLeftImg src={ImgLeftDot} />
+                <DotRightImg src={ImgRightDot} />
+                <DotWrapperImg src={ImgDotWrapper} />
+              </>
             )}
             {pathname.includes('/project/detail') && (
               <>
@@ -53,9 +66,6 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
             {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
           </>
         </Default>
-        <HomeTablet>
-          <>{pathname === '/home' && <HomeBackgrodunImg src={ImgMobileGraduationExhibition} />}</>
-        </HomeTablet>
         <Mobile>
           <>
             {pathname === '/home' && <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />}
@@ -116,22 +126,7 @@ const PageContentImg = styled.img`
   max-height: 100%;
   transform: translate(-50%, -50%);
 `;
-const PageContentAbosoulteImg = styled.img`
-  position: absolute;
-  bottom: 0;
-  z-index: -10;
-  width: 100%;
-  object-fit: cover;
-  max-height: 100%;
-`;
-const HomeBackgrodunImg = styled.img`
-  position: absolute;
-  bottom: 0;
-  z-index: -10;
 
-  width: 100%;
-  object-fit: cover;
-`;
 const DesignerBackgrodunImg = styled.img`
   position: absolute;
   bottom: 0;
@@ -156,6 +151,60 @@ const DesignerBackgrodundCirImg = styled.img`
   width: 100%;
   height: 70rem;
 `;
+const DotWrapperImg = styled.img`
+  position: absolute;
+  bottom: 0;
+  z-index: -13;
+
+  width: 100%;
+  object-fit: cover;
+`;
+const DotLeftImg = styled.img`
+  position: absolute;
+  top: 600px;
+  left: 0%;
+  z-index: -10;
+
+  width: 294px;
+  object-fit: cover;
+
+  @media screen and (width <= 1200px) {
+    width: 200px;
+  }
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    width: 150px;
+  }
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    width: 100px;
+  }
+`;
+const DotRightImg = styled.img`
+  position: absolute;
+  z-index: -10;
+  bottom: 0;
+  right: 10px;
+
+  width: 780px;
+  object-fit: cover;
+  @media screen and (width <= 1200px) {
+    width: 680px;
+  }
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    width: 500px;
+  }
+  @media screen and (width <= ${TABLET_WIDTH}) {
+    width: 400px;
+  }
+`;
+
+const DotLeftHomeImg = styled(DotLeftImg)`
+  top: 1730px;
+  @media screen and (width <= 1200px) {
+    top: 2430px;
+  }
+`;
+
 const ProjectDetailBottomImg = styled.img`
   position: absolute;
   bottom: 0;
@@ -170,6 +219,5 @@ const DesignerDetailImg = styled.img`
   z-index: -10;
 
   width: 100%;
-  /* height: 5580px; */
   object-fit: cover;
 `;
