@@ -1,17 +1,21 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { graduationWorkList } from '../data/graduationData';
 import GraduationWorkCard from './GraduationWorkCard';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
+import { ProjectInfo } from '~/types/designer';
 
-const GraduationWorkList = () => {
+interface GraduationWorkListProp {
+  projectList: ProjectInfo[];
+}
+const GraduationWorkList = ({ projectList }: GraduationWorkListProp) => {
   return (
     <ListWrapper>
-      {graduationWorkList.map(({ img, track, title, memberList }, idx) => (
+      {graduationWorkList.map(({ projectId, photo, type, title, memberList }, idx) => (
         <GraduationWorkCard
           key={title + idx}
-          img={img}
-          track={track}
+          projectId={projectId}
+          photo={photo}
+          type={type}
           title={title}
           memberList={memberList}
         />

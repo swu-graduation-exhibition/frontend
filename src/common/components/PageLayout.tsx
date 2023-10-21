@@ -55,12 +55,7 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
                 <ProjectDetailBottomImg src={ImgGraduationExhibition} />
               </>
             )}
-            {pathname === '/designer' && (
-              <>
-                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
-                <ProjectDetailBottomImg src={ImgDesignerBackground} />
-              </>
-            )}
+            {pathname === '/designer' && <DesignerDetailImg src={ImgDesignerBackground} />}
             {pathname !== '/designer' && pathname.includes('/designer') && (
               <DesignerDetailImg src={ImgDesignerDetailBackground} />
             )}

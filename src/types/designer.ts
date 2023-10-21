@@ -23,10 +23,5 @@ export interface ProjectInfo {
   photo: string;
   title: string;
   type: number;
-}
-export interface GraduationWorkInfo {
-  img: string;
-  track: string[];
-  title: string;
   memberList: string[];
 }

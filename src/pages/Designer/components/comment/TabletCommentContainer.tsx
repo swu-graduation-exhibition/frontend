@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GuestBookCommentCard from '~/common/components/GuestBookCommentCard';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { TABLET_WIDTH } from '~/constants/common';
 import { useDefaultCommentList } from '~/lib/api/designer/get-designer-comment-list';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
 
@@ -24,12 +24,14 @@ const TabletCommentContainer = () => {
           <GuestBookCommentCard key={idx} sender={sender} content={content} createdAt={createdAt} />
         ))}
       </CommentListWrapper>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        lastPage={lastPage}
-        paginationNumbers={paginationNumbers}
-      />
+      {data.designerCommentList.length && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          lastPage={lastPage}
+          paginationNumbers={paginationNumbers}
+        />
+      )}
     </>
   );
 };

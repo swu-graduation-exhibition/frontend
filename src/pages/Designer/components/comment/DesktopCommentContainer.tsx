@@ -24,12 +24,14 @@ const DesktopCommentContainer = () => {
           <GuestBookCommentCard key={idx} sender={sender} content={content} createdAt={createdAt} />
         ))}
       </CommentListWrapper>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        lastPage={lastPage}
-        paginationNumbers={paginationNumbers}
-      />
+      {data.designerCommentList.length && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          lastPage={lastPage}
+          paginationNumbers={paginationNumbers}
+        />
+      )}
     </>
   );
 };

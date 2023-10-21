@@ -17,8 +17,8 @@ const DesignerDetail = () => {
   const designerData = data?.data;
 
   if (!designerData) return <div>데이터 없음</div>;
-
-  const { koreanName, englishName, profile, desc, tel, email, behance, instagram } = designerData;
+  const { koreanName, englishName, profile, desc, tel, email, behance, instagram, projectList } =
+    designerData;
 
   return (
     <DesignerDetailWrapper>
@@ -32,7 +32,7 @@ const DesignerDetail = () => {
         behance={behance}
         instagram={instagram}
       />
-      <GraduationWorkList />
+      <GraduationWorkList projectList={projectList} />
       <GuestBookWrapper>
         <CommonFormSection page="designer" />
 

@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import ImgCardDefault from '~/assets/images/card3_default_desigenr.png';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
-import { GraduationWorkInfo } from '~/types/designer';
+import { ProjectInfo } from '~/types/designer';
+import { getFieldString } from '~/utils/getFieldArray';
 import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
-const GraduationWorkCard = ({ img, track, title, memberList }: GraduationWorkInfo) => {
+const GraduationWorkCard = ({ projectId, photo, title, type, memberList }: ProjectInfo) => {
   const [isMouseOn, setIsMouseOn] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouseOver = () => {
     setIsMouseOn(true);
@@ -16,28 +18,34 @@ const GraduationWorkCard = ({ img, track, title, memberList }: GraduationWorkInf
     setIsMouseOn(false);
   };
 
+  const handleClickCard = () => {
+    navigate(`/project/detail/${projectId}`);
+  };
+
   return (
-    <CardWrapper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <CardWrapper
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      onClick={handleClickCard}
+    >
       <Default>
         <ImgWrapper>
           <HomeDesktop>
             <>{isMouseOn && <CardHoverContent />}</>
           </HomeDesktop>
-          <WorkImg src={ImgCardDefault} />
+          <WorkImg src={photo} />
         </ImgWrapper>
       </Default>
       <Mobile>
         <ImgWrapper>
-          <WorkImg src={ImgCardDefault} />
+          <WorkImg src={photo} />
         </ImgWrapper>
       </Mobile>
 
       <Default>
         <>
           <TrackWrapper>
-            {track.map((text, idx) => (
-              <span key={text + idx}>{text}</span>
-            ))}
+            <span>{getFieldString(type)}</span>
           </TrackWrapper>
           <ProjectName>{title}</ProjectName>
         </>
@@ -97,7 +105,9 @@ const WorkImg = styled.img`
   width: 100%;
   height: 100%;
 
-  object-fit: fill;
+  object-fit: cover;
+
+  border: 1px solid black;
 `;
 
 const TrackWrapper = styled.div`

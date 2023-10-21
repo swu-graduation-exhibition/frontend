@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { youtubeData } from '../data/youtubeData';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import useDragScroll from '~/hooks/useDragScroll';
+import ImgPlayBtn from 'assets/images/youtube_logo.png';
 
 const YoutubeList = () => {
   const ref = useDragScroll();
@@ -11,7 +12,10 @@ const YoutubeList = () => {
       <DragListWrapper ref={ref}>
         <DragSlider>
           {youtubeData.map(({ id, url }, idx) => (
-            <YoutubeCard src="" key={id} alt={id + '번재'} />
+            <CardWrapper key={id}>
+              <YoutubeCard src="" alt={id + '번재'} />
+              <PlayImg src={ImgPlayBtn} />
+            </CardWrapper>
           ))}
         </DragSlider>
       </DragListWrapper>
@@ -30,7 +34,9 @@ const YoutubeListWrapper = styled.div`
 const DragListWrapper = styled.article`
   overflow: hidden;
 `;
-const YoutubeCard = styled.img`
+const CardWrapper = styled.div`
+  position: relative;
+
   width: 81.6rem;
   height: 45.9rem;
 
@@ -42,6 +48,26 @@ const YoutubeCard = styled.img`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 21.4rem;
     height: 12rem;
+  }
+`;
+const YoutubeCard = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+const PlayImg = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 26rem;
+
+  background-color: aliceblue;
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    width: 16rem;
+  }
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    width: 7rem;
   }
 `;
 const DragSlider = styled.section`
