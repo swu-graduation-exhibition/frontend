@@ -23,5 +23,5 @@ export interface ProjectInfo {
   photo: string;
   title: string;
   type: number;
-  memberList: string[];
+  members: string;
 }

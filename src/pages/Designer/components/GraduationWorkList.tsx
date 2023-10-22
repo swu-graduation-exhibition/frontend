@@ -10,14 +10,14 @@ interface GraduationWorkListProp {
 const GraduationWorkList = ({ projectList }: GraduationWorkListProp) => {
   return (
     <ListWrapper>
-      {graduationWorkList.map(({ projectId, photo, type, title, memberList }, idx) => (
+      {projectList.map(({ projectId, photo, type, title, members }, idx) => (
         <GraduationWorkCard
           key={title + idx}
           projectId={projectId}
           photo={photo}
           type={type}
           title={title}
-          memberList={memberList}
+          members={members}
         />
       ))}
     </ListWrapper>

@@ -6,10 +6,16 @@ import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/commo
 import { useDesignerList } from '~/lib/api/designer/get-designer-list';
 import { Default, HomeTablet, Mobile } from '~/utils/mediaQuery';
 import DesignerCard from './DesignerCard';
+import { useEffect } from 'react';
 
 const DesignerContainer = () => {
   const { data } = useDesignerList();
-
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, []);
   if (data?.data) {
     const designerInfoList = data.data;
 

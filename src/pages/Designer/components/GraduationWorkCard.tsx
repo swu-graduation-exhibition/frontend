@@ -6,7 +6,7 @@ import { ProjectInfo } from '~/types/designer';
 import { getFieldString } from '~/utils/getFieldArray';
 import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
-const GraduationWorkCard = ({ projectId, photo, title, type, memberList }: ProjectInfo) => {
+const GraduationWorkCard = ({ projectId, photo, title, type, members }: ProjectInfo) => {
   const [isMouseOn, setIsMouseOn] = useState(false);
   const navigate = useNavigate();
 
@@ -54,9 +54,7 @@ const GraduationWorkCard = ({ projectId, photo, title, type, memberList }: Proje
         <>
           <ProjectName>{title}</ProjectName>
           <TrackWrapper>
-            {memberList.map((text, idx) => (
-              <span key={text + idx}>{text}</span>
-            ))}
+            <span>{members}</span>
           </TrackWrapper>
         </>
       </Mobile>
