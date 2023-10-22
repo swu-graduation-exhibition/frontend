@@ -32,6 +32,7 @@ const DesignerContainer = () => {
           <DesignerCardWrapper>
             {designerInfoList.map(({ designer_id, name_ko, field, profile }, idx) => (
               <DesignerCard
+                isFirst={idx === 0}
                 key={`${designer_id}-${name_ko}`}
                 designer_id={designer_id}
                 name_ko={name_ko}
