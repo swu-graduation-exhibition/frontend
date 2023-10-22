@@ -2,20 +2,14 @@ import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { css, styled } from 'styled-components';
 import { IcStarAll } from '~/assets/icons';
 import TopButton from '~/common/components/TopButton';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useDesignerList } from '~/lib/api/designer/get-designer-list';
-import { Default, HomeTablet, Mobile } from '~/utils/mediaQuery';
+import { Default, Mobile } from '~/utils/mediaQuery';
 import DesignerCard from './DesignerCard';
-import { useEffect } from 'react';
 
 const DesignerContainer = () => {
   const { data } = useDesignerList();
-  useEffect(() => {
-    window.scroll({
-      top: 0,
-      behavior: 'instant',
-    });
-  }, []);
+
   if (data?.data) {
     const designerInfoList = data.data;
 
@@ -43,7 +37,6 @@ const DesignerContainer = () => {
                 name_ko={name_ko}
                 field={field}
                 profile={profile}
-                isFirst={idx % 2 === 0}
               />
             ))}
           </DesignerCardWrapper>
@@ -62,7 +55,7 @@ const IconStarAll = styled(IcStarAll)`
   width: 1.9rem;
   margin-right: 0.4rem;
 
-  @media screen and (width<=${HOME_TABLET_WIDTH}) {
+  @media screen and (width<=${TABLET_WIDTH}) {
     width: 1rem;
     margin-right: 0.2rem;
   }
@@ -86,7 +79,7 @@ const Container = styled.section`
     flex-direction: column;
   }
 
-  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     margin-top: 4rem;
   }
 
@@ -96,7 +89,7 @@ const Container = styled.section`
 `;
 
 const NavTitle = styled.header(
-  ({ theme }) => theme.fonts.Headline_03_Gray800,
+  ({ theme }) => theme.fonts.Headline_03,
   css`
     display: flex;
 
@@ -104,7 +97,7 @@ const NavTitle = styled.header(
     height: fit-content;
 
     @media screen and (width <= 1400px) {
-      ${({ theme }) => theme.fonts.Subtitle_02_Gray800}
+      ${({ theme }) => theme.fonts.Subtitle_02}
     }
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
@@ -119,12 +112,12 @@ const NavTitle = styled.header(
 );
 
 const DetailText = styled.span(
-  ({ theme }) => theme.fonts.Body_04_Gray700,
+  ({ theme }) => theme.fonts.Body_04,
   css`
     margin-top: 1.6rem;
 
-    @media screen and (width <= ${HOME_TABLET_WIDTH}) {
-      ${({ theme }) => theme.fonts.Caption_03_Gray700};
+    @media screen and (width <= ${TABLET_WIDTH}) {
+      ${({ theme }) => theme.fonts.Caption_03};
     }
   `,
 );
@@ -145,25 +138,13 @@ const DesignerCardWrapper = styled.section`
   margin-bottom: 13.6rem;
   grid-template-columns: repeat(4, 1fr);
 
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-
-  & > div {
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-  }
-
-  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 4rem;
+    margin-top: 8rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    border: none;
-    & > div {
-      border: none;
-    }
     grid-row-gap: 3.5rem;
-    margin-top: 5rem;
+    margin-top: 6rem;
   }
 `;

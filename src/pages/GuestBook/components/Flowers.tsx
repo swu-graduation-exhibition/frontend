@@ -235,7 +235,7 @@ const DesktopContainer = styled.section`
   z-index: -3;
   width: 110%;
   margin-top: -35%;
-  margin-left: -18rem;
+  margin-left: -22rem;
 
   @media screen and (width <= 1400px) {
     margin-top: -40%;
@@ -265,24 +265,21 @@ const MobileContainer = styled.section`
   position: absolute;
   top: 65%;
   bottom: 12rem;
-  left: -0.5rem;
+  left: -1.5rem;
   z-index: -1;
   width: 105%;
 `;
 
 const DesktopFlower = styled.img`
-  width: 221.4rem;
-  height: 91.7rem;
+  width: 95%;
 `;
 
 // 태블릿
 const TabletFlower = styled.img`
-  width: 83.1rem;
-  height: 34.419rem;
+  width: 95%;
 `;
 
 // 모바일
 const MobileFlower = styled.img`
-  width: 37.505rem;
-  height: 15.534rem;
+  width: 95%;
 `;
