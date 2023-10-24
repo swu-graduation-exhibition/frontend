@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { IcStarAll } from '~/assets/icons';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { CATEGORY_PATH, PROJECT_CATEGORY, TProjectCategories } from '../../../types/project';
 
@@ -36,7 +35,7 @@ function ProjectCategory() {
   return (
     <Container>
       <NavTitle>
-        <IconStarAll />
+        <IconStarAll src={`${import.meta.env.VITE_SWU_IMAGE}/ic_star_all.svg`} />
         Project
       </NavTitle>
       <ButtonSection>
@@ -59,7 +58,7 @@ function ProjectCategory() {
 
 export default ProjectCategory;
 
-const IconStarAll = styled(IcStarAll)`
+const IconStarAll = styled.img`
   width: 1.9rem;
   margin-right: 0.4rem;
 

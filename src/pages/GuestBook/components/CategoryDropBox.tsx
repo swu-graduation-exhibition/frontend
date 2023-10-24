@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
-import { DropBoxDownIc, DropBoxUpIc } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
 
 import { DESIGNERS } from '../data/designers';
@@ -61,7 +60,13 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
             )}
           </>
         )}
-        <div>{isDrop ? <DropBoxUpIcon /> : <DropBoxDownIcon />}</div>
+        <div>
+          {isDrop ? (
+            <DropBoxUpIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxUpIc.svg`} />
+          ) : (
+            <DropBoxDownIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxDownIc.svg`} />
+          )}
+        </div>
       </Drop>
       {isDrop && (
         <Box ref={modalRef}>
@@ -181,13 +186,13 @@ const Drop = styled.div<{ $isDrop: boolean }>`
   }
 `;
 
-const DropBoxUpIcon = styled(DropBoxUpIc)`
+const DropBoxUpIcon = styled.img`
   width: 2.4rem;
 
   cursor: pointer;
 `;
 
-const DropBoxDownIcon = styled(DropBoxDownIc)`
+const DropBoxDownIcon = styled.img`
   width: 2.4rem;
 
   cursor: pointer;

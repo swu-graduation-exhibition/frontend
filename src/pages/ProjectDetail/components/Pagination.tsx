@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { IcArrowLeft, IcArrowRight } from '~/assets/icons';
 
 interface PaginationProps {
   currentPage: number;
@@ -23,7 +22,7 @@ const Pagination = ({
             setCurrentPage(currentPage - 1);
           }}
         >
-          <IconArrowLeft />
+          <IconArrowLeft src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_left.svg`} />
         </IconWrapper>
         <ButtonWrapper>
           {paginationNumbers.map((_, i) => (
@@ -42,7 +41,7 @@ const Pagination = ({
             setCurrentPage(currentPage + 1);
           }}
         >
-          <IconArrowRight />
+          <IconArrowRight src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_right.svg`} />
         </IconWrapper>
       </Container>
     </>
@@ -51,12 +50,12 @@ const Pagination = ({
 
 export default Pagination;
 
-const IconArrowLeft = styled(IcArrowLeft)`
+const IconArrowLeft = styled.img`
   width: 2.3rem;
   height: 2.3rem;
 `;
 
-const IconArrowRight = styled(IcArrowRight)`
+const IconArrowRight = styled.img`
   width: 2.3rem;
   height: 2.3rem;
 `;

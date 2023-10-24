@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { keyframes, styled, css } from 'styled-components';
 
-import { ReactComponent as FloatingIc } from '~/assets/icons/btn_floating.svg';
 const TopButton = () => {
   const [showButton, setShowButton] = useState(false);
 
@@ -29,7 +28,7 @@ const TopButton = () => {
   return (
     <ButtonWrapper>
       <CustomButton onClick={scrollToTop} type="button" $isshow={showButton}>
-        <FloatingIc />
+        <img src={`${import.meta.env.VITE_SWU_IMAGE}/btn_floating.svg`} />
       </CustomButton>
     </ButtonWrapper>
   );

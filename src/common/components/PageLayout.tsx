@@ -1,18 +1,6 @@
 import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
-import ImgDesignerBackgroundCir from '~/assets/images/DesignerBgCir.png';
-import ImgProjectDetailTopBg from '~/assets/images/ImgProjectDetail.png';
-import ImgMobileGraduationExhibition from '~/assets/images/bg1_all_mobile.png';
-import ImgDesignerBackground from '~/assets/images/bg1_default_designer.png';
-import ImgDesignerDetailBackground from '~/assets/images/bg2_default_designer.png';
-import desktopBackground from '~/assets/images/guestBookBackgroundImage.png';
-import mobileBackground from '~/assets/images/guestBookMobileBackgroundImage.png';
-import ImgGraduationExhibition from '~/assets/images/home_middle_background.png';
-
-import ImgLeftDot from '~/assets/images/left_dot.png';
-import ImgRightDot from '~/assets/images/right_dot.png';
-import ImgDotWrapper from '~/assets/images/dot_wrapper.png';
 
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
@@ -37,51 +25,83 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
           <>
             {pathname === '/home' && (
               <>
-                <DotLeftHomeImg src={ImgLeftDot} />
-                <DotRightImg src={ImgRightDot} />
-                <DotWrapperImg src={ImgDotWrapper} />
+                <DotLeftHomeImg src={`${import.meta.env.VITE_SWU_IMAGE}/left_dot.png`} />
+                <DotRightImg src={`${import.meta.env.VITE_SWU_IMAGE}/right_dot.png`} />
+                <DotWrapperImg src={`${import.meta.env.VITE_SWU_IMAGE}/dot_wrapper.png`} />
               </>
             )}
             {pathname.includes('/project') && !pathname.includes('/project/detail') && (
               <>
-                <DotLeftImg src={ImgLeftDot} />
-                <DotRightImg src={ImgRightDot} />
-                <DotWrapperImg src={ImgDotWrapper} />
+                <DotLeftImg src={`${import.meta.env.VITE_SWU_IMAGE}/left_dot.png`} />
+                <DotRightImg src={`${import.meta.env.VITE_SWU_IMAGE}/right_dot.png`} />
+                <DotWrapperImg src={`${import.meta.env.VITE_SWU_IMAGE}/dot_wrapper.png`} />
               </>
             )}
             {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundCirImg src={ImgProjectDetailTopBg} />
-                <ProjectDetailBottomImg src={ImgGraduationExhibition} />
+                <DesignerBackgrodundCirImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/ImgProjectDetail.png`}
+                />
+                <ProjectDetailBottomImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/home_middle_background.png`}
+                />
               </>
             )}
-            {pathname === '/designer' && <DesignerDetailImg src={ImgDesignerBackground} />}
-            {pathname !== '/designer' && pathname.includes('/designer') && (
-              <DesignerDetailImg src={ImgDesignerDetailBackground} />
+            {pathname === '/designer' && (
+              <DesignerDetailImg
+                src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_default_designer.png`}
+              />
             )}
-            {pathname === '/guestbook' && <PageContentImg src={desktopBackground} />}
+            {pathname !== '/designer' && pathname.includes('/designer') && (
+              <DesignerDetailImg
+                src={`${import.meta.env.VITE_SWU_IMAGE}/bg2_default_designer.png`}
+              />
+            )}
+            {pathname === '/guestbook' && (
+              <PageContentImg
+                src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookBackgroundImage.png`}
+              />
+            )}
           </>
         </Default>
         <Mobile>
           <>
-            {pathname === '/home' && <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />}
-            {pathname === '/guestbook' && <PageContentImg src={mobileBackground} />}
+            {pathname === '/home' && (
+              <DesignerBackgrodunImg src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`} />
+            )}
+            {pathname === '/guestbook' && (
+              <PageContentImg
+                src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookMobileBackgroundImage.png`}
+              />
+            )}
             {pathname.includes('/designer') && (
               <>
-                <DesignerBackgrodundMoblieCirImg src={ImgDesignerBackgroundCir} />
-                <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+                <DesignerBackgrodundMoblieCirImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/DesignerBgCir.png`}
+                />
+                <DesignerBackgrodunImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
+                />
               </>
             )}
             {pathname.includes('/project') && !pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundMoblieCirImg src={ImgDesignerBackgroundCir} />
-                <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+                <DesignerBackgrodundMoblieCirImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/DesignerBgCir.png`}
+                />
+                <DesignerBackgrodunImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
+                />
               </>
             )}
             {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundMoblieCirImg src={ImgProjectDetailTopBg} />
-                <DesignerBackgrodunImg src={ImgMobileGraduationExhibition} />
+                <DesignerBackgrodundMoblieCirImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/ImgProjectDetail.png`}
+                />
+                <DesignerBackgrodunImg
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
+                />
               </>
             )}
           </>

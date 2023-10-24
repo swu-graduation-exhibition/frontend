@@ -1,9 +1,6 @@
 import { styled } from 'styled-components';
 import { PageLayout } from '~/common/components';
 import { ConceptContent, Interview, MainBanner, TrackIntroduce } from './components';
-import ImgBlackFlower from '~/assets/images/img2_home.png';
-import ImgMobileBlackFlower from '~/assets/images/img2_home_mobile.png';
-import ImgTabletBlackFlower from '~/assets/images/img2_home_pad.png';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import { HomeTablet, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
@@ -14,13 +11,13 @@ const Home = () => {
       <GraduationExhibitionWrapper>
         <ConceptContent />
         <HomeDesktop>
-          <BlackFlower src={ImgBlackFlower} />
+          <BlackFlower src={`${import.meta.env.VITE_SWU_IMAGE}/img2_home.png`} />
         </HomeDesktop>
         <HomeTablet>
-          <MobileBlackFlower src={ImgTabletBlackFlower} />
+          <MobileBlackFlower src={`${import.meta.env.VITE_SWU_IMAGE}/img2_home_pad.png`} />
         </HomeTablet>
         <Mobile>
-          <MobileBlackFlower src={ImgMobileBlackFlower} />
+          <MobileBlackFlower src={`${import.meta.env.VITE_SWU_IMAGE}/img2_home_mobile.png`} />
         </Mobile>
         <Interview />
         <TrackIntroduce />

@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { IcArrowHome } from '~/assets/icons';
 import { MOBILE_WIDTH } from '~/constants/common';
 
 import { TrackDataInfo } from '~/types/home';
@@ -15,7 +14,7 @@ const TrackCard = ({ title, desc, url }: TrackDataInfo) => {
     <TrackCardWrapper onClick={handleClickCard}>
       <TitleWrapper>
         <Title>{title.toUpperCase()}</Title>
-        <IcArrowHome />
+        <img src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_home.png`} />
       </TitleWrapper>
       <Description>{desc}</Description>
     </TrackCardWrapper>
@@ -45,13 +44,13 @@ const TitleWrapper = styled.header`
   white-space: pre-line;
   justify-content: space-between;
 
-  svg {
+  img {
     width: 5.6rem;
     height: 5.6rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    svg {
+    img {
       width: 2.8rem;
       height: 2.8rem;
     }

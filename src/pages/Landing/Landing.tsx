@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import MovingLandingGif from 'assets/moving_landing.gif';
 function Landing() {
   const navigate = useNavigate();
 
@@ -13,7 +12,7 @@ function Landing() {
   }, []);
   return (
     <PlayerWrapper>
-      <img src={MovingLandingGif} />
+      <img src={`${import.meta.env.VITE_SWU_IMAGE}/moving_landing.gif`} />
     </PlayerWrapper>
   );
 }

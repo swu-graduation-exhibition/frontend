@@ -1,6 +1,5 @@
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { css, styled } from 'styled-components';
-import { IcStarAll } from '~/assets/icons';
 import TopButton from '~/common/components/TopButton';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useDesignerList } from '~/lib/api/designer/get-designer-list';
@@ -16,7 +15,7 @@ const DesignerContainer = () => {
     return (
       <Container>
         <NavTitle>
-          <IconStarAll />
+          <IconStarAll src={`${import.meta.env.VITE_SWU_IMAGE}/ic_star_all.svg`} />
           Designer
         </NavTitle>
         <Mobile>
@@ -52,7 +51,7 @@ const DesignerContainer = () => {
 
 export default DesignerContainer;
 
-const IconStarAll = styled(IcStarAll)`
+const IconStarAll = styled.img`
   width: 1.9rem;
   margin-right: 0.4rem;
 

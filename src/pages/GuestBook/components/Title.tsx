@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
-import { IcStarAll } from '~/assets/icons';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 const Title = () => {
   return (
     <NavTitle>
-      <IconStarAll />
+      <IconStarAll src={`${import.meta.env.VITE_SWU_IMAGE}/ic_star_all.svg`} />
       Guest Book
     </NavTitle>
   );
@@ -13,7 +12,7 @@ const Title = () => {
 
 export default Title;
 
-const IconStarAll = styled(IcStarAll)`
+const IconStarAll = styled.img`
   width: 1.9rem;
   margin-right: 0.4rem;
 

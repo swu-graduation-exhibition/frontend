@@ -1,7 +1,4 @@
 import { styled } from 'styled-components';
-import ImgHomeBanner from '~/assets/images/img1_home.png';
-import ImgMobileHomeBanner from '~/assets/images/img1_home_mobile.png';
-import ImgPadHomeBanner from '~/assets/images/img1_home_pad.png';
 import { LocationContent, UniversityContent } from '.';
 import { HomeDesktop, HomeTablet, Mobile } from '~/utils/mediaQuery';
 
@@ -10,7 +7,7 @@ const MainBanner = () => {
     <>
       <HomeDesktop>
         <Wrapper>
-          <MainBannerWrapper src={ImgHomeBanner} />
+          <MainBannerWrapper src={`${import.meta.env.VITE_SWU_IMAGE}/img1_home.png`} />
           <UniversityContent />
           <LocationContent />
         </Wrapper>
@@ -54,7 +51,8 @@ const MobileBannerWrapper = styled.div`
   padding-top: calc(529 / 374 * 100%);
 
   height: 52.9rem;
-  background-image: url(${ImgMobileHomeBanner});
+
+  background-image: url(${`${import.meta.env.VITE_SWU_IMAGE}/img1_home_mobile.png`});
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -69,5 +67,5 @@ const TabletBannerWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-image: url(${ImgPadHomeBanner});
+  background-image: url(${`${import.meta.env.VITE_SWU_IMAGE}/img1_home.png`});
 `;

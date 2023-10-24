@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { LoadingIc } from '~/assets/icons';
 
 export default function Loading() {
   return (
     <Background>
-      <LoadingImage />
+      <LoadingImage src={`${import.meta.env.VITE_SWU_IMAGE}/loadingIc.svg`} />
     </Background>
   );
 }
@@ -20,7 +19,7 @@ const Background = styled.div`
   flex-direction: column;
 `;
 
-const LoadingImage = styled(LoadingIc)`
+const LoadingImage = styled.img`
   z-index: 10;
   height: 20rem;
 

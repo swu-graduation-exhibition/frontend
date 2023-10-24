@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { IcStarAll } from '~/assets/icons';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import theme from '~/styles/theme';
 
@@ -8,7 +7,7 @@ function ProjectDetailHeader() {
     <Container>
       <ProjcetTitle>
         <ProjectName>
-          <IconStarAll />
+          <IconStarAll src={`${import.meta.env.VITE_SWU_IMAGE}/ic_star_all.svg`} />
           Project.Name
         </ProjectName>
         <ProjectMembers>김나현 오연정 이주연 주은서 주하영</ProjectMembers>
@@ -29,7 +28,7 @@ function ProjectDetailHeader() {
 
 export default ProjectDetailHeader;
 
-const IconStarAll = styled(IcStarAll)`
+const IconStarAll = styled.img`
   width: 1.9rem;
   margin-right: 0.4rem;
 

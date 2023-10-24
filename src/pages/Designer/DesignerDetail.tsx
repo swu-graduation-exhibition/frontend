@@ -5,7 +5,6 @@ import CommonFormSection from '~/common/components/CommonFormSection';
 import { useDesignerDetail } from '~/lib/api/designer/get-designer-detail';
 import { useParams } from 'react-router-dom';
 import { Default, Desktop, HomeDesktop, HomeTablet, Mobile, Tablet } from '~/utils/mediaQuery';
-import useCommentDesignerWithScroll from '~/lib/api/designer/use-get-designer-comment-scroll';
 import DesktopCommentContainer from './components/comment/DesktopCommentContainer';
 import MobileCommentContainer from './components/comment/MobileCommentContainer';
 import TabletCommentContainer from './components/comment/TabletCommentContainer';

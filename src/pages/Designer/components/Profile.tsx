@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import { IcStarAll } from '~/assets/icons';
 import { DESKTOP_WIDTH, HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
@@ -27,7 +26,8 @@ const Profile = ({
     <ProfileWrapper>
       <Mobile>
         <NameHeader>
-          <IconStarAll />
+          <IconStarAll src={`${import.meta.env.VITE_SWU_IMAGE}/ic_star_all.svg`} />
+
           <NameTitle>
             <h3>{koreanName}</h3>
             <span>{englishName}</span>
@@ -98,7 +98,7 @@ const Profile = ({
 
 export default Profile;
 
-const IconStarAll = styled(IcStarAll)`
+const IconStarAll = styled.img`
   position: absolute;
   width: 1.9rem;
   margin-right: 0.4rem;
