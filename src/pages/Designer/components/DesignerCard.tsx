@@ -72,7 +72,6 @@ export default DesignerCard;
 
 const CardWrapper = styled.div`
   position: relative;
-
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: flex;
     flex-direction: column;

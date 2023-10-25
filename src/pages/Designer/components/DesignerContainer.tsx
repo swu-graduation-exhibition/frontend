@@ -102,7 +102,7 @@ const NavTitle = styled.header(
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Subtitle_01};
-      svg {
+      img {
         top: 0;
         width: 1rem;
         height: 1rem;
@@ -137,7 +137,12 @@ const DesignerCardWrapper = styled.section`
   margin-top: 10rem;
   margin-bottom: 13.6rem;
   grid-template-columns: repeat(4, 1fr);
-
+  border-top: 0.2px solid black;
+  border-left: 0.2px solid black;
+  & > div {
+    border-bottom: 0.2px solid black;
+    border-right: 0.2px solid black;
+  }
   @media screen and (width <= ${TABLET_WIDTH}) {
     grid-template-columns: repeat(2, 1fr);
     margin-top: 8rem;
@@ -146,5 +151,9 @@ const DesignerCardWrapper = styled.section`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     grid-row-gap: 3.5rem;
     margin-top: 6rem;
+    border: none;
+    & > div {
+      border: none;
+    }
   }
 `;

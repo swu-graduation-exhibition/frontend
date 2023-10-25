@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import { youtubeData } from '../data/youtubeData';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import useDragScroll from '~/hooks/useDragScroll';
-import ImgPlayBtn from 'assets/images/youtube_logo.png';
 
 const YoutubeList = () => {
   const ref = useDragScroll();
@@ -14,7 +13,7 @@ const YoutubeList = () => {
           {youtubeData.map(({ id, url }, idx) => (
             <CardWrapper key={id}>
               <YoutubeCard src="" alt={id + '번재'} />
-              <PlayImg src={ImgPlayBtn} />
+              <PlayImg src={`${import.meta.env.VITE_SWU_IMAGE}/youtube_logo.png`} />
             </CardWrapper>
           ))}
         </DragSlider>
