@@ -2,9 +2,11 @@ import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import ProgressiveImage from 'react-progressive-graceful-image';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { whitePlaceholder } from '~/utils/background';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
@@ -39,9 +41,15 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
             )}
             {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundCirImg
-                  src={`${import.meta.env.VITE_SWU_IMAGE}/ImgProjectDetail.png`}
-                />
+                <ProgressiveImage
+                  src={`${import.meta.env.VITE_SWU_IMAGE}/ImgProjectDetail.png}`}
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? whitePlaceholder : <DesignerBackgrodundCirImg src={src} />;
+                  }}
+                </ProgressiveImage>
+
                 <ProjectDetailBottomImg
                   src={`${import.meta.env.VITE_SWU_IMAGE}/home_middle_background.png`}
                 />
@@ -123,8 +131,8 @@ const ContentWrapper = styled.div`
   overflow: hidden;
   position: relative;
   width: 100%;
-
   padding-top: 11rem;
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     padding-top: 5.5rem;
   }
@@ -187,21 +195,24 @@ const DotLeftImg = styled.img`
   @media screen and (width <= 1200px) {
     width: 200px;
   }
+
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 150px;
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     width: 100px;
   }
 `;
 const DotRightImg = styled.img`
   position: absolute;
-  z-index: -10;
-  bottom: 0;
   right: 10px;
+  bottom: 0;
+  z-index: -10;
 
   width: 780px;
   object-fit: cover;
+
   @media screen and (width <= 1200px) {
     width: 680px;
   }
@@ -209,6 +220,7 @@ const DotRightImg = styled.img`
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 500px;
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     width: 400px;
   }
@@ -216,6 +228,7 @@ const DotRightImg = styled.img`
 
 const DotLeftHomeImg = styled(DotLeftImg)`
   top: 1730px;
+
   @media screen and (width <= 1200px) {
     top: 2430px;
   }
