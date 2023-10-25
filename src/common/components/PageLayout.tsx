@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 import ProgressiveImage from 'react-progressive-graceful-image';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
-import { whitePlaceholder } from '~/utils/background';
+import { whitePlaceholder, yellowPlaceholder } from '~/utils/background';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
 
@@ -50,66 +50,143 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
                   }}
                 </ProgressiveImage>
 
-                <ProjectDetailBottomImg
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/home_middle_background.png`}
-                />
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? whitePlaceholder : <ProjectDetailBottomImg src={src} />;
+                  }}
+                </ProgressiveImage>
               </>
             )}
             {pathname === '/designer' && (
-              <DesignerDetailImg
+              <ProgressiveImage
                 src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_default_designer.png`}
-              />
+                placeholder=""
+              >
+                {(src, loading) => {
+                  return loading ? whitePlaceholder : <DesignerDetailImg src={src} />;
+                }}
+              </ProgressiveImage>
             )}
             {pathname !== '/designer' && pathname.includes('/designer') && (
-              <DesignerDetailImg
+              <ProgressiveImage
                 src={`${import.meta.env.VITE_SWU_IMAGE}/bg2_default_designer.png`}
-              />
+                placeholder=""
+              >
+                {(src, loading) => {
+                  return loading ? whitePlaceholder : <DesignerDetailImg src={src} />;
+                }}
+              </ProgressiveImage>
             )}
             {pathname === '/guestbook' && (
-              <PageContentImg
+              <ProgressiveImage
                 src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookBackgroundImage.png`}
-              />
+                placeholder=""
+              >
+                {(src, loading) => {
+                  return loading ? yellowPlaceholder : <PageContentImg src={src} />;
+                }}
+              </ProgressiveImage>
             )}
           </>
         </Default>
         <Mobile>
           <>
             {pathname === '/home' && (
-              <DesignerBackgrodunImg src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`} />
+              <ProgressiveImage
+                src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
+                placeholder=""
+              >
+                {(src, loading) => {
+                  return loading ? whitePlaceholder : <DesignerBackgrodunImg src={src} />;
+                }}
+              </ProgressiveImage>
             )}
             {pathname === '/guestbook' && (
-              <PageContentImg
+              <ProgressiveImage
                 src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookMobileBackgroundImage.png`}
-              />
+                placeholder=""
+              >
+                {(src, loading) => {
+                  return loading ? yellowPlaceholder : <PageContentImg src={src} />;
+                }}
+              </ProgressiveImage>
             )}
             {pathname.includes('/designer') && (
               <>
-                <DesignerBackgrodundMoblieCirImg
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/DesignerBgCir.png`}
-                />
-                <DesignerBackgrodunImg
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? (
+                      whitePlaceholder
+                    ) : (
+                      <DesignerBackgrodundMoblieCirImg src={src} />
+                    );
+                  }}
+                </ProgressiveImage>
+
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
-                />
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? whitePlaceholder : <DesignerBackgrodunImg src={src} />;
+                  }}
+                </ProgressiveImage>
               </>
             )}
             {pathname.includes('/project') && !pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundMoblieCirImg
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/DesignerBgCir.png`}
-                />
-                <DesignerBackgrodunImg
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? (
+                      whitePlaceholder
+                    ) : (
+                      <DesignerBackgrodundMoblieCirImg src={src} />
+                    );
+                  }}
+                </ProgressiveImage>
+
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
-                />
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? whitePlaceholder : <DesignerBackgrodunImg src={src} />;
+                  }}
+                </ProgressiveImage>
               </>
             )}
             {pathname.includes('/project/detail') && (
               <>
-                <DesignerBackgrodundMoblieCirImg
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/ImgProjectDetail.png`}
-                />
-                <DesignerBackgrodunImg
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? (
+                      whitePlaceholder
+                    ) : (
+                      <DesignerBackgrodundMoblieCirImg src={src} />
+                    );
+                  }}
+                </ProgressiveImage>
+
+                <ProgressiveImage
                   src={`${import.meta.env.VITE_SWU_IMAGE}/bg1_all_mobile.png`}
-                />
+                  placeholder=""
+                >
+                  {(src, loading) => {
+                    return loading ? whitePlaceholder : <DesignerBackgrodunImg src={src} />;
+                  }}
+                </ProgressiveImage>
               </>
             )}
           </>
