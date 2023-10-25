@@ -1,19 +1,45 @@
 import styled from 'styled-components';
+import background from '../assets/images/guestBookBlur.png';
+import backgroundMobile from '../assets/images/guestBookBlurMobile.png';
 
 const BackgroundImg = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: -10;
-  width: 100vw;
-  max-width: 190rem;
+  width: 100%;
+
+  max-width: 192rem;
+
   height: 100%;
 
   object-fit: cover;
   max-height: 100%;
   transform: translate(-50%, -50%);
+
+  background-color: '#ffffff';
 `;
 
-export const whitePlaceholder = <BackgroundImg style={{ backgroundColor: '#ffffff' }} />;
+const GuestBackgroundImg = styled.img`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: -10;
+  width: 100%;
 
-export const yellowPlaceholder = <BackgroundImg style={{ backgroundColor: '#F7F5F4' }} />;
+  max-width: 192rem;
+
+  height: 100%;
+
+  object-fit: cover;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+
+  filter: blur(10px);
+`;
+
+export const whitePlaceholder = <BackgroundImg />;
+
+export const yellowPlaceholder = <GuestBackgroundImg src={background} />;
+
+export const yellowPlaceholderMobile = <GuestBackgroundImg src={backgroundMobile} />;

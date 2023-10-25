@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 import ProgressiveImage from 'react-progressive-graceful-image';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
-import { whitePlaceholder, yellowPlaceholder } from '~/utils/background';
+import { whitePlaceholder, yellowPlaceholder, yellowPlaceholderMobile } from '~/utils/background';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
 
@@ -110,7 +110,7 @@ const PageLayout = ({ children, mainBanner }: PageLayoutProps) => {
                 placeholder=""
               >
                 {(src, loading) => {
-                  return loading ? yellowPlaceholder : <PageContentImg src={src} />;
+                  return loading ? yellowPlaceholderMobile : <PageContentImg src={src} />;
                 }}
               </ProgressiveImage>
             )}
