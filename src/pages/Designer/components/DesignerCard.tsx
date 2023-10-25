@@ -1,10 +1,12 @@
-import { css, styled } from 'styled-components';
-import { DesingerInfo } from '~/types/designer';
 import { useState } from 'react';
-import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import ProgressiveImage from 'react-progressive-graceful-image';
 import { useNavigate } from 'react-router-dom';
+import { css, keyframes, styled } from 'styled-components';
+import empthy_designer from '~/assets/images/empthy_designer.png';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
+import { DesingerInfo } from '~/types/designer';
 import { getFieldArray } from '~/utils/getFieldArray';
+import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
 interface DesignerCardProps extends DesingerInfo {
   isFirst: boolean;
@@ -32,9 +34,18 @@ const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: Designe
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <CardImg>
-        <img src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
-      </CardImg>
+      <>
+        <ProgressiveImage src={profile} placeholder="">
+          {(src, loading) => (
+            <CardImg
+              src={profile}
+              className={isFirst ? 'first' : 'second'}
+              loading={loading}
+              empthy={empthy_designer}
+            />
+          )}
+        </ProgressiveImage>
+      </>
       <Default>
         <>
           <HomeDesktop>
@@ -73,6 +84,7 @@ export default DesignerCard;
 
 const CardWrapper = styled.div`
   position: relative;
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: flex;
     flex-direction: column;
@@ -84,23 +96,41 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CardImg = styled.div`
-  img {
-    width: 100%;
-    height: 618px;
-
-    @media screen and (width <= ${HOME_TABLET_WIDTH}) {
-      height: 527.25px;
-    }
-    @media screen and (width <= ${MOBILE_WIDTH}) {
-      height: 257.25px;
-      border-bottom: 0.2px solid black;
-      border-top: 0.2px solid black;
-      border-left: 0.2px solid black;
-    }
-
-    object-fit: cover;
+const loading = keyframes`
+  0% {
+    transform: translateX(0);
   }
+  50%{
+    transform: translateX(45rem);
+  }
+  100%{
+    transform: translateX(0);
+  }
+`;
+
+const CardImg = styled.div<{ src: string; loading: boolean | undefined; empthy: string }>`
+  background-image: url(${({ loading, empthy, src }) => (loading ? empthy : src)});
+
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 618px;
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    height: 527.25px;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    height: 257.25px;
+    border-bottom: 0.2px solid black;
+    border-top: 0.2px solid black;
+    border-left: 0.2px solid black;
+  }
+
+  background-color: rgb(145 145 145 / 10%);
+
+  /* animation: ${loading} 4s infinite; */
+
+  object-fit: cover;
 `;
 const CardHoverContent = styled.article`
   position: absolute;
@@ -128,11 +158,10 @@ const MobileNameTitle = styled.header`
 `;
 
 const TrackUl = styled.ul`
+  display: flex;
   position: absolute;
   top: 7%;
   right: 7%;
-
-  display: flex;
   flex-direction: row-reverse;
   gap: 1.6rem;
 
