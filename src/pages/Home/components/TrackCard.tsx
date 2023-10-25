@@ -14,7 +14,7 @@ const TrackCard = ({ title, desc, url }: TrackDataInfo) => {
     <TrackCardWrapper onClick={handleClickCard}>
       <TitleWrapper>
         <Title>{title.toUpperCase()}</Title>
-        <img src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_home.png`} />
+        <img src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_home.svg`} />
       </TitleWrapper>
       <Description>{desc}</Description>
     </TrackCardWrapper>
