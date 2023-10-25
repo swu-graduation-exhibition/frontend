@@ -20,8 +20,13 @@ const HomeDesktop = ({ children }: { children: JSX.Element }): JSX.Element | nul
   return isDesktop ? children : null;
 };
 const HomeTablet = ({ children }: { children: JSX.Element }): JSX.Element | null => {
-  const isTablet = useMediaQuery({ minWidth: 521, maxWidth: 1024 });
+  const isTablet = useMediaQuery({ minWidth: 630, maxWidth: 1024 });
   return isTablet ? children : null;
+};
+
+const HomeMobile = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isMobile = useMediaQuery({ maxWidth: 629 });
+  return isMobile ? children : null;
 };
 
 const GuestBookTablet = ({ children }: { children: JSX.Element }): JSX.Element | null => {
@@ -61,6 +66,7 @@ export {
   GuestBookDesktop,
   GuestBookTablet,
   HomeDesktop,
+  HomeMobile,
   HomeTablet,
   Mobile,
   ProjectDesktop,

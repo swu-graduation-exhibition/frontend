@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { ReactComponent as IcHeaderLogo } from '~/assets/icons/ic_header_logo.svg';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
+import { HOME_MOBILE_WIDTH, HOME_TABLET_WIDTH } from '~/constants/common';
 
 const ConceptContent = () => {
   return (
@@ -32,15 +32,16 @@ const ConceptContent = () => {
 export default ConceptContent;
 
 const ConceptContentWrapper = styled.div`
-  position: relative;
   display: flex;
+  position: relative;
 `;
 const TextRootWrapper = styled.div`
   svg {
     path {
       fill: black;
     }
-    @media screen and (width <= ${MOBILE_WIDTH}) {
+
+    @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
       width: 23rem;
       height: 3.8rem;
     }
@@ -49,7 +50,7 @@ const TextRootWrapper = styled.div`
 const Title = styled.div`
   ${({ theme }) => theme.fonts.Caption_01};
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Caption_03};
   }
 `;
@@ -57,7 +58,7 @@ const SubTitle = styled.div`
   ${({ theme }) => theme.fonts.Body_01};
   margin-bottom: 5rem;
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_01};
     margin-bottom: 2.6rem;
   }
@@ -68,7 +69,8 @@ const Description = styled.div`
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     ${({ theme }) => theme.fonts.Caption_01};
   }
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_05};
     background-color: ${({ theme }) => theme.colors.White};
   }

@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 import { PageLayout } from '~/common/components';
-import { ConceptContent, Interview, MainBanner, TrackIntroduce } from './components';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
-import { HomeTablet, HomeDesktop, Mobile } from '~/utils/mediaQuery';
+import { HomeDesktop, HomeMobile, HomeTablet } from '~/utils/mediaQuery';
+import { ConceptContent, Interview, MainBanner, TrackIntroduce } from './components';
 
 const Home = () => {
   return (
@@ -16,9 +16,9 @@ const Home = () => {
         <HomeTablet>
           <MobileBlackFlower src={`${import.meta.env.VITE_SWU_IMAGE}/img2_home_pad.png`} />
         </HomeTablet>
-        <Mobile>
+        <HomeMobile>
           <MobileBlackFlower src={`${import.meta.env.VITE_SWU_IMAGE}/img2_home_mobile.png`} />
-        </Mobile>
+        </HomeMobile>
         <Interview />
         <TrackIntroduce />
       </GraduationExhibitionWrapper>
@@ -36,15 +36,15 @@ const GraduationExhibitionWrapper = styled.section`
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     padding: 8rem 6rem;
   }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     padding: 2rem 1.6rem;
   }
 `;
 const BlackFlower = styled.img`
   position: absolute;
-  right: 0;
   top: 0;
-
+  right: 0;
   z-index: -1;
 `;
 const MobileBlackFlower = styled.img`
