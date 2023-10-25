@@ -31,7 +31,7 @@ const DesignerContainer = () => {
           <DesignerCardWrapper>
             {designerInfoList.map(({ designer_id, name_ko, field, profile }, idx) => (
               <DesignerCard
-                isFirst={idx === 0}
+                isFirst={window.screen.width >= 832 ? idx % 3 === 0 : idx % 2 === 0}
                 key={`${designer_id}-${name_ko}`}
                 designer_id={designer_id}
                 name_ko={name_ko}
@@ -137,6 +137,7 @@ const DesignerCardWrapper = styled.section`
   margin-top: 10rem;
   margin-bottom: 13.6rem;
   grid-template-columns: repeat(4, 1fr);
+
   border-top: 0.2px solid black;
   border-left: 0.2px solid black;
   & > div {

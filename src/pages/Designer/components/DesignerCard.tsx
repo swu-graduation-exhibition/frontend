@@ -32,7 +32,9 @@ const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: Designe
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <CardImg src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
+      <CardImg>
+        <img src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
+      </CardImg>
       <Default>
         <>
           <HomeDesktop>
@@ -50,7 +52,6 @@ const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: Designe
               )}
             </>
           </HomeDesktop>
-
           <NameTitle>{name_ko}</NameTitle>
         </>
       </Default>
@@ -83,21 +84,23 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CardImg = styled.img`
-  width: 100%;
-  height: 618px;
+const CardImg = styled.div`
+  img {
+    width: 100%;
+    height: 618px;
 
-  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
-    height: 527.25px;
-  }
-  @media screen and (width <= ${MOBILE_WIDTH}) {
-    height: 257.25px;
-    border-bottom: 0.2px solid black;
-    border-top: 0.2px solid black;
-    border-left: 0.2px solid black;
-  }
+    @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+      height: 527.25px;
+    }
+    @media screen and (width <= ${MOBILE_WIDTH}) {
+      height: 257.25px;
+      border-bottom: 0.2px solid black;
+      border-top: 0.2px solid black;
+      border-left: 0.2px solid black;
+    }
 
-  object-fit: cover;
+    object-fit: cover;
+  }
 `;
 const CardHoverContent = styled.article`
   position: absolute;
