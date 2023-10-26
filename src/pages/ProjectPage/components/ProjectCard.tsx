@@ -56,7 +56,11 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
               <ProjectInfoContainer>
                 <TitleText>{title}</TitleText>
                 <ParticipantsContainer>
-                  <MemberText>{members}</MemberText>
+                  <MemberText>
+                    {members.split(', ').map((member) => (
+                      <Member>{member}</Member>
+                    ))}
+                  </MemberText>
                 </ParticipantsContainer>
               </ProjectInfoContainer>
             </CardBackDrop>
@@ -93,7 +97,11 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
           <CaptionContainer>
             <CaptionTitleText>{title}</CaptionTitleText>
             <CaptionParticipants>
-              <MemberText>{members}</MemberText>
+              <MemberText>
+                {members.split(', ').map((member) => (
+                  <Member>{member}</Member>
+                ))}
+              </MemberText>
             </CaptionParticipants>
           </CaptionContainer>
         </Container>
@@ -103,6 +111,22 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
 }
 
 export default ProjectCard;
+
+const Member = styled.p`
+  margin-right: 0.4rem;
+
+  ${({ theme }) => theme.fonts.Caption_02}
+  color: white;
+
+  @media screen and (width <= 1200px) {
+    ${({ theme }) => theme.fonts.Mobile_Body_04};
+    color: white;
+  }
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    color: ${({ theme }) => theme.colors.Black};
+  }
+`;
 
 const Container = styled.article`
   position: relative;
@@ -194,25 +218,21 @@ const ParticipantsContainer = styled.div`
 `;
 
 const MemberText = styled.p`
+  display: flex;
   width: fit-content;
-  min-width: fit-content;
-
-  ${({ theme }) => theme.fonts.Caption_02}
-  color: white;
-
-  @media screen and (width <= 1200px) {
-    ${({ theme }) => theme.fonts.Mobile_Body_04};
-    color: white;
-  }
+  margin-top: 0.8rem;
 
   @media screen and (width<=${MOBILE_WIDTH}) {
-    color: ${({ theme }) => theme.colors.Black};
+    margin-top: 0.2rem;
+    margin-bottom: 1.3rem;
   }
+
+  min-width: fit-content;
 `;
 
 const CaptionContainer = styled.section`
   flex-direction: column;
-  padding: 1.2rem 0 6.3rem 1.6rem;
+  padding: 1.2rem 1.6rem 5rem;
 `;
 
 const CaptionTitleText = styled.span`
