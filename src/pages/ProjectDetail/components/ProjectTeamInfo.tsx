@@ -38,10 +38,10 @@ const Container = styled.section`
   flex-direction: column;
   gap: 6.4rem;
 
-  max-width: 165rem;
+  /* max-width: 165rem; */
   padding: 0 13.6rem;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1100px) {
     padding: 0 6.4rem;
   }
 

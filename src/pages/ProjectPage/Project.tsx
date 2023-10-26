@@ -6,6 +6,7 @@ import { getProjectList } from '~/api/project';
 import { PageLayout } from '~/common/components';
 import TopButton from '~/common/components/TopButton';
 import { Mobile } from '~/utils/mediaQuery';
+import Loading from '../Loading';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import ProjectCategory from './components/ProjectCategory';
 import { projectData, projectData1, projectData2 } from './data/cardData';
@@ -42,14 +43,14 @@ function Project() {
       },
     },
   );
-  console.log(projectData);
+  // console.log(projectData);
   useEffect(() => {
     window.scroll({
       top: 0,
       behavior: 'instant',
     });
   }, []);
-
+  if (isLoading) return <Loading />;
   return (
     <PageLayout>
       <ProjectLayout>

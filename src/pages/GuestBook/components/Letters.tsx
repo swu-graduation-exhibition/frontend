@@ -114,9 +114,9 @@ const Letters = () => {
       <Mobile>
         <>
           <TopButton />
-          {mobileData ? (
+          {mobileCount ? (
             <LettersWrapper>
-              {mobileData.map(
+              {mobileData?.map(
                 ({ sender, content, createdAt, receiver }: GuestBookPageCard, idx: number) => (
                   <GuestBookCard
                     key={idx}
@@ -170,9 +170,12 @@ const NoMessage = styled.h1`
   text-align: center;
   ${({ theme }) => theme.fonts.Caption_03}
 
+  color: ${({ theme }) => theme.colors.Grayscales_800};
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin: 9.4rem 0;
-    ${({ theme }) => theme.fonts.Mobile_Caption_03}
+
+    ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 `;
 

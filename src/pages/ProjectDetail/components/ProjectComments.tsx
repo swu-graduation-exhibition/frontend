@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH } from '~/constants/common';
 import CommonFormSection from '../../../common/components/CommonFormSection';
 import CommentListSection from './CommentListSection';
 
@@ -22,9 +22,9 @@ const Container = styled.section`
   gap: 5rem;
   padding: 0 13.6rem;
 
-  max-width: 165rem;
+  /* max-width: 165rem; */
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1100px) {
     padding: 0 6.4rem;
   }
 

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { postDesignerComment } from '~/api/designer';
 import { postProjectComment } from '~/api/project';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import useFormHooks from '~/hooks/useFormHooks';
@@ -8,7 +9,6 @@ import useGetProjectCommentDesktop from '~/hooks/useGetProjectCommentDesktop';
 import { FormSectionProps } from '~/types/commonFormSection';
 import { Desktop, ProjectDetailBig, ProjectDetailMobile } from '~/utils/mediaQuery';
 import { FormSupplies } from '../data/commonFormSection';
-import { postDesignerComment } from '~/api/designer';
 
 const CommonFormSection = ({ page }: FormSectionProps) => {
   const { formData, setSetFormData, isButtonActive, inputOnChange, textAreaOnChange } =
@@ -212,11 +212,15 @@ const FromInput = styled.input(
       width: 31rem;
     }
 
-    @media screen and (width <= 540px) {
+    @media screen and (width <= 550px) {
       ${({ theme }) => theme.fonts.Caption_03}
       width: 26.9rem;
       padding: 1.6rem 2.4rem;
       font-size: 1.5rem;
+    }
+
+    @media screen and (width <= 400px) {
+      width: 22.5rem;
     }
   `,
 );
@@ -224,19 +228,33 @@ const FromInput = styled.input(
 const SubmitButton = styled.button(
   ({ theme }) => theme.fonts.Caption_03,
   css`
-    width: 14.9rem;
     height: 6.2rem;
-    border-radius: 1rem;
+
+    /* width: 14.9rem; */
+
+    padding: 0 3.6rem;
 
     background-color: ${({ theme }) => theme.colors.Grayscales_900};
     color: ${({ theme }) => theme.colors.Grayscales_50};
+    border-radius: 1rem;
 
-    @media screen and (width <= 540px) {
+    @media screen and (width <= 550px) {
+      /* padding: 0; */
+
+      padding: 0 2rem;
+
       ${({ theme }) => theme.fonts.Caption_03}
       color: ${({ theme }) => theme.colors.Grayscales_50};
-      margin-left: 1rem;
-      width: 6.9rem;
+
+      /* margin-left: 1rem; */
+
+      /* width: 6.9rem; */
+
       font-size: 1.5rem;
+    }
+
+    @media screen and (width <= 350px) {
+      padding: 0 0.5rem;
     }
   `,
 );
@@ -244,10 +262,11 @@ const UnSubmitButton = styled(SubmitButton)`
   background-color: ${({ theme }) => theme.colors.Grayscales_200};
   color: ${({ theme }) => theme.colors.Grayscales_600};
 
-  @media screen and (width <= 540px) {
+  @media screen and (width <= 550px) {
     ${({ theme }) => theme.fonts.Caption_03}
     color: ${({ theme }) => theme.colors.Grayscales_600};
-    margin-left: 1rem;
+
+    /* margin-left: 1rem; */
 
     font-size: 1.5rem;
   }
@@ -272,7 +291,7 @@ const TextArea = styled.textarea(
       border: 1px solid black;
     }
 
-    @media screen and (width <= 540px) {
+    @media screen and (width <= 550px) {
       ${({ theme }) => theme.fonts.Caption_03}
       font-size: 1.5rem;
       height: 16.9rem;

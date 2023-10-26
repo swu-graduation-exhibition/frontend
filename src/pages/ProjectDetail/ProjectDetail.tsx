@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import { PageLayout } from '~/common/components';
 import ProjectComments from './components/ProjectComments';
@@ -7,13 +6,6 @@ import ProjectDetailHeader from './components/ProjectDetailHeader';
 import ProjectTeamInfo from './components/ProjectTeamInfo';
 
 function ProjectDetail() {
-  useEffect(() => {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }, []);
-
   return (
     <PageLayout>
       <ProjectDetailSection>

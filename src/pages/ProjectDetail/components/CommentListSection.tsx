@@ -134,7 +134,8 @@ const NoMessage = styled.h1`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     margin: 9.4rem 0;
-    ${({ theme }) => theme.fonts.Mobile_Caption_03}
+    
+    ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 `;
 

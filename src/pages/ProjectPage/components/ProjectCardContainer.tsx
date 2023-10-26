@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ProjectCard from './ProjectCard';
 
@@ -7,14 +7,24 @@ interface IProjectProps {
 }
 
 function ProjectCardContainer({ projectData }: IProjectProps) {
+  const navigate = useNavigate();
+
+  function moveToDetail(projectId: number) {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth',
+    });
+    navigate(`/project/detail/${projectId}`);
+  }
+
   return (
     <>
       <ProjectCardLayout>
         {projectData?.map((projectInfo) => {
           return (
-            <Link to={`/project/detail/${projectInfo?.projectId}`}>
+            <div onClick={() => moveToDetail(projectInfo?.projectId)}>
               <ProjectCard key={projectInfo?.projectId} projectInfo={projectInfo} />
-            </Link>
+            </div>
           );
         })}
       </ProjectCardLayout>
@@ -26,7 +36,9 @@ export default ProjectCardContainer;
 
 const ProjectCardLayout = styled.section`
   display: grid;
-  max-width: 165rem;
+
+  /* max-width: 165rem; */
+
   grid-template-columns: repeat(3, minmax(27rem, 1fr));
   align-content: start;
 
