@@ -159,7 +159,7 @@ const SubTitle = styled.p`
 
   ${({ theme }) => theme.fonts.Caption_01};
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media ${`screen and (max-width: ${TABLET_WIDTH})`} {
     display: none;
   }
 `;
