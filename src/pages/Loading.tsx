@@ -15,7 +15,8 @@ const Background = styled.div`
   position: fixed;
   inset: 0;
 
-  background-color: rgb(0 0 0 / 40%);
+  /* background-color: rgb(0 0 0 / 40%); */
+
   flex-direction: column;
 `;
 
