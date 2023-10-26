@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import ProjectCard from './ProjectCard';
 
 interface IProjectProps {
-  projectData: { type: number; title: string; members: string; photo: string }[];
+  projectData: { type: number; title: string; members: string; photo: string; projectId: number }[];
 }
 
 function ProjectCardContainer({ projectData }: IProjectProps) {
   return (
     <>
       <ProjectCardLayout>
-        {projectData?.map((projectInfo, i) => {
+        {projectData?.map((projectInfo) => {
           return (
-            <Link to={`/project/detail/${i + 1}`}>
-              <ProjectCard key={i} projectInfo={projectInfo} />
+            <Link to={`/project/detail/${projectInfo?.projectId}`}>
+              <ProjectCard key={projectInfo?.projectId} projectInfo={projectInfo} />
             </Link>
           );
         })}

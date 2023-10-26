@@ -17,7 +17,7 @@ const ProjectTeamInfo = () => {
 
   return (
     <Container>
-      <TeamName>{projectDetail?.title}</TeamName>
+      <TeamName>{projectDetail?.teamName}</TeamName>
 
       <TeamCardContainer>
         {projectDetail?.memberList.map((member: MemberType) => {

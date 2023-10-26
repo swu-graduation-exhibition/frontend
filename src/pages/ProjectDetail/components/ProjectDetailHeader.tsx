@@ -7,7 +7,7 @@ import theme from '~/styles/theme';
 function ProjectDetailHeader() {
   const { projectId } = useParams();
   const { projectDetail } = useGetProjectDetail(Number(projectId));
-
+  console.log(projectDetail);
   return (
     <Container>
       <ProjcetTitle>
@@ -19,12 +19,14 @@ function ProjectDetailHeader() {
       </ProjcetTitle>
       <ProjectDescription>
         <Description>{projectDetail?.desc}</Description>
-        <ButtonSection>
-          <a href={projectDetail?.link}>
-            <TryItButton>TRY IT!</TryItButton>
-          </a>
-          <ButtonCaption>* 버튼을 눌러 서비스를 직접 체험해 보세요!</ButtonCaption>
-        </ButtonSection>
+        {projectDetail?.link && (
+          <ButtonSection>
+            <a href={projectDetail?.link}>
+              <TryItButton>TRY IT!</TryItButton>
+            </a>
+            <ButtonCaption>* 버튼을 눌러 서비스를 직접 체험해 보세요!</ButtonCaption>
+          </ButtonSection>
+        )}
       </ProjectDescription>
     </Container>
   );

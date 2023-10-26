@@ -42,7 +42,7 @@ function Project() {
       },
     },
   );
-
+  console.log(projectData);
   useEffect(() => {
     window.scroll({
       top: 0,
