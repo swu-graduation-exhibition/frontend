@@ -5,6 +5,8 @@ import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useNavigate } from 'react-router-dom';
 import { getFieldArray } from '~/utils/getFieldArray';
+import ProgressiveImage from 'react-progressive-graceful-image';
+import { whitePlaceholder } from '~/utils/background';
 
 interface DesignerCardProps extends DesingerInfo {
   isFirst: boolean;
@@ -25,16 +27,24 @@ const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: Designe
   const handleClickCard = () => {
     navigate(String(designer_id));
   };
-
   return (
     <CardWrapper
       onClick={handleClickCard}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <CardImg>
-        <img src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
-      </CardImg>
+      <ProgressiveImage src={profile} placeholder="">
+        {(src, loading) => {
+          return loading ? (
+            whitePlaceholder
+          ) : (
+            <CardImg>
+              <img src={src} alt="designer-card" className={isFirst ? 'first' : 'second'} />
+            </CardImg>
+          );
+        }}
+      </ProgressiveImage>
+
       <Default>
         <>
           <HomeDesktop>

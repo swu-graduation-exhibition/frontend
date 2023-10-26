@@ -2,11 +2,11 @@ import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import ProgressiveImage from 'react-progressive-graceful-image';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { whitePlaceholder, yellowPlaceholder, yellowPlaceholderMobile } from '~/utils/background';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import { Footer, Header } from '.';
+import ProgressiveImage from 'react-progressive-graceful-image';
 
 interface PageLayoutProps {
   mainBanner?: ReactNode;
