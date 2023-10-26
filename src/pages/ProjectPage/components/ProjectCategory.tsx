@@ -26,7 +26,7 @@ function ProjectCategory() {
         setIsSelected('UX Design');
         break;
     }
-  }, []);
+  }, [category]);
 
   const handleCategory = (category: TProjectCategories) => {
     setIsSelected(category);
