@@ -220,7 +220,7 @@ const PageContentImg = styled.img`
   left: 50%;
   z-index: -10;
   width: 100vw;
-  max-width: 190rem;
+  max-width: 192rem;
   height: 100%;
 
   object-fit: cover;
