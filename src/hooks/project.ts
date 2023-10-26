@@ -8,6 +8,6 @@ export default function useGetProjectDetail(id: number) {
       console.log(err);
     },
   });
-  console.log(projectDetail);
+
   return { projectDetail };
 }

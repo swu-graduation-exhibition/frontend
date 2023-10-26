@@ -32,6 +32,22 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
             ) : (
               <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
             )}
+
+            {/* <ProgressiveImage src={photo} placeholder="">
+              {(src, loading) => {
+                return loading ? (
+                  whitePlaceholder
+                ) : (
+                  <>
+                    {src ? (
+                      <CardThumbnail src={src} alt="프로젝트 사진" />
+                    ) : (
+                      <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+                    )}
+                  </>
+                );
+              }}
+            </ProgressiveImage> */}
           </CardThumbnailContainer>
 
           {isMouseOn && (
@@ -50,7 +66,29 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
       <Mobile>
         <Container>
           <CardThumbnailContainer>
-            <CardThumbnail src={photo} />
+            <CardThumbnailContainer>
+              {photo ? (
+                <CardThumbnail src={photo} alt="프로젝트 사진" />
+              ) : (
+                <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+              )}
+
+              {/* <ProgressiveImage src={photo} placeholder="">
+              {(src, loading) => {
+                return loading ? (
+                  whitePlaceholder
+                ) : (
+                  <>
+                    {src ? (
+                      <CardThumbnail src={src} alt="프로젝트 사진" />
+                    ) : (
+                      <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+                    )}
+                  </>
+                );
+              }}
+            </ProgressiveImage> */}
+            </CardThumbnailContainer>
           </CardThumbnailContainer>
           <CaptionContainer>
             <CaptionTitleText>{title}</CaptionTitleText>

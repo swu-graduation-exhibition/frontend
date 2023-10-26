@@ -1,3 +1,4 @@
+import ReactPlayer from 'react-player';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
@@ -29,10 +30,7 @@ const ProjectDetailAssets = () => {
             {checkExtension(photoExtension) ? (
               <Container key={index} src={photo} alt="프로젝트 이미지" />
             ) : (
-              // 포스터 필터링 추후 추가
-              <Video controls playsInline poster="">
-                <source src={photo} type="video/mp4" />
-              </Video>
+              <ReactPlayer url={photo} width="100vw" height="58vw" controls playsinline />
             )}
           </>
         );

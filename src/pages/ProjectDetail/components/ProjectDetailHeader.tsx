@@ -68,8 +68,12 @@ const Container = styled.section`
 const ProjcetTitle = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 36.8rem;
-  min-width: fit-content;
+  word-wrap: break-word;
+  margin-right: 1.5rem;
+
+  /* max-width: 36.8rem; */
+
+  /* min-width: fit-content; */
 
   @media screen and (width <= 1100px) {
     gap: 1.2rem;
