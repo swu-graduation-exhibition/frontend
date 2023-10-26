@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import nullPhoto from '~/assets/images/empthy_designer.png';
+import { MOBILE_WIDTH } from '~/constants/common';
 import { Mobile, ProjectDesktop } from '~/utils/mediaQuery';
 
 interface ProjectCardProps {
@@ -8,13 +9,8 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ projectInfo }: ProjectCardProps) {
-  // const { type, title, members, photo } = projectInfo;
+  const { type, title, members, photo } = projectInfo;
   const [isMouseOn, setIsMouseOn] = useState(false);
-  const type = 1;
-  const title = '제목제목';
-  const members = '홍서희 이용택 서지수';
-  const photo =
-    'https://post-phinf.pstatic.net/MjAyMTAyMjNfMjkg/MDAxNjE0MDQ4NTUxMzYw.pyVNFQcsE2G6hKY3NWGifpRZ20AY3N-WcI2EnajLKI0g.ogPk2GuTe38BoGSdIixOtIiR7p4FpS8_cky70baZIdUg.PNG/%EC%8A%A4%ED%8F%B0%EC%A7%80%EB%B0%A5%284%29.png?type=w800_q75';
 
   const handleMouseOver = () => {
     setIsMouseOn(true);
@@ -30,7 +26,30 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
     <>
       <ProjectDesktop>
         <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-          <CardThumbnail src={photo} alt="프로젝트 사진" />
+          <CardThumbnailContainer>
+            {photo ? (
+              <CardThumbnail src={photo} alt="프로젝트 사진" />
+            ) : (
+              <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+            )}
+
+            {/* <ProgressiveImage src={photo} placeholder="">
+              {(src, loading) => {
+                return loading ? (
+                  whitePlaceholder
+                ) : (
+                  <>
+                    {src ? (
+                      <CardThumbnail src={src} alt="프로젝트 사진" />
+                    ) : (
+                      <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+                    )}
+                  </>
+                );
+              }}
+            </ProgressiveImage> */}
+          </CardThumbnailContainer>
+
           {isMouseOn && (
             <CardBackDrop>
               <CategoryText>{category[type]}</CategoryText>
@@ -46,7 +65,31 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
       </ProjectDesktop>
       <Mobile>
         <Container>
-          <CardThumbnail src={photo} />
+          <CardThumbnailContainer>
+            <CardThumbnailContainer>
+              {photo ? (
+                <CardThumbnail src={photo} alt="프로젝트 사진" />
+              ) : (
+                <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+              )}
+
+              {/* <ProgressiveImage src={photo} placeholder="">
+              {(src, loading) => {
+                return loading ? (
+                  whitePlaceholder
+                ) : (
+                  <>
+                    {src ? (
+                      <CardThumbnail src={src} alt="프로젝트 사진" />
+                    ) : (
+                      <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
+                    )}
+                  </>
+                );
+              }}
+            </ProgressiveImage> */}
+            </CardThumbnailContainer>
+          </CardThumbnailContainer>
           <CaptionContainer>
             <CaptionTitleText>{title}</CaptionTitleText>
             <CaptionParticipants>
@@ -67,10 +110,22 @@ const Container = styled.article`
   cursor: pointer;
   margin-bottom: -0.2rem;
 `;
+
 const CardThumbnail = styled.img`
   width: 100%;
   height: 100%;
+  margin: auto;
+`;
+
+const CardThumbnailContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   border: 1px solid black;
+
+  object-fit: cover;
 `;
 const CardBackDrop = styled.article`
   position: absolute;
@@ -93,7 +148,7 @@ const CardBackDrop = styled.article`
     }
   }
 
-  @media screen and (width<=${TABLET_WIDTH}) {
+  @media screen and (width<=1200px) {
     padding: 1.6rem;
   }
 `;
@@ -106,7 +161,7 @@ const CategoryText = styled.span`
   ${({ theme }) => theme.fonts.Body_03}
   color: white;
 
-  @media screen and (width<=${TABLET_WIDTH}) {
+  @media screen and (width<=1200px) {
     ${({ theme }) => theme.fonts.Mobile_Body_01}
     color: white;
 
@@ -119,7 +174,7 @@ const TitleText = styled.span`
   ${({ theme }) => theme.fonts.Body_03}
   color: white;
 
-  @media screen and (width<=${TABLET_WIDTH}) {
+  @media screen and (width<=1200px) {
     ${({ theme }) => theme.fonts.Mobile_Subtitle_03}
     color: white;
   }
@@ -145,7 +200,7 @@ const MemberText = styled.p`
   ${({ theme }) => theme.fonts.Caption_02}
   color: white;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1200px) {
     ${({ theme }) => theme.fonts.Mobile_Body_04};
     color: white;
   }
@@ -166,7 +221,7 @@ const CaptionTitleText = styled.span`
 
   color: black;
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= 1200px) {
     ${({ theme }) => theme.fonts.Mobile_Subtitle_03}
   }
 `;

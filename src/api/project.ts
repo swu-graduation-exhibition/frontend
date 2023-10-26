@@ -10,6 +10,16 @@ export async function getProjectList(type: number) {
   return data?.data?.data;
 }
 
+export async function getProjectDetail(projectId: number) {
+  const data = await axios.get(`${import.meta.env.VITE_SWU_IP}/project/${projectId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return data?.data?.data;
+}
+
 export async function getProjectComment(id: number | string, page: number, limit: number) {
   const data = await axios.get(
     `${import.meta.env.VITE_SWU_IP}/comment/project?id=${id}&page=${page}&limit=${limit}`,

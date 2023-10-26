@@ -117,6 +117,8 @@ const Flowers = ({ length }: FlowerProp) => {
       return <DesktopFlower src={DESKTOP_FLOWERS[3]} />;
     } else if (length >= 10) {
       return <DesktopFlower src={DESKTOP_FLOWERS[2]} />;
+    } else if (length === 0) {
+      return <></>;
     } else {
       return <DesktopFlower src={DESKTOP_FLOWERS[1]} />;
     }
@@ -161,6 +163,8 @@ const Flowers = ({ length }: FlowerProp) => {
       return <TabletFlower src={TABLET_FLOWERS[3]} />;
     } else if (length >= 10) {
       return <TabletFlower src={TABLET_FLOWERS[2]} />;
+    } else if (length === 0) {
+      return <></>;
     } else {
       return <TabletFlower src={TABLET_FLOWERS[1]} />;
     }
@@ -205,6 +209,8 @@ const Flowers = ({ length }: FlowerProp) => {
       return <MobileFlower src={MOBILE_FLOWERS[3]} />;
     } else if (length >= 10) {
       return <MobileFlower src={MOBILE_FLOWERS[2]} />;
+    } else if (length === 0) {
+      return <></>;
     } else {
       return <MobileFlower src={MOBILE_FLOWERS[1]} />;
     }

@@ -14,7 +14,7 @@ const Designer = lazy(() => import('./pages/Designer/Designer'));
 function Router() {
   return (
     <BrowserRouter>
-      <Suspense>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />

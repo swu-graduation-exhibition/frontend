@@ -1,45 +1,26 @@
+import { useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import useGetProjectDetail from '~/hooks/project';
 import ProjectTeamDesignerCard from './ProjectTeamDesignerCard';
 
+interface MemberType {
+  designerId: number;
+  name: string;
+  profile: string;
+  field: string;
+}
+
 const ProjectTeamInfo = () => {
-  const memberList = [
-    {
-      designerId: 19,
-      name: '엄희수',
-      profile:
-        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
-      field: 'UX',
-    },
-    {
-      designerId: 22,
-      name: '원예린',
-      profile:
-        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
-      field: 'BX',
-    },
-    {
-      designerId: 32,
-      name: '이인영',
-      profile:
-        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
-      field: 'UX BX',
-    },
-    {
-      designerId: 34,
-      name: '이지은',
-      profile:
-        'https://mblogthumb-phinf.pstatic.net/MjAyMTA0MjRfMjU4/MDAxNjE5MjQwMDg5MjM1.N19YLjOPGrzUaf8YSq9KauSciuykMAKcfWmjLAVoHAYg.9vtYMglfPwE-8WSoSGKR4SujwoNIdBE5sDU7b_c0XEkg.JPEG.chooddingg/PHOTO_0194.JPG?type=w800',
-      field: 'UX',
-    },
-  ];
+  const { projectId } = useParams();
+  const { projectDetail } = useGetProjectDetail(Number(projectId));
 
   return (
     <Container>
-      <TeamName>Team.name</TeamName>
+      <TeamName>{projectDetail?.title}</TeamName>
 
       <TeamCardContainer>
-        {memberList.map((member) => {
+        {projectDetail?.memberList.map((member: MemberType) => {
           return <ProjectTeamDesignerCard member={member} />;
         })}
       </TeamCardContainer>
