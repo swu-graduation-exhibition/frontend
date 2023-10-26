@@ -24,7 +24,7 @@ const LoadingImage = styled.img`
   z-index: 10;
   height: 20rem;
 
-  animation: fadeinanimation 1s ease-out;
+  animation: fadeinanimation 2s ease-out;
   animation-iteration-count: infinite;
 
   @keyframes fadeinanimation {
