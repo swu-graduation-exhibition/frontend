@@ -73,7 +73,7 @@ const Container = styled.section`
   margin-top: 16rem;
   padding: 0% 7%;
 
-  @media screen and (width <= 1400px) {
+  @media screen and (width <= ${`1400px`}) {
     justify-content: flex-start;
     height: fit-content;
     flex-direction: column;
@@ -96,7 +96,7 @@ const NavTitle = styled.header(
     width: fit-content;
     height: fit-content;
 
-    @media screen and (width <= 1400px) {
+    @media screen and (width <= ${`1400px`}) {
       ${({ theme }) => theme.fonts.Subtitle_02}
     }
 

@@ -140,7 +140,7 @@ const Box = styled.div`
 
   cursor: pointer;
 
-  @media screen and (width <= 600px) {
+  @media screen and (width <= ${`600px`}) {
     width: 26.9rem;
     margin-top: 7rem;
   }
@@ -159,15 +159,15 @@ const Drop = styled.div<{ $isDrop: boolean }>`
 
   border-radius: 1rem;
 
-  @media screen and (width <= 955px) {
+  @media screen and (width <= ${`955px`}) {
     width: 27.2rem;
   }
 
-  @media screen and (width <= 650px) {
+  @media screen and (width <= ${`650px`}) {
     width: 23rem;
   }
 
-  @media screen and (width <= 600px) {
+  @media screen and (width <= ${`600px`}) {
     width: 100%;
   }
 `;
@@ -191,7 +191,7 @@ const NoneReceiver = styled.p`
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
   }
 
-  @media screen and (width <= 1000px) {
+  @media screen and (width <= ${`1000px`}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
   }
 `;
@@ -203,7 +203,7 @@ const YesReceiver = styled.p`
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 
-  @media screen and (width <= 720px) {
+  @media screen and (width <= ${`720px`}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 `;

@@ -243,19 +243,19 @@ const DesktopContainer = styled.section`
   margin-top: -35%;
   margin-left: -22rem;
 
-  @media screen and (width <= 1400px) {
+  @media screen and (width <= ${`1400px`}) {
     margin-top: -40%;
   }
 
-  @media screen and (width <= 1200px) {
+  @media screen and (width <= ${`1200px`}) {
     margin-top: -45%;
   }
 
-  @media screen and (width <= 1000px) {
+  @media screen and (width <= ${`1000px`}) {
     margin-left: -16rem;
   }
 
-  @media screen and (width <= 950px) {
+  @media screen and (width <= ${`950px`}) {
     margin-left: -10rem;
   }
 

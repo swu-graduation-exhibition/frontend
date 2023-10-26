@@ -84,11 +84,11 @@ const Container = styled.div`
   margin: 0 13.6rem;
   flex-direction: column;
 
-  @media screen and (width <= 830px) {
+  @media screen and (width <= ${`830px`}) {
     margin: 0 6.4rem;
   }
 
-  @media screen and (width <= 520px) {
+  @media screen and (width <= ${`520px`}) {
     margin: 0;
   }
 `;

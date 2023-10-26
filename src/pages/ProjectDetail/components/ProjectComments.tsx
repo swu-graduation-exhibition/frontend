@@ -24,7 +24,7 @@ const Container = styled.section`
 
   /* max-width: 165rem; */
 
-  @media screen and (width <= 1100px) {
+  @media screen and (width <= ${`1100px`}) {
     padding: 0 6.4rem;
   }
 

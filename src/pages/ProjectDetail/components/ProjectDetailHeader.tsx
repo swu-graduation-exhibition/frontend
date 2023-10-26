@@ -56,7 +56,7 @@ const Container = styled.section`
 
   flex-direction: row;
 
-  @media screen and (width <= 1100px) {
+  @media screen and (width <= ${`1100px`}) {
     padding: 5.6rem 6.4rem 6.4rem;
 
     flex-direction: column;
@@ -77,7 +77,7 @@ const ProjcetTitle = styled.div`
 
   /* min-width: fit-content; */
 
-  @media screen and (width <= 1100px) {
+  @media screen and (width <= ${`1100px`}) {
     gap: 1.2rem;
   }
 
@@ -100,7 +100,7 @@ const ProjectName = styled.div(
       margin-right: 0.5rem;
     }
 
-    @media screen and (width <= 1100px) {
+    @media screen and (width <= ${`1100px`}) {
       ${({ theme }) => theme.fonts.Subtitle_02}
     }
 

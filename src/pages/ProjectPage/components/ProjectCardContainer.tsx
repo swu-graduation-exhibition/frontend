@@ -42,12 +42,12 @@ const ProjectCardLayout = styled.section`
   grid-template-columns: repeat(3, minmax(27rem, 1fr));
   align-content: start;
 
-  @media screen and (width <= 830px) {
+  @media screen and (width <= ${`830px`}) {
     grid-template-columns: repeat(2, minmax(27rem, 1fr));
     align-content: start;
   }
 
-  @media screen and (width <= 520px) {
+  @media screen and (width <= ${`520px`}) {
     grid-template-columns: repeat(1, minmax(27rem, 1fr));
     align-content: start;
   }

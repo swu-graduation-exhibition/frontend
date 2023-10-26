@@ -152,7 +152,7 @@ const LettersWrapper = styled.section`
 
   gap: 2rem;
 
-  @media screen and (width <= 1400px) {
+  @media screen and (width <= ${`1400px`}) {
     margin: 9.4rem 0;
     grid-template-columns: repeat(2, 1fr);
   }

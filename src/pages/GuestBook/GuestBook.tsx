@@ -24,7 +24,7 @@ export default GuestBook;
 const PageWrapper = styled.div`
   padding: 16rem 13.6rem 0;
 
-  @media screen and (width <= 955px) {
+  @media screen and (width <= ${`955px`}) {
     padding: 4rem 6.4rem 0;
   }
 

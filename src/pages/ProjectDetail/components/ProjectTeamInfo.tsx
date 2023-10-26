@@ -39,9 +39,10 @@ const Container = styled.section`
   gap: 6.4rem;
 
   /* max-width: 165rem; */
+
   padding: 0 13.6rem;
 
-  @media screen and (width <= 1100px) {
+  @media screen and (width <= ${`1100px`}) {
     padding: 0 6.4rem;
   }
 

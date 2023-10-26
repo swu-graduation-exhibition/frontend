@@ -103,7 +103,7 @@ const SendButton = styled.button<{ $isReady: Boolean }>`
   ${({ theme, $isReady }) =>
     $isReady ? theme.fonts.Caption_03_White : theme.fonts.Caption_03_Gray600}
 
-  @media screen and (width <= 600px) {
+  @media screen and (width <= ${`600px`}) {
     margin-left: 0.5rem;
     height: 13rem;
     ${({ theme, $isReady }) =>
@@ -126,7 +126,7 @@ const GuestBookInputWrapper = styled.div`
 const PeopleInputContainer = styled.section`
   display: flex;
 
-  @media screen and (width <= 600px) {
+  @media screen and (width <= ${`600px`}) {
     flex-direction: column;
     width: 79%;
   }
@@ -138,15 +138,15 @@ const InputWrapper = styled.article<{ $gridArea: string }>`
   grid-area: ${({ $gridArea }) => $gridArea};
   margin-left: ${({ $gridArea }) => $gridArea === 'receiver' && 13.6}rem;
 
-  @media screen and (width <= 1300px) {
+  @media screen and (width <= ${`1300px`}) {
     margin-left: ${({ $gridArea }) => $gridArea === 'receiver' && 5}rem;
   }
 
-  @media screen and (width <= 970px) {
+  @media screen and (width <= ${`970px`}) {
     margin-left: ${({ $gridArea }) => $gridArea === 'receiver' && 1.6}rem;
   }
 
-  @media screen and (width <= 600px) {
+  @media screen and (width <= ${`600px`}) {
     margin-top: ${({ $gridArea }) => $gridArea === 'receiver' && 0.5}rem;
     margin-left: 0;
   }

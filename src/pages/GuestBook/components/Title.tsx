@@ -34,7 +34,7 @@ const NavTitle = styled.header(
     width: fit-content;
     height: fit-content;
 
-    @media screen and (width <= 1400px) {
+    @media screen and (width <= ${`1400px`}) {
       ${({ theme }) => theme.fonts.Subtitle_02}
     }
 

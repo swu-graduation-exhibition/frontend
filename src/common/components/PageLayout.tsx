@@ -269,7 +269,7 @@ const DotLeftImg = styled.img`
   width: 294px;
   object-fit: cover;
 
-  @media screen and (width <= 1200px) {
+  @media screen and (width <= ${`1200px`}) {
     width: 200px;
   }
 
@@ -290,7 +290,7 @@ const DotRightImg = styled.img`
   width: 780px;
   object-fit: cover;
 
-  @media screen and (width <= 1200px) {
+  @media screen and (width <=${`1200px`}) {
     width: 680px;
   }
 
@@ -306,7 +306,7 @@ const DotRightImg = styled.img`
 const DotLeftHomeImg = styled(DotLeftImg)`
   top: 1730px;
 
-  @media screen and (width <= 1200px) {
+  @media screen and (width <=${`1200px`}) {
     top: 2430px;
   }
 `;

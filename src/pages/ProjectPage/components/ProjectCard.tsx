@@ -118,7 +118,7 @@ const Member = styled.p`
   ${({ theme }) => theme.fonts.Caption_02}
   color: white;
 
-  @media screen and (width <= 1200px) {
+  @media screen and (width <= ${`1200px`}) {
     ${({ theme }) => theme.fonts.Mobile_Body_04};
     color: white;
   }
@@ -236,14 +236,16 @@ const CaptionContainer = styled.section`
 `;
 
 const CaptionTitleText = styled.span`
-  ${({ theme }) => theme.fonts.Caption_03}
+  /* ${({ theme }) => theme.fonts.Caption_03}
   font-weight: 700;
 
   color: black;
 
-  @media screen and (width <= 1200px) {
-    ${({ theme }) => theme.fonts.Mobile_Subtitle_03}
-  }
+  @media screen and (width <= 1200px) { */
+
+  color: black !important;
+
+  ${({ theme }) => theme.fonts.Mobile_Subtitle_03}/* } */
 `;
 
 const CaptionParticipants = styled.div`

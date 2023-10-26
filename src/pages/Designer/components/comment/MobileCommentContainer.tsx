@@ -46,8 +46,8 @@ const CommentListWrapper = styled.div`
 
   gap: 2rem;
 
-  @media screen and (width <= 1400px) {
-    margin: 12rem 0 16rem 0;
+  @media screen and (width <= ${`1400px`}) {
+    margin: 12rem 0 16rem;
     grid-template-columns: repeat(2, 1fr);
   }
 

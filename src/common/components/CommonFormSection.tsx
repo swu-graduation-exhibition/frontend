@@ -208,18 +208,18 @@ const FromInput = styled.input(
       width: 39.2rem;
     }
 
-    @media screen and (width <= 690px) {
+    @media screen and (width <= ${`690px`}) {
       width: 31rem;
     }
 
-    @media screen and (width <= 550px) {
+    @media screen and (width <= ${`550px`}) {
       ${({ theme }) => theme.fonts.Caption_03}
       width: 26.9rem;
       padding: 1.6rem 2.4rem;
       font-size: 1.5rem;
     }
 
-    @media screen and (width <= 400px) {
+    @media screen and (width <= ${`400px`}) {
       width: 22.5rem;
     }
   `,
@@ -238,7 +238,7 @@ const SubmitButton = styled.button(
     color: ${({ theme }) => theme.colors.Grayscales_50};
     border-radius: 1rem;
 
-    @media screen and (width <= 550px) {
+    @media screen and (width <= ${`550px`}) {
       /* padding: 0; */
 
       padding: 0 2rem;
@@ -253,7 +253,7 @@ const SubmitButton = styled.button(
       font-size: 1.5rem;
     }
 
-    @media screen and (width <= 350px) {
+    @media screen and (width <= ${`350px`}) {
       padding: 0 0.5rem;
     }
   `,
@@ -262,7 +262,7 @@ const UnSubmitButton = styled(SubmitButton)`
   background-color: ${({ theme }) => theme.colors.Grayscales_200};
   color: ${({ theme }) => theme.colors.Grayscales_600};
 
-  @media screen and (width <= 550px) {
+  @media screen and (width <= ${`550px`}) {
     ${({ theme }) => theme.fonts.Caption_03}
     color: ${({ theme }) => theme.colors.Grayscales_600};
 
@@ -291,7 +291,7 @@ const TextArea = styled.textarea(
       border: 1px solid black;
     }
 
-    @media screen and (width <= 550px) {
+    @media screen and (width <= ${`550px`}) {
       ${({ theme }) => theme.fonts.Caption_03}
       font-size: 1.5rem;
       height: 16.9rem;
