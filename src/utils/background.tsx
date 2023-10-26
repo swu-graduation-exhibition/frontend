@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import background from '../assets/images/guestBookBlur.png';
-import backgroundMobile from '../assets/images/guestBookBlurMobile.png';
 
 const BackgroundImg = styled.div`
   position: fixed;
@@ -40,6 +38,10 @@ const GuestBackgroundImg = styled.img`
 
 export const whitePlaceholder = <BackgroundImg />;
 
-export const yellowPlaceholder = <GuestBackgroundImg src={background} />;
+export const yellowPlaceholder = (
+  <GuestBackgroundImg src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookBlur.png`} />
+);
 
-export const yellowPlaceholderMobile = <GuestBackgroundImg src={backgroundMobile} />;
+export const yellowPlaceholderMobile = (
+  <GuestBackgroundImg src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookBlurMobile.png`} />
+);

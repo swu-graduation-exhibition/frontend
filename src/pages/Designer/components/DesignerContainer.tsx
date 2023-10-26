@@ -140,10 +140,12 @@ const DesignerCardWrapper = styled.section`
 
   border-top: 0.2px solid black;
   border-left: 0.2px solid black;
+
   & > div {
     border-bottom: 0.2px solid black;
     border-right: 0.2px solid black;
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     grid-template-columns: repeat(2, 1fr);
     margin-top: 8rem;
@@ -153,6 +155,7 @@ const DesignerCardWrapper = styled.section`
     grid-row-gap: 3.5rem;
     margin-top: 6rem;
     border: none;
+
     & > div {
       border: none;
     }
