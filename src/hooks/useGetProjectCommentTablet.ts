@@ -15,7 +15,7 @@ const useGetProjectCommentTablet = (id: number, page: number) => {
     },
   );
 
-  console.log(tabletData);
+  // console.log(tabletData);
   return { tabletData };
 };
 

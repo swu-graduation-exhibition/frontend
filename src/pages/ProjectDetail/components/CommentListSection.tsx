@@ -60,14 +60,14 @@ const CommentListSection = () => {
               <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
-          {/* {desktopData?.count > 8 && ( */}
-          <Pagination
-            currentPage={currentDesktopPage}
-            setCurrentPage={setCurrentDesktopPage}
-            lastPage={lastDesktopPage}
-            paginationNumbers={paginationDesktopNumbers}
-          />
-          {/* )} */}
+          {desktopData?.count > 0 && (
+            <Pagination
+              currentPage={currentDesktopPage}
+              setCurrentPage={setCurrentDesktopPage}
+              lastPage={lastDesktopPage}
+              paginationNumbers={paginationDesktopNumbers}
+            />
+          )}
         </>
       </Desktop>
       <Tablet>
@@ -89,14 +89,14 @@ const CommentListSection = () => {
               <NoMessage>아직 등록되어 있는 메시지가 없어요.</NoMessage>
             )}
           </CommentListWrapper>
-          {/* {tabletData?.count > 6 && ( */}
-          <Pagination
-            currentPage={currentTabletPage}
-            setCurrentPage={setCurrentTabletPage}
-            lastPage={lastTabletPage}
-            paginationNumbers={paginationTabletNumbers}
-          />
-          {/* )} */}
+          {tabletData?.count > 0 && (
+            <Pagination
+              currentPage={currentTabletPage}
+              setCurrentPage={setCurrentTabletPage}
+              lastPage={lastTabletPage}
+              paginationNumbers={paginationTabletNumbers}
+            />
+          )}
         </>
       </Tablet>
       <Mobile>
