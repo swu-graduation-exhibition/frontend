@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import ProgressiveImage from 'react-progressive-graceful-image';
 import { useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import { DesingerInfo } from '~/types/designer';
+import { whitePlaceholder } from '~/utils/background';
 import { getFieldArray } from '~/utils/getFieldArray';
 import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
 
@@ -25,16 +27,24 @@ const DesignerCard = ({ designer_id, name_ko, field, profile, isFirst }: Designe
   const handleClickCard = () => {
     navigate(String(designer_id));
   };
-
   return (
     <CardWrapper
       onClick={handleClickCard}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <CardImg>
-        <img src={profile} alt="designer-card" className={isFirst ? 'first' : 'second'} />
-      </CardImg>
+      <ProgressiveImage src={profile} placeholder="">
+        {(src, loading) => {
+          return loading ? (
+            whitePlaceholder
+          ) : (
+            <CardImg>
+              <img src={src} alt="designer-card" className={isFirst ? 'first' : 'second'} />
+            </CardImg>
+          );
+        }}
+      </ProgressiveImage>
+
       <Default>
         <>
           <HomeDesktop>
