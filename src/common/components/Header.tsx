@@ -22,7 +22,7 @@ const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
 
   return (
-    <HeaderWrapper $istoggle={isToggle}>
+    <HeaderWrapper $istoggle={isToggle} pathname={pathname}>
       <div>
         <IcHeaderLogo onClick={() => navigate('/home')} />
       </div>
@@ -68,7 +68,7 @@ const Header = () => {
 
 export default Header;
 
-const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
+const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string }>`
   position: fixed;
   top: 0;
   width: 100%;
@@ -77,6 +77,7 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
   justify-content: space-between;
   max-width: 192rem;
   height: 11rem;
+
   ${({ $istoggle }) =>
     $istoggle && window.innerWidth <= 520
       ? css`
@@ -90,7 +91,11 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
         `}
   padding: 0 5%;
   z-index: 10;
-
+  ${({ pathname }) =>
+    pathname.includes('/project/detail') &&
+    css`
+      position: absolute;
+    `};
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     height: 11rem;
     padding: 4.3rem 4.4rem;
