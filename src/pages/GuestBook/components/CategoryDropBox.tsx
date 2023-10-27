@@ -13,6 +13,37 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
   // All -> -1 , 모두에게 -> 49
   const { designerId, setDesignerId } = props;
   const [isDrop, setIsDrop] = useState(false);
+  const [position, setPosition] = useState(0);
+  function onScroll() {
+    setPosition(window.scrollY);
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (designerId !== -1) {
+      if (window.innerWidth <= 520) {
+        window.scroll({
+          top: 0,
+          behavior: 'smooth',
+        });
+      } else if (window.innerWidth <= 1400) {
+        window.scroll({
+          top: 640,
+          behavior: 'smooth',
+        });
+      } else {
+        window.scroll({
+          top: 780,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [designerId]);
 
   const handleDrop = () => {
     setIsDrop((id) => !id);

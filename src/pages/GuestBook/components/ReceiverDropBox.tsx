@@ -260,8 +260,6 @@ const Designer = styled.p<{ isSelected: boolean }>`
 `;
 
 const Div = styled.div<{ receiver: number }>`
-  transform: translateY(-${({ receiver }) => receiver !== -1 && receiver * 4}rem);
-
   /*  */
 `;
 
