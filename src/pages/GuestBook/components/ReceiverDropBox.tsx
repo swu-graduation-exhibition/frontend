@@ -152,10 +152,10 @@ const Box = styled.div`
   overflow: scroll;
   position: absolute;
   z-index: 2;
-  width: 28.6rem;
 
-  /* width: 39.2rem; */
+  /* width: 28.6rem; */
 
+  width: 39.2rem;
   height: 37.6rem;
 
   /* height: fit-content; */
@@ -169,7 +169,8 @@ const Box = styled.div`
   cursor: pointer;
 
   @media screen and (width <= ${TABLET_WIDTH}) {
-    width: 26.9rem;
+    /* width: 26.9rem; */
+
     margin-top: 7rem;
   }
 
