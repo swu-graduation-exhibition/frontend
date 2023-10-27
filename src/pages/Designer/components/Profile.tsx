@@ -39,19 +39,19 @@ const Profile = ({
         <>
           <DesignerText>{desc}</DesignerText>
           <DesignerSNSList>
-            {email && (
+            {email && !email.includes('-') && (
               <DesignerSNS>
                 <span>E-mail</span>
                 <span>{email}</span>
               </DesignerSNS>
             )}
-            {instagram && (
+            {instagram && !instagram.includes('-') && (
               <DesignerSNS>
                 <span>Instargram</span>
                 <span>{'@' + instagram}</span>
               </DesignerSNS>
             )}
-            {behance && (
+            {behance && !behance.includes('-') && (
               <DesignerSNS>
                 <span>Behance</span>
                 <span>{behance}</span>
@@ -71,19 +71,19 @@ const Profile = ({
           </NameHeader>
           <DesignerText>{desc}</DesignerText>
           <DesignerSNSList>
-            {email && (
+            {email && !email.includes('-') && (
               <DesignerSNS>
                 <span>E-mail</span>
                 <span>{email}</span>
               </DesignerSNS>
             )}
-            {instagram && (
+            {instagram && !instagram.includes('-') && (
               <DesignerSNS>
                 <span>Instargram</span>
                 <span>{'@' + instagram}</span>
               </DesignerSNS>
             )}
-            {behance && (
+            {behance && !behance.includes('-') && (
               <DesignerSNS>
                 <span>Behance</span>
                 <span>{behance}</span>
