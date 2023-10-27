@@ -1,8 +1,8 @@
 import { YoutubeDataInfo } from '~/types/home';
 
 export const youtubeData: YoutubeDataInfo[] = [
-  { id: 1, url: 'https://www.youtube.com/watch?v=f6X36lcmg6M&t=5576s' },
-  { id: 2, url: 'https://www.youtube.com/watch?v=f6X36lcmg6M&t=5576s' },
-  { id: 3, url: 'https://www.youtube.com/watch?v=f6X36lcmg6M&t=5576s' },
-  { id: 4, url: 'https://www.youtube.com/watch?v=f6X36lcmg6M&t=5576s' },
+  { id: 1, url: `${import.meta.env.VITE_SWU_IMAGE}/youtube_thum_1.png` },
+  { id: 2, url: `${import.meta.env.VITE_SWU_IMAGE}/youtube_thum_1.png` },
+  { id: 3, url: `${import.meta.env.VITE_SWU_IMAGE}/youtube_thum_1.png` },
+  { id: 4, url: `${import.meta.env.VITE_SWU_IMAGE}/youtube_thum_1.png` },
 ];

@@ -26,8 +26,9 @@ export default TrackCard;
 const TrackCardWrapper = styled.article`
   display: flex;
   flex-direction: column;
-  width: 53.6rem;
-  height: 42rem;
+
+  width: 100%;
+  min-height: 42rem;
 
   gap: 3.2rem;
   padding: 4rem;
@@ -43,8 +44,11 @@ const TitleWrapper = styled.header`
   display: flex;
   white-space: pre-line;
   justify-content: space-between;
-
+  width: 100%;
+  position: relative;
   img {
+    position: absolute;
+    right: 0;
     width: 5.6rem;
     height: 5.6rem;
   }

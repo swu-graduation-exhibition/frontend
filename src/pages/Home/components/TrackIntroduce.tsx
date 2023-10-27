@@ -32,15 +32,13 @@ const TrackIntroduceWrapper = styled.div`
     margin-top: 6.6rem;
   }
 `;
-const DragListWrapper = styled.article`
-  overflow: hidden;
-`;
+const DragListWrapper = styled.article``;
 const DragSlider = styled.section`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 3fr));
 
-  width: 164.8rem;
+  align-items: stretch;
+  gap: 2rem;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 84.8rem;
