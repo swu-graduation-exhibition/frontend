@@ -7,6 +7,7 @@ import useGetGuestBookDesktop from '~/hooks/useGetGuestBookDesktop';
 import useGetGuestBookMobile from '~/hooks/useGetGuestBookMobile';
 import useGetGuestBookTablet from '~/hooks/useGetGuestBookTablet';
 import useInfiniteScroll from '~/hooks/useInfiniteScroll';
+import Loading from '~/pages/Loading';
 import Pagination from '~/pages/ProjectDetail/components/Pagination';
 import { GuestBookPageCard } from '~/types/guestBook';
 import { GuestBookDesktop, GuestBookTablet, Mobile } from '~/utils/mediaQuery';
@@ -19,13 +20,13 @@ const Letters = () => {
 
   // 데스크탑
   const [currentDesktopPage, setCurrentDesktopPage] = useState(1);
-  const { desktopData } = useGetGuestBookDesktop(designerId, currentDesktopPage);
+  const { desktopData, isDesktopLoading } = useGetGuestBookDesktop(designerId, currentDesktopPage);
   const lastDesktopPage = Math.ceil(desktopData?.count / 8);
   const paginationDesktopNumbers = Array.from({ length: lastDesktopPage }).map((_, i) => i + 1);
 
   // 태블릿
   const [currentTabletPage, setCurrentTabletPage] = useState(1);
-  const { tabletData } = useGetGuestBookTablet(designerId, currentTabletPage);
+  const { tabletData, isTabletLoading } = useGetGuestBookTablet(designerId, currentTabletPage);
   const lastTabletPage = Math.ceil(tabletData?.count / 6);
   const paginationTabletNumbers = Array.from({ length: lastTabletPage }).map((_, i) => i + 1);
 
@@ -37,11 +38,15 @@ const Letters = () => {
 
   // 모바일
 
-  const { mobileCount, mobileData, fetchNextPage, hasNextPage } = useGetGuestBookMobile(designerId);
+  const { mobileCount, mobileData, fetchNextPage, hasNextPage, isLoading } =
+    useGetGuestBookMobile(designerId);
   const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
+
+  // if (isLoading || isDesktopLoading || isTabletLoading) return <Loading />;
 
   return (
     <>
+      {(isLoading || isDesktopLoading || isTabletLoading) && <Loading />}
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <GuestBookDesktop>
         <>

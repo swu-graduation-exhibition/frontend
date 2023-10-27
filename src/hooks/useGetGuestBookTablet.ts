@@ -3,7 +3,7 @@ import { getGuestBook } from '~/api/guestBook';
 
 const useGetGuestBookTablet = (id: number, page: number) => {
   const designerId = id === -1 ? '' : id;
-  const { data: tabletData } = useQuery(
+  const { data: tabletData, isLoading: isTabletLoading } = useQuery(
     ['getGuestBookTablet', id, page],
     () => getGuestBook(designerId, page, 6),
     {
@@ -16,7 +16,7 @@ const useGetGuestBookTablet = (id: number, page: number) => {
     },
   );
 
-  return { tabletData };
+  return { tabletData, isTabletLoading };
 };
 
 export default useGetGuestBookTablet;

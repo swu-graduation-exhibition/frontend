@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
-import { ReactComponent as IcCloseBar } from '~/assets/icons/x.svg';
 import { ReactComponent as IcDefaultBar } from '~/assets/icons/ic_default_bar.svg';
 import { ReactComponent as IcHeaderLogo } from '~/assets/icons/ic_header_logo.svg';
+import { ReactComponent as IcCloseBar } from '~/assets/icons/x.svg';
 
 import {
   HOME_TABLET_WIDTH,
@@ -80,35 +80,41 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
   ${({ $istoggle }) =>
     $istoggle && window.innerWidth <= 520
       ? css`
-          background-color: ${({ theme }) => theme.colors.Black};
-          opacity: 70%;
           position: fixed;
+          background-color: ${({ theme }) => theme.colors.Black};
+          opacity: 0.7;
         `
       : css`
           background-color: ${({ theme }) => theme.colors.White};
           border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Black};
         `}
   padding: 0 5%;
-  z-index: 2;
+  z-index: 10;
+
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     height: 11rem;
     padding: 4.3rem 4.4rem;
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     height: 11rem;
     padding: 4.3rem 3.4rem;
   }
+
   @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 5.5rem;
     padding: 0 1.6rem 0 0;
   }
+
   svg {
     cursor: pointer;
+
     /* position: fixed; */
 
     @media screen and (width <=${TABLET_WIDTH}) {
       height: 3.6rem;
     }
+
     @media screen and (width <= ${MOBILE_WIDTH}) {
       height: 2.5rem;
     }
@@ -129,42 +135,45 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
 const LinkWrapper = styled.ul`
   display: flex;
   gap: 8.8rem;
+
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     gap: 5.2rem;
   }
+
   @media screen and (width <= ${TABLET_WIDTH}) {
     gap: 3.2rem;
   }
 `;
 const LiContent = styled.li`
   a {
-    font-family: Noto Sans KR;
+    font-family: 'Noto Sans KR';
     font-size: 25px;
     font-weight: 400;
     line-height: 36px;
+
     text-align: left;
 
     @media screen and (width <= ${TABLET_WIDTH}) {
       font-size: 2rem;
     }
   }
+
   .incorrect {
     color: ${({ theme }) => theme.colors.Grayscales_500};
   }
 `;
 const MobileLinkWrapper = styled(LinkWrapper)`
-  flex-direction: column;
-  gap: 1rem;
-
-  width: 100%;
   position: fixed;
   top: 5.4rem;
   left: 0;
+
+  width: 100%;
   height: 100vh;
+  padding-left: 1.6rem;
 
   background-color: ${({ theme }) => theme.colors.Black};
-
-  padding-left: 1.6rem;
+  flex-direction: column;
+  gap: 1rem;
 
   a {
     font-size: 30px;

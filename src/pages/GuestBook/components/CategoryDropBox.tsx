@@ -104,7 +104,7 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
 
 export default CategoryDropBox;
 
-const CategoryDropBoxWrapper = styled.div`
+const CategoryDropBoxWrapper = styled.a`
   display: flex;
   justify-content: flex-end;
   width: 100%;

@@ -81,14 +81,18 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   height: fit-content;
-  margin: 0 13.6rem;
+
+  /* margin: 0 13.6rem; */
+
+  padding: 0% 7%;
   flex-direction: column;
 
+  /* 
   @media screen and (width <= ${`830px`}) {
     margin: 0 6.4rem;
   }
 
   @media screen and (width <= ${`520px`}) {
     margin: 0;
-  }
+  } */
 `;

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { postGuestBook } from '~/api/guestBook';
 import { TABLET_WIDTH } from '~/constants/common';
@@ -44,10 +44,28 @@ const GuestBookInput = () => {
       },
     },
   );
-
+  const [isDrop, setIsDrop] = useState(false);
   const handleSendGuestBook = () => {
     sendGuestBook();
   };
+
+  const topRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // setTimeout(
+    //   () =>
+    //     window.scroll({
+    //       top: 0,
+    //       behavior: 'smooth',
+    //     }),
+    //   1000,
+    // );
+    // window.scroll(0, 0);
+    // window.scroll({
+    //   top: 0,
+    //   behavior: 'instant',
+    // });
+  }, [isDrop]);
 
   return (
     <GuestBookInputWrapper>
@@ -65,6 +83,8 @@ const GuestBookInput = () => {
             <ReceiverDropBox
               guestBookContents={guestBookContents}
               setGuestBookContents={setGuestBookContents}
+              isDrop={isDrop}
+              setIsDrop={setIsDrop}
             />
           </InputWrapper>
         </PeopleInputContainer>

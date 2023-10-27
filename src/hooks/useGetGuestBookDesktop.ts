@@ -3,7 +3,7 @@ import { getGuestBook } from '~/api/guestBook';
 
 const useGetGuestBookDesktop = (id: number, page: number) => {
   const designerId = id === -1 ? '' : id;
-  const { data: desktopData } = useQuery(
+  const { data: desktopData, isLoading: isDesktopLoading } = useQuery(
     ['getGuestBookDesktop', id, page],
     () => getGuestBook(designerId, page, 8),
     {
@@ -16,7 +16,7 @@ const useGetGuestBookDesktop = (id: number, page: number) => {
     },
   );
   // console.log(desktopData);
-  return { desktopData };
+  return { desktopData, isDesktopLoading };
 };
 
 export default useGetGuestBookDesktop;

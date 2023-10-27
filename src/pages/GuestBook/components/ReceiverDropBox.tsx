@@ -8,11 +8,116 @@ interface DropBoxProps {
   setGuestBookContents: Dispatch<
     SetStateAction<{ sender: string; receiver: number; content: string }>
   >;
+  isDrop: boolean;
+  setIsDrop: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ReceiverDropBox = (props: DropBoxProps) => {
-  const { guestBookContents, setGuestBookContents } = props;
-  const [isDrop, setIsDrop] = useState(false);
+  const { guestBookContents, setGuestBookContents, isDrop, setIsDrop } = props;
+  // const [isDrop, setIsDrop] = useState(false);
+
+  const designer1 = useRef<HTMLDivElement>(null);
+  const designer2 = useRef<HTMLDivElement>(null);
+  const designer3 = useRef<HTMLDivElement>(null);
+  const designer4 = useRef<HTMLDivElement>(null);
+  const designer5 = useRef<HTMLDivElement>(null);
+  const designer6 = useRef<HTMLDivElement>(null);
+  const designer7 = useRef<HTMLDivElement>(null);
+  const designer8 = useRef<HTMLDivElement>(null);
+  const designer9 = useRef<HTMLDivElement>(null);
+  const designer10 = useRef<HTMLDivElement>(null);
+  const designer11 = useRef<HTMLDivElement>(null);
+  const designer12 = useRef<HTMLDivElement>(null);
+  const designer13 = useRef<HTMLDivElement>(null);
+  const designer14 = useRef<HTMLDivElement>(null);
+  const designer15 = useRef<HTMLDivElement>(null);
+  const designer16 = useRef<HTMLDivElement>(null);
+  const designer17 = useRef<HTMLDivElement>(null);
+  const designer18 = useRef<HTMLDivElement>(null);
+  const designer19 = useRef<HTMLDivElement>(null);
+  const designer20 = useRef<HTMLDivElement>(null);
+  const designer21 = useRef<HTMLDivElement>(null);
+  const designer22 = useRef<HTMLDivElement>(null);
+  const designer23 = useRef<HTMLDivElement>(null);
+  const designer24 = useRef<HTMLDivElement>(null);
+  const designer25 = useRef<HTMLDivElement>(null);
+  const designer26 = useRef<HTMLDivElement>(null);
+  const designer27 = useRef<HTMLDivElement>(null);
+  const designer28 = useRef<HTMLDivElement>(null);
+  const designer29 = useRef<HTMLDivElement>(null);
+  const designer30 = useRef<HTMLDivElement>(null);
+  const designer31 = useRef<HTMLDivElement>(null);
+  const designer32 = useRef<HTMLDivElement>(null);
+  const designer33 = useRef<HTMLDivElement>(null);
+  const designer34 = useRef<HTMLDivElement>(null);
+  const designer35 = useRef<HTMLDivElement>(null);
+  const designer36 = useRef<HTMLDivElement>(null);
+  const designer37 = useRef<HTMLDivElement>(null);
+  const designer38 = useRef<HTMLDivElement>(null);
+  const designer39 = useRef<HTMLDivElement>(null);
+  const designer40 = useRef<HTMLDivElement>(null);
+  const designer41 = useRef<HTMLDivElement>(null);
+  const designer42 = useRef<HTMLDivElement>(null);
+  const designer43 = useRef<HTMLDivElement>(null);
+  const designer44 = useRef<HTMLDivElement>(null);
+  const designer45 = useRef<HTMLDivElement>(null);
+  const designer46 = useRef<HTMLDivElement>(null);
+  const designer47 = useRef<HTMLDivElement>(null);
+  const designer48 = useRef<HTMLDivElement>(null);
+  const designerEveryone = useRef<HTMLDivElement>(null);
+
+  const refArr = [
+    designer1,
+    designer1,
+    designer2,
+    designer3,
+    designer4,
+    designer5,
+    designer6,
+    designer7,
+    designer8,
+    designer9,
+    designer10,
+    designer11,
+    designer12,
+    designer13,
+    designer14,
+    designer15,
+    designer16,
+    designer17,
+    designer18,
+    designer19,
+    designer20,
+    designer21,
+    designer22,
+    designer23,
+    designer24,
+    designer25,
+    designer26,
+    designer27,
+    designer28,
+    designer29,
+    designer30,
+    designer31,
+    designer32,
+    designer33,
+    designer34,
+    designer35,
+    designer36,
+    designer37,
+    designer38,
+    designer39,
+    designer40,
+    designer41,
+    designer42,
+    designer43,
+    designer44,
+    designer45,
+    designer46,
+    designer47,
+    designer48,
+    designerEveryone,
+  ];
 
   const handleDrop = () => {
     setIsDrop((id) => !id);
@@ -45,46 +150,88 @@ const ReceiverDropBox = (props: DropBoxProps) => {
       setIsDrop(false);
     }
   }
+  console.log(guestBookContents.receiver);
+  useEffect(() => {
+    // if (isDrop && guestBookContents.receiver !== -1) {
+    //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+    //     designer40.current?.scrollIntoView({ behavior: 'instant' });
+    //   }
+    //   refArr[guestBookContents.receiver].current?.scrollIntoView({
+    //     behavior: 'instant',
+    //     block: 'center',
+    //   });
+    // }
+  }, [isDrop]);
+
+  const [position, setPosition] = useState(0);
+  function onScroll() {
+    setPosition(window.scrollY);
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isDrop) {
+      // window.scroll(0, 0);
+    }
+  }, [position]);
+
+  function checkId() {
+    if (guestBookContents.receiver !== -1) {
+      if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+        return '#40';
+      }
+      return `#${guestBookContents.receiver}`;
+    }
+  }
+
+  console.log(checkId());
 
   return (
     <>
-      <Drop $isDrop={isDrop} onClick={handleDrop}>
-        {guestBookContents.receiver === -1 ? (
-          <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
-        ) : (
-          <YesReceiver>
-            {guestBookContents.receiver === 49 ? '모두에게' : DESIGNERS[guestBookContents.receiver]}
-          </YesReceiver>
-        )}
-        <div>
-          {isDrop ? (
-            <DropBoxUpIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxUpIc.svg`} />
+      <a href={checkId()}>
+        <Drop $isDrop={isDrop} onClick={handleDrop}>
+          {guestBookContents.receiver === -1 ? (
+            <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
           ) : (
-            <DropBoxDownIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxDownIc.svg`} />
+            <YesReceiver>
+              {guestBookContents.receiver === 49
+                ? '모두에게'
+                : DESIGNERS[guestBookContents.receiver]}
+            </YesReceiver>
           )}
-        </div>
-      </Drop>
+          <div>
+            {isDrop ? (
+              <DropBoxUpIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxUpIc.svg`} />
+            ) : (
+              <DropBoxDownIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxDownIc.svg`} />
+            )}
+          </div>
+        </Drop>
+      </a>
       {isDrop && (
         <Box ref={modalRef}>
-          {guestBookContents.receiver !== -1 && guestBookContents.receiver !== 49 && (
-            <Designer
-              isSelected={checkSelected(guestBookContents.receiver)}
-              onClick={() => handleSelectDesigner(guestBookContents.receiver)}
-            >
-              {DESIGNERS[guestBookContents.receiver]}
-            </Designer>
-          )}
-          <Designer isSelected={checkSelected(49)} onClick={() => handleSelectDesigner(49)}>
+          <Designer
+            isSelected={checkSelected(49)}
+            onClick={() => handleSelectDesigner(49)}
+            ref={refArr[49]}
+            id={`${49}`}
+          >
             모두에게
           </Designer>
 
           {DESIGNERS.map(
             (designer, index) =>
-              index !== 0 &&
-              index !== guestBookContents.receiver && (
+              index !== 0 && (
                 <Designer
                   isSelected={checkSelected(index)}
                   onClick={() => handleSelectDesigner(index)}
+                  ref={refArr[index]}
+                  id={`${index}`}
                 >
                   {designer}
                 </Designer>
@@ -238,7 +385,7 @@ const YesReceiver = styled.p`
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 
-  @media screen and (width <= ${`720px`}) {
+  @media screen and (width <= ${`1000px`}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
   }
 
