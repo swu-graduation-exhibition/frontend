@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import ProgressiveImage from 'react-progressive-graceful-image';
 import styled from 'styled-components';
-import nullPhoto from '~/assets/images/empthy_designer.png';
+import empthy from '~/assets/images/empthy_designer.png';
 import { MOBILE_WIDTH } from '~/constants/common';
 import { Mobile, ProjectDesktop } from '~/utils/mediaQuery';
-import { whitePlaceholder } from '~/utils/background';
 
 interface ProjectCardProps {
   projectInfo: { type: number; title: string; members: string; photo: string };
@@ -29,16 +28,12 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
       <ProjectDesktop>
         <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
           <CardThumbnailContainer>
-            {/* {photo ? (
-              <CardThumbnail src={photo} alt="프로젝트 사진" />
-            ) : (
-              <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
-            )} */}
-
             <ProgressiveImage src={photo} placeholder="">
               {(src, loading) => {
                 return loading ? (
-                  whitePlaceholder
+                  <CardThumbnail>
+                    <img src={empthy} />
+                  </CardThumbnail>
                 ) : (
                   <CardThumbnail>
                     <img src={src} />
@@ -69,27 +64,19 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
         <Container>
           <CardThumbnailContainer>
             <CardThumbnailContainer>
-              {/* {photo ? (
-                <CardThumbnail src={photo} alt="프로젝트 사진" />
-              ) : (
-                <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
-              )} */}
-
-              {/* <ProgressiveImage src={photo} placeholder="">
-              {(src, loading) => {
-                return loading ? (
-                  whitePlaceholder
-                ) : (
-                  <>
-                    {src ? (
-                      <CardThumbnail src={src} alt="프로젝트 사진" />
-                    ) : (
-                      <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
-                    )}
-                  </>
-                );
-              }}
-            </ProgressiveImage> */}
+              <ProgressiveImage src={photo} placeholder="">
+                {(src, loading) => {
+                  return loading ? (
+                    <CardThumbnail>
+                      <img src={empthy} />
+                    </CardThumbnail>
+                  ) : (
+                    <CardThumbnail>
+                      <img src={src} />
+                    </CardThumbnail>
+                  );
+                }}
+              </ProgressiveImage>
             </CardThumbnailContainer>
           </CardThumbnailContainer>
           <CaptionContainer>

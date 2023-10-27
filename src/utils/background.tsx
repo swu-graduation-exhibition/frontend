@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Loading from '~/pages/Loading';
 
 const BackgroundImg = styled.div`
   position: fixed;
@@ -45,3 +46,5 @@ export const yellowPlaceholder = (
 export const yellowPlaceholderMobile = (
   <GuestBackgroundImg src={`${import.meta.env.VITE_SWU_IMAGE}/guestBookBlurMobile.png`} />
 );
+
+export const empthyPlaceholder = <Loading />;
