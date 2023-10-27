@@ -151,17 +151,19 @@ const ReceiverDropBox = (props: DropBoxProps) => {
     }
   }
 
-  // useEffect(() => {
-  // if (isDrop && guestBookContents.receiver !== -1) {
-  //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-  //     designer40.current?.scrollIntoView({ behavior: 'instant' });
-  //   }
-  //   refArr[guestBookContents.receiver].current?.scrollIntoView({
-  //     behavior: 'instant',
-  //     block: 'center',
-  //   });
-  // }
-  // }, [isDrop]);
+  useEffect(() => {
+    if (isDrop && guestBookContents.receiver !== -1) {
+      if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+        designer40.current?.scrollIntoView({ behavior: 'instant' });
+      }
+      refArr[guestBookContents.receiver].current?.scrollIntoView({
+        behavior: 'instant',
+        block: 'center',
+        // block: 'end',
+        // inline: 'start',
+      });
+    }
+  }, [isDrop, guestBookContents]);
 
   // function checkId() {
   //   if (guestBookContents.receiver !== -1) {
@@ -260,6 +262,15 @@ const Designer = styled.p<{ isSelected: boolean }>`
 `;
 
 const Div = styled.div<{ receiver: number }>`
+  /* transform: translateY(-${({ receiver }) => receiver !== -1 && receiver * 4}rem); */
+
+  /* transition-timing-function: ease-out;
+  margin: 0 auto;
+  box-sizing: content-box;
+  transition-property: transform;
+  transition-duration: 0ms;
+  transform: translate3d(0, -${({ receiver }) => receiver !== -1 && receiver * 4}rem, 0); */
+
   /*  */
 `;
 
