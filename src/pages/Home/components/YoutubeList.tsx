@@ -12,7 +12,7 @@ const YoutubeList = () => {
         <DragSlider>
           {youtubeData.map(({ id, url }, idx) => (
             <CardWrapper key={id}>
-              <YoutubeCard src="" alt={id + '번재'} />
+              <YoutubeCard src={url} alt={id + '번재'} />
               <PlayImg src={`${import.meta.env.VITE_SWU_IMAGE}/youtube_logo.png`} />
             </CardWrapper>
           ))}
@@ -39,7 +39,7 @@ const CardWrapper = styled.div`
   width: 81.6rem;
   height: 45.9rem;
 
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 56.8rem;
     height: 32rem;
@@ -61,7 +61,7 @@ const PlayImg = styled.img`
   transform: translate(-50%, -50%);
   width: 26rem;
 
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 16rem;
   }

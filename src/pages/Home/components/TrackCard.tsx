@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_MOBILE_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 import { TrackDataInfo } from '~/types/home';
 
@@ -26,13 +26,18 @@ export default TrackCard;
 const TrackCardWrapper = styled.article`
   display: flex;
   flex-direction: column;
-  width: 53.6rem;
-  height: 42rem;
+
+  width: 100%;
+  min-height: 42rem;
 
   gap: 3.2rem;
   padding: 4rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.Black};
 
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
+    width: 53.6rem;
+    height: 42rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 27.5rem;
     height: 21.6rem;
@@ -43,8 +48,11 @@ const TitleWrapper = styled.header`
   display: flex;
   white-space: pre-line;
   justify-content: space-between;
-
+  width: 100%;
+  position: relative;
   img {
+    position: absolute;
+    right: 0;
     width: 5.6rem;
     height: 5.6rem;
   }

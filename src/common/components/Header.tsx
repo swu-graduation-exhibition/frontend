@@ -6,6 +6,7 @@ import { ReactComponent as IcDefaultBar } from '~/assets/icons/ic_default_bar.sv
 import { ReactComponent as IcHeaderLogo } from '~/assets/icons/ic_header_logo.svg';
 
 import {
+  HOME_TABLET_WIDTH,
   MOBILE_PAGE_CATEGORIES,
   MOBILE_PAGE_PATHS,
   MOBILE_WIDTH,
@@ -89,10 +90,13 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
         `}
   padding: 0 5%;
   z-index: 2;
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    height: 11rem;
+    padding: 4.3rem 4.4rem;
+  }
   @media screen and (width <= ${TABLET_WIDTH}) {
     height: 11rem;
-    padding: 4.3rem 6.4rem;
+    padding: 4.3rem 3.4rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     height: 5.5rem;
@@ -125,7 +129,9 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
 const LinkWrapper = styled.ul`
   display: flex;
   gap: 8.8rem;
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    gap: 5.2rem;
+  }
   @media screen and (width <= ${TABLET_WIDTH}) {
     gap: 3.2rem;
   }
