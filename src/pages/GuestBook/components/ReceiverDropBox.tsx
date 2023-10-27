@@ -153,17 +153,39 @@ const ReceiverDropBox = (props: DropBoxProps) => {
 
   useEffect(() => {
     if (isDrop && guestBookContents.receiver !== -1) {
+      // 여기만 손 봐주세요!!!!!
       if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-        designer40.current?.scrollIntoView({ behavior: 'instant' });
+        const ref = modalRef.current;
+
+        if (ref) ref.scrollTop = 40 * 40;
+      } else if (guestBookContents.receiver === 49) {
+        if (modalRef) {
+          const ref = modalRef.current;
+
+          if (ref) ref.scrollTop = 0;
+        }
+      } else {
+        if (modalRef) {
+          const ref = modalRef.current;
+          console.log(modalRef, modalRef.current?.scrollTop, modalRef.current?.scrollHeight);
+
+          if (ref) ref.scrollTop = guestBookContents.receiver * 40;
+        }
       }
-      refArr[guestBookContents.receiver].current?.scrollIntoView({
-        behavior: 'instant',
-        block: 'center',
-        // block: 'end',
-        // inline: 'start',
-      });
     }
-  }, [isDrop, guestBookContents]);
+  }, [isDrop]);
+
+  // useEffect(() => {
+  // if (isDrop && guestBookContents.receiver !== -1) {
+  //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+  //     designer40.current?.scrollIntoView({ behavior: 'instant' });
+  //   }
+  //   refArr[guestBookContents.receiver].current?.scrollIntoView({
+  //     behavior: 'instant',
+  //     block: 'center',
+  //   });
+  // }
+  // }, [isDrop]);
 
   // function checkId() {
   //   if (guestBookContents.receiver !== -1) {
@@ -176,7 +198,6 @@ const ReceiverDropBox = (props: DropBoxProps) => {
 
   return (
     <>
-      {/* <a href={checkId()}> */}
       <Drop $isDrop={isDrop} onClick={handleDrop}>
         {guestBookContents.receiver === -1 ? (
           <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
@@ -193,33 +214,31 @@ const ReceiverDropBox = (props: DropBoxProps) => {
           )}
         </div>
       </Drop>
-      {/* </a> */}
+
       {isDrop && (
         <Box ref={modalRef}>
-          <Div receiver={guestBookContents.receiver}>
-            <Designer
-              isSelected={checkSelected(49)}
-              onClick={() => handleSelectDesigner(49)}
-              ref={refArr[49]}
-              id={`${49}`}
-            >
-              모두에게
-            </Designer>
+          <Designer
+            isSelected={checkSelected(49)}
+            onClick={() => handleSelectDesigner(49)}
+            ref={refArr[49]}
+            id={`${49}`}
+          >
+            모두에게
+          </Designer>
 
-            {DESIGNERS.map(
-              (designer, index) =>
-                index !== 0 && (
-                  <Designer
-                    isSelected={checkSelected(index)}
-                    onClick={() => handleSelectDesigner(index)}
-                    ref={refArr[index]}
-                    id={`${index}`}
-                  >
-                    {designer}
-                  </Designer>
-                ),
-            )}
-          </Div>
+          {DESIGNERS.map(
+            (designer, index) =>
+              index !== 0 && (
+                <Designer
+                  isSelected={checkSelected(index)}
+                  onClick={() => handleSelectDesigner(index)}
+                  ref={refArr[index]}
+                  id={`${index}`}
+                >
+                  {designer}
+                </Designer>
+              ),
+          )}
         </Box>
       )}
     </>
@@ -262,15 +281,6 @@ const Designer = styled.p<{ isSelected: boolean }>`
 `;
 
 const Div = styled.div<{ receiver: number }>`
-  /* transform: translateY(-${({ receiver }) => receiver !== -1 && receiver * 4}rem); */
-
-  /* transition-timing-function: ease-out;
-  margin: 0 auto;
-  box-sizing: content-box;
-  transition-property: transform;
-  transition-duration: 0ms;
-  transform: translate3d(0, -${({ receiver }) => receiver !== -1 && receiver * 4}rem, 0); */
-
   /*  */
 `;
 
@@ -280,6 +290,9 @@ const Box = styled.div`
   z-index: 2;
   width: 39.2rem;
   height: 37.6rem;
+
+  /* height: fit-content; */
+
   margin-top: 12.2rem;
   border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
 
