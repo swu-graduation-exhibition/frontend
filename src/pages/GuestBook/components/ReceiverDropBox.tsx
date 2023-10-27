@@ -151,26 +151,21 @@ const ReceiverDropBox = (props: DropBoxProps) => {
     }
   }
 
-  // useEffect(() => {
-  // if (isDrop && guestBookContents.receiver !== -1) {
-  //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-  //     designer40.current?.scrollIntoView({ behavior: 'instant' });
-  //   }
-  //   refArr[guestBookContents.receiver].current?.scrollIntoView({
-  //     behavior: 'instant',
-  //     block: 'center',
-  //   });
-  // }
-  // }, [isDrop]);
+  useEffect(() => {
+    if (isDrop && guestBookContents.receiver !== -1) {
+      // 여기만 손 봐주세요!!!!!
+      if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+        // designer40.current?.scrollIntoView({ behavior: 'instant' });
+      }
 
-  // function checkId() {
-  //   if (guestBookContents.receiver !== -1) {
-  //     if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-  //       return '#40';
-  //     }
-  //     return `#${guestBookContents.receiver}`;
-  //   }
-  // }
+      if (modalRef) {
+        const ref = modalRef.current;
+        console.log(modalRef, '헤헿', modalRef.current?.scrollTop, modalRef.current?.scrollHeight);
+
+        if (ref) ref.scrollTop = guestBookContents.receiver * 40;
+      }
+    }
+  }, [isDrop]);
 
   return (
     <>
@@ -194,30 +189,28 @@ const ReceiverDropBox = (props: DropBoxProps) => {
       {/* </a> */}
       {isDrop && (
         <Box ref={modalRef}>
-          <Div receiver={guestBookContents.receiver}>
-            <Designer
-              isSelected={checkSelected(49)}
-              onClick={() => handleSelectDesigner(49)}
-              ref={refArr[49]}
-              id={`${49}`}
-            >
-              모두에게
-            </Designer>
+          <Designer
+            isSelected={checkSelected(49)}
+            onClick={() => handleSelectDesigner(49)}
+            ref={refArr[49]}
+            id={`${49}`}
+          >
+            모두에게
+          </Designer>
 
-            {DESIGNERS.map(
-              (designer, index) =>
-                index !== 0 && (
-                  <Designer
-                    isSelected={checkSelected(index)}
-                    onClick={() => handleSelectDesigner(index)}
-                    ref={refArr[index]}
-                    id={`${index}`}
-                  >
-                    {designer}
-                  </Designer>
-                ),
-            )}
-          </Div>
+          {DESIGNERS.map(
+            (designer, index) =>
+              index !== 0 && (
+                <Designer
+                  isSelected={checkSelected(index)}
+                  onClick={() => handleSelectDesigner(index)}
+                  ref={refArr[index]}
+                  id={`${index}`}
+                >
+                  {designer}
+                </Designer>
+              ),
+          )}
         </Box>
       )}
     </>
@@ -259,16 +252,14 @@ const Designer = styled.p<{ isSelected: boolean }>`
   }
 `;
 
-const Div = styled.div<{ receiver: number }>`
-  /*  */
-`;
-
 const Box = styled.div`
   overflow: scroll;
   position: absolute;
   z-index: 2;
   width: 39.2rem;
   height: 37.6rem;
+
+  /* height: fit-content; */
   margin-top: 12.2rem;
   border: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
 
