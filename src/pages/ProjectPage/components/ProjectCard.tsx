@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import ProgressiveImage from 'react-progressive-graceful-image';
 import styled from 'styled-components';
 import nullPhoto from '~/assets/images/empthy_designer.png';
 import { MOBILE_WIDTH } from '~/constants/common';
 import { Mobile, ProjectDesktop } from '~/utils/mediaQuery';
+import { whitePlaceholder } from '~/utils/background';
 
 interface ProjectCardProps {
   projectInfo: { type: number; title: string; members: string; photo: string };
@@ -27,27 +29,23 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
       <ProjectDesktop>
         <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
           <CardThumbnailContainer>
-            {photo ? (
+            {/* {photo ? (
               <CardThumbnail src={photo} alt="프로젝트 사진" />
             ) : (
               <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
-            )}
+            )} */}
 
-            {/* <ProgressiveImage src={photo} placeholder="">
+            <ProgressiveImage src={photo} placeholder="">
               {(src, loading) => {
                 return loading ? (
                   whitePlaceholder
                 ) : (
-                  <>
-                    {src ? (
-                      <CardThumbnail src={src} alt="프로젝트 사진" />
-                    ) : (
-                      <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
-                    )}
-                  </>
+                  <CardThumbnail>
+                    <img src={src} />
+                  </CardThumbnail>
                 );
               }}
-            </ProgressiveImage> */}
+            </ProgressiveImage>
           </CardThumbnailContainer>
 
           {isMouseOn && (
@@ -71,11 +69,11 @@ function ProjectCard({ projectInfo }: ProjectCardProps) {
         <Container>
           <CardThumbnailContainer>
             <CardThumbnailContainer>
-              {photo ? (
+              {/* {photo ? (
                 <CardThumbnail src={photo} alt="프로젝트 사진" />
               ) : (
                 <CardThumbnail src={nullPhoto} alt="프로젝트 사진" />
-              )}
+              )} */}
 
               {/* <ProgressiveImage src={photo} placeholder="">
               {(src, loading) => {
@@ -138,16 +136,18 @@ const Container = styled.article`
   /* margin-left: -0.1rem; */
 `;
 
-const CardThumbnail = styled.img`
-  width: 100%;
-  height: 100%;
-  margin: auto;
+const CardThumbnail = styled.div`
+  img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
 
-  border-bottom: 1px solid;
-
-  @media screen and (width<=${MOBILE_WIDTH}) {
-    border-top: 1px solid black;
     border-bottom: 1px solid;
+
+    @media screen and (width<=${MOBILE_WIDTH}) {
+      border-top: 1px solid black;
+      border-bottom: 1px solid;
+    }
   }
 `;
 
