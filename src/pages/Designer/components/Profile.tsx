@@ -48,7 +48,7 @@ const Profile = ({
             {instagram && (
               <DesignerSNS>
                 <span>Instargram</span>
-                <span>{instagram}</span>
+                <span>{'@' + instagram}</span>
               </DesignerSNS>
             )}
             {behance && (
@@ -80,7 +80,7 @@ const Profile = ({
             {instagram && (
               <DesignerSNS>
                 <span>Instargram</span>
-                <span>{instagram}</span>
+                <span>{'@' + instagram}</span>
               </DesignerSNS>
             )}
             {behance && (
