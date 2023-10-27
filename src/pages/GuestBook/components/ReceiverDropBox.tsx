@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { DESIGNERS } from '../data/designers';
 
 interface DropBoxProps {
@@ -15,109 +15,6 @@ interface DropBoxProps {
 const ReceiverDropBox = (props: DropBoxProps) => {
   const { guestBookContents, setGuestBookContents, isDrop, setIsDrop } = props;
   // const [isDrop, setIsDrop] = useState(false);
-
-  const designer1 = useRef<HTMLDivElement>(null);
-  const designer2 = useRef<HTMLDivElement>(null);
-  const designer3 = useRef<HTMLDivElement>(null);
-  const designer4 = useRef<HTMLDivElement>(null);
-  const designer5 = useRef<HTMLDivElement>(null);
-  const designer6 = useRef<HTMLDivElement>(null);
-  const designer7 = useRef<HTMLDivElement>(null);
-  const designer8 = useRef<HTMLDivElement>(null);
-  const designer9 = useRef<HTMLDivElement>(null);
-  const designer10 = useRef<HTMLDivElement>(null);
-  const designer11 = useRef<HTMLDivElement>(null);
-  const designer12 = useRef<HTMLDivElement>(null);
-  const designer13 = useRef<HTMLDivElement>(null);
-  const designer14 = useRef<HTMLDivElement>(null);
-  const designer15 = useRef<HTMLDivElement>(null);
-  const designer16 = useRef<HTMLDivElement>(null);
-  const designer17 = useRef<HTMLDivElement>(null);
-  const designer18 = useRef<HTMLDivElement>(null);
-  const designer19 = useRef<HTMLDivElement>(null);
-  const designer20 = useRef<HTMLDivElement>(null);
-  const designer21 = useRef<HTMLDivElement>(null);
-  const designer22 = useRef<HTMLDivElement>(null);
-  const designer23 = useRef<HTMLDivElement>(null);
-  const designer24 = useRef<HTMLDivElement>(null);
-  const designer25 = useRef<HTMLDivElement>(null);
-  const designer26 = useRef<HTMLDivElement>(null);
-  const designer27 = useRef<HTMLDivElement>(null);
-  const designer28 = useRef<HTMLDivElement>(null);
-  const designer29 = useRef<HTMLDivElement>(null);
-  const designer30 = useRef<HTMLDivElement>(null);
-  const designer31 = useRef<HTMLDivElement>(null);
-  const designer32 = useRef<HTMLDivElement>(null);
-  const designer33 = useRef<HTMLDivElement>(null);
-  const designer34 = useRef<HTMLDivElement>(null);
-  const designer35 = useRef<HTMLDivElement>(null);
-  const designer36 = useRef<HTMLDivElement>(null);
-  const designer37 = useRef<HTMLDivElement>(null);
-  const designer38 = useRef<HTMLDivElement>(null);
-  const designer39 = useRef<HTMLDivElement>(null);
-  const designer40 = useRef<HTMLDivElement>(null);
-  const designer41 = useRef<HTMLDivElement>(null);
-  const designer42 = useRef<HTMLDivElement>(null);
-  const designer43 = useRef<HTMLDivElement>(null);
-  const designer44 = useRef<HTMLDivElement>(null);
-  const designer45 = useRef<HTMLDivElement>(null);
-  const designer46 = useRef<HTMLDivElement>(null);
-  const designer47 = useRef<HTMLDivElement>(null);
-  const designer48 = useRef<HTMLDivElement>(null);
-  const designerEveryone = useRef<HTMLDivElement>(null);
-
-  const refArr = [
-    designer1,
-    designer1,
-    designer2,
-    designer3,
-    designer4,
-    designer5,
-    designer6,
-    designer7,
-    designer8,
-    designer9,
-    designer10,
-    designer11,
-    designer12,
-    designer13,
-    designer14,
-    designer15,
-    designer16,
-    designer17,
-    designer18,
-    designer19,
-    designer20,
-    designer21,
-    designer22,
-    designer23,
-    designer24,
-    designer25,
-    designer26,
-    designer27,
-    designer28,
-    designer29,
-    designer30,
-    designer31,
-    designer32,
-    designer33,
-    designer34,
-    designer35,
-    designer36,
-    designer37,
-    designer38,
-    designer39,
-    designer40,
-    designer41,
-    designer42,
-    designer43,
-    designer44,
-    designer45,
-    designer46,
-    designer47,
-    designer48,
-    designerEveryone,
-  ];
 
   const handleDrop = () => {
     setIsDrop((id) => !id);
@@ -174,28 +71,6 @@ const ReceiverDropBox = (props: DropBoxProps) => {
       }
     }
   }, [isDrop]);
-
-  // useEffect(() => {
-  // if (isDrop && guestBookContents.receiver !== -1) {
-  //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-  //     designer40.current?.scrollIntoView({ behavior: 'instant' });
-  //   }
-  //   refArr[guestBookContents.receiver].current?.scrollIntoView({
-  //     behavior: 'instant',
-  //     block: 'center',
-  //   });
-  // }
-  // }, [isDrop]);
-
-  // function checkId() {
-  //   if (guestBookContents.receiver !== -1) {
-  //     if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-  //       return '#40';
-  //     }
-  //     return `#${guestBookContents.receiver}`;
-  //   }
-  // }
-
   return (
     <>
       <Drop $isDrop={isDrop} onClick={handleDrop}>
@@ -217,12 +92,7 @@ const ReceiverDropBox = (props: DropBoxProps) => {
 
       {isDrop && (
         <Box ref={modalRef}>
-          <Designer
-            isSelected={checkSelected(49)}
-            onClick={() => handleSelectDesigner(49)}
-            ref={refArr[49]}
-            id={`${49}`}
-          >
+          <Designer isSelected={checkSelected(49)} onClick={() => handleSelectDesigner(49)}>
             모두에게
           </Designer>
 
@@ -232,8 +102,6 @@ const ReceiverDropBox = (props: DropBoxProps) => {
                 <Designer
                   isSelected={checkSelected(index)}
                   onClick={() => handleSelectDesigner(index)}
-                  ref={refArr[index]}
-                  id={`${index}`}
                 >
                   {designer}
                 </Designer>
@@ -280,15 +148,14 @@ const Designer = styled.p<{ isSelected: boolean }>`
   }
 `;
 
-const Div = styled.div<{ receiver: number }>`
-  /*  */
-`;
-
 const Box = styled.div`
   overflow: scroll;
   position: absolute;
   z-index: 2;
-  width: 39.2rem;
+  width: 28.6rem;
+
+  /* width: 39.2rem; */
+
   height: 37.6rem;
 
   /* height: fit-content; */
@@ -301,9 +168,15 @@ const Box = styled.div`
 
   cursor: pointer;
 
-  @media screen and (width <= ${`600px`}) {
+  @media screen and (width <= ${TABLET_WIDTH}) {
     width: 26.9rem;
     margin-top: 7rem;
+  }
+
+  @media screen and (width <= ${`600px`}) {
+    width: 74.5%;
+
+    /* margin-top: 7rem; */
   }
 `;
 
@@ -311,7 +184,9 @@ const Drop = styled.div<{ $isDrop: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 28.6 rem;
+
+  /* width: 28.6rem; */
+
   padding: 1.6rem;
   border: 1px solid
     ${({ theme, $isDrop }) => ($isDrop ? theme.colors.Black : theme.colors.Grayscales_500)};
@@ -329,7 +204,7 @@ const Drop = styled.div<{ $isDrop: boolean }>`
   }
 
   @media screen and (width <= ${`650px`}) {
-    width: 23rem;
+    width: 23.5rem;
   }
 
   @media screen and (width <= ${`600px`}) {
