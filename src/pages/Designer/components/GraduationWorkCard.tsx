@@ -37,9 +37,7 @@ const GraduationWorkCard = ({ projectId, photo, title, type, members }: ProjectI
         </ImgWrapper>
       </Default>
       <Mobile>
-        <ImgWrapper>
-          <WorkImg src={photo} />
-        </ImgWrapper>
+        <WorkImg src={photo} />
       </Mobile>
 
       <Default>
@@ -91,7 +89,7 @@ const ImgWrapper = styled.div`
 
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 30rem;
-    height: 30rem;
+    /* height: 30rem; */
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
@@ -101,9 +99,8 @@ const ImgWrapper = styled.div`
 `;
 const WorkImg = styled.img`
   width: 100%;
-  height: 100%;
 
-  object-fit: cover;
+  object-fit: contain;
 
   border: 1px solid black;
 `;
