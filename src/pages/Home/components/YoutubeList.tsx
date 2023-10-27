@@ -74,11 +74,11 @@ const DragSlider = styled.section`
   align-items: center;
   gap: 1.6rem;
 
-  width: 331.2rem;
+  width: 249.6rem;
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
-    width: 229.4rem;
+    width: 172.6rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 86.5rem;
+    width: 65.1rem;
   }
 `;

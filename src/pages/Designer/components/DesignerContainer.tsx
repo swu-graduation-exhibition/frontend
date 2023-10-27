@@ -1,7 +1,7 @@
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { css, styled } from 'styled-components';
 import TopButton from '~/common/components/TopButton';
-import { MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
 import { useDesignerList } from '~/lib/api/designer/get-designer-list';
 import { Default, Mobile } from '~/utils/mediaQuery';
 import DesignerCard from './DesignerCard';
@@ -146,7 +146,7 @@ const DesignerCardWrapper = styled.section`
     border-right: 0.2px solid black;
   }
 
-  @media screen and (width <= ${TABLET_WIDTH}) {
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     grid-template-columns: repeat(2, 1fr);
     margin-top: 8rem;
   }
