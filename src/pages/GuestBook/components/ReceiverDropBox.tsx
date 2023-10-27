@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { MOBILE_WIDTH } from '~/constants/common';
 import { DESIGNERS } from '../data/designers';
@@ -150,93 +150,74 @@ const ReceiverDropBox = (props: DropBoxProps) => {
       setIsDrop(false);
     }
   }
-  console.log(guestBookContents.receiver);
-  useEffect(() => {
-    // if (isDrop && guestBookContents.receiver !== -1) {
-    //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-    //     designer40.current?.scrollIntoView({ behavior: 'instant' });
-    //   }
-    //   refArr[guestBookContents.receiver].current?.scrollIntoView({
-    //     behavior: 'instant',
-    //     block: 'center',
-    //   });
-    // }
-  }, [isDrop]);
 
-  const [position, setPosition] = useState(0);
-  function onScroll() {
-    setPosition(window.scrollY);
-  }
-  useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, []);
+  // useEffect(() => {
+  // if (isDrop && guestBookContents.receiver !== -1) {
+  //   if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+  //     designer40.current?.scrollIntoView({ behavior: 'instant' });
+  //   }
+  //   refArr[guestBookContents.receiver].current?.scrollIntoView({
+  //     behavior: 'instant',
+  //     block: 'center',
+  //   });
+  // }
+  // }, [isDrop]);
 
-  useEffect(() => {
-    if (isDrop) {
-      // window.scroll(0, 0);
-    }
-  }, [position]);
-
-  function checkId() {
-    if (guestBookContents.receiver !== -1) {
-      if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
-        return '#40';
-      }
-      return `#${guestBookContents.receiver}`;
-    }
-  }
-
-  console.log(checkId());
+  // function checkId() {
+  //   if (guestBookContents.receiver !== -1) {
+  //     if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
+  //       return '#40';
+  //     }
+  //     return `#${guestBookContents.receiver}`;
+  //   }
+  // }
 
   return (
     <>
-      <a href={checkId()}>
-        <Drop $isDrop={isDrop} onClick={handleDrop}>
-          {guestBookContents.receiver === -1 ? (
-            <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
+      {/* <a href={checkId()}> */}
+      <Drop $isDrop={isDrop} onClick={handleDrop}>
+        {guestBookContents.receiver === -1 ? (
+          <NoneReceiver>받는 사람을 선택해 주세요.</NoneReceiver>
+        ) : (
+          <YesReceiver>
+            {guestBookContents.receiver === 49 ? '모두에게' : DESIGNERS[guestBookContents.receiver]}
+          </YesReceiver>
+        )}
+        <div>
+          {isDrop ? (
+            <DropBoxUpIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxUpIc.svg`} />
           ) : (
-            <YesReceiver>
-              {guestBookContents.receiver === 49
-                ? '모두에게'
-                : DESIGNERS[guestBookContents.receiver]}
-            </YesReceiver>
+            <DropBoxDownIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxDownIc.svg`} />
           )}
-          <div>
-            {isDrop ? (
-              <DropBoxUpIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxUpIc.svg`} />
-            ) : (
-              <DropBoxDownIcon src={`${import.meta.env.VITE_SWU_IMAGE}/dropBoxDownIc.svg`} />
-            )}
-          </div>
-        </Drop>
-      </a>
+        </div>
+      </Drop>
+      {/* </a> */}
       {isDrop && (
         <Box ref={modalRef}>
-          <Designer
-            isSelected={checkSelected(49)}
-            onClick={() => handleSelectDesigner(49)}
-            ref={refArr[49]}
-            id={`${49}`}
-          >
-            모두에게
-          </Designer>
+          <Div receiver={guestBookContents.receiver}>
+            <Designer
+              isSelected={checkSelected(49)}
+              onClick={() => handleSelectDesigner(49)}
+              ref={refArr[49]}
+              id={`${49}`}
+            >
+              모두에게
+            </Designer>
 
-          {DESIGNERS.map(
-            (designer, index) =>
-              index !== 0 && (
-                <Designer
-                  isSelected={checkSelected(index)}
-                  onClick={() => handleSelectDesigner(index)}
-                  ref={refArr[index]}
-                  id={`${index}`}
-                >
-                  {designer}
-                </Designer>
-              ),
-          )}
+            {DESIGNERS.map(
+              (designer, index) =>
+                index !== 0 && (
+                  <Designer
+                    isSelected={checkSelected(index)}
+                    onClick={() => handleSelectDesigner(index)}
+                    ref={refArr[index]}
+                    id={`${index}`}
+                  >
+                    {designer}
+                  </Designer>
+                ),
+            )}
+          </Div>
         </Box>
       )}
     </>
@@ -276,6 +257,10 @@ const Designer = styled.p<{ isSelected: boolean }>`
     font-size: 1rem !important;
     padding: 0 0.8rem 0 1.3rem;
   }
+`;
+
+const Div = styled.div<{ receiver: number }>`
+  transform: translateY(-${({ receiver }) => receiver !== -1 && receiver * 4}rem);
 `;
 
 const Box = styled.div`
