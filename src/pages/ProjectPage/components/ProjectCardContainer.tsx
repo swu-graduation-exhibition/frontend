@@ -20,13 +20,24 @@ function ProjectCardContainer({ projectData }: IProjectProps) {
   return (
     <>
       <ProjectCardLayout>
-        {projectData?.map((projectInfo) => {
-          return (
-            <div onClick={() => moveToDetail(projectInfo?.projectId)}>
-              <ProjectCard key={projectInfo?.projectId} projectInfo={projectInfo} />
-            </div>
-          );
-        })}
+        {projectData?.map(
+          (
+            projectInfo: {
+              type: number;
+              title: string;
+              members: string;
+              photo: string;
+              projectId: number;
+            },
+            idx: number,
+          ) => {
+            return (
+              <div onClick={() => moveToDetail(projectInfo?.projectId)}>
+                <ProjectCard key={projectInfo?.projectId} projectInfo={projectInfo} />
+              </div>
+            );
+          },
+        )}
       </ProjectCardLayout>
     </>
   );
@@ -50,5 +61,9 @@ const ProjectCardLayout = styled.section`
   @media screen and (width <= ${`520px`}) {
     grid-template-columns: repeat(1, minmax(27rem, 1fr));
     align-content: start;
+  }
+
+  @media screen and (width > ${`520px`}) {
+    border-top: 1px solid black;
   }
 `;

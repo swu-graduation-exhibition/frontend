@@ -132,13 +132,23 @@ const Container = styled.article`
   position: relative;
 
   cursor: pointer;
-  margin-bottom: -0.2rem;
+
+  /* margin-bottom: -0.1rem; */
+
+  /* margin-left: -0.1rem; */
 `;
 
 const CardThumbnail = styled.img`
   width: 100%;
   height: 100%;
   margin: auto;
+
+  border-bottom: 1px solid;
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    border-top: 1px solid black;
+    border-bottom: 1px solid;
+  }
 `;
 
 const CardThumbnailContainer = styled.div`
@@ -147,7 +157,8 @@ const CardThumbnailContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+
+  /* border: 1px solid black; */
 
   object-fit: cover;
 `;
