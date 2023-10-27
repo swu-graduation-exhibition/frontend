@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { MOBILE_WIDTH } from '~/constants/common';
+import { HOME_MOBILE_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 import { TrackDataInfo } from '~/types/home';
 
@@ -34,6 +34,10 @@ const TrackCardWrapper = styled.article`
   padding: 4rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.Black};
 
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
+    width: 53.6rem;
+    height: 42rem;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 27.5rem;
     height: 21.6rem;

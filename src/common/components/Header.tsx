@@ -129,7 +129,9 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean }>`
 const LinkWrapper = styled.ul`
   display: flex;
   gap: 8.8rem;
-
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    gap: 5.2rem;
+  }
   @media screen and (width <= ${TABLET_WIDTH}) {
     gap: 3.2rem;
   }
