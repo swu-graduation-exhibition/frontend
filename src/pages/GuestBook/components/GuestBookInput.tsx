@@ -105,9 +105,17 @@ const SendButton = styled.button<{ $isReady: Boolean }>`
 
   @media screen and (width <= ${`600px`}) {
     margin-left: 0.5rem;
-    height: 13rem;
+    height: 13.3rem;
     ${({ theme, $isReady }) =>
       $isReady ? theme.fonts.Mobile_Body_02_White : theme.fonts.Mobile_Body_02_Gray600}
+  }
+
+  @media screen and (width <= ${`350px`}) {
+    &::placeholder {
+      font-size: 1rem;
+    }
+
+    font-size: 1rem;
   }
 `;
 

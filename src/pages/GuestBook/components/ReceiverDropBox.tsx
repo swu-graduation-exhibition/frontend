@@ -124,6 +124,11 @@ const Designer = styled.p<{ isSelected: boolean }>`
     rgb(255 251 215 / 0%) 101.04%
   );
   background-blend-mode: ${({ isSelected }) => isSelected && 'multiply'};
+
+  @media screen and (width <= ${`350px`}) {
+    font-size: 1rem !important;
+    padding: 0 0.8rem 0 1.3rem;
+  }
 `;
 
 const Box = styled.div`
@@ -159,6 +164,10 @@ const Drop = styled.div<{ $isDrop: boolean }>`
 
   border-radius: 1rem;
 
+  div {
+    margin-left: 0.8rem;
+  }
+
   @media screen and (width <= ${`955px`}) {
     width: 27.2rem;
   }
@@ -173,14 +182,32 @@ const Drop = styled.div<{ $isDrop: boolean }>`
 `;
 
 const DropBoxUpIcon = styled.img`
-  width: 2.4rem;
+  /* width: 2.4rem; */
 
+  width: 1.1rem;
+  height: 0.6rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    width: 0.8496rem;
+    height: 0.4634rem;
+  }
+
+  margin: 0 0.6rem;
   cursor: pointer;
 `;
 
 const DropBoxDownIcon = styled.img`
-  width: 2.4rem;
+  /* width: 2.4rem; */
 
+  width: 1.1rem;
+  height: 0.6rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    width: 0.8496rem;
+    height: 0.4634rem;
+  }
+
+  margin: 0 0.6rem;
   cursor: pointer;
 `;
 
@@ -194,6 +221,14 @@ const NoneReceiver = styled.p`
   @media screen and (width <= ${`1000px`}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
   }
+
+  @media screen and (width <= ${`350px`}) {
+    &::placeholder {
+      font-size: 1rem;
+    }
+
+    font-size: 1rem;
+  }
 `;
 
 const YesReceiver = styled.p`
@@ -205,5 +240,13 @@ const YesReceiver = styled.p`
 
   @media screen and (width <= ${`720px`}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03};
+  }
+
+  @media screen and (width <= ${`350px`}) {
+    &::placeholder {
+      font-size: 1rem;
+    }
+
+    font-size: 1rem;
   }
 `;

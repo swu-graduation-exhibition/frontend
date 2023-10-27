@@ -144,6 +144,10 @@ const Designer = styled.p<{ paddingTop: number; isSelected: boolean }>`
     rgb(255 251 215 / 0%) 101.04%
   );
   background-blend-mode: ${({ isSelected }) => isSelected && 'multiply'};
+
+  @media screen and (width <= ${`350px`}) {
+    font-size: 1rem !important;
+  }
 `;
 
 const Box = styled.div`
@@ -187,13 +191,29 @@ const Drop = styled.div<{ $isDrop: boolean }>`
 `;
 
 const DropBoxUpIcon = styled.img`
-  width: 2.4rem;
+  /* width: 2.4rem; */
+
+  width: 1.1rem;
+  height: 0.6rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    width: 0.8496rem;
+    height: 0.4634rem;
+  }
 
   cursor: pointer;
 `;
 
 const DropBoxDownIcon = styled.img`
-  width: 2.4rem;
+  /* width: 2.4rem; */
+
+  width: 1.1rem;
+  height: 0.6rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    width: 0.8496rem;
+    height: 0.4634rem;
+  }
 
   cursor: pointer;
 `;
@@ -203,5 +223,9 @@ const Receiver = styled.p`
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
+  }
+
+  @media screen and (width <= ${`350px`}) {
+    font-size: 1rem !important;
   }
 `;

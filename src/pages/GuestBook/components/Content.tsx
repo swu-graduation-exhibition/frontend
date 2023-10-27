@@ -48,6 +48,11 @@ const CountingLetterSection = styled.section`
   position: absolute;
   right: 2.4rem;
   bottom: 2.4rem;
+
+  @media screen and (width <= ${`350px`}) {
+    right: 1.4rem;
+    bottom: 0.5rem;
+  }
 `;
 
 const CountLetter = styled.span(
@@ -57,6 +62,10 @@ const CountLetter = styled.span(
 
     @media screen and (width <= ${`1000px`}) {
       ${({ theme }) => theme.fonts.Mobile_Body_03_Gray500};
+    }
+
+    @media screen and (width <= ${`350px`}) {
+      font-size: 1rem;
     }
   `,
 );
@@ -95,6 +104,7 @@ const ContentArea = styled.textarea`
 
   &:focus {
     ${({ theme }) => theme.fonts.Caption_03};
+    border: 1px solid transparent;
     outline: 1px solid ${({ theme }) => theme.colors.Grayscales_900};
   }
 
@@ -106,5 +116,15 @@ const ContentArea = styled.textarea`
     }
 
     ${({ theme }) => theme.fonts.Mobile_Body_03};
+  }
+
+  @media screen and (width <= ${`350px`}) {
+    &::placeholder {
+      font-size: 1rem;
+    }
+
+    padding: 0.5rem 1.4rem;
+
+    font-size: 1rem !important;
   }
 `;

@@ -79,4 +79,12 @@ const Input = styled.input`
 
     width: 100%;
   }
+
+  @media screen and (width <= ${`350px`}) {
+    &::placeholder {
+      font-size: 1rem;
+    }
+
+    font-size: 1rem;
+  }
 `;
