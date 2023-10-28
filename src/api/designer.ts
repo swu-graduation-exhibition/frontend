@@ -7,7 +7,7 @@ interface projectCommentType {
 }
 
 export async function postDesignerComment(formData: projectCommentType) {
-  const data = await client.post(`${import.meta.env.VITE_SWU_IP}/comment/designer`, formData);
+  const data = await client.post(`${import.meta.env.VITE_APP_BASE_URL}/comment/designer`, formData);
 
   return data?.data?.data;
 }

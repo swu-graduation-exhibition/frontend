@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getGuestBook(id: number | string, page: number, limit: number) {
   const data = await axios.get(
-    `${import.meta.env.VITE_SWU_IP}/comment/list?id=${id}&page=${page}&limit=${limit}`,
+    `${import.meta.env.VITE_APP_BASE_URL}/comment/list?id=${id}&page=${page}&limit=${limit}`,
     {
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ interface guestbookType {
 }
 
 export async function postGuestBook(formData: guestbookType) {
-  const data = await axios.post(`${import.meta.env.VITE_SWU_IP}/comment/designer`, formData, {
+  const data = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/comment/designer`, formData, {
     headers: {
       'Content-Type': 'application/json',
     },

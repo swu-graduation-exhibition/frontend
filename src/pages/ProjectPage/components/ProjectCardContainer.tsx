@@ -65,5 +65,7 @@ const ProjectCardLayout = styled.section`
 
   @media screen and (width > ${`520px`}) {
     border-top: 1px solid black;
+
+    /* padding-top: 2px; */
   }
 `;

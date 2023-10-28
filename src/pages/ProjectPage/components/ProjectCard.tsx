@@ -127,14 +127,10 @@ const CardThumbnail = styled.div`
   img {
     width: 100%;
     height: 100%;
-    margin: auto;
 
-    border-bottom: 1px solid;
+    /* margin: auto; */
 
-    @media screen and (width<=${MOBILE_WIDTH}) {
-      border-top: 1px solid black;
-      border-bottom: 1px solid;
-    }
+    margin-bottom: -2px;
   }
 `;
 
@@ -142,12 +138,21 @@ const CardThumbnailContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 100%;
   height: 100%;
 
   /* border: 1px solid black; */
 
+  /* margin-top: -2px; */
+
   object-fit: cover;
+
+  @media screen and (width<=${MOBILE_WIDTH}) {
+    border-top: 1px solid black;
+  }
+
+  border-bottom: 1px solid black;
 `;
 const CardBackDrop = styled.article`
   position: absolute;
