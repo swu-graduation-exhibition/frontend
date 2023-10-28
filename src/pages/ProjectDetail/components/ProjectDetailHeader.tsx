@@ -100,6 +100,8 @@ const ProjectName = styled.div(
       margin-right: 0.5rem;
     }
 
+    white-space: pre;
+
     @media screen and (width <= ${`1100px`}) {
       ${({ theme }) => theme.fonts.Subtitle_02}
     }
@@ -157,6 +159,8 @@ const Description = styled.div(
   ({ theme }) => theme.fonts.Caption_01,
   css`
     color: ${({ theme }) => theme.colors.Grayscales_900};
+
+    white-space: pre;
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Caption_01}
