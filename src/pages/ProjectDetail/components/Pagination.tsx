@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 interface PaginationProps {
@@ -13,34 +14,52 @@ const Pagination = ({
   lastPage,
   paginationNumbers,
 }: PaginationProps) => {
+  const [pageList, setPageList] = useState<number[][]>([]);
+
+  function moveToPrev() {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
+  }
+
+  function moveToNext() {
+    if (currentPage === lastPage) return;
+    setCurrentPage(currentPage + 1);
+  }
+
+  useEffect(() => {
+    const newPagination = [...paginationNumbers];
+    const length = newPagination.length;
+    const divide = Math.floor(length / 10) + (Math.floor(length % 10) > 0 ? 1 : 0);
+    const newArray = [];
+
+    for (let i = 0; i <= divide; i++) {
+      newArray.push(newPagination.splice(0, 10));
+    }
+
+    setPageList(newArray);
+  }, [currentPage]);
+
   return (
     <>
       <Container>
-        <IconWrapper
-          onClick={() => {
-            if (currentPage === 1) return;
-            setCurrentPage(currentPage - 1);
-          }}
-        >
+        <IconWrapper onClick={moveToPrev}>
           <IconArrowLeft src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_left.svg`} />
         </IconWrapper>
         <ButtonWrapper>
-          {paginationNumbers.map((_, i) => (
-            <PageButton
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              $iscurrentpage={currentPage === i + 1 && 'page'}
-            >
-              {i + 1}
-            </PageButton>
-          ))}
+          {pageList[Math.floor(currentPage / 11)]?.map((page, i) => {
+            console.log(page);
+            return (
+              <PageButton
+                key={i}
+                onClick={() => setCurrentPage(page)}
+                $iscurrentpage={currentPage === page && 'page'}
+              >
+                {page}
+              </PageButton>
+            );
+          })}
         </ButtonWrapper>
-        <IconWrapper
-          onClick={() => {
-            if (currentPage === lastPage) return;
-            setCurrentPage(currentPage + 1);
-          }}
-        >
+        <IconWrapper onClick={moveToNext}>
           <IconArrowRight src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_right.svg`} />
         </IconWrapper>
       </Container>
