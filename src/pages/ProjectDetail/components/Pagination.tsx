@@ -39,6 +39,33 @@ const Pagination = ({
     setPageList(newArray);
   }, [currentPage]);
 
+  useEffect(() => {
+    if (currentPage !== 1) {
+      if (window.innerWidth <= 520) {
+      } else if (window.innerWidth <= 830) {
+        window.scroll({
+          top: 500,
+          behavior: 'smooth',
+        });
+      } else if (window.innerWidth <= 1200) {
+        window.scroll({
+          top: 850,
+          behavior: 'smooth',
+        });
+      } else if (window.innerWidth <= 1400) {
+        window.scroll({
+          top: 750,
+          behavior: 'smooth',
+        });
+      } else {
+        window.scroll({
+          top: 850,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [currentPage]);
+
   return (
     <>
       <Container>
