@@ -99,6 +99,7 @@ const Container = styled.article`
   cursor: pointer;
 
   margin-bottom: -0.2rem;
+  margin-left: -0.1rem;
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: none;

@@ -17,18 +17,23 @@ export default ProjectComments;
 const Container = styled.section`
   display: flex;
   width: 100%;
-  margin-top: 6.3rem;
+  margin-top: 21rem;
+  padding: 0 13.6rem;
+
+  /* margin-top: 6.3rem; */
+
   flex-direction: column;
   gap: 5rem;
-  padding: 0 13.6rem;
 
   /* max-width: 165rem; */
 
   @media screen and (width <= ${`1100px`}) {
+    margin-top: 13.8rem;
     padding: 0 6.4rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-top: 9rem;
     padding: 0 2.8rem;
   }
 `;
