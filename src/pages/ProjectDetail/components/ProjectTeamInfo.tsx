@@ -14,10 +14,10 @@ interface MemberType {
 const ProjectTeamInfo = () => {
   const { projectId } = useParams();
   const { projectDetail } = useGetProjectDetail(Number(projectId));
-
+  console.log(projectDetail);
   return (
     <Container>
-      <TeamName>{projectDetail?.teamName}</TeamName>
+      {projectDetail?.teamName && <TeamName>{projectDetail?.teamName}</TeamName>}
 
       <TeamCardContainer>
         {projectDetail?.memberList.map((member: MemberType) => {
