@@ -45,22 +45,22 @@ const Pagination = ({
       } else if (window.innerWidth <= 830) {
         window.scroll({
           top: 500,
-          behavior: 'smooth',
+          behavior: 'instant',
         });
       } else if (window.innerWidth <= 1200) {
         window.scroll({
-          top: 850,
-          behavior: 'smooth',
+          top: 800,
+          behavior: 'instant',
         });
       } else if (window.innerWidth <= 1400) {
         window.scroll({
           top: 750,
-          behavior: 'smooth',
+          behavior: 'instant',
         });
       } else {
         window.scroll({
           top: 850,
-          behavior: 'smooth',
+          behavior: 'instant',
         });
       }
     }

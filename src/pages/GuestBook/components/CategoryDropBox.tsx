@@ -77,6 +77,29 @@ const CategoryDropBox = (props: CategoryDropBoxProps) => {
     }
   }
 
+  useEffect(() => {
+    if (isDrop && designerId !== -1) {
+      if (designerId > 40 && designerId < 49) {
+        const ref = modalRef.current;
+
+        if (ref) ref.scrollTop = 40 * 40 + 40;
+      } else if (designerId === 49) {
+        if (modalRef) {
+          const ref = modalRef.current;
+
+          if (ref) ref.scrollTop = 0;
+        }
+      } else {
+        if (modalRef) {
+          const ref = modalRef.current;
+          console.log(modalRef, modalRef.current?.scrollTop, modalRef.current?.scrollHeight);
+
+          if (ref) ref.scrollTop = designerId * 40 + 40;
+        }
+      }
+    }
+  }, [isDrop]);
+
   return (
     <CategoryDropBoxWrapper>
       <Drop $isDrop={isDrop} onClick={handleDrop}>

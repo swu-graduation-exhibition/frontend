@@ -29,15 +29,15 @@ const LoadingImage = styled.img`
 
   @keyframes fadeinanimation {
     0% {
-      opacity: 0;
-    }
-
-    50% {
       opacity: 1;
     }
 
-    100% {
+    50% {
       opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
     }
   }
 `;

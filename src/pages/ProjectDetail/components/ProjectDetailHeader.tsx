@@ -21,7 +21,7 @@ function ProjectDetailHeader() {
         <Description>{projectDetail?.desc}</Description>
         {projectDetail?.link && (
           <ButtonSection>
-            <a href={projectDetail?.link}>
+            <a href={projectDetail?.link} target="_blank">
               <TryItButton>TRY IT!</TryItButton>
             </a>
             <ButtonCaption>* 버튼을 눌러 서비스를 직접 체험해 보세요!</ButtonCaption>

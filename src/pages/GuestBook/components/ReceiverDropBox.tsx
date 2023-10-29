@@ -50,7 +50,6 @@ const ReceiverDropBox = (props: DropBoxProps) => {
 
   useEffect(() => {
     if (isDrop && guestBookContents.receiver !== -1) {
-      // 여기만 손 봐주세요!!!!!
       if (guestBookContents.receiver > 40 && guestBookContents.receiver < 49) {
         const ref = modalRef.current;
 
@@ -71,6 +70,7 @@ const ReceiverDropBox = (props: DropBoxProps) => {
       }
     }
   }, [isDrop]);
+
   return (
     <>
       <Drop $isDrop={isDrop} onClick={handleDrop}>

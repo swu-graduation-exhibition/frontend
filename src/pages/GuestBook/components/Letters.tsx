@@ -42,11 +42,11 @@ const Letters = () => {
     useGetGuestBookMobile(designerId);
   const { observerRef } = useInfiniteScroll(fetchNextPage, hasNextPage);
 
-  // if (isLoading || isDesktopLoading || isTabletLoading) return <Loading />;
-
   return (
     <>
-      {(isLoading || isDesktopLoading || isTabletLoading) && <Loading />}
+      {isLoading && <Loading />}
+      {isDesktopLoading && <Loading />}
+      {isTabletLoading && <Loading />}
       <CategoryDropBox designerId={designerId} setDesignerId={setDesignerId} />
       <GuestBookDesktop>
         <>

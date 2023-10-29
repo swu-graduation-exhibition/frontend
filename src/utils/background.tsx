@@ -26,7 +26,7 @@ const GuestBackgroundImg = styled.img`
   z-index: -10;
   width: 100%;
 
-  max-width: 192rem;
+  /* max-width: 192rem; */
 
   height: 100%;
 

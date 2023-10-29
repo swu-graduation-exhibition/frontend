@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { getProjectList } from '~/api/project';
 import { PageLayout } from '~/common/components';
 import TopButton from '~/common/components/TopButton';
+import { MOBILE_WIDTH } from '~/constants/common';
 import { Mobile } from '~/utils/mediaQuery';
 import Loading from '../Loading';
 import ProjectCardContainer from './components/ProjectCardContainer';
@@ -51,6 +52,7 @@ function Project() {
     });
   }, []);
   if (isLoading) return <Loading />;
+
   return (
     <PageLayout>
       <ProjectLayout>
@@ -86,6 +88,10 @@ const Container = styled.div`
 
   padding: 0% 7%;
   flex-direction: column;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    padding: 0%;
+  }
 
   /* 
   @media screen and (width <= ${`830px`}) {

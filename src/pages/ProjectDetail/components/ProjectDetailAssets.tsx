@@ -30,7 +30,9 @@ const ProjectDetailAssets = () => {
             {checkExtension(photoExtension) ? (
               <Container key={index} src={photo} alt="프로젝트 이미지" />
             ) : (
-              <ReactPlayer url={photo} width="100vw" height="58vw" controls playsinline />
+              <PlayerWrapper>
+                <ReactPlayer url={photo} width="100vw" height="58vw" controls playsinline />
+              </PlayerWrapper>
             )}
           </>
         );
@@ -40,6 +42,10 @@ const ProjectDetailAssets = () => {
 };
 
 export default ProjectDetailAssets;
+
+const PlayerWrapper = styled.div`
+  margin-bottom: -6px;
+`;
 
 const DetailAssets = styled.div`
   margin-bottom: 20rem;
@@ -53,10 +59,7 @@ const DetailAssets = styled.div`
   }
 `;
 
-const Video = styled.video`
-  width: 100%;
-`;
-
 const Container = styled.img`
   width: 100%;
+  margin-bottom: -2px;
 `;
