@@ -83,6 +83,16 @@ export default DesignerCard;
 
 const CardWrapper = styled.div`
   position: relative;
+  height: fit-content;
+  height: 618px;
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    height: 527.25px;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    height: 320px;
+  }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
     display: flex;
@@ -99,6 +109,7 @@ const CardImg = styled.div`
   img {
     width: 100%;
     height: 618px;
+    border-bottom: 0.2px solid black;
 
     @media screen and (width <= ${HOME_TABLET_WIDTH}) {
       height: 527.25px;
@@ -106,7 +117,6 @@ const CardImg = styled.div`
 
     @media screen and (width <= ${MOBILE_WIDTH}) {
       height: 257.25px;
-      border-bottom: 0.2px solid black;
       border-top: 0.2px solid black;
       border-left: 0.2px solid black;
     }
