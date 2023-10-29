@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import { axiosRequest, client } from '~/lib/axios';
+import { axiosRequest, client, dev_client } from '~/lib/axios';
 import { ApiResponse } from '../api.type';
 import { GuestBookPaginationInfo } from '~/types/guestBook';
 
@@ -10,7 +10,7 @@ const getCommentList = (
   page: number,
 ): Promise<ApiResponse<GuestBookPaginationInfo>> => {
   return axiosRequest(
-    client,
+    dev_client,
     'get',
     `comment/designer?id=${designer_id}&page=${page}&limit=${limit}`,
   );
