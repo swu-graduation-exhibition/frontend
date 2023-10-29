@@ -33,7 +33,14 @@ const Header = () => {
             <MobileLinkWrapper>
               {MOBILE_PAGE_CATEGORIES.map((category, idx) => (
                 <LiContent key={category}>
-                  <Link to={MOBILE_PAGE_PATHS[idx]}>{category}</Link>
+                  <Link
+                    to={MOBILE_PAGE_PATHS[idx]}
+                    onClick={() => {
+                      if (pathname === MOBILE_PAGE_PATHS[idx]) window.location.reload();
+                    }}
+                  >
+                    {category}
+                  </Link>
                 </LiContent>
               ))}
             </MobileLinkWrapper>
