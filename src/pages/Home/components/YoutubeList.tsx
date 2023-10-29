@@ -10,8 +10,8 @@ const YoutubeList = () => {
     <YoutubeListWrapper>
       <DragListWrapper ref={ref}>
         <DragSlider>
-          {youtubeData.map(({ id, url }, idx) => (
-            <CardWrapper key={id}>
+          {youtubeData.map(({ id, url, link }, idx) => (
+            <CardWrapper key={id} onClick={() => window.open(link, '_blank')}>
               <YoutubeCard src={url} alt={id + '번재'} />
               <PlayImg src={`${import.meta.env.VITE_SWU_IMAGE}/youtube_logo.png`} />
             </CardWrapper>
