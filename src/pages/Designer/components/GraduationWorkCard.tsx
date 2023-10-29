@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from '~/constants/common';
+import { HOME_MOBILE_WIDTH, HOME_TABLET_WIDTH } from '~/constants/common';
 import { ProjectInfo } from '~/types/designer';
 import { getFieldString } from '~/utils/getFieldArray';
-import { Default, HomeDesktop, Mobile } from '~/utils/mediaQuery';
+import { HomeDefault, HomeDesktop, HomeMobile } from '~/utils/mediaQuery';
 
 const GraduationWorkCard = ({ projectId, photo, title, type, members }: ProjectInfo) => {
   const [isMouseOn, setIsMouseOn] = useState(false);
@@ -28,34 +28,34 @@ const GraduationWorkCard = ({ projectId, photo, title, type, members }: ProjectI
       onMouseOut={handleMouseOut}
       onClick={handleClickCard}
     >
-      <Default>
+      <HomeDefault>
         <ImgWrapper>
           <HomeDesktop>
             <>{isMouseOn && <CardHoverContent />}</>
           </HomeDesktop>
           <WorkImg src={photo} />
         </ImgWrapper>
-      </Default>
-      <Mobile>
+      </HomeDefault>
+      <HomeMobile>
         <WorkImg src={photo} />
-      </Mobile>
+      </HomeMobile>
 
-      <Default>
+      <HomeDefault>
         <>
           <TrackWrapper>
             <span>{getFieldString(type)}</span>
           </TrackWrapper>
           <ProjectName>{title}</ProjectName>
         </>
-      </Default>
-      <Mobile>
+      </HomeDefault>
+      <HomeMobile>
         <>
           <ProjectName>{title}</ProjectName>
           <TrackWrapper>
             <span>{members}</span>
           </TrackWrapper>
         </>
-      </Mobile>
+      </HomeMobile>
     </CardWrapper>
   );
 };
@@ -66,7 +66,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     width: 100%;
   }
 
@@ -78,7 +78,7 @@ const CardWrapper = styled.div`
     width: 30rem;
   }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     width: 100%;
   }
 `;
@@ -104,7 +104,7 @@ const ImgWrapper = styled.div`
     height: 30rem;
   }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     width: 100%;
     height: 37.5rem;
   }
@@ -121,7 +121,7 @@ const TrackWrapper = styled.div`
   gap: 1%;
   margin-top: 2.5rem;
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     margin-top: 0.2rem;
     margin-left: 1.6rem;
   }
@@ -134,7 +134,7 @@ const TrackWrapper = styled.div`
       ${({ theme }) => theme.fonts.Subtitle_02};
     }
 
-    @media screen and (width <= ${MOBILE_WIDTH}) {
+    @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
       ${({ theme }) => theme.fonts.Mobile_Body_04};
     }
   }
@@ -148,7 +148,7 @@ const ProjectName = styled.div`
     ${({ theme }) => theme.fonts.Caption_02};
   }
 
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     ${({ theme }) => theme.fonts.Mobile_Subtitle_03};
     margin-left: 1.6rem;
     margin-top: 1.3rem;

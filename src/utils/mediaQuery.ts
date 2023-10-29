@@ -29,6 +29,11 @@ const HomeMobile = ({ children }: { children: JSX.Element }): JSX.Element | null
   return isMobile ? children : null;
 };
 
+const HomeDefault = ({ children }: { children: JSX.Element }): JSX.Element | null => {
+  const isNotMobile = useMediaQuery({ minWidth: 630 });
+  return isNotMobile ? children : null;
+};
+
 const GuestBookTablet = ({ children }: { children: JSX.Element }): JSX.Element | null => {
   const isTablet = useMediaQuery({ minWidth: 521, maxWidth: 1400 });
   return isTablet ? children : null;
@@ -65,6 +70,7 @@ export {
   Desktop,
   GuestBookDesktop,
   GuestBookTablet,
+  HomeDefault,
   HomeDesktop,
   HomeMobile,
   HomeTablet,

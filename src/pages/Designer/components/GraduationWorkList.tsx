@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
-import { graduationWorkList } from '../data/graduationData';
-import GraduationWorkCard from './GraduationWorkCard';
-import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
+import { HOME_MOBILE_WIDTH, HOME_TABLET_WIDTH } from '~/constants/common';
 import { ProjectInfo } from '~/types/designer';
+import GraduationWorkCard from './GraduationWorkCard';
 
 interface GraduationWorkListProp {
   projectList: ProjectInfo[];
@@ -35,7 +34,8 @@ const ListWrapper = styled.div`
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     margin-top: 12.2rem;
   }
-  @media screen and (width <= ${MOBILE_WIDTH}) {
+
+  @media screen and (width <= ${HOME_MOBILE_WIDTH}) {
     margin-top: 4rem;
     gap: 6.4rem;
     flex-direction: column;
