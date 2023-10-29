@@ -69,6 +69,18 @@ const CardWrapper = styled.div`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 100%;
   }
+
+  width: 45rem;
+
+  cursor: pointer;
+
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    width: 30rem;
+  }
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    width: 100%;
+  }
 `;
 
 const CardHoverContent = styled.article`
@@ -101,7 +113,6 @@ const WorkImg = styled.img`
   width: 100%;
 
   object-fit: contain;
-
   border: 1px solid black;
 `;
 
@@ -116,6 +127,7 @@ const TrackWrapper = styled.div`
   }
 
   span {
+    word-wrap: break-word;
     ${({ theme }) => theme.fonts.Subtitle_03};
 
     @media screen and (width <= ${HOME_TABLET_WIDTH}) {
