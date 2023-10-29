@@ -44,7 +44,7 @@ const ProjectDetailAssets = () => {
 export default ProjectDetailAssets;
 
 const PlayerWrapper = styled.div`
-  margin-bottom: -6px;
+  margin-bottom: -10px;
 `;
 
 const DetailAssets = styled.div`

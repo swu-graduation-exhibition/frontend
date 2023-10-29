@@ -66,7 +66,8 @@ const MobileContainer = styled.article`
   position: relative;
 
   cursor: pointer;
-  margin-bottom: 10rem;
+
+  /* margin-bottom: 10rem; */
 `;
 
 const CaptionContainer = styled.section`
@@ -106,7 +107,11 @@ const Container = styled.article`
 
 const CardThumbnail = styled.img`
   width: 100%;
-  height: 100%;
+
+  /* height: 100%; */
+
+  /* height: 257.25px; */
+
   border: 1px solid black;
 `;
 const CardBackDrop = styled.article`
