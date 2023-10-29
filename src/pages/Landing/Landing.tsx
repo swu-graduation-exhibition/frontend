@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Default, Mobile } from '~/utils/mediaQuery';
 
 function Landing() {
   const navigate = useNavigate();
@@ -8,11 +9,16 @@ function Landing() {
   useEffect(() => {
     setTimeout(() => {
       navigate('/home');
-    }, 8500);
+    }, 8000);
   }, []);
   return (
     <PlayerWrapper>
-      <img src={`${import.meta.env.VITE_SWU_IMAGE}/moving_landing.gif`} />
+      <Default>
+        <img src={`${import.meta.env.VITE_SWU_IMAGE}/moving_landing_bg.gif`} />
+      </Default>
+      <Mobile>
+        <img src={`${import.meta.env.VITE_SWU_IMAGE}/moving_landing.gif`} />
+      </Mobile>
     </PlayerWrapper>
   );
 }
@@ -27,7 +33,7 @@ const PlayerWrapper = styled.div`
   img {
     width: 100vw;
     height: 100vh;
-    object-fit: contain;
+    object-fit: cover;
 
     margin: auto;
   }

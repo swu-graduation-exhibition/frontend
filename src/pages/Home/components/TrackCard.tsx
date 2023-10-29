@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { HOME_MOBILE_WIDTH, MOBILE_WIDTH } from '~/constants/common';
+import { HOME_MOBILE_WIDTH, HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 
 import { TrackDataInfo } from '~/types/home';
 
@@ -13,7 +13,7 @@ const TrackCard = ({ title, desc, url }: TrackDataInfo) => {
   return (
     <TrackCardWrapper onClick={handleClickCard}>
       <TitleWrapper>
-        <Title>{title.toUpperCase()}</Title>
+        <Title fontSize={title.includes('Digital')}>{title.toUpperCase()}</Title>
         <img src={`${import.meta.env.VITE_SWU_IMAGE}/ic_arrow_home.svg`} />
       </TitleWrapper>
       <Description>{desc}</Description>
@@ -64,13 +64,16 @@ const TitleWrapper = styled.header`
     }
   }
 `;
-const Title = styled.h3`
+const Title = styled.h3<{ fontSize: boolean }>`
   font-family: 'Ade';
-  font-size: 52px;
+  font-size: ${({ fontSize }) => (fontSize ? '45px' : '52px')};
   font-weight: 400;
   color: var(--grayscales-900, #212529);
 
   width: fit-content;
+  @media screen and (width <= ${HOME_TABLET_WIDTH}) {
+    font-size: 52px;
+  }
   @media screen and (width <= ${MOBILE_WIDTH}) {
     font-size: 26px;
   }

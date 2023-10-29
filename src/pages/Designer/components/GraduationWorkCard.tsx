@@ -89,7 +89,7 @@ const ImgWrapper = styled.div`
 
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     width: 30rem;
-    /* height: 30rem; */
+    height: 30rem;
   }
 
   @media screen and (width <= ${MOBILE_WIDTH}) {
