@@ -82,13 +82,15 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 192rem;
-  height: 11rem;
 
+  /* max-width: 192rem; */
+
+  height: 11rem;
   ${({ $istoggle }) =>
     $istoggle && window.innerWidth <= 520
       ? css`
           position: fixed;
+
           background-color: ${({ theme }) => theme.colors.Black};
           opacity: 0.7;
         `
@@ -98,6 +100,7 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string }>`
         `}
   padding: 0 5%;
   z-index: 10;
+
   ${({ pathname }) =>
     pathname.includes('/project/detail') &&
     css`

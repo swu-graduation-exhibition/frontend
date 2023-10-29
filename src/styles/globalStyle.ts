@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
   }
+
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, main, menu, nav, section {
@@ -43,13 +44,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-     max-width: 192rem;
-     min-height: 100vh;
-
-     margin: 0 auto;
   width:100%;
+     margin: 0 auto;
+
+     /* max-width: 192rem; */
+
+     /* min-height: 100vh; */
+
 overflow-x:hidden;
   }
+
   menu, ol, ul {
     list-style: none;
   }
@@ -77,6 +81,10 @@ overflow-x:hidden;
 
   html {
     height: fill-available;
+
+    background-color: white;
+
+    font-family: sans-serif;
     -webkit-touch-callout: none;
 
     /* -webkit-user-select:none; */
@@ -84,12 +92,8 @@ overflow-x:hidden;
     -webkit-tap-highlight-color:rgb(0 0 0 / 0%);
     
     scroll-behavior: smooth;
-
-    font-family: sans-serif;
     font-size: 62.5%;
     user-select: none;
-
-    background-color: white;
   }
 
   ul, li {
