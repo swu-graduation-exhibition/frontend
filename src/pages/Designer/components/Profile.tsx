@@ -139,7 +139,7 @@ const ProfileImg = styled.img`
   width: 412px;
   height: 61.8rem;
   object-fit: cover;
-  border: 1px solid var(--Black, #000);
+  border: 0.5px solid var(--Black, #000);
 
   @media screen and (width <= ${TABLET_WIDTH}) {
     width: 215px;
