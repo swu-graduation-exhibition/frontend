@@ -18,11 +18,17 @@ const Footer = () => {
         <TextCaption>{`All rights reserved 서울여자대학교 미래산업융합대학 | 서울시 노원구 화랑로 612`}</TextCaption>
       )}
       <LinkWrapper>
-        <TextLink href="">Instagram</TextLink>
+        <TextLink target="__blank" href="https://www.instagram.com/swu_id/">
+          Instagram
+        </TextLink>
         <LineDiv />
-        <TextLink href="">Behance</TextLink>
+        <TextLink target="__blank" href="https://www.behance.net/2023swindustr/projects">
+          Behance
+        </TextLink>
         <LineDiv />
-        <TextLink href="">Notefolio</TextLink>
+        <TextLink target="__blank" href="https://notefolio.net/swuid2023">
+          Notefolio
+        </TextLink>
       </LinkWrapper>
     </FooterWrapper>
   );
