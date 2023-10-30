@@ -6,11 +6,11 @@ import { Default, Mobile } from '~/utils/mediaQuery';
 function Landing() {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigate('/home');
-  //   }, 8000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/home');
+    }, 8000);
+  }, []);
   return (
     <PlayerWrapper>
       <Default>
