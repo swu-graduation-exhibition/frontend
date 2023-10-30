@@ -1,16 +1,16 @@
-import styled from 'styled-components';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { MOBILE_WIDTH } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
 
 function Landing() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate('/home');
-    }, 8000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigate('/home');
+  //   }, 8000);
+  // }, []);
   return (
     <PlayerWrapper>
       <Default>
@@ -29,12 +29,23 @@ const PlayerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+
+  background-color: #eeeed7;
 
   img {
     width: 100vw;
-    height: 100vh;
+
     object-fit: cover;
 
     margin: auto;
+
+    @media screen and (width<=${MOBILE_WIDTH}) {
+      width: 100%;
+    }
+
+    @media screen and (width>${MOBILE_WIDTH}) {
+      height: 100vh;
+    }
   }
 `;
