@@ -30,8 +30,18 @@ const ProjectDetailAssets = () => {
             {checkExtension(photoExtension) ? (
               <Container key={index} src={photo} alt="프로젝트 이미지" />
             ) : (
-              <PlayerWrapper>
-                <ReactPlayer url={photo} width="100vw" height="58vw" controls playsinline />
+              <PlayerWrapper
+                isPhoto={
+                  photo ===
+                  'https://player.vimeo.com/video/878319131?badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479'
+                }
+              >
+                {photo ===
+                'https://player.vimeo.com/video/878319131?badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479' ? (
+                  <ReactPlayer url={photo} width="100vw" height="220vw" controls playsinline />
+                ) : (
+                  <ReactPlayer url={photo} width="100vw" height="58vw" controls playsinline />
+                )}
               </PlayerWrapper>
             )}
           </>
@@ -43,8 +53,14 @@ const ProjectDetailAssets = () => {
 
 export default ProjectDetailAssets;
 
-const PlayerWrapper = styled.div`
-  margin-bottom: -10px;
+const PlayerWrapper = styled.div<{ isPhoto: boolean }>`
+  margin-top: -${({ isPhoto }) => (isPhoto ? 2.5 : 2)}rem;
+  margin-bottom: -${({ isPhoto }) => (isPhoto ? 2.5 : 2)}rem;
+
+  @media screen and (width <= ${MOBILE_WIDTH}) {
+    margin-top: -${({ isPhoto }) => (isPhoto ? 1.4 : 1)}rem;
+    margin-bottom: -${({ isPhoto }) => (isPhoto ? 1.4 : 1)}rem;
+  }
 `;
 
 const DetailAssets = styled.div`
@@ -61,5 +77,5 @@ const DetailAssets = styled.div`
 
 const Container = styled.img`
   width: 100%;
-  margin-bottom: -2px;
+  margin-bottom: -0.2rem;
 `;
