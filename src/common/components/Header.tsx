@@ -15,7 +15,6 @@ import {
   TABLET_WIDTH,
 } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
-import { boxFade, boxFadeOut } from './TopButton';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -119,20 +118,16 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string; visible
   z-index: 10;
 
   ${({ pathname, visible }) =>
-    (pathname.includes('/project/detail') &&
-      visible &&
-      css`
-        opacity: 1;
-        animation: ${boxFade} ease-in-out 1s;
-      `) ||
-    (pathname.includes('/project/detail') &&
-      !visible &&
-      window.scrollY > 10 &&
-      css`
-        opacity: 0;
-        animation: ${boxFadeOut} ease-in-out 0.8s;
-      `)};
-
+    pathname.includes('/project/detail') &&
+    css`
+      transition: top 0.2s ease-in-out;
+    `};
+  ${({ pathname, visible }) =>
+    pathname.includes('/project/detail') &&
+    !visible &&
+    css`
+      top: -11rem;
+    `};
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     height: 11rem;
     padding: 4.3rem 4.4rem;
