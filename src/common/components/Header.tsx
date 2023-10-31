@@ -119,15 +119,18 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string; visible
   z-index: 10;
 
   ${({ pathname, visible }) =>
-    pathname.includes('/project/detail') && visible
-      ? css`
-          opacity: 1;
-          animation: ${boxFade} ease-in-out 1s;
-        `
-      : css`
-          opacity: 0;
-          animation: ${boxFadeOut} ease-in-out 0.8s;
-        `};
+    (pathname.includes('/project/detail') &&
+      visible &&
+      css`
+        opacity: 1;
+        animation: ${boxFade} ease-in-out 1s;
+      `) ||
+    (pathname.includes('/project/detail') &&
+      !visible &&
+      css`
+        opacity: 0;
+        animation: ${boxFadeOut} ease-in-out 0.8s;
+      `)};
 
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     height: 11rem;
