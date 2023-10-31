@@ -10,13 +10,6 @@ import { Mobile } from '~/utils/mediaQuery';
 import Loading from '../Loading';
 import ProjectCardContainer from './components/ProjectCardContainer';
 import ProjectCategory from './components/ProjectCategory';
-import { projectData, projectData1, projectData2 } from './data/cardData';
-
-const CategoryData = {
-  'ux-design': projectData,
-  'digital-fabrication': projectData1,
-  'bx-design': projectData2,
-};
 
 function Project() {
   const { category } = useParams();

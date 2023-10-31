@@ -36,7 +36,7 @@ const TopButton = () => {
 
 export default TopButton;
 
-const boxFade = keyframes`
+export const boxFade = keyframes`
   0% {
     opacity: 0;
   }
@@ -47,7 +47,7 @@ const boxFade = keyframes`
     opacity: 1;
   }
 `;
-const boxFadeOut = keyframes`
+export const boxFadeOut = keyframes`
    0% {
     opacity: 1;
   }

@@ -41,6 +41,7 @@ const TrackCardWrapper = styled.article`
   @media screen and (width <= ${MOBILE_WIDTH}) {
     width: 27.5rem;
     height: 21.6rem;
+    min-height: 21.6rem;
     padding: 2rem;
   }
 `;

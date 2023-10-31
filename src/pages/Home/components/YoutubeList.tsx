@@ -59,14 +59,14 @@ const PlayImg = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 26rem;
+  width: 15rem;
 
   /* background-color: aliceblue; */
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
-    width: 16rem;
+    width: 10rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 7rem;
+    width: 4rem;
   }
 `;
 const DragSlider = styled.section`
