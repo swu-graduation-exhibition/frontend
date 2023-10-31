@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function Loading() {
   return (
     <Background>
-      <LoadingImage src={`${import.meta.env.VITE_SWU_IMAGE}/loadingIc.svg`} />
+      <LoadingImage src={`${import.meta.env.VITE_SWU_IMAGE}/loading.png`} />
     </Background>
   );
 }
@@ -22,10 +22,15 @@ const Background = styled.div`
 
 const LoadingImage = styled.img`
   z-index: 10;
-  height: 20rem;
 
-  animation: fadeinanimation 2s ease-out;
-  animation-iteration-count: infinite;
+  /* height: 20rem;
+   */
+
+  width: 100%;
+
+  /* animation: fadeinanimation 2s ease-out; */
+
+  /* animation-iteration-count: infinite; */
 
   @keyframes fadeinanimation {
     0% {
