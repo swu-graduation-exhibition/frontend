@@ -127,6 +127,7 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string; visible
       `) ||
     (pathname.includes('/project/detail') &&
       !visible &&
+      window.scrollY > 10 &&
       css`
         opacity: 0;
         animation: ${boxFadeOut} ease-in-out 0.8s;
