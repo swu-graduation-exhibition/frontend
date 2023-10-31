@@ -120,7 +120,7 @@ const CardBackDrop = styled.article`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 99.5%;
   padding: 3.2rem;
 
   animation: fadeinanimation 0.5s ease-in-out forwards;
