@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { youtubeData } from '../data/youtubeData';
 import { HOME_TABLET_WIDTH, MOBILE_WIDTH } from '~/constants/common';
 import useDragScroll from '~/hooks/useDragScroll';
+import PlayBtn from '~/assets/images/play_btn.png';
 
 const YoutubeList = () => {
   const ref = useDragScroll();
@@ -13,7 +14,7 @@ const YoutubeList = () => {
           {youtubeData.map(({ id, url, link }, idx) => (
             <CardWrapper key={id} onClick={() => window.open(link, '_blank')}>
               <YoutubeCard src={url} alt={id + '번재'} />
-              <PlayImg src={`${import.meta.env.VITE_SWU_IMAGE}/youtube_logo.png`} />
+              <PlayImg src={PlayBtn} />
             </CardWrapper>
           ))}
         </DragSlider>
@@ -59,14 +60,14 @@ const PlayImg = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 26rem;
+  width: 15rem;
 
   /* background-color: aliceblue; */
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
-    width: 16rem;
+    width: 10rem;
   }
   @media screen and (width <= ${MOBILE_WIDTH}) {
-    width: 7rem;
+    width: 4rem;
   }
 `;
 const DragSlider = styled.section`
