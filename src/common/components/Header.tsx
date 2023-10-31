@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
 import { ReactComponent as IcDefaultBar } from '~/assets/icons/ic_default_bar.svg';
@@ -15,14 +15,31 @@ import {
   TABLET_WIDTH,
 } from '~/constants/common';
 import { Default, Mobile } from '~/utils/mediaQuery';
+import { boxFade, boxFadeOut } from './TopButton';
 
 const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [isToggle, setIsToggle] = useState(false);
 
+  const [position, setPosition] = useState(window.pageYOffset);
+  const [visible, setVisible] = useState(true);
+  const documentRef = useRef(document);
+
+  const handleScroll = () => {
+    const moving = window.scrollY;
+    setVisible(position > moving);
+    setPosition(moving);
+  };
+  console.log(visible, position);
+
+  useEffect(() => {
+    if (pathname.includes('/project/detail'))
+      documentRef.current.addEventListener('scroll', handleScroll);
+    return () => documentRef.current.removeEventListener('scroll', handleScroll);
+  }, [position]);
   return (
-    <HeaderWrapper $istoggle={isToggle} pathname={pathname}>
+    <HeaderWrapper $istoggle={isToggle} pathname={pathname} visible={visible}>
       <div>
         <IcHeaderLogo onClick={() => navigate('/home')} />
       </div>
@@ -75,7 +92,7 @@ const Header = () => {
 
 export default Header;
 
-const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string }>`
+const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string; visible: boolean }>`
   position: fixed;
   top: 0;
   width: 100%;
@@ -101,11 +118,17 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string }>`
   padding: 0 5%;
   z-index: 10;
 
-  ${({ pathname }) =>
-    pathname.includes('/project/detail') &&
-    css`
-      position: absolute;
-    `};
+  ${({ pathname, visible }) =>
+    pathname.includes('/project/detail') && visible
+      ? css`
+          opacity: 1;
+          animation: ${boxFade} ease-in-out 1s;
+        `
+      : css`
+          opacity: 0;
+          animation: ${boxFadeOut} ease-in-out 0.8s;
+        `};
+
   @media screen and (width <= ${HOME_TABLET_WIDTH}) {
     height: 11rem;
     padding: 4.3rem 4.4rem;
