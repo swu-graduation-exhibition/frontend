@@ -125,6 +125,7 @@ const HeaderWrapper = styled.div<{ $istoggle: boolean; pathname: string; visible
   ${({ pathname, visible }) =>
     pathname.includes('/project/detail') &&
     !visible &&
+    window.screenY > 10 &&
     css`
       top: -11rem;
     `};
