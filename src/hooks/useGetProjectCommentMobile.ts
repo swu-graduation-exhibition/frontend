@@ -11,7 +11,7 @@ const useGetProjectCommentMobile = (id: number) => {
   };
 
   const { data, fetchNextPage, hasNextPage, ...restValues } = useInfiniteQuery(
-    ['getProjectCommentMobile'],
+    ['getProjectCommentMobile', designerId],
     ({ pageParam = 1 }) => fetchComments(pageParam),
     {
       getNextPageParam: (lastPage) => {
