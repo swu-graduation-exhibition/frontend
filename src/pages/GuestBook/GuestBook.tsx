@@ -34,5 +34,7 @@ const PageWrapper = styled.div`
 `;
 
 const GuestBookWrapper = styled.div`
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-y: overlay;
+  width: 100%;
 `;
