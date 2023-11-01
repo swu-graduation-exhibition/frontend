@@ -14,8 +14,14 @@ const Background = styled.div`
   align-items: center;
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100vh;
 
-  background-color: #ffffff4f;
+  /* background-color: #ffffff4f; */
+
+  background: linear-gradient(to top, '#FDF9D3', 'white');
+
+  /* background-color: red; */
 
   flex-direction: column;
 `;
@@ -27,6 +33,14 @@ const LoadingImage = styled.img`
    */
 
   width: 100%;
+
+  /* @media screen and (height>=1080px) {
+    width: 100%;
+  }
+
+  @media screen and (height<1080px) {
+    height: 100vh;
+  } */
 
   /* animation: fadeinanimation 2s ease-out; */
 
