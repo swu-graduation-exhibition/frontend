@@ -12,7 +12,7 @@ const useGetGuestBookMobile = (id: number) => {
   };
 
   const { data, fetchNextPage, hasNextPage, ...restValues } = useInfiniteQuery(
-    ['getGuestBookMobile'],
+    ['getGuestBookMobile', designerId],
     ({ pageParam = 1 }) => fetchComments(pageParam),
     {
       getNextPageParam: (lastPage) => {
